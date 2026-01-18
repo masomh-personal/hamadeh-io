@@ -1,0 +1,14 @@
+[test]
+coverage = true
+coverageThreshold = { lines = 0.85, functions = 0.85, statements = 0.85 }
+coverageSkipTestFiles = true
+coveragePathIgnorePatterns = [
+  "dist/**",
+  "node_modules/**",
+  ".next/**",
+  "**/*.config.ts",
+  "**/*.config.js",
+  "**/*.config.mjs"
+]
+coverageReporter = ["text", "lcov"]
+coverageDir = "./coverage"

@@ -1,44 +1,44 @@
 {
-  "name": "thoughtfulcode-app",
-  "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "node": ">=24.0.0",
-    "bun": ">=1.3.0"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "format:check": "biome check --formatter-enabled=false .",
-    "type-check": "tsc --noEmit",
-    "test": "bun test",
-    "test:coverage": "bun test --coverage",
-    "prepare": "husky"
-  },
-  "dependencies": {
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "next": "^16.1.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^2.3.11",
-    "@types/node": "^22.19.7",
-    "@types/react": "^19.2.8",
-    "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.23",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md,mjs}": [
-      "biome check --write"
-    ]
-  }
+    "name": "thoughtfulcode-app",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": ">=24.0.0",
+        "bun": ">=1.3.0"
+    },
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
+        "format": "biome format --write .",
+        "format:check": "biome check --formatter-enabled=false .",
+        "type-check": "tsc --noEmit",
+        "test": "bun test",
+        "test:coverage": "bun test --coverage",
+        "prepare": "husky"
+    },
+    "dependencies": {
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "next": "^16.1.3"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.3.11",
+        "@types/node": "^22.19.7",
+        "@types/react": "^19.2.8",
+        "@types/react-dom": "^19.2.3",
+        "autoprefixer": "^10.4.23",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.1.18",
+        "typescript": "^5.9.3"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,json,css,md,mjs}": [
+            "biome check --write"
+        ]
+    }
 }

@@ -1,103 +1,103 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
-  "files": {
-    "ignoreUnknown": false,
-    "includes": [
-      "**/*.js",
-      "**/*.jsx",
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.json",
-      "**/*.mjs",
-      "**/*.css",
-      "**/*.md"
-    ]
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 80,
-    "lineEnding": "lf",
-    "formatWithErrors": false
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "noUnusedVariables": "error",
-        "noUnusedImports": "error"
-      },
-      "style": {
-        "useConst": "error",
-        "useTemplate": "warn"
-      },
-      "suspicious": {
-        "noExplicitAny": "warn",
-        "noArrayIndexKey": "warn"
-      },
-      "performance": {
-        "noDelete": "warn"
-      },
-      "complexity": {
-        "noForEach": "off",
-        "useSimplifiedLogicExpression": "warn"
-      },
-      "security": {
-        "noDangerouslySetInnerHtml": "warn"
-      }
-    }
-  },
-  "javascript": {
+    "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "files": {
+        "ignoreUnknown": false,
+        "includes": [
+            "**/*.js",
+            "**/*.jsx",
+            "**/*.ts",
+            "**/*.tsx",
+            "**/*.json",
+            "**/*.mjs",
+            "**/*.css",
+            "**/*.md"
+        ]
+    },
     "formatter": {
-      "quoteStyle": "double",
-      "jsxQuoteStyle": "double",
-      "semicolons": "always",
-      "trailingCommas": "es5",
-      "arrowParentheses": "always",
-      "bracketSpacing": true,
-      "bracketSameLine": false
-    },
-    "globals": []
-  },
-  "css": {
-    "linter": {
-      "enabled": false
-    }
-  },
-  "overrides": [
-    {
-      "includes": ["*.mjs"],
-      "formatter": {
+        "enabled": true,
         "indentStyle": "space",
-        "indentWidth": 2
-      }
+        "indentWidth": 4,
+        "lineWidth": 80,
+        "lineEnding": "lf",
+        "formatWithErrors": false
     },
-    {
-      "includes": ["*.json"],
-      "formatter": {
-        "lineWidth": 80
-      }
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "correctness": {
+                "noUnusedVariables": "error",
+                "noUnusedImports": "error"
+            },
+            "style": {
+                "useConst": "error",
+                "useTemplate": "warn"
+            },
+            "suspicious": {
+                "noExplicitAny": "warn",
+                "noArrayIndexKey": "warn"
+            },
+            "performance": {
+                "noDelete": "warn"
+            },
+            "complexity": {
+                "noForEach": "off",
+                "useSimplifiedLogicExpression": "warn"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "warn"
+            }
+        }
     },
-    {
-      "includes": ["*.md"],
-      "formatter": {
-        "lineWidth": 100
-      }
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double",
+            "jsxQuoteStyle": "double",
+            "semicolons": "always",
+            "trailingCommas": "es5",
+            "arrowParentheses": "always",
+            "bracketSpacing": true,
+            "bracketSameLine": false
+        },
+        "globals": []
+    },
+    "css": {
+        "linter": {
+            "enabled": false
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["*.mjs"],
+            "formatter": {
+                "indentStyle": "space",
+                "indentWidth": 4
+            }
+        },
+        {
+            "includes": ["*.json"],
+            "formatter": {
+                "lineWidth": 80
+            }
+        },
+        {
+            "includes": ["*.md"],
+            "formatter": {
+                "lineWidth": 100
+            }
+        }
+    ],
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
     }
-  ],
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  }
 }

@@ -462,6 +462,16 @@ bun update <package-name>     # Update specific package
 
 ---
 
+## Future Improvements
+
+### CSS Linting for Tailwind v4
+- [ ] Evaluate Stylelint with `stylelint-config-standard` for proper `@theme` syntax support
+- [ ] Consider Prettier with `prettier-plugin-tailwindcss` as alternative formatter
+- [ ] Monitor Biome GitHub for native Tailwind v4 `@theme` syntax support
+- **Current approach**: Excluding `globals.css` from Biome (pragmatic until tooling catches up)
+
+---
+
 ## Resources
 
 - **Next.js Documentation:** https://nextjs.org/docs

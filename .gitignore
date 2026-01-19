@@ -1,5 +1,8 @@
 # Dependencies
 node_modules/
+
+# LeetCode Solutions (work in progress, not linted)
+solutions/
 .pnp
 .pnp.js
 .yarn/

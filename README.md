@@ -84,6 +84,8 @@ bun start
 | `bun run test:coverage` | Run tests with coverage report |
 | `bun run healthcheck` | Run type-check, lint, and format checks |
 | `bun run clean` | Remove node_modules and lock files, reinstall |
+| `bun run new:solution <url-or-slug>` | Scaffold new LeetCode solution from URL |
+| `bun run publish:solution <slug>` | Generate MDX from completed solution |
 
 ---
 
@@ -425,13 +427,75 @@ chmod +x .husky/pre-push
 
 ### Adding New Content
 
-**LeetCode Solution:**
-1. Create MDX file in `content/leetcode/[slug].mdx`
-2. Add frontmatter with required fields (see Content Structure section)
-3. Write solution with code blocks and explanations
-4. Build and verify: `bun run build`
+#### LeetCode Solution Workflow
 
-**Blog Post:**
+**Step 1: Scaffold a New Solution**
+
+```bash
+# From LeetCode URL
+bun run new:solution https://leetcode.com/problems/two-sum/
+
+# Or just the slug
+bun run new:solution two-sum
+```
+
+This creates:
+```
+solutions/two-sum/
+├── solution.ts         # Starter code with problem description
+├── solution.test.ts    # Test template
+└── metadata.json       # Frontmatter data (auto-filled from LeetCode API)
+```
+
+**Step 2: Code Your Solution**
+
+1. Implement your solution in `solutions/two-sum/solution.ts`
+2. Write tests in `solutions/two-sum/solution.test.ts`
+3. Run tests: `bun test solutions/two-sum/solution.test.ts`
+4. Iterate until you're happy with the solution
+
+**Step 3: Update Metadata**
+
+Edit `solutions/two-sum/metadata.json`:
+- Update `timeComplexity` (change from `O(?)`)
+- Update `spaceComplexity` (change from `O(?)`)
+- Optionally add `companies`, `hints`, `relatedProblems`
+
+**Step 4: Publish to MDX**
+
+```bash
+bun run publish:solution two-sum
+```
+
+This generates `content/leetcode/two-sum.mdx` with:
+- Frontmatter from metadata.json
+- Your solution code
+- Template sections for explanation
+
+**Step 5: Add Explanations**
+
+Edit `content/leetcode/two-sum.mdx` to add:
+- Problem description
+- Examples
+- Approach explanation
+- Complexity analysis details
+- Key takeaways
+
+**Step 6: Preview & Commit**
+
+```bash
+# Preview at http://localhost:3000/leetcode/two-sum
+bun run dev
+
+# When ready, commit
+git add .
+git commit -m "feat: add two-sum solution"
+```
+
+---
+
+#### Blog Post Workflow
+
 1. Create MDX file in `content/blog/[slug].mdx`
 2. Add frontmatter with title, slug, datePublished, tags
 3. Write content in Markdown

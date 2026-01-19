@@ -19,6 +19,8 @@
         "test:coverage": "bun test --coverage",
         "clean": "bun scripts/clean.mjs",
         "healthcheck": "bun run type-check && bun run lint && bun run check",
+        "new:solution": "bun scripts/new-solution.ts",
+        "publish:solution": "bun scripts/publish-solution.ts",
         "prepare": "husky"
     },
     "dependencies": {

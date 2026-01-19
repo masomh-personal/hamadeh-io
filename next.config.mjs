@@ -4,8 +4,10 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: false,
     },
-    eslint: {
-        ignoreDuringBuilds: true, // Using Biome instead of ESLint
+    // ESLint config removed - Next.js 16 no longer supports it
+    // Using Biome for linting/formatting instead
+    turbopack: {
+        root: process.cwd(),
     },
 };
 

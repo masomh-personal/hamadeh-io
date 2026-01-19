@@ -97,8 +97,9 @@ function extractSolutionCode(solution: string): string {
 
     // Skip initial comment block
     for (let i = 0; i < lines.length; i++) {
-        if (lines[i].trim().startsWith("/**")) {
-            while (i < lines.length && !lines[i].includes("*/")) {
+        const line = lines[i];
+        if (line?.trim().startsWith("/**")) {
+            while (i < lines.length && !lines[i]?.includes("*/")) {
                 i++;
             }
             startIndex = i + 1;

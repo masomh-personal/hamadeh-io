@@ -4,6 +4,7 @@
  */
 
 import type { TestContext } from "bun:test";
+import "@testing-library/jest-dom";
 
 declare global {
     /**

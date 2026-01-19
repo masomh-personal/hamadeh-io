@@ -21,7 +21,9 @@ for (const file of filesToRemove) {
             await rm(file, { recursive: true, force: true });
             console.log(`✅ Removed: ${file}`);
         } catch (error) {
-            console.error(`❌ Failed to remove ${file}:`, error.message);
+            const message =
+                error instanceof Error ? error.message : String(error);
+            console.error(`❌ Failed to remove ${file}:`, message);
         }
     } else {
         console.log(`⏭️  Skipped: ${file} (not found)`);
@@ -33,6 +35,7 @@ try {
     execSync("bun install", { stdio: "inherit" });
     console.log("\n✅ Clean install complete!");
 } catch (error) {
-    console.error("\n❌ Failed to install packages:", error.message);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("\n❌ Failed to install packages:", message);
     process.exit(1);
 }

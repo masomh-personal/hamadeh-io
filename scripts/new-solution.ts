@@ -42,7 +42,7 @@ interface ProblemMetadata {
  */
 function extractSlug(input: string): string {
     const urlMatch = input.match(/leetcode\.com\/problems\/([^/]+)/);
-    return urlMatch ? urlMatch[1] : input;
+    return urlMatch?.[1] ?? input;
 }
 
 /**
@@ -128,7 +128,7 @@ function createMetadata(
             | "medium"
             | "hard",
         topics: problem.topicTags.map((tag) => tag.slug),
-        datePublished: new Date().toISOString().split("T")[0],
+        datePublished: new Date().toISOString().split("T")[0] ?? "",
         timeComplexity: "O(?)", // User will fill in
         spaceComplexity: "O(?)", // User will fill in
         excerpt,

@@ -2,6 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 bun run type-check
-# ESLint temporarily disabled - Next.js 16.1.3 has compatibility issue
-# bun run lint
+bun run lint
 bun run format:check

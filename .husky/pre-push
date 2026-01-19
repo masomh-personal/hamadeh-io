@@ -2,5 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 bun run type-check
-bun run lint
-bun run format:check
+bun run check

@@ -23,35 +23,52 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 80,
-    "lineEnding": "lf"
+    "lineEnding": "lf",
+    "formatWithErrors": false
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "correctness": {
-        "noUnusedVariables": "error"
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error"
       },
       "style": {
-        "useConst": "error"
+        "useConst": "error",
+        "useTemplate": "warn"
       },
       "suspicious": {
-        "noExplicitAny": "warn"
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn"
+      },
+      "performance": {
+        "noDelete": "warn"
+      },
+      "complexity": {
+        "noForEach": "off",
+        "useSimplifiedLogicExpression": "warn"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
       }
-    }
-  },
-  "css": {
-    "linter": {
-      "enabled": false
     }
   },
   "javascript": {
     "formatter": {
       "quoteStyle": "double",
+      "jsxQuoteStyle": "double",
       "semicolons": "always",
       "trailingCommas": "es5",
       "arrowParentheses": "always",
-      "bracketSpacing": true
+      "bracketSpacing": true,
+      "bracketSameLine": false
+    },
+    "globals": []
+  },
+  "css": {
+    "linter": {
+      "enabled": false
     }
   },
   "overrides": [

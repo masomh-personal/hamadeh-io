@@ -1,3 +1,6 @@
+import createMDX from "@next/mdx";
+import rehypeHighlight from "rehype-highlight";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
@@ -9,6 +12,30 @@ const nextConfig = {
     turbopack: {
         root: process.cwd(),
     },
+    // Configure `pageExtensions` to include MDX files
+    pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+// Configure MDX with rehype plugins for syntax highlighting
+const withMDX = createMDX({
+    options: {
+        rehypePlugins: [
+            [
+                rehypeHighlight,
+                {
+                    // Only load languages we actually use (tree-shaking)
+                    languages: [
+                        "typescript",
+                        "javascript",
+                        "python",
+                        "bash",
+                        "json",
+                    ],
+                },
+            ],
+        ],
+    },
+});
+
+// Merge MDX config with Next.js config
+export default withMDX(nextConfig);

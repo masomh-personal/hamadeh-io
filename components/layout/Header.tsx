@@ -1,10 +1,10 @@
 "use client";
 
-import { Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { LuMenu, LuMoon, LuSun, LuX } from "react-icons/lu";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -67,9 +67,9 @@ export function Header(): React.ReactElement {
                             aria-label="Toggle dark mode"
                         >
                             {mounted && theme === "dark" ? (
-                                <Sun className="h-5 w-5" />
+                                <LuSun className="h-5 w-5" />
                             ) : (
-                                <Moon className="h-5 w-5" />
+                                <LuMoon className="h-5 w-5" />
                             )}
                         </button>
                     </div>
@@ -85,9 +85,9 @@ export function Header(): React.ReactElement {
                             aria-label="Toggle dark mode"
                         >
                             {mounted && theme === "dark" ? (
-                                <Sun className="h-5 w-5" />
+                                <LuSun className="h-5 w-5" />
                             ) : (
-                                <Moon className="h-5 w-5" />
+                                <LuMoon className="h-5 w-5" />
                             )}
                         </button>
                         <button
@@ -98,9 +98,9 @@ export function Header(): React.ReactElement {
                             aria-expanded={mobileMenuOpen}
                         >
                             {mobileMenuOpen ? (
-                                <X className="h-5 w-5" />
+                                <LuX className="h-5 w-5" />
                             ) : (
-                                <Menu className="h-5 w-5" />
+                                <LuMenu className="h-5 w-5" />
                             )}
                         </button>
                     </div>

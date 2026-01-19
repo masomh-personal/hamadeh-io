@@ -1,4 +1,4 @@
-import { Github, Linkedin } from "lucide-react";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
 export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();
@@ -18,7 +18,7 @@ export function Footer(): React.ReactElement {
                             className="text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                             aria-label="GitHub"
                         >
-                            <Github className="h-5 w-5" />
+                            <SiGithub className="h-5 w-5" />
                         </a>
                         <a
                             href="https://linkedin.com"
@@ -27,7 +27,7 @@ export function Footer(): React.ReactElement {
                             className="text-slate-600 transition-colors hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                             aria-label="LinkedIn"
                         >
-                            <Linkedin className="h-5 w-5" />
+                            <SiLinkedin className="h-5 w-5" />
                         </a>
                     </div>
                 </div>

@@ -99,7 +99,9 @@ describe("Header component", () => {
 
             // Click a navigation link in mobile menu
             const mobileLinks = screen.getAllByText("About");
-            await user.click(mobileLinks[mobileLinks.length - 1]); // Click mobile version
+            const mobileLink = mobileLinks[mobileLinks.length - 1];
+            if (!mobileLink) throw new Error("Mobile link not found");
+            await user.click(mobileLink); // Click mobile version
 
             // Menu should close
             expect(menuButton).toHaveAttribute("aria-expanded", "false");
@@ -143,11 +145,13 @@ describe("Header component", () => {
         test("home link is active when pathname is /", () => {
             render(<Header />);
             const homeLinks = screen.getAllByText("Home");
-            const homeLink = homeLinks[0].closest("a");
+            const homeLink = homeLinks[0]?.closest("a");
             // Should have active or inactive styling based on current pathname
             expect(homeLink).toBeInTheDocument();
             // Check that styling classes are applied
-            expect(homeLink?.className).toContain("text-");
+            if (homeLink) {
+                expect(homeLink.className).toContain("text-");
+            }
         });
 
         test("links apply correct conditional styling classes", () => {
@@ -169,24 +173,23 @@ describe("Header component", () => {
         test("non-home links are not active on home page", () => {
             render(<Header />);
             const leetcodeLinks = screen.getAllByText("LeetCode");
+            const leetcodeLink = leetcodeLinks[0]?.closest("a");
             // Should have inactive styling when not on /leetcode route
-            expect(leetcodeLinks[0].closest("a")).toHaveClass("text-slate-400");
+            expect(leetcodeLink).toHaveClass("text-slate-400");
         });
 
         test("blog link gets hover styling when not active", () => {
             render(<Header />);
             const blogLinks = screen.getAllByText("Blog");
-            expect(blogLinks[0].closest("a")).toHaveClass(
-                "hover:text-cyan-500"
-            );
+            const blogLink = blogLinks[0]?.closest("a");
+            expect(blogLink).toHaveClass("hover:text-cyan-500");
         });
 
         test("about link gets hover styling when not active", () => {
             render(<Header />);
             const aboutLinks = screen.getAllByText("About");
-            expect(aboutLinks[0].closest("a")).toHaveClass(
-                "hover:text-cyan-500"
-            );
+            const aboutLink = aboutLinks[0]?.closest("a");
+            expect(aboutLink).toHaveClass("hover:text-cyan-500");
         });
     });
 

@@ -6,7 +6,7 @@
 describe("Header component", () => {
     describe("Basics", () => {
         test("component exists and can be imported", () => {
-            const { Header } = require("./Header");
+            const { Header } = require("@/components/layout/Header");
             expect(Header).toBeDefined();
             expect(typeof Header).toBe("function");
         });

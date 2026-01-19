@@ -6,7 +6,7 @@
 describe("Footer component", () => {
     describe("Basics", () => {
         test("component exists and can be imported", () => {
-            const { Footer } = require("./Footer");
+            const { Footer } = require("@/components/layout/Footer");
             expect(Footer).toBeDefined();
             expect(typeof Footer).toBe("function");
         });

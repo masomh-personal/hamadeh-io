@@ -1,6 +1,7 @@
 # ThoughtfulCode
 
-A modern, performance-focused portfolio website showcasing software engineering skills, LeetCode solutions, algorithms, data structures, and technical writing.
+A modern, performance-focused portfolio website showcasing software engineering skills, LeetCode
+solutions, algorithms, data structures, and technical writing.
 
 ## Tech Stack
 
@@ -80,10 +81,12 @@ thoughtfulcode-app/
 ## Git Hooks
 
 Pre-commit hooks automatically:
+
 - Format code with Prettier
 - Run ESLint fixes
 
 Pre-push hooks automatically:
+
 - Run TypeScript type checking
 - Run ESLint
 

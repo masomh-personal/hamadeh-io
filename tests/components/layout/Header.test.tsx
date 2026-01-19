@@ -3,10 +3,11 @@
  * Basic smoke tests to ensure component renders without errors
  */
 
+import { Header } from "@/components/layout/Header";
+
 describe("Header component", () => {
     describe("Basics", () => {
         test("component exists and can be imported", () => {
-            const { Header } = require("@/components/layout/Header");
             expect(Header).toBeDefined();
             expect(typeof Header).toBe("function");
         });

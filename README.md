@@ -91,14 +91,14 @@ bun start
 
 ### Test Runner
 
-Uses **Bun's built-in test runner** with the same structure as Vitest:
+Uses **Bun's built-in test runner** with global test methods (no imports needed):
 
 ```typescript
-import { describe, it, expect } from 'bun:test';
+// No imports needed - test, describe, expect are globally available
 
 describe('Feature Name', () => {
     describe('Basics', () => {
-        it('should handle normal case', () => {
+        test('should handle normal case', () => {
             const input = 'test';
             const expected = 'result';
             const result = myFunction(input);
@@ -108,14 +108,20 @@ describe('Feature Name', () => {
     });
     
     describe('Edge Cases', () => {
-        // Edge case tests
+        test('should handle empty input', () => {
+            // Edge case tests
+        });
     });
     
     describe('Stress Tests', () => {
-        // Stress tests
+        test('should handle large input', () => {
+            // Stress tests
+        });
     });
 });
 ```
+
+**Important:** Always use `test()` instead of `it()` for consistency. Test methods are globally available via `types/bun-test.d.ts`.
 
 ### Coverage
 
@@ -178,6 +184,9 @@ thoughtfulcode-app/
 │   ├── leetcode/        # LeetCode solutions
 │   ├── blog/            # Blog posts
 │   └── about/           # Resume/about content
+├── docs/                 # Documentation
+│   ├── architecture.md  # Architecture decisions and patterns
+│   └── styling.md        # Styling guidelines and conventions
 ├── public/              # Static assets
 │   ├── images/
 │   ├── resume.pdf
@@ -201,44 +210,25 @@ thoughtfulcode-app/
 
 ## Architecture Decisions
 
-### Why Next.js 16?
+For detailed architecture decisions, patterns, and conventions, see [`docs/architecture.md`](docs/architecture.md).
 
-- **Production-Ready:** 10+ years of battle-testing, comprehensive documentation
-- **Perfect for Portfolio:** SSG (Static Site Generation) for fast loads, excellent SEO
-- **React 19 Support:** Server Components, enhanced performance, Turbopack bundler
-- **Deployment:** Zero-config Vercel deployment with global CDN
+**Quick Summary:**
+- **Next.js 16:** Production-ready, SSG for fast loads, React 19 support
+- **Bun:** 25x faster installs, built-in tooling, production-ready
+- **Biome:** All-in-one linting/formatting, 25x faster than ESLint
+- **Valibot:** Lightweight validation (~1KB vs Zod's ~14KB)
+- **MDX:** Version-controlled content, type-safe, zero infrastructure
 
-### Why Bun?
+## Styling Guidelines
 
-- **Performance:** 25x faster package installation, faster builds
-- **Built-in Tooling:** Test runner, bundler, package manager in one
-- **Instant TypeScript:** No transpilation step needed
-- **Production Ready:** Vercel supports Bun for Next.js deployments
+For detailed styling conventions, Tailwind CSS patterns, and design guidelines, see [`docs/styling.md`](docs/styling.md).
 
-**Easy Fallback:** All scripts work with both Bun and Node.js. Switch to `npm` commands if needed.
-
-### Why Biome?
-
-- **All-in-One:** Replaces ESLint + Prettier in a single tool
-- **Performance:** 25x faster than ESLint, written in Rust
-- **Zero Config:** Works out of the box with sensible defaults
-- **Better DX:** Clear error messages, faster feedback loops
-- **Production Ready:** Used by Astro, Remix, and other major projects
-
-### Why Valibot?
-
-- **Bundle Size:** ~1KB vs Zod's ~14KB (critical for 200KB bundle target)
-- **Performance:** 2-10x faster runtime validation
-- **Tree-Shakeable:** Modular design, only bundle what you use
-- **TypeScript Native:** Better type inference
-
-### Why MDX for Content?
-
-- **Version Control:** Everything in Git—track changes, collaborate, revert easily
-- **Type Safety:** Frontmatter validated with Valibot schemas
-- **Zero Infrastructure:** No database, no CMS, no API calls
-- **Performance:** Static generation at build time = instant page loads
-- **Developer-Friendly:** Write in Markdown, embed React components when needed
+**Quick Summary:**
+- **Utility-First:** Use Tailwind utilities over custom CSS
+- **Semantic HTML:** Proper HTML elements before styling
+- **Accessibility:** WCAG 2.1 AA compliance, keyboard navigation, screen reader support
+- **Dark Mode:** Implemented with `next-themes` and CSS variables
+- **Responsive:** Mobile-first approach with Tailwind breakpoints
 
 ---
 

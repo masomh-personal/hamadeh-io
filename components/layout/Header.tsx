@@ -2,12 +2,19 @@
 
 import { Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const navigation = [
         { name: "Home", href: "/" },
@@ -17,28 +24,38 @@ export function Header(): React.ReactElement {
     ];
 
     return (
-        <header className="sticky top-0 z-50 border-b border-primary-200 bg-white dark:border-primary-700 dark:bg-primary-900">
-            <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="site-header">
+            <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="text-xl font-semibold text-primary-900 dark:text-primary-50"
+                        className="text-xl font-bold tracking-tight text-slate-900 transition-colors hover:text-indigo-600 dark:text-slate-50 dark:hover:text-indigo-400"
                     >
                         ThoughtfulCode
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex md:items-center md:space-x-6">
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="text-sm font-medium text-primary-600 transition-colors hover:text-secondary-600 dark:text-primary-300 dark:hover:text-secondary-400"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
+                    <div className="hidden items-center gap-8 md:flex">
+                        {navigation.map((item) => {
+                            const isActive =
+                                pathname === item.href ||
+                                (item.href !== "/" &&
+                                    pathname?.startsWith(item.href));
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    className={
+                                        isActive
+                                            ? "nav-link-active"
+                                            : "nav-link"
+                                    }
+                                >
+                                    {item.name}
+                                </Link>
+                            );
+                        })}
 
                         {/* Dark Mode Toggle */}
                         <button
@@ -46,10 +63,10 @@ export function Header(): React.ReactElement {
                             onClick={() =>
                                 setTheme(theme === "dark" ? "light" : "dark")
                             }
-                            className="rounded-md p-2 text-primary-600 transition-colors hover:bg-primary-100 hover:text-secondary-600 dark:text-primary-300 dark:hover:bg-primary-800 dark:hover:text-secondary-400"
+                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-400"
                             aria-label="Toggle dark mode"
                         >
-                            {theme === "dark" ? (
+                            {mounted && theme === "dark" ? (
                                 <Sun className="h-5 w-5" />
                             ) : (
                                 <Moon className="h-5 w-5" />
@@ -64,10 +81,10 @@ export function Header(): React.ReactElement {
                             onClick={() =>
                                 setTheme(theme === "dark" ? "light" : "dark")
                             }
-                            className="rounded-md p-2 text-primary-600 transition-colors hover:bg-primary-100 dark:text-primary-300 dark:hover:bg-primary-800"
+                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                             aria-label="Toggle dark mode"
                         >
-                            {theme === "dark" ? (
+                            {mounted && theme === "dark" ? (
                                 <Sun className="h-5 w-5" />
                             ) : (
                                 <Moon className="h-5 w-5" />
@@ -76,7 +93,7 @@ export function Header(): React.ReactElement {
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="rounded-md p-2 text-primary-600 transition-colors hover:bg-primary-100 dark:text-primary-300 dark:hover:bg-primary-800"
+                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
                             aria-label="Toggle menu"
                             aria-expanded={mobileMenuOpen}
                         >
@@ -91,18 +108,28 @@ export function Header(): React.ReactElement {
 
                 {/* Mobile Navigation */}
                 {mobileMenuOpen && (
-                    <div className="border-t border-primary-200 py-4 dark:border-primary-700 md:hidden">
-                        <div className="flex flex-col space-y-3">
-                            {navigation.map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="text-base font-medium text-primary-600 transition-colors hover:text-secondary-600 dark:text-primary-300 dark:hover:text-secondary-400"
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
+                    <div className="border-t border-slate-200 py-4 dark:border-slate-700 md:hidden">
+                        <div className="flex flex-col gap-3">
+                            {navigation.map((item) => {
+                                const isActive =
+                                    pathname === item.href ||
+                                    (item.href !== "/" &&
+                                        pathname?.startsWith(item.href));
+                                return (
+                                    <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={`text-base font-medium transition-colors ${
+                                            isActive
+                                                ? "text-indigo-600 dark:text-indigo-400"
+                                                : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
+                                        }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 )}

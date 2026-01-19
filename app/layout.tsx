@@ -24,11 +24,12 @@ export default function RootLayout({
 }>): React.ReactElement {
     return (
         <html lang="en" className={inter.variable} suppressHydrationWarning>
-            <body className="font-sans antialiased" suppressHydrationWarning>
+            <body className="min-h-screen antialiased" suppressHydrationWarning>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
+                    disableTransitionOnChange={false}
                 >
                     <div className="flex min-h-screen flex-col">
                         <Header />

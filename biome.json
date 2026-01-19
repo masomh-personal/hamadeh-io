@@ -69,6 +69,13 @@
     "css": {
         "linter": {
             "enabled": false
+        },
+        "parser": {
+            "cssModules": true,
+            "allowWrongLineComments": true
+        },
+        "formatter": {
+            "enabled": false
         }
     },
     "overrides": [
@@ -89,6 +96,15 @@
             "includes": ["*.md"],
             "formatter": {
                 "lineWidth": 100
+            }
+        },
+        {
+            "includes": ["app/globals.css"],
+            "linter": {
+                "enabled": false
+            },
+            "formatter": {
+                "enabled": false
             }
         }
     ],

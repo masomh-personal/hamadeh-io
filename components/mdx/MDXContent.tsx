@@ -12,7 +12,7 @@ interface MDXContentProps {
 
 export function MDXContent({ content }: MDXContentProps): React.ReactElement {
     return (
-        <div className="prose prose-slate max-w-none dark:prose-invert prose-pre:bg-primary-900 prose-code:text-tertiary-400">
+        <div className="prose max-w-none">
             <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
                 {content}
             </ReactMarkdown>

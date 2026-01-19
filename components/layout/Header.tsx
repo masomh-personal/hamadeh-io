@@ -2,19 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { LuMenu, LuMoon, LuSun, LuX } from "react-icons/lu";
+import { useState } from "react";
+import { LuMenu, LuX } from "react-icons/lu";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
     const pathname = usePathname();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const navigation = [
         { name: "Home", href: "/" },
@@ -30,7 +23,7 @@ export function Header(): React.ReactElement {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="text-xl font-bold tracking-tight text-slate-900 transition-colors hover:text-indigo-600 dark:text-slate-50 dark:hover:text-indigo-400"
+                        className="font-baloo text-xl font-bold tracking-tight text-slate-50 transition-colors hover:text-sky-400"
                     >
                         ThoughtfulCode
                     </Link>
@@ -46,54 +39,24 @@ export function Header(): React.ReactElement {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={
+                                    className={`text-sm font-bold transition-colors ${
                                         isActive
-                                            ? "nav-link-active"
-                                            : "nav-link"
-                                    }
+                                            ? "text-cyan-500"
+                                            : "text-slate-400 hover:text-cyan-500"
+                                    }`}
                                 >
                                     {item.name}
                                 </Link>
                             );
                         })}
-
-                        {/* Dark Mode Toggle */}
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setTheme(theme === "dark" ? "light" : "dark")
-                            }
-                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-400"
-                            aria-label="Toggle dark mode"
-                        >
-                            {mounted && theme === "dark" ? (
-                                <LuSun className="h-5 w-5" />
-                            ) : (
-                                <LuMoon className="h-5 w-5" />
-                            )}
-                        </button>
                     </div>
 
                     {/* Mobile Menu Button */}
                     <div className="flex items-center gap-2 md:hidden">
                         <button
                             type="button"
-                            onClick={() =>
-                                setTheme(theme === "dark" ? "light" : "dark")
-                            }
-                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
-                            aria-label="Toggle dark mode"
-                        >
-                            {mounted && theme === "dark" ? (
-                                <LuSun className="h-5 w-5" />
-                            ) : (
-                                <LuMoon className="h-5 w-5" />
-                            )}
-                        </button>
-                        <button
-                            type="button"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+                            className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-sky-400"
                             aria-label="Toggle menu"
                             aria-expanded={mobileMenuOpen}
                         >
@@ -108,7 +71,7 @@ export function Header(): React.ReactElement {
 
                 {/* Mobile Navigation */}
                 {mobileMenuOpen && (
-                    <div className="border-t border-slate-200 py-4 dark:border-slate-700 md:hidden">
+                    <div className="border-t-2 border-slate-700 py-4 md:hidden">
                         <div className="flex flex-col gap-3">
                             {navigation.map((item) => {
                                 const isActive =
@@ -120,10 +83,10 @@ export function Header(): React.ReactElement {
                                         key={item.name}
                                         href={item.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`text-base font-medium transition-colors ${
+                                        className={`text-sm font-bold transition-colors ${
                                             isActive
-                                                ? "text-indigo-600 dark:text-indigo-400"
-                                                : "text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
+                                                ? "text-cyan-500"
+                                                : "text-slate-400 hover:text-cyan-500"
                                         }`}
                                     >
                                         {item.name}

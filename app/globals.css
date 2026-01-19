@@ -6,9 +6,11 @@
    ============================================ */
 @theme {
     /* Font Family */
-    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    --font-baloo: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
     --font-mono:
-        ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        var(--font-mono-fira), ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+        Consolas, monospace;
 
     /* Color Palette - Slate (Primary/Neutral) */
     --color-slate-50: #f8fafc;
@@ -35,7 +37,7 @@
     --color-indigo-800: #3730a3;
     --color-indigo-900: #312e81;
 
-    /* Color Palette - Emerald (Tertiary/Success) */
+    /* Color Palette - Emerald (Secondary/Success) */
     --color-emerald-50: #ecfdf5;
     --color-emerald-100: #d1fae5;
     --color-emerald-200: #a7f3d0;
@@ -46,6 +48,17 @@
     --color-emerald-700: #047857;
     --color-emerald-800: #065f46;
     --color-emerald-900: #064e3b;
+
+    /* Color Palette - Sky Blue (Primary Accent) */
+    --color-sky-400: #38bdf8;
+    --color-sky-500: #0ea5e9;
+    --color-sky-600: #0284c7;
+    --color-sky-950: #082f49;
+
+    /* Color Palette - Amber/Gold (Tertiary) */
+    --color-amber-400: #fbbf24;
+    --color-amber-500: #f59e0b;
+    --color-amber-600: #d97706;
 }
 
 /* ============================================
@@ -53,25 +66,18 @@
    ============================================ */
 @layer base {
     :root {
-        /* Light Mode */
-        --background: var(--color-slate-50);
-        --foreground: var(--color-slate-900);
-        --muted: var(--color-slate-100);
-        --muted-foreground: var(--color-slate-500);
-        --border: var(--color-slate-200);
-        --accent: var(--color-indigo-600);
-        --accent-foreground: white;
-    }
-
-    .dark {
-        /* Dark Mode */
-        --background: var(--color-slate-950);
+        /* Dark Mode Only - Gray background */
+        --background: #171717;
         --foreground: var(--color-slate-50);
         --muted: var(--color-slate-800);
         --muted-foreground: var(--color-slate-400);
         --border: var(--color-slate-700);
-        --accent: var(--color-indigo-500);
+        --accent: var(--color-sky-500);
         --accent-foreground: white;
+        --secondary: var(--color-emerald-500);
+        --secondary-foreground: white;
+        --tertiary: var(--color-amber-400);
+        --tertiary-foreground: white;
     }
 
     html {
@@ -85,6 +91,10 @@
         color: var(--foreground);
         font-family: var(--font-sans);
     }
+
+    .font-baloo {
+        font-family: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+    }
 }
 
 /* ============================================
@@ -96,28 +106,13 @@
     z-index: 50;
     width: 100%;
     background-color: var(--background);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
 }
 
 .site-footer {
     width: 100%;
     background-color: var(--background);
-    border-top: 1px solid var(--border);
-}
-
-.nav-link {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--muted-foreground);
-    transition: color 0.2s;
-}
-
-.nav-link:hover {
-    color: var(--accent);
-}
-
-.nav-link-active {
-    color: var(--accent);
+    border-top: 2px solid var(--border);
 }
 
 /* ============================================
@@ -188,26 +183,22 @@
     background: transparent !important;
     padding: 0 !important;
     margin: 1.5rem 0 !important;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow: hidden;
 }
 
 .prose pre code {
     display: block;
     padding: 1.25rem 1.5rem;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow-x: auto;
-    background: var(--color-slate-100);
-    color: var(--color-slate-900);
+    background: rgba(40, 44, 52, 0.5);
+    color: var(--color-slate-100);
     font-size: 0.875rem;
     line-height: 1.75;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     font-family: var(--font-mono);
-}
-
-.dark .prose pre code {
-    background: var(--color-slate-900);
-    color: var(--color-slate-100);
+    font-weight: 500;
 }
 
 /* Inline code styling */
@@ -215,8 +206,16 @@
     background: var(--muted);
     color: var(--foreground);
     padding: 0.1875rem 0.4375rem;
-    border-radius: 0.375rem;
+    border-radius: 0.25rem;
     font-size: 0.875em;
     font-weight: 500;
     font-family: var(--font-mono);
+}
+
+/* Make all monospace fonts bolder for better readability */
+code,
+pre,
+kbd,
+samp {
+    font-weight: 500;
 }

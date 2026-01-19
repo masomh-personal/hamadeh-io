@@ -1,14 +1,98 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import {
+    Anonymous_Pro,
+    Baloo_2,
+    Fira_Code,
+    IBM_Plex_Mono,
+    Inconsolata,
+    JetBrains_Mono,
+    Plus_Jakarta_Sans,
+    PT_Mono,
+    Roboto_Mono,
+    Source_Code_Pro,
+    Space_Mono,
+} from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ["latin"],
-    variable: "--font-inter",
+    variable: "--font-sans",
     display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const baloo2 = Baloo_2({
+    subsets: ["latin"],
+    variable: "--font-baloo",
+    display: "swap",
+    weight: ["400", "500", "600", "700", "800"],
+});
+
+// Default monospace (IBM Plex Mono)
+const ibmPlexMono = IBM_Plex_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+// Additional monospace fonts for comparison
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono-jetbrains",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const firaCode = Fira_Code({
+    subsets: ["latin"],
+    variable: "--font-mono-fira",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const sourceCodePro = Source_Code_Pro({
+    subsets: ["latin"],
+    variable: "--font-mono-source",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const inconsolata = Inconsolata({
+    subsets: ["latin"],
+    variable: "--font-mono-inconsolata",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const anonymousPro = Anonymous_Pro({
+    subsets: ["latin"],
+    variable: "--font-mono-anonymous",
+    display: "swap",
+    weight: ["400", "700"],
+});
+
+const ptMono = PT_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono-pt",
+    display: "swap",
+    weight: ["400"],
+});
+
+const spaceMono = Space_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono-space",
+    display: "swap",
+    weight: ["400", "700"],
+});
+
+const robotoMono = Roboto_Mono({
+    subsets: ["latin"],
+    variable: "--font-mono-roboto",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,20 +107,20 @@ export default function RootLayout({
     children: React.ReactNode;
 }>): React.ReactElement {
     return (
-        <html lang="en" className={inter.variable} suppressHydrationWarning>
-            <body className="min-h-screen antialiased" suppressHydrationWarning>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange={false}
-                >
-                    <div className="flex min-h-screen flex-col">
-                        <Header />
-                        <main className="flex-1">{children}</main>
-                        <Footer />
-                    </div>
-                </ThemeProvider>
+        <html
+            lang="en"
+            className={`${plusJakartaSans.variable} ${baloo2.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
+            suppressHydrationWarning
+        >
+            <body
+                className="min-h-screen antialiased dark"
+                suppressHydrationWarning
+            >
+                <div className="flex min-h-screen flex-col">
+                    <Header />
+                    <main className="flex-1">{children}</main>
+                    <Footer />
+                </div>
             </body>
         </html>
     );

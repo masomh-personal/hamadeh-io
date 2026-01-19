@@ -14,6 +14,7 @@
             "**/*.tsx",
             "**/*.json",
             "**/*.mjs",
+            "**/*.css",
             "**/*.md"
         ]
     },
@@ -66,15 +67,16 @@
         "globals": []
     },
     "css": {
-        "linter": {
-            "enabled": false
-        },
         "parser": {
             "cssModules": true,
-            "allowWrongLineComments": true
+            "allowWrongLineComments": true,
+            "tailwindDirectives": true
         },
         "formatter": {
-            "enabled": false
+            "enabled": true
+        },
+        "linter": {
+            "enabled": true
         }
     },
     "overrides": [
@@ -95,15 +97,6 @@
             "includes": ["*.md"],
             "formatter": {
                 "lineWidth": 100
-            }
-        },
-        {
-            "includes": ["app/globals.css"],
-            "linter": {
-                "enabled": false
-            },
-            "formatter": {
-                "enabled": false
             }
         }
     ],

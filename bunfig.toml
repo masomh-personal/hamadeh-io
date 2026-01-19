@@ -10,7 +10,8 @@ coveragePathIgnorePatterns = [
   ".next/**",
   "**/*.config.ts",
   "**/*.config.js",
-  "**/*.config.mjs"
+  "**/*.config.mjs",
+  "test-setup.ts"
 ]
 coverageReporter = ["text", "lcov"]
 coverageDir = "./coverage"

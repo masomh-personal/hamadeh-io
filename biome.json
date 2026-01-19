@@ -30,23 +30,47 @@
         "enabled": true,
         "rules": {
             "recommended": true,
+            "a11y": {
+                "useSemanticElements": "warn",
+                "noAutofocus": "warn"
+            },
             "correctness": {
                 "noUnusedVariables": "error",
-                "noUnusedImports": "error"
+                "noUnusedImports": "error",
+                "noUndeclaredVariables": "error",
+                "useExhaustiveDependencies": "warn",
+                "useHookAtTopLevel": "error"
             },
             "style": {
+                "noNegationElse": "warn",
+                "noParameterAssign": "error",
+                "useBlockStatements": "off",
+                "useCollapsedElseIf": "warn",
                 "useConst": "error",
+                "useDefaultParameterLast": "warn",
+                "useExplicitLengthCheck": "warn",
+                "useFragmentSyntax": "warn",
                 "useTemplate": "warn"
             },
             "suspicious": {
+                "noArrayIndexKey": "warn",
+                "noAssignInExpressions": "error",
+                "noConsole": "off",
+                "noDoubleEquals": "error",
                 "noExplicitAny": "warn",
-                "noArrayIndexKey": "warn"
+                "noImplicitAnyLet": "error"
             },
             "performance": {
+                "noAccumulatingSpread": "warn",
                 "noDelete": "warn"
             },
             "complexity": {
+                "noExcessiveCognitiveComplexity": "warn",
                 "noForEach": "off",
+                "noImportantStyles": "off",
+                "noUselessFragments": "warn",
+                "useFlatMap": "warn",
+                "useOptionalChain": "warn",
                 "useSimplifiedLogicExpression": "warn"
             },
             "security": {
@@ -64,7 +88,16 @@
             "bracketSpacing": true,
             "bracketSameLine": false
         },
-        "globals": []
+        "globals": [
+            "describe",
+            "test",
+            "expect",
+            "beforeEach",
+            "afterEach",
+            "beforeAll",
+            "afterAll",
+            "mock"
+        ]
     },
     "css": {
         "parser": {

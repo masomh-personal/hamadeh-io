@@ -10,15 +10,14 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "biome lint . --files-ignore-unknown=true",
-        "lint:fix": "biome check --write .",
-        "format": "biome format --write .",
         "check": "biome check .",
+        "check:fix": "biome check --write .",
+        "format": "biome format --write .",
         "type-check": "tsc --noEmit",
         "test": "bun test",
         "test:coverage": "bun test --coverage",
         "clean": "bun scripts/clean.mjs",
-        "healthcheck": "bun run type-check && bun run lint && bun run check",
+        "healthcheck": "bun run type-check && bun run check",
         "new:solution": "bun scripts/new-solution.ts",
         "publish:solution": "bun scripts/publish-solution.ts",
         "prepare": "husky"
@@ -58,7 +57,7 @@
         "typescript": "^5.9.3"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,json,css,mjs}": [
+        "*.{js,jsx,ts,tsx,json,css,mjs,md}": [
             "biome check --write"
         ]
     }

@@ -1,9 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Only run tests if test files exist
-if find . -name "*.test.*" -o -name "*.spec.*" | grep -q .; then
-  bun test
-else
-  echo "No tests found, skipping test run"
-fi
+bun test

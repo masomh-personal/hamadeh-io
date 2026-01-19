@@ -5,10 +5,14 @@
 
 /// <reference lib="dom" />
 
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { Footer } from "@/components/layout/Footer";
 
 describe("Footer component", () => {
+    beforeEach(() => {
+        cleanup();
+    });
+
     describe("Basics", () => {
         test("renders copyright text with current year", () => {
             render(<Footer />);

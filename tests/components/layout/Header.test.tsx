@@ -7,8 +7,6 @@
 
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-// Import mocks first (sets up mock.module before component loads)
-import { mockSetTheme } from "../../mocks/next-mocks";
 
 // Dynamic import to ensure mocks are applied first
 const { Header } = await import("@/components/layout/Header");
@@ -16,7 +14,6 @@ const { Header } = await import("@/components/layout/Header");
 describe("Header component", () => {
     beforeEach(() => {
         cleanup();
-        mockSetTheme.mockClear();
     });
 
     describe("Basics", () => {
@@ -31,12 +28,6 @@ describe("Header component", () => {
             expect(screen.getByText("LeetCode")).toBeInTheDocument();
             expect(screen.getByText("Blog")).toBeInTheDocument();
             expect(screen.getByText("About")).toBeInTheDocument();
-        });
-
-        test("renders dark mode toggle button", () => {
-            render(<Header />);
-            const toggleButtons = screen.getAllByLabelText("Toggle dark mode");
-            expect(toggleButtons.length).toBeGreaterThan(0);
         });
 
         test("renders mobile menu button", () => {
@@ -73,18 +64,6 @@ describe("Header component", () => {
         });
     });
 
-    describe("Dark Mode Toggle", () => {
-        test("calls setTheme when toggle is clicked", async () => {
-            const user = userEvent.setup();
-            render(<Header />);
-            const toggleButton =
-                screen.getAllByLabelText("Toggle dark mode")[0];
-            expect(toggleButton).toBeDefined();
-            await user.click(toggleButton as HTMLElement);
-            expect(mockSetTheme).toHaveBeenCalled();
-        });
-    });
-
     describe("Mobile Menu", () => {
         test("mobile menu is closed by default", () => {
             render(<Header />);
@@ -116,11 +95,8 @@ describe("Header component", () => {
             expect(screen.getByRole("banner")).toBeInTheDocument();
         });
 
-        test("toggle buttons have accessible labels", () => {
+        test("mobile menu button has accessible label", () => {
             render(<Header />);
-            expect(
-                screen.getAllByLabelText("Toggle dark mode").length
-            ).toBeGreaterThan(0);
             expect(screen.getByLabelText("Toggle menu")).toBeInTheDocument();
         });
     });

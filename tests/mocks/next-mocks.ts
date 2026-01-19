@@ -9,12 +9,3 @@ import { mock } from "bun:test";
 mock.module("next/navigation", () => ({
     usePathname: () => "/",
 }));
-
-// Mock next-themes
-export const mockSetTheme = mock(() => {});
-mock.module("next-themes", () => ({
-    useTheme: () => ({
-        theme: "light",
-        setTheme: mockSetTheme,
-    }),
-}));

@@ -24,7 +24,6 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Deployment** | Vercel | Zero-config, global CDN, automatic HTTPS |
 | **Component Library** | shadcn/ui | Copy-paste components, Tailwind-based, customizable |
 | **Icons** | lucide-react | Beautiful, tree-shakeable, TypeScript support |
-| **Theme Management** | next-themes | Dark mode with system preference support |
 
 ---
 
@@ -229,7 +228,7 @@ For detailed styling conventions, Tailwind CSS patterns, and design guidelines, 
 - **Utility-First:** Use Tailwind utilities over custom CSS
 - **Semantic HTML:** Proper HTML elements before styling
 - **Accessibility:** WCAG 2.1 AA compliance, keyboard navigation, screen reader support
-- **Dark Mode:** Implemented with `next-themes` and CSS variables
+- **Dark-Only Theme:** Implemented with CSS variables and Tailwind v4
 - **Responsive:** Mobile-first approach with Tailwind breakpoints
 
 ---
@@ -546,7 +545,6 @@ bun update <package-name>     # Update specific package
 - **Valibot Documentation:** https://valibot.dev/
 - **Bun Documentation:** https://bun.sh/docs
 - **Bun Testing:** https://bun.sh/docs/test
-- **next-themes:** https://github.com/pacocoursey/next-themes
 
 ---
 

@@ -1,40 +1,66 @@
-# Styling Guidelines
+# ThoughtfulCode - Styling Guide
+## Official Design System & Implementation Reference
 
-This document outlines styling conventions, design patterns, and Tailwind CSS usage guidelines for ThoughtfulCode.
-
----
-
-## Core Principles
-
-- **Utility-First:** Use Tailwind utilities over custom CSS
-- **Semantic HTML:** Use proper HTML elements before styling
-- **Consistency:** Follow established patterns throughout the codebase
-- **Accessibility:** Ensure sufficient contrast, keyboard navigation, and screen reader support
-- **Performance:** Minimize CSS bundle size, leverage Tailwind's purging
+This document is the single source of truth for all styling decisions in ThoughtfulCode. Always reference this guide before making design changes.
 
 ---
 
-## Typography & Fonts
+## 🎯 Design Philosophy
 
-### Font Recommendations
+**Core Principles:**
+- Clean, modern aesthetic with personality
+- Dark-only theme for focused, professional look
+- Strong visual hierarchy through typography
+- Vibrant but tasteful accent colors
+- Generous whitespace and breathing room
+- Accessibility and readability first
+- Utility-first approach with Tailwind CSS
+- Mobile-first responsive design
 
-**Headings Font: Inter**
-- **Why:** Modern, clean, highly legible at all sizes
-- **Characteristics:** Excellent readability, professional appearance, optimized for screens
-- **Usage:** All headings (h1-h6)
-- **Implementation:** Use `next/font` with Inter from Google Fonts
+---
 
-**Body Font: Inter**
-- **Why:** Same font family for consistency, exceptional readability
-- **Characteristics:** Neutral, versatile, works beautifully with icons
-- **Usage:** All body text, paragraphs, lists
-- **Implementation:** Same Inter font family, different weights
+## 📝 Typography System
 
-**Alternative Heading Font (Optional): Plus Jakarta Sans**
-- **Why:** Slightly more distinctive, modern geometric feel
-- **Characteristics:** Friendly yet professional, excellent for portfolios
-- **Usage:** Can be used for headings if you want more visual distinction
-- **Note:** If using, pair with Inter for body text
+### Font Stack
+
+| Role | Font | Weight | Usage |
+|------|------|--------|-------|
+| **Headings (H1-H3)** | Baloo 2 | 600-800 | Main headings, hero text, CTAs |
+| **Body Text** | Plus Jakarta Sans | 400-700 | All body content, paragraphs, lists |
+| **Code/Monospace** | Fira Code | 500 | Code blocks, inline code, technical content |
+
+### Typography Scale
+
+| Element | Font | Size | Weight | Line Height | Usage |
+|---------|------|------|--------|-------------|-------|
+| **Hero / H1** | Baloo 2 | 3-4rem | 800 | 1.1 | Landing page hero |
+| **Section H2** | Baloo 2 | 2.5-3rem | 700 | 1.2 | Major sections |
+| **Subsection H3** | Baloo 2 | 2-2.25rem | 600 | 1.3 | Subsections |
+| **Body Text** | Plus Jakarta Sans | 1rem | 400 | 1.6 | Main content |
+| **Body Emphasis** | Plus Jakarta Sans | 1rem | 500-600 | 1.6 | Emphasized text |
+| **Small Text** | Plus Jakarta Sans | 0.875rem | 400 | 1.5 | Captions, metadata |
+| **Buttons** | Baloo 2 | 1rem | 600 | 1.4 | Primary CTAs |
+| **Navigation** | Plus Jakarta Sans | 0.875rem | 700 | 1.4 | Nav links |
+
+### Why This Pairing Works
+
+1. **Baloo 2 for Headings & CTAs:**
+   - Friendly, rounded character adds warmth
+   - Bold weights create strong hierarchy
+   - Excellent at large sizes
+   - Distinguishes from generic tech sites
+
+2. **Plus Jakarta Sans for Body:**
+   - Modern, geometric sans-serif
+   - Excellent readability at all sizes
+   - Professional yet approachable
+   - Better than Inter for contemporary feel
+
+3. **Fira Code for Code:**
+   - Professional, crisp monospace
+   - Programming ligatures support
+   - Medium weight (500) for better readability
+   - Industry standard for code display
 
 ### Font Implementation
 
@@ -42,317 +68,273 @@ This document outlines styling conventions, design patterns, and Tailwind CSS us
 
 ```typescript
 // app/layout.tsx
-import { Inter } from 'next/font/google';
+import {
+    Plus_Jakarta_Sans,
+    Baloo_2,
+    Fira_Code,
+} from "next/font/google";
 
-const inter = Inter({
-    subsets: ['latin'],
-    variable: '--font-inter',
-    display: 'swap',
+const plusJakartaSans = Plus_Jakarta_Sans({
+    subsets: ["latin"],
+    variable: "--font-sans",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
+});
+
+const baloo2 = Baloo_2({
+    subsets: ["latin"],
+    variable: "--font-baloo",
+    display: "swap",
+    weight: ["400", "500", "600", "700", "800"],
+});
+
+const firaCode = Fira_Code({
+    subsets: ["latin"],
+    variable: "--font-mono-fira",
+    display: "swap",
+    weight: ["400", "500", "600", "700"],
 });
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={inter.variable}>
-            <body className="font-sans">{children}</body>
+        <html
+            lang="en"
+            className={`${plusJakartaSans.variable} ${baloo2.variable} ${firaCode.variable}`}
+        >
+            <body className="min-h-screen antialiased">{children}</body>
         </html>
     );
 }
 ```
 
-**Tailwind Configuration:**
+---
 
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
+## 🎨 Color Palette
 
-const config: Config = {
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-            },
-        },
-    },
-};
+### Dark Theme (Default & Only)
 
-export default config;
-```
+**Background:**
+- Main: `#171717` (Neutral gray, not blue-tinted)
+- Cards/Elevated: `slate-800` (`#1e293b`)
+- Borders: `slate-700` (`#334155`)
 
-### Font Weights
+**Text:**
+- Primary: `slate-50` (`#f8fafc`)
+- Secondary: `slate-400` (`#94a3b8`)
+- Muted: `slate-500` (`#64748b`)
 
-**Headings:**
-- `h1`: `font-bold` (700)
-- `h2`: `font-semibold` (600)
-- `h3`: `font-semibold` (600)
-- `h4`: `font-medium` (500)
-- `h5`: `font-medium` (500)
-- `h6`: `font-medium` (500)
+**Accent Colors:**
 
-**Body:**
-- Default: `font-normal` (400)
-- Emphasis: `font-medium` (500)
-- Strong: `font-semibold` (600)
+| Accent | Color | Hex | Usage |
+|--------|-------|-----|-------|
+| **Primary** | Sky 500 | `#0ea5e9` | Links, primary buttons, interactive elements |
+| **Secondary** | Emerald 500 | `#10b981` | Success states, secondary actions |
+| **Tertiary** | Amber 400 | `#fbbf24` | Highlights, badges, special emphasis |
+
+**Color Usage Guidelines:**
+- Primary (Sky): Main CTAs, links, active states
+- Secondary (Emerald): Success messages, positive indicators
+- Tertiary (Amber): Warnings, highlights, special callouts
+- Use sparingly - let dark background and white text dominate
+
+### Hover States
+
+**Buttons:**
+- Default: Base color (500) with transparent border (2px)
+- Hover: Lighter background (400) + light border (300)
+- Text: White throughout
+- Example: `bg-sky-500 border-2 border-transparent hover:bg-sky-400 hover:border-sky-300`
+
+**Links:**
+- Default: Base color (500)
+- Hover: Slightly lighter (400) with underline
+- Example: `text-sky-500 hover:text-sky-400 hover:underline`
+
+**Navigation:**
+- Default: `text-slate-400`
+- Hover: `text-sky-500`
+- Active: `text-sky-500`
 
 ---
 
-## Color Palette
+## 🎭 Component Patterns
 
-### Recommended Color Scheme
+### Buttons
 
-**Primary: Slate**
-- **Rationale:** Professional, neutral, versatile, works beautifully in both light and dark modes
-- **Usage:** Primary backgrounds, main text, borders, subtle accents
-- **Tailwind Scale:** `slate-50` to `slate-900`
-- **Primary Shades:**
-    - Light mode: `slate-50` (backgrounds), `slate-900` (text)
-    - Dark mode: `slate-900` (backgrounds), `slate-50` (text)
-    - Borders: `slate-200` (light), `slate-700` (dark)
-
-**Secondary: Indigo**
-- **Rationale:** Modern, tech-forward, professional, excellent contrast with slate
-- **Usage:** Links, buttons, interactive elements, highlights, CTAs
-- **Tailwind Scale:** `indigo-50` to `indigo-900`
-- **Primary Shades:**
-    - Interactive: `indigo-600` (default), `indigo-700` (hover)
-    - Light backgrounds: `indigo-50`, `indigo-100`
-    - Text on light: `indigo-900`
-    - Text on dark: `indigo-300`
-
-**Tertiary: Emerald**
-- **Rationale:** Fresh, professional accent, excellent for success states, complements slate and indigo
-- **Usage:** Success messages, positive indicators, accent highlights, badges
-- **Tailwind Scale:** `emerald-50` to `emerald-900`
-- **Primary Shades:**
-    - Accent: `emerald-500`, `emerald-600`
-    - Success: `emerald-600`, `emerald-700`
-    - Light backgrounds: `emerald-50`, `emerald-100`
-    - Text: `emerald-700` (light mode), `emerald-300` (dark mode)
-
-### Color Implementation
-
-**Tailwind Configuration:**
-
-```typescript
-// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-    theme: {
-        extend: {
-            colors: {
-                primary: {
-                    50: '#f8fafc',   // slate-50
-                    100: '#f1f5f9',  // slate-100
-                    200: '#e2e8f0',  // slate-200
-                    300: '#cbd5e1',  // slate-300
-                    400: '#94a3b8',  // slate-400
-                    500: '#64748b',  // slate-500
-                    600: '#475569',  // slate-600
-                    700: '#334155',  // slate-700
-                    800: '#1e293b',  // slate-800
-                    900: '#0f172a', // slate-900
-                },
-                secondary: {
-                    50: '#eef2ff',   // indigo-50
-                    100: '#e0e7ff', // indigo-100
-                    200: '#c7d2fe', // indigo-200
-                    300: '#a5b4fc', // indigo-300
-                    400: '#818cf8', // indigo-400
-                    500: '#6366f1', // indigo-500
-                    600: '#4f46e5', // indigo-600
-                    700: '#4338ca', // indigo-700
-                    800: '#3730a3', // indigo-800
-                    900: '#312e81', // indigo-900
-                },
-                tertiary: {
-                    50: '#ecfdf5',   // emerald-50
-                    100: '#d1fae5', // emerald-100
-                    200: '#a7f3d0', // emerald-200
-                    300: '#6ee7b7', // emerald-300
-                    400: '#34d399', // emerald-400
-                    500: '#10b981', // emerald-500
-                    600: '#059669', // emerald-600
-                    700: '#047857', // emerald-700
-                    800: '#065f46', // emerald-800
-                    900: '#064e3b', // emerald-900
-                },
-            },
-        },
-    },
-};
-
-export default config;
-```
-
-### Color Usage Patterns
-
-**Light Mode:**
+**Primary Button:**
 ```tsx
-// Primary (Slate)
-<div className="bg-primary-50 text-primary-900">
-<div className="border-primary-200">
-
-// Secondary (Indigo) - Interactive elements
-<button className="bg-secondary-600 text-white hover:bg-secondary-700">
-<a className="text-secondary-600 hover:text-secondary-700">
-
-// Tertiary (Emerald) - Accents
-<span className="bg-tertiary-100 text-tertiary-700">
-```
-
-**Dark Mode:**
-```tsx
-// Primary (Slate)
-<div className="bg-primary-900 text-primary-50 dark:bg-primary-900 dark:text-primary-50">
-<div className="border-primary-700 dark:border-primary-700">
-
-// Secondary (Indigo)
-<button className="bg-secondary-600 text-white hover:bg-secondary-500 dark:bg-secondary-600 dark:hover:bg-secondary-500">
-<a className="text-secondary-400 hover:text-secondary-300 dark:text-secondary-400 dark:hover:text-secondary-300">
-
-// Tertiary (Emerald)
-<span className="bg-tertiary-900 text-tertiary-300 dark:bg-tertiary-900 dark:text-tertiary-300">
-```
-
-### Semantic Colors
-
-**Success:** Use tertiary (emerald) colors
-- `bg-tertiary-100 text-tertiary-700` (light)
-- `bg-tertiary-900 text-tertiary-300` (dark)
-
-**Error:** Use red (keep standard Tailwind red)
-- `bg-red-100 text-red-700` (light)
-- `bg-red-900 text-red-300` (dark)
-
-**Warning:** Use yellow/amber (keep standard Tailwind amber)
-- `bg-amber-100 text-amber-700` (light)
-- `bg-amber-900 text-amber-300` (dark)
-
-**Info:** Use secondary (indigo) colors
-- `bg-secondary-100 text-secondary-700` (light)
-- `bg-secondary-900 text-secondary-300` (dark)
-
-### Icon Compatibility
-
-**Icons (lucide-react) work beautifully with this palette:**
-- Icons use `currentColor` by default, inheriting text color
-- Slate provides neutral, professional base
-- Indigo provides vibrant, modern accents for interactive icons
-- Emerald provides fresh accents for positive/success icons
-- All colors maintain excellent contrast for accessibility
-
-**Example:**
-```tsx
-<button className="flex items-center gap-2 bg-secondary-600 text-white hover:bg-secondary-700">
-    <CheckIcon className="w-5 h-5" /> {/* Inherits white color */}
-    Save
+<button className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400">
+  Primary Action
 </button>
 ```
 
----
-
-## Tailwind CSS
-
-### Configuration
-
-**File:** `tailwind.config.ts`
-
-**Patterns:**
-- Extend theme for custom colors, fonts, spacing
-- Use CSS variables for theme values (dark mode support)
-- Configure content paths for proper purging
-
-### Utility Classes
-
-**Prefer Tailwind utilities over custom CSS:**
-
+**Secondary Button (Outline):**
 ```tsx
-// ✅ Good
-<div className="flex items-center justify-between p-4 bg-white dark:bg-gray-900">
-
-// ❌ Avoid
-<div className="custom-container">
+<button className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-baloo text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg">
+  Secondary Action
+</button>
 ```
 
-**Common Patterns:**
-- Layout: `flex`, `grid`, `container`, `mx-auto`
-- Spacing: `p-4`, `mt-8`, `space-y-4`
-- Typography: `text-lg`, `font-semibold`, `text-gray-900`
-- Colors: `bg-white`, `text-gray-600`, `border-gray-200`
-- Responsive: `md:flex`, `lg:grid-cols-3`
+**Success Button:**
+```tsx
+<button className="rounded-md border-2 border-transparent bg-emerald-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-emerald-300 hover:bg-emerald-400">
+  Success Action
+</button>
+```
 
-### Dark Mode
+**Text Link:**
+```tsx
+<a className="font-baloo text-base font-semibold text-sky-500 transition-colors hover:text-sky-400 hover:underline">
+  Link Text
+</a>
+```
 
-**Implementation:**
-- Use `next-themes` for theme management
-- CSS variables for theme values
-- Tailwind `dark:` modifier for dark mode styles
+### Typography Examples
+
+**Hero Heading:**
+```tsx
+<h1 className="font-baloo text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
+  Build Thoughtful Software
+</h1>
+```
+
+**Section Heading:**
+```tsx
+<h2 className="font-baloo text-3xl md:text-4xl font-bold leading-tight text-white">
+  Section Title
+</h2>
+```
+
+**Subsection Heading:**
+```tsx
+<h3 className="font-baloo text-2xl md:text-3xl font-semibold leading-tight text-white">
+  Subsection Title
+</h3>
+```
+
+**Body Text:**
+```tsx
+<p className="text-base leading-relaxed text-slate-300">
+  Your content here with excellent readability.
+</p>
+```
+
+**Small Text:**
+```tsx
+<p className="text-sm leading-relaxed text-slate-400">
+  Captions, metadata, and secondary information.
+</p>
+```
+
+### Code Blocks
+
+**Inline Code:**
+```tsx
+<code className="rounded-md bg-slate-800 px-2 py-1 font-mono text-sm text-slate-100">
+  const example = true;
+</code>
+```
+
+**Code Block:**
+```tsx
+<pre className="overflow-x-auto rounded-md bg-[#282c34]/50 p-4 border-2 border-slate-700">
+  <code className="font-mono text-sm text-slate-100">
+    {codeContent}
+  </code>
+</pre>
+```
+
+### Cards
 
 **Pattern:**
 ```tsx
-<div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    Content
+<div className="rounded-md border-2 border-slate-700 bg-slate-800 p-6">
+  <h3 className="text-lg font-semibold text-white">Card Title</h3>
+  <p className="text-slate-300">Card content</p>
 </div>
 ```
 
-### Responsive Design
+---
 
-**Breakpoints:**
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
-- `xl`: 1280px
-- `2xl`: 1536px
+## 📐 Spacing & Layout
 
-**Mobile-First Approach:**
+### Section Spacing
+- Large sections: `py-20 md:py-24 lg:py-32`
+- Medium sections: `py-12 md:py-16 lg:py-20`
+- Small sections: `py-8 md:py-12`
+
+### Content Width
+- Max width: `max-w-6xl` (1152px)
+- Padding: `px-4 sm:px-6 lg:px-8`
+
+### Typography Spacing
+- Heading margin bottom: `mb-6 md:mb-8`
+- Paragraph margin bottom: `mb-6`
+- List spacing: `space-y-2`
+
+### Border Styling
+- Standard borders: `border-2` (increased from default 1px)
+- Thick borders (emphasis): `border-[3px]`
+- Border radius: `rounded-md` (0.375rem) - reduced from `rounded-lg`
+
+### Container Pattern
 ```tsx
-// Base styles for mobile, then override for larger screens
-<div className="flex flex-col md:flex-row lg:grid lg:grid-cols-3">
+<div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+  Content
+</div>
 ```
 
 ---
 
-## Component Styling
+## 🎨 CSS Variables (globals.css)
 
-### shadcn/ui Components
-
-**Usage:**
-- Copy components from shadcn/ui as needed
-- Customize with Tailwind classes
-- Maintain component API consistency
-
-**Location:** `components/ui/`
-
-### Custom Components
-
-**Pattern:**
-```tsx
-// components/leetcode/SolutionCard.tsx
-interface SolutionCardProps {
-    title: string;
-    difficulty: 'easy' | 'medium' | 'hard';
-    className?: string;
-}
-
-export function SolutionCard({ title, difficulty, className }: SolutionCardProps) {
-    return (
-        <div className={cn(
-            "rounded-lg border p-6 hover:shadow-lg transition-shadow",
-            className
-        )}>
-            <h3 className="text-xl font-semibold">{title}</h3>
-            <span className={cn(
-                "inline-block px-2 py-1 rounded text-sm",
-                difficulty === 'easy' && "bg-green-100 text-green-800",
-                difficulty === 'medium' && "bg-yellow-100 text-yellow-800",
-                difficulty === 'hard' && "bg-red-100 text-red-800"
-            )}>
-                {difficulty}
-            </span>
-        </div>
-    );
+### Theme Colors
+```css
+:root {
+  --background: #171717;
+  --foreground: var(--color-slate-50);
+  --muted: var(--color-slate-800);
+  --muted-foreground: var(--color-slate-400);
+  --border: var(--color-slate-700);
+  --accent: var(--color-sky-500);
+  --accent-foreground: white;
+  --secondary: var(--color-emerald-500);
+  --secondary-foreground: white;
+  --tertiary: var(--color-amber-400);
+  --tertiary-foreground: white;
 }
 ```
+
+### Font Variables
+```css
+--font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+--font-baloo: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+--font-mono: var(--font-mono-fira), ui-monospace, SFMono-Regular, monospace;
+```
+
+---
+
+## ✅ Implementation Rules
+
+### Tailwind-First Approach
+1. **Always use Tailwind utility classes** for styling
+2. Use custom CSS in `globals.css` only when necessary:
+   - Complex animations
+   - Global resets
+   - Patterns that can't be expressed with utilities
+3. **Never use `!important`** - solve specificity through proper architecture
+4. Follow DRY: Define reusable patterns using CSS variables and `@layer`
+
+### Design Tokens
+- Define colors, spacing, typography in `globals.css` using CSS variables
+- Reference variables in Tailwind config when needed
+- Keep all design decisions centralized
+
+### Before Making Changes
+1. Discuss and agree on approach first
+2. Consider reusability and maintainability
+3. Test in dark theme (our only theme)
+4. Verify contrast ratios for accessibility
 
 ### Class Name Utilities
 
@@ -370,183 +352,74 @@ import { cn } from '@/lib/utils';
 
 ---
 
-## Typography
+## 🚀 Component-Specific Guidelines
 
-### Font Hierarchy
-
-**Headings:**
-- `h1`: `text-4xl md:text-5xl font-bold`
-- `h2`: `text-3xl md:text-4xl font-semibold`
-- `h3`: `text-2xl md:text-3xl font-semibold`
-- `h4`: `text-xl md:text-2xl font-medium`
-- `h5`: `text-lg md:text-xl font-medium`
-- `h6`: `text-base md:text-lg font-medium`
-
-**Body Text:**
-- Default: `text-base` (16px)
-- Small: `text-sm` (14px)
-- Large: `text-lg` (18px)
-
-### Line Height
-
-- Headings: `leading-tight` or `leading-snug`
-- Body: `leading-relaxed` or `leading-normal`
-- Code: `leading-normal`
-
-### Font Weights
-
-- `font-normal`: 400
-- `font-medium`: 500
-- `font-semibold`: 600
-- `font-bold`: 700
-
----
-
-## Colors
-
-### Color Palette
-
-**Primary Colors:**
-- Use semantic color names: `primary`, `secondary`, `accent`
-- Define in `tailwind.config.ts` with CSS variables for theme support
-
-**Neutral Colors:**
-- `gray-50` to `gray-900` for backgrounds and text
-- Use `gray-100` to `gray-300` for borders
-- Use `gray-600` to `gray-900` for text
-
-**Semantic Colors:**
-- Success: `green-500`, `green-600`
-- Warning: `yellow-500`, `yellow-600`
-- Error: `red-500`, `red-600`
-- Info: `blue-500`, `blue-600`
-
-### Color Contrast
-
-**WCAG AA Requirements:**
-- Normal text: 4.5:1 contrast ratio
-- Large text: 3:1 contrast ratio
-- Interactive elements: 3:1 contrast ratio
-
-**Examples:**
-```tsx
-// ✅ Good contrast
-<div className="bg-white text-gray-900">  // High contrast
-<div className="bg-gray-100 text-gray-800">  // Good contrast
-
-// ❌ Poor contrast
-<div className="bg-gray-200 text-gray-300">  // Low contrast
-```
-
----
-
-## Spacing
-
-### Spacing Scale
-
-**Tailwind spacing scale (4px base):**
-- `p-1`: 4px
-- `p-2`: 8px
-- `p-4`: 16px
-- `p-6`: 24px
-- `p-8`: 32px
-- `p-12`: 48px
-- `p-16`: 64px
-
-### Common Patterns
-
-**Container Padding:**
-```tsx
-<div className="container mx-auto px-4 md:px-6 lg:px-8">
-```
-
-**Section Spacing:**
-```tsx
-<section className="py-12 md:py-16 lg:py-20">
-```
-
-**Component Spacing:**
-```tsx
-<div className="space-y-4">  // Vertical spacing between children
-<div className="space-x-4">  // Horizontal spacing between children
-```
-
----
-
-## Layout Patterns
-
-### Container
+### Header
+- Logo: Baloo 2, Bold (700), `text-xl`
+- Navigation: Plus Jakarta Sans, Bold (700), `text-sm`, normal case (not uppercase)
+- Hover: Sky 500 for both logo and nav links
+- Border: `border-b-2` for emphasis
+- Sticky positioning with dark background
 
 **Pattern:**
 ```tsx
-<div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-    Content
-</div>
+<header className="site-header">
+  <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <Link className="font-baloo text-xl font-bold text-slate-50 hover:text-sky-500">
+      ThoughtfulCode
+    </Link>
+  </nav>
+</header>
 ```
 
-### Grid Layouts
+### Footer
+- Copyright: Plus Jakarta Sans, Regular (400), `text-slate-400`
+- Social links: Hover to Sky 500
+- Border: `border-t-2` for emphasis
+- Centered content layout
 
-**Responsive Grid:**
+**Pattern:**
 ```tsx
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {items.map(item => <ItemCard key={item.id} {...item} />)}
-</div>
+<footer className="site-footer">
+  <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+    <p className="text-slate-400">Content</p>
+  </div>
+</footer>
 ```
 
-### Flexbox Layouts
+### Cards
+- Background: `bg-slate-800`
+- Border: `border-2 border-slate-700`
+- Border radius: `rounded-md`
+- Padding: `p-6` or `p-8`
 
-**Common Patterns:**
-```tsx
-// Centered content
-<div className="flex items-center justify-center min-h-screen">
-
-// Space between
-<div className="flex items-center justify-between">
-
-// Stack vertically
-<div className="flex flex-col space-y-4">
-```
+### Code Blocks
+- Background: `bg-[#282c34]/50` (subtle blue-gray with 50% transparency)
+- Border: `border-2 border-slate-700`
+- Font weight: `font-medium` (500) for better readability
+- Border radius: `rounded-md`
 
 ---
 
-## Interactive Elements
+## 📊 Accessibility
 
-### Buttons
+### Contrast Ratios (WCAG AA)
+- Normal text: Minimum 4.5:1
+- Large text (18px+): Minimum 3:1
+- UI components: Minimum 3:1
 
-**Pattern:**
-```tsx
-<button className={cn(
-    "px-4 py-2 rounded-md font-medium transition-colors",
-    "bg-blue-600 text-white hover:bg-blue-700",
-    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-    "disabled:opacity-50 disabled:cursor-not-allowed"
-)}>
-    Button Text
-</button>
-```
-
-### Links
-
-**Pattern:**
-```tsx
-<a className={cn(
-    "text-blue-600 hover:text-blue-700 underline",
-    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-)}>
-    Link Text
-</a>
-```
+### Current Palette Compliance
+- ✅ Sky 500 on dark background: Excellent contrast
+- ✅ Emerald 500 on dark background: Excellent contrast
+- ✅ Amber 400 on dark background: Good contrast
+- ✅ Slate 50 text on dark background: Excellent contrast
 
 ### Focus States
 
-**Always include focus indicators:**
+**Always include visible focus states:**
 ```tsx
-className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+className="focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900"
 ```
-
----
-
-## Accessibility
 
 ### Semantic HTML
 
@@ -565,21 +438,11 @@ className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset
 </div>
 ```
 
-### ARIA Labels
-
-**Use when semantic HTML isn't sufficient:**
-```tsx
-<button aria-label="Close dialog">
-    <XIcon />
-</button>
-```
-
 ### Keyboard Navigation
-
-**Ensure all interactive elements are keyboard accessible:**
 - Use `<button>` or `<a>` tags, not `<div>` with onClick
 - Provide visible focus indicators
 - Support Tab navigation
+- Ensure all interactive elements are keyboard accessible
 
 ### Touch Targets
 
@@ -592,13 +455,72 @@ className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset
 
 ---
 
-## Animation & Transitions
+## 🎯 Design Decisions Log
+
+### Recent Changes (January 2026)
+
+1. **Fonts:**
+   - Body: Inter → Plus Jakarta Sans (more modern)
+   - Headings: Added Baloo 2 for personality
+   - Code: JetBrains Mono → Fira Code (crisper)
+
+2. **Colors:**
+   - Primary: Cyan 400 → Sky 500 (better contrast)
+   - Secondary: Emerald 400 → Emerald 500 (consistency)
+   - Tertiary: Purple 500 → Amber 400 (warmth)
+   - Background: Kept neutral gray (#171717)
+
+3. **Borders:**
+   - Increased all borders from 1px to 2px
+   - Emphasis borders: 3px
+   - Reduced border radius slightly (lg → md)
+
+4. **Hover Effects:**
+   - Buttons: Lighter background + light border on hover (Supabase-style)
+   - Text stays white throughout
+   - Links: Slightly lighter with underline
+
+5. **Navigation:**
+   - Removed uppercase styling
+   - Reduced font size to text-sm
+   - Kept bold weight (700)
+
+6. **Theme:**
+   - Removed light mode support
+   - Dark-only theme for focused, professional look
+   - Removed `next-themes` dependency
+
+---
+
+## 📱 Responsive Design
+
+### Breakpoints
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- `xl`: 1280px
+- `2xl`: 1536px
+
+### Mobile-First Approach
+```tsx
+// Base styles for mobile, then override for larger screens
+<div className="flex flex-col md:flex-row lg:grid lg:grid-cols-3">
+```
+
+### Responsive Typography
+```tsx
+<h1 className="text-4xl md:text-5xl lg:text-6xl">
+```
+
+---
+
+## 🎬 Animation & Transitions
 
 ### Transitions
 
 **Use Tailwind transition utilities:**
 ```tsx
-<div className="transition-colors hover:bg-gray-100">
+<div className="transition-colors hover:bg-slate-800">
 <div className="transition-all duration-200 ease-in-out">
 ```
 
@@ -610,7 +532,6 @@ className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset
 ```
 
 ### Common Transitions
-
 - Colors: `transition-colors`
 - Opacity: `transition-opacity`
 - Transform: `transition-transform`
@@ -618,71 +539,22 @@ className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset
 
 ---
 
-## Code Blocks
-
-### Syntax Highlighting
-
-**Styling for code blocks:**
-- Use `rehype-highlight` with `highlight.js` themes
-- Customize with Tailwind classes
-- Ensure sufficient contrast for readability
-
-**Pattern:**
-```tsx
-<pre className="rounded-lg bg-gray-900 p-4 overflow-x-auto">
-    <code className="text-sm text-gray-100">
-        {code}
-    </code>
-</pre>
-```
-
----
-
-## Responsive Images
-
-### Next.js Image Component
-
-**Always use `next/image`:**
-```tsx
-import Image from 'next/image';
-
-<Image
-    src="/images/example.jpg"
-    alt="Description"
-    width={800}
-    height={600}
-    className="rounded-lg"
-/>
-```
-
-### Responsive Sizing
-
-**Use Tailwind classes for responsive images:**
-```tsx
-<Image
-    src="/images/example.jpg"
-    alt="Description"
-    width={800}
-    height={600}
-    className="w-full h-auto md:w-1/2 lg:w-1/3"
-/>
-```
-
----
-
-## Best Practices
+## ✅ Best Practices
 
 ### Do's
 
 ✅ Use Tailwind utilities over custom CSS  
 ✅ Use semantic HTML elements  
-✅ Ensure sufficient color contrast  
-✅ Include focus indicators  
+✅ Ensure sufficient color contrast (WCAG AA minimum)  
+✅ Include focus indicators on all interactive elements  
 ✅ Use `cn()` for conditional classes  
 ✅ Mobile-first responsive design  
 ✅ Use `next/image` for all images  
 ✅ Test with keyboard navigation  
 ✅ Test with screen readers  
+✅ Follow the established color palette  
+✅ Use CSS variables for theme values  
+✅ Keep components focused and reusable  
 
 ### Don'ts
 
@@ -691,15 +563,38 @@ import Image from 'next/image';
 ❌ Don't use arbitrary values without documenting why  
 ❌ Don't skip focus states  
 ❌ Don't use `<div>` for interactive elements  
-❌ Don't ignore mobile touch targets  
+❌ Don't ignore mobile touch targets (44x44px minimum)  
 ❌ Don't use low contrast colors  
-❌ Don't forget dark mode styles  
+❌ Don't use `!important` - solve specificity properly  
+❌ Don't add light mode support - we're dark-only  
+❌ Don't deviate from the established design system  
 
 ---
 
-## References
+## 📚 Resources
 
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [shadcn/ui Components](https://ui.shadcn.com/)
-- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- [Next.js Image Optimization](https://nextjs.org/docs/pages/api-reference/components/image)
+- [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) - Body font
+- [Baloo 2](https://fonts.google.com/specimen/Baloo+2) - Heading font
+- [Fira Code](https://fonts.google.com/specimen/Fira+Code) - Monospace font
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility framework
+- [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/) - Accessibility
+- [Next.js Documentation](https://nextjs.org/docs) - Framework
+- [shadcn/ui](https://ui.shadcn.com/) - Component library
+
+---
+
+## 🔄 Maintenance
+
+### When to Update This Guide
+- After finalizing any design system changes
+- When adding new component patterns
+- After accessibility audits
+- When updating color palette
+- After typography refinements
+
+### Version History
+- **v1.0** (Jan 2026): Initial comprehensive styling guide with finalized color palette, typography system, and dark-only theme
+
+---
+
+*This is the single source of truth for all styling decisions in ThoughtfulCode. Always reference this guide before making design changes.*

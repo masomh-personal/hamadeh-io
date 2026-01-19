@@ -1,4 +1,5 @@
 [test]
+preload = ["./test-setup.ts"]
 coverage = true
 # Coverage threshold disabled until we have more comprehensive tests
 # coverageThreshold = { lines = 0.85, functions = 0.85, statements = 0.85 }

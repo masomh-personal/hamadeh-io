@@ -38,7 +38,10 @@ describe("Footer component", () => {
             render(<Footer />);
             const githubLink = screen.getByLabelText("GitHub");
             expect(githubLink).toBeInTheDocument();
-            expect(githubLink).toHaveAttribute("href", "https://github.com");
+            expect(githubLink).toHaveAttribute(
+                "href",
+                "https://github.com/masomh-personal"
+            );
         });
 
         test("renders LinkedIn link", () => {
@@ -47,7 +50,7 @@ describe("Footer component", () => {
             expect(linkedinLink).toBeInTheDocument();
             expect(linkedinLink).toHaveAttribute(
                 "href",
-                "https://linkedin.com"
+                "https://www.linkedin.com/in/masomh/"
             );
         });
 

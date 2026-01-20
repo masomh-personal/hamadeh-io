@@ -11,7 +11,7 @@ export function Header(): React.ReactElement {
 
     const navigation = [
         { name: "Home", href: "/" },
-        { name: "LeetCode", href: "/leetcode" },
+        { name: "Problems", href: "/leetcode" },
         { name: "Blog", href: "/blog" },
         { name: "About", href: "/about" },
     ];

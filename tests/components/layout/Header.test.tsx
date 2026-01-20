@@ -25,7 +25,7 @@ describe("Header component", () => {
         test("renders navigation links", () => {
             render(<Header />);
             expect(screen.getByText("Home")).toBeInTheDocument();
-            expect(screen.getByText("LeetCode")).toBeInTheDocument();
+            expect(screen.getByText("Problems")).toBeInTheDocument();
             expect(screen.getByText("Blog")).toBeInTheDocument();
             expect(screen.getByText("About")).toBeInTheDocument();
         });
@@ -49,7 +49,7 @@ describe("Header component", () => {
                 "href",
                 "/"
             );
-            expect(screen.getByText("LeetCode").closest("a")).toHaveAttribute(
+            expect(screen.getByText("Problems").closest("a")).toHaveAttribute(
                 "href",
                 "/leetcode"
             );
@@ -158,7 +158,7 @@ describe("Header component", () => {
             render(<Header />);
             const allLinks = [
                 ...screen.getAllByText("Home"),
-                ...screen.getAllByText("LeetCode"),
+                ...screen.getAllByText("Problems"),
                 ...screen.getAllByText("Blog"),
                 ...screen.getAllByText("About"),
             ];
@@ -172,10 +172,10 @@ describe("Header component", () => {
 
         test("non-home links are not active on home page", () => {
             render(<Header />);
-            const leetcodeLinks = screen.getAllByText("LeetCode");
-            const leetcodeLink = leetcodeLinks[0]?.closest("a");
+            const problemsLinks = screen.getAllByText("Problems");
+            const problemsLink = problemsLinks[0]?.closest("a");
             // Should have inactive styling when not on /leetcode route
-            expect(leetcodeLink).toHaveClass("text-slate-400");
+            expect(problemsLink).toHaveClass("text-slate-400");
         });
 
         test("blog link gets hover styling when not active", () => {

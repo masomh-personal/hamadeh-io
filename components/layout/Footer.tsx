@@ -7,7 +7,7 @@ export function Footer(): React.ReactElement {
     return (
         <footer className="site-footer">
             <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-                <div className="flex flex-col items-center gap-4">
+                <div className="flex flex-col items-center gap-2">
                     {/* Social Links */}
                     <div className="flex items-center gap-6">
                         <a
@@ -30,16 +30,16 @@ export function Footer(): React.ReactElement {
                         </a>
                     </div>
 
-                    {/* Tagline */}
-                    <p className="flex items-center gap-2 text-sm text-slate-400">
-                        Made with{" "}
-                        <IoHeart className="text-rose-500" aria-hidden="true" />{" "}
-                        in ATL
-                    </p>
-
                     {/* Copyright */}
                     <p className="text-sm text-slate-400">
                         © {currentYear} ThoughtfulCode. All rights reserved.
+                    </p>
+
+                    {/* Tagline */}
+                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400">
+                        Made with{" "}
+                        <IoHeart className="text-rose-500" aria-hidden="true" />{" "}
+                        in ATL
                     </p>
                 </div>
             </div>

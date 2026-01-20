@@ -6,7 +6,7 @@ export function Footer(): React.ReactElement {
 
     return (
         <footer className="site-footer">
-            <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-6xl px-6 py-6">
                 <div className="flex flex-col items-center gap-2.5">
                     {/* Social Links */}
                     <div className="flex items-center gap-3">
@@ -32,7 +32,7 @@ export function Footer(): React.ReactElement {
 
                     {/* Copyright */}
                     <p className="text-xs text-slate-400">
-                        &copy; {currentYear} ThoughtfulCode | All rights
+                        &copy; {currentYear} | ThoughtfulCode. All rights
                         reserved.
                     </p>
 

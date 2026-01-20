@@ -29,7 +29,7 @@ export function Header(): React.ReactElement {
 
     return (
         <header className="site-header">
-            <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <nav className="mx-auto max-w-6xl px-6">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <Logo size="default" />

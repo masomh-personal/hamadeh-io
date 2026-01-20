@@ -28,6 +28,7 @@ describe("Header component", () => {
             expect(screen.getByText("Problems")).toBeInTheDocument();
             expect(screen.getByText("Blog")).toBeInTheDocument();
             expect(screen.getByText("About")).toBeInTheDocument();
+            expect(screen.getByText("Resume")).toBeInTheDocument();
         });
 
         test("renders mobile menu button", () => {
@@ -60,6 +61,10 @@ describe("Header component", () => {
             expect(screen.getByText("About").closest("a")).toHaveAttribute(
                 "href",
                 "/about"
+            );
+            expect(screen.getByText("Resume").closest("a")).toHaveAttribute(
+                "href",
+                "/resume"
             );
         });
     });
@@ -161,12 +166,13 @@ describe("Header component", () => {
                 ...screen.getAllByText("Problems"),
                 ...screen.getAllByText("Blog"),
                 ...screen.getAllByText("About"),
+                ...screen.getAllByText("Resume"),
             ];
 
             // All links should have base styling
             for (const link of allLinks) {
                 const anchor = link.closest("a");
-                expect(anchor?.className).toMatch(/text-(cyan|slate)/);
+                expect(anchor?.className).toMatch(/text-(sky|slate)/);
             }
         });
 
@@ -182,14 +188,14 @@ describe("Header component", () => {
             render(<Header />);
             const blogLinks = screen.getAllByText("Blog");
             const blogLink = blogLinks[0]?.closest("a");
-            expect(blogLink).toHaveClass("hover:text-cyan-500");
+            expect(blogLink).toHaveClass("hover:text-sky-500");
         });
 
         test("about link gets hover styling when not active", () => {
             render(<Header />);
             const aboutLinks = screen.getAllByText("About");
             const aboutLink = aboutLinks[0]?.closest("a");
-            expect(aboutLink).toHaveClass("hover:text-cyan-500");
+            expect(aboutLink).toHaveClass("hover:text-sky-500");
         });
     });
 
@@ -213,14 +219,14 @@ describe("Header component", () => {
             const user = userEvent.setup();
             render(<Header />);
 
-            // Desktop links (4 items)
+            // Desktop links (5 items)
             expect(screen.getByText("Home")).toBeInTheDocument();
 
             // Open mobile menu
             const menuButton = screen.getByLabelText("Toggle menu");
             await user.click(menuButton);
 
-            // Mobile links should now be visible (4 more items)
+            // Mobile links should now be visible (5 more items)
             const allHomeLinks = screen.getAllByText("Home");
             expect(allHomeLinks.length).toBe(2); // Desktop + Mobile
         });

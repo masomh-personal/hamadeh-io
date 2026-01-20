@@ -3,17 +3,27 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { LuMenu, LuX } from "react-icons/lu";
+import type { IconType } from "react-icons";
+import {
+    HiCode,
+    HiDocument,
+    HiDocumentText,
+    HiHome,
+    HiMenu,
+    HiUser,
+    HiX,
+} from "react-icons/hi";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const navigation = [
-        { name: "Home", href: "/" },
-        { name: "Problems", href: "/leetcode" },
-        { name: "Blog", href: "/blog" },
-        { name: "About", href: "/about" },
+    const navigation: Array<{ name: string; href: string; icon: IconType }> = [
+        { name: "Home", href: "/", icon: HiHome },
+        { name: "Problems", href: "/leetcode", icon: HiCode },
+        { name: "Blog", href: "/blog", icon: HiDocumentText },
+        { name: "About", href: "/about", icon: HiUser },
+        { name: "Resume", href: "/resume", icon: HiDocument },
     ];
 
     return (
@@ -35,16 +45,18 @@ export function Header(): React.ReactElement {
                                 pathname === item.href ||
                                 (item.href !== "/" &&
                                     pathname?.startsWith(item.href));
+                            const Icon = item.icon;
                             return (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`text-sm font-bold transition-colors ${
+                                    className={`flex items-center gap-1 text-sm font-bold transition-colors ${
                                         isActive
-                                            ? "text-cyan-500"
-                                            : "text-slate-400 hover:text-cyan-500"
+                                            ? "text-sky-500"
+                                            : "text-slate-400 hover:text-sky-500"
                                     }`}
                                 >
+                                    <Icon className="h-3.5 w-3.5" />
                                     {item.name}
                                 </Link>
                             );
@@ -61,9 +73,9 @@ export function Header(): React.ReactElement {
                             aria-expanded={mobileMenuOpen}
                         >
                             {mobileMenuOpen ? (
-                                <LuX className="h-5 w-5" />
+                                <HiX className="h-5 w-5" />
                             ) : (
-                                <LuMenu className="h-5 w-5" />
+                                <HiMenu className="h-5 w-5" />
                             )}
                         </button>
                     </div>
@@ -78,17 +90,19 @@ export function Header(): React.ReactElement {
                                     pathname === item.href ||
                                     (item.href !== "/" &&
                                         pathname?.startsWith(item.href));
+                                const Icon = item.icon;
                                 return (
                                     <Link
                                         key={item.name}
                                         href={item.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`text-sm font-bold transition-colors ${
+                                        className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
                                             isActive
-                                                ? "text-cyan-500"
-                                                : "text-slate-400 hover:text-cyan-500"
+                                                ? "text-sky-500"
+                                                : "text-slate-400 hover:text-sky-500"
                                         }`}
                                     >
+                                        <Icon className="h-4 w-4" />
                                         {item.name}
                                     </Link>
                                 );

@@ -155,7 +155,7 @@ describe("Header component", () => {
             expect(homeLink).toBeInTheDocument();
             // Check that styling classes are applied
             if (homeLink) {
-                expect(homeLink.className).toContain("nav-link-");
+                expect(homeLink.className).toContain("text-");
             }
         });
 
@@ -172,9 +172,7 @@ describe("Header component", () => {
             // All links should have base styling
             for (const link of allLinks) {
                 const anchor = link.closest("a");
-                expect(anchor?.className).toMatch(
-                    /nav-link-(base|active|inactive)/
-                );
+                expect(anchor?.className).toMatch(/text-(primary|muted)/);
             }
         });
 
@@ -183,21 +181,21 @@ describe("Header component", () => {
             const problemsLinks = screen.getAllByText("Problems");
             const problemsLink = problemsLinks[0]?.closest("a");
             // Should have inactive styling when not on /leetcode route
-            expect(problemsLink).toHaveClass("nav-link-inactive");
+            expect(problemsLink).toHaveClass("text-muted");
         });
 
         test("blog link gets hover styling when not active", () => {
             render(<Header />);
             const blogLinks = screen.getAllByText("Blog");
             const blogLink = blogLinks[0]?.closest("a");
-            expect(blogLink).toHaveClass("nav-link-inactive");
+            expect(blogLink).toHaveClass("hover:text-primary");
         });
 
         test("about link gets hover styling when not active", () => {
             render(<Header />);
             const aboutLinks = screen.getAllByText("About");
             const aboutLink = aboutLinks[0]?.closest("a");
-            expect(aboutLink).toHaveClass("nav-link-inactive");
+            expect(aboutLink).toHaveClass("hover:text-primary");
         });
     });
 

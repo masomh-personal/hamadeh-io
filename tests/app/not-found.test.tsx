@@ -26,9 +26,8 @@ describe("NotFound Page", () => {
 
         test("renders the HTTP status message", () => {
             render(<NotFound />);
-            expect(
-                screen.getByText("HTTP Status: Not Found")
-            ).toBeInTheDocument();
+            expect(screen.getByText("HTTP Status:")).toBeInTheDocument();
+            expect(screen.getByText("Not Found")).toBeInTheDocument();
         });
 
         test("renders the main error heading", () => {

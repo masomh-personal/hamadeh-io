@@ -13,6 +13,7 @@ import {
     HiUser,
     HiX,
 } from "react-icons/hi";
+import { Logo } from "@/components/Logo";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,12 +32,7 @@ export function Header(): React.ReactElement {
             <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
-                    <Link
-                        href="/"
-                        className="font-baloo text-xl font-bold tracking-tight text-slate-50 transition-colors hover:text-primary"
-                    >
-                        ThoughtfulCode
-                    </Link>
+                    <Logo size="default" />
 
                     {/* Desktop Navigation */}
                     <div className="hidden items-center gap-8 md:flex">

@@ -19,7 +19,9 @@ describe("Header component", () => {
     describe("Basics", () => {
         test("renders the logo/brand name", () => {
             render(<Header />);
-            expect(screen.getByText("ThoughtfulCode")).toBeInTheDocument();
+            // Logo is now split into "Thoughtful" and "Code"
+            expect(screen.getByText("Thoughtful")).toBeInTheDocument();
+            expect(screen.getByText("Code")).toBeInTheDocument();
         });
 
         test("renders navigation links", () => {
@@ -40,7 +42,7 @@ describe("Header component", () => {
     describe("Navigation Links", () => {
         test("logo links to home", () => {
             render(<Header />);
-            const logo = screen.getByText("ThoughtfulCode");
+            const logo = screen.getByText("Thoughtful");
             expect(logo.closest("a")).toHaveAttribute("href", "/");
         });
 

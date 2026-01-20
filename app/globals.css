@@ -125,6 +125,50 @@
 }
 
 /* ============================================
+   Reusable Utility Classes (DRY)
+   ============================================ */
+
+/* Text Color Utilities */
+.text-accent {
+    color: var(--accent);
+}
+
+.text-muted {
+    color: var(--muted-foreground);
+}
+
+/* Hover State Utilities */
+.hover-accent {
+    transition: color 0.2s ease-in-out;
+}
+
+.hover-accent:hover {
+    color: var(--accent);
+}
+
+/* Link Styles - Active & Inactive */
+.nav-link-base {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* gap-1 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 700; /* font-bold */
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link-inactive {
+    color: var(--muted-foreground);
+}
+
+.nav-link-inactive:hover {
+    color: var(--accent);
+}
+
+.nav-link-active {
+    color: var(--accent);
+}
+
+/* ============================================
    Prose / Content Styles
    ============================================ */
 .prose {

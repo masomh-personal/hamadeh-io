@@ -14,7 +14,7 @@ export function Footer(): React.ReactElement {
                             href="https://github.com/masomh-personal"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-400 transition-colors hover:text-sky-400"
+                            className="text-muted hover-accent"
                             aria-label="GitHub"
                         >
                             <SiGithub className="footer-icon" />
@@ -23,7 +23,7 @@ export function Footer(): React.ReactElement {
                             href="https://www.linkedin.com/in/masomh/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-400 transition-colors hover:text-sky-400"
+                            className="text-muted hover-accent"
                             aria-label="LinkedIn"
                         >
                             <SiLinkedin className="footer-icon" />

@@ -33,7 +33,7 @@ export function Header(): React.ReactElement {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="font-baloo text-xl font-bold tracking-tight text-slate-50 transition-colors hover:text-sky-400"
+                        className="font-baloo text-xl font-bold tracking-tight text-slate-50 transition-colors hover-accent"
                     >
                         ThoughtfulCode
                     </Link>
@@ -50,10 +50,10 @@ export function Header(): React.ReactElement {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`flex items-center gap-1 text-sm font-bold transition-colors ${
+                                    className={`nav-link-base ${
                                         isActive
-                                            ? "text-sky-500"
-                                            : "text-slate-400 hover:text-sky-500"
+                                            ? "nav-link-active"
+                                            : "nav-link-inactive"
                                     }`}
                                 >
                                     <Icon className="h-3.5 w-3.5" />
@@ -68,7 +68,7 @@ export function Header(): React.ReactElement {
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="rounded-md p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-sky-400"
+                            className="text-muted hover-accent rounded-md p-2 transition-colors hover:bg-slate-800"
                             aria-label="Toggle menu"
                             aria-expanded={mobileMenuOpen}
                         >
@@ -98,8 +98,8 @@ export function Header(): React.ReactElement {
                                         onClick={() => setMobileMenuOpen(false)}
                                         className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
                                             isActive
-                                                ? "text-sky-500"
-                                                : "text-slate-400 hover:text-sky-500"
+                                                ? "nav-link-active"
+                                                : "nav-link-inactive"
                                         }`}
                                     >
                                         <Icon className="h-4 w-4" />

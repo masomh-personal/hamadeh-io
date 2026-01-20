@@ -78,6 +78,9 @@
         --secondary-foreground: white;
         --tertiary: var(--color-amber-400);
         --tertiary-foreground: white;
+
+        /* Component-specific variables */
+        --icon-size-footer: 1.4rem;
     }
 
     html {
@@ -113,6 +116,12 @@
     width: 100%;
     background-color: var(--background);
     border-top: 2px solid var(--border);
+}
+
+/* Footer icon sizing */
+.footer-icon {
+    height: var(--icon-size-footer);
+    width: var(--icon-size-footer);
 }
 
 /* ============================================
@@ -213,8 +222,6 @@
 }
 
 /* Make all monospace fonts bolder for better readability */
-code,
-pre,
 kbd,
 samp {
     font-weight: 500;

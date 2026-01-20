@@ -7,9 +7,9 @@ export function Footer(): React.ReactElement {
     return (
         <footer className="site-footer">
             <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-2.5">
                     {/* Social Links */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                         <a
                             href="https://github.com/masomh-personal"
                             target="_blank"
@@ -17,7 +17,7 @@ export function Footer(): React.ReactElement {
                             className="text-slate-400 transition-colors hover:text-sky-400"
                             aria-label="GitHub"
                         >
-                            <SiGithub className="h-5 w-5" />
+                            <SiGithub className="footer-icon" />
                         </a>
                         <a
                             href="https://www.linkedin.com/in/masomh/"
@@ -26,19 +26,20 @@ export function Footer(): React.ReactElement {
                             className="text-slate-400 transition-colors hover:text-sky-400"
                             aria-label="LinkedIn"
                         >
-                            <SiLinkedin className="h-5 w-5" />
+                            <SiLinkedin className="footer-icon" />
                         </a>
                     </div>
 
                     {/* Copyright */}
                     <p className="text-sm text-slate-400">
-                        © {currentYear} ThoughtfulCode. All rights reserved.
+                        &copy; {currentYear} ThoughtfulCode. All rights
+                        reserved.
                     </p>
 
                     {/* Tagline */}
-                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400">
-                        Made with{" "}
-                        <IoHeart className="text-rose-500" aria-hidden="true" />{" "}
+                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400 font-semibold">
+                        Made with
+                        <IoHeart className="text-rose-500" aria-hidden="true" />
                         in ATL
                     </p>
                 </div>

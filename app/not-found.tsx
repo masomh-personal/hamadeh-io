@@ -17,7 +17,8 @@ export default function NotFound(): React.ReactElement {
                         404
                     </h1>
                     <div className="mt-2 font-mono text-sm text-muted">
-                        HTTP Status: Not Found
+                        <span className="font-bold">HTTP Status:</span>{" "}
+                        <span className="text-tertiary">Not Found</span>
                     </div>
                 </div>
 
@@ -53,7 +54,7 @@ export default function NotFound(): React.ReactElement {
                 </div>
 
                 {/* Fun Developer Message */}
-                <div className="mb-8 max-w-md rounded-lg border border-slate-700 bg-slate-800/30 p-4">
+                <div className="mb-8 max-w-2xl rounded-lg border border-slate-700 bg-slate-800/30 p-4">
                     <p className="text-sm text-slate-400">
                         <span className="font-semibold text-primary">
                             Pro tip:

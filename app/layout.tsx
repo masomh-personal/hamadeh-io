@@ -6,6 +6,7 @@ import {
     IBM_Plex_Mono,
     Inconsolata,
     JetBrains_Mono,
+    M_PLUS_Rounded_1c,
     Plus_Jakarta_Sans,
     PT_Mono,
     Roboto_Mono,
@@ -28,6 +29,13 @@ const baloo2 = Baloo_2({
     variable: "--font-baloo",
     display: "swap",
     weight: ["400", "500", "600", "700", "800"],
+});
+
+const mPlusRounded1c = M_PLUS_Rounded_1c({
+    subsets: ["latin"],
+    variable: "--font-rounded",
+    display: "swap",
+    weight: ["400", "500", "700", "800", "900"],
 });
 
 // Default monospace (IBM Plex Mono)
@@ -99,6 +107,11 @@ export const metadata: Metadata = {
     title: "ThoughtfulCode | Masom's Portfolio",
     description:
         "Full-stack portfolio showcasing software engineering skills, LeetCode solutions, and technical writing",
+    icons: {
+        icon: "/branding/favicon.svg",
+        shortcut: "/branding/favicon.svg",
+        apple: "/branding/favicon.svg",
+    },
 };
 
 export default function RootLayout({
@@ -109,7 +122,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${plusJakartaSans.variable} ${baloo2.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
+            className={`${plusJakartaSans.variable} ${baloo2.variable} ${mPlusRounded1c.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
             suppressHydrationWarning
         >
             <body

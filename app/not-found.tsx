@@ -51,17 +51,32 @@ export default function NotFound(): React.ReactElement {
                             ;
                         </div>
                     </div>
-                </div>
 
-                {/* Fun Developer Message */}
-                <div className="mb-8 max-w-2xl rounded-lg border border-slate-700 bg-slate-800/30 p-4">
-                    <p className="text-sm text-slate-400">
-                        <span className="font-semibold text-primary">
-                            Pro tip:
-                        </span>{" "}
-                        This isn't a bug, it's an undocumented feature. Just
-                        kidding—this page really doesn't exist. 😅
-                    </p>
+                    {/* Fun Developer Message */}
+                    {/* <div className="rounded-lg border border-slate-700 bg-slate-800/30 p-4 space-y-3">
+                        <p className="text-sm leading-relaxed text-slate-400">
+                            <span className="font-semibold text-primary">
+                                Pro tip:
+                            </span>{" "}
+                            This isn't a bug, it's an undocumented feature. Just
+                            kidding—this page really doesn't exist. 😅
+                        </p>
+                        <p className="text-sm leading-relaxed text-slate-400">
+                            But hey, at least you didn't end up on a Stack
+                            Overflow thread from 2012 where someone solved your
+                            exact problem... except it's for jQuery 1.3 and the
+                            accepted answer is "just use AngularJS." We've all
+                            been there, scrolling through 47 "this is
+                            deprecated" comments before finding out the real
+                            solution is in a GitHub discussion from last week.
+                        </p>
+                        <p className="text-sm leading-relaxed text-slate-400">
+                            Consider this your modern, AI-powered 404
+                            experience—no outdated answers, no "closed as
+                            duplicate," just a friendly nudge back to reality.
+                            Now go build something cool! 🚀
+                        </p>
+                    </div> */}
                 </div>
 
                 {/* Action Buttons */}

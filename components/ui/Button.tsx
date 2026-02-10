@@ -48,7 +48,6 @@ export interface ThoughtfulButtonProps
     size?: ButtonSize;
     href?: string;
     children?: React.ReactNode;
-    onPress?: () => void;
     iconSize?: IconSize;
     isLoading?: boolean;
     loadingText?: string;
@@ -151,7 +150,6 @@ export function Button({
     href,
     disabled,
     onClick,
-    onPress,
     iconSize = "md",
     isLoading = false,
     loadingText,
@@ -205,10 +203,7 @@ export function Button({
             className={classes}
             disabled={isDisabled}
             aria-busy={isLoading || undefined}
-            onClick={(event: MouseEvent<HTMLButtonElement>) => {
-                onClick?.(event);
-                onPress?.();
-            }}
+            onClick={(event: MouseEvent<HTMLButtonElement>) => onClick?.(event)}
             {...props}
         >
             {content}

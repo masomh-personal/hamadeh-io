@@ -61,7 +61,7 @@ export default function NotFound(): React.ReactElement {
                     </Button>
                     <Button
                         variant="secondary"
-                        onPress={() => window.history.back()}
+                        onClick={() => window.history.back()}
                         className="gap-2"
                     >
                         <HiArrowLeft className="h-5 w-5" />

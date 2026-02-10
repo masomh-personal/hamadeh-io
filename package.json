@@ -48,7 +48,6 @@
         "@types/node": "^22.19.7",
         "@types/react": "^19.2.9",
         "@types/react-dom": "^19.2.3",
-        "autoprefixer": "^10.4.23",
         "happy-dom": "^20.3.7",
         "husky": "^9.1.7",
         "lint-staged": "^16.2.7",

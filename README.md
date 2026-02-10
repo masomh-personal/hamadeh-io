@@ -74,10 +74,9 @@ bun start
 | `bun run dev` | Start development server with hot reload |
 | `bun run build` | Build production bundle |
 | `bun run start` | Start production server |
-| `bun run lint` | Check linting rules (Biome) |
-| `bun run lint:fix` | Fix linting and formatting issues |
-| `bun run format` | Format code with Biome |
 | `bun run check` | Check both linting and formatting |
+| `bun run check:fix` | Fix linting and formatting issues |
+| `bun run format` | Format code with Biome |
 | `bun run type-check` | Run TypeScript type checking |
 | `bun run test` | Run tests with Bun test runner |
 | `bun run test:coverage` | Run tests with coverage report |

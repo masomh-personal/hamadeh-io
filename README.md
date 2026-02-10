@@ -212,6 +212,7 @@ thoughtfulcode-app/
 ## Architecture Decisions
 
 For detailed architecture decisions, patterns, and conventions, see [`docs/architecture.md`](docs/architecture.md).
+For TypeScript style conventions and examples, see [`docs/typescript-conventions.md`](docs/typescript-conventions.md).
 
 **Quick Summary:**
 - **Next.js 16:** Production-ready, SSG for fast loads, React 19 support

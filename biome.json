@@ -6,17 +6,7 @@
         "useIgnoreFile": true
     },
     "files": {
-        "ignoreUnknown": true,
-        "includes": [
-            "**/*.js",
-            "**/*.jsx",
-            "**/*.ts",
-            "**/*.tsx",
-            "**/*.json",
-            "**/*.mjs",
-            "**/*.css",
-            "**/*.md"
-        ]
+        "ignoreUnknown": true
     },
     "formatter": {
         "enabled": true,

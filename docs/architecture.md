@@ -80,6 +80,8 @@ interface BadgeProps extends React.ComponentProps<"span"> {
 }
 ```
 
+For additional examples and a quick decision guide, see [`docs/typescript-conventions.md`](./typescript-conventions.md).
+
 ### Bun v1.3.x
 
 **Why:**

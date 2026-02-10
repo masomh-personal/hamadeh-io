@@ -58,7 +58,86 @@ export interface ThoughtfulButtonProps
 const baseClasses =
     "rounded-sm font-semibold text-white transition-all duration-200 inline-flex items-center justify-center gap-1 " +
     "[&_svg]:block [&_svg]:shrink-0 " +
+    "cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 " +
     "focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900";
+
+function getButtonClasses({
+    variant,
+    size,
+    iconSize,
+    isLoading,
+    isDisabled,
+    className,
+}: {
+    variant: ButtonVariant;
+    size: ButtonSize;
+    iconSize: IconSize;
+    isLoading: boolean;
+    isDisabled: boolean;
+    className?: string;
+}): string {
+    return cn(
+        variantClasses[variant],
+        sizeClasses[size],
+        iconSizeClasses[iconSize],
+        baseClasses,
+        isLoading && "cursor-wait",
+        isDisabled && "pointer-events-none",
+        className
+    );
+}
+
+function getButtonContent({
+    isLoading,
+    loadingIcon,
+    loadingText,
+    children,
+}: {
+    isLoading: boolean;
+    loadingIcon?: React.ReactNode;
+    loadingText?: string;
+    children?: React.ReactNode;
+}): React.ReactNode {
+    if (!isLoading) {
+        return children;
+    }
+
+    return (
+        <>
+            {loadingIcon ?? (
+                <span
+                    className="h-3.5 w-3.5 animate-spin rounded-full border border-current border-r-transparent"
+                    aria-hidden="true"
+                />
+            )}
+            <span>{loadingText ?? "Loading..."}</span>
+        </>
+    );
+}
+
+function getLinkAccessibilityProps({
+    isDisabled,
+    isLoading,
+}: {
+    isDisabled: boolean;
+    isLoading: boolean;
+}): {
+    "aria-disabled"?: true;
+    "aria-busy"?: true;
+    tabIndex?: -1;
+    onClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+} {
+    return {
+        "aria-disabled": isDisabled || undefined,
+        "aria-busy": isLoading || undefined,
+        tabIndex: isDisabled ? -1 : undefined,
+        onClick: (event) => {
+            if (isDisabled) {
+                event.preventDefault();
+            }
+        },
+    };
+}
 
 /**
  * Button component with ThoughtfulCode design system.
@@ -80,29 +159,33 @@ export function Button({
     children,
     ...props
 }: ThoughtfulButtonProps): React.ReactElement {
-    const classes = cn(
-        variantClasses[variant],
-        sizeClasses[size],
-        iconSizeClasses[iconSize],
-        baseClasses,
-        isLoading && "cursor-wait opacity-80",
-        className
-    );
-
-    const content = isLoading ? (
-        <>
-            {loadingIcon ?? (
-                <span className="h-3.5 w-3.5 animate-spin rounded-full border border-current border-r-transparent" />
-            )}
-            <span>{loadingText ?? "Loading..."}</span>
-        </>
-    ) : (
-        children
-    );
+    const isDisabled = Boolean(disabled || isLoading);
+    const classes = getButtonClasses({
+        variant,
+        size,
+        iconSize,
+        isLoading,
+        isDisabled,
+        className,
+    });
+    const content = getButtonContent({
+        isLoading,
+        loadingIcon,
+        loadingText,
+        children,
+    });
+    const linkAccessibilityProps = getLinkAccessibilityProps({
+        isDisabled,
+        isLoading,
+    });
 
     if (href && !href.startsWith("http")) {
         return (
-            <NextLink href={href} className={classes}>
+            <NextLink
+                href={href}
+                className={classes}
+                {...linkAccessibilityProps}
+            >
                 {content}
             </NextLink>
         );
@@ -110,7 +193,7 @@ export function Button({
 
     if (href) {
         return (
-            <a href={href} className={classes}>
+            <a href={href} className={classes} {...linkAccessibilityProps}>
                 {content}
             </a>
         );
@@ -120,7 +203,8 @@ export function Button({
         <button
             type="button"
             className={classes}
-            disabled={disabled || isLoading}
+            disabled={isDisabled}
+            aria-busy={isLoading || undefined}
             onClick={(event: MouseEvent<HTMLButtonElement>) => {
                 onClick?.(event);
                 onPress?.();

@@ -147,6 +147,7 @@ describe('Feature Name', () => {
 - **Strict Mode:** Enabled
 - **Explicit Return Types:** Required for all exported functions
 - **Type Checking:** Run `bun run type-check` before committing
+- **Typing Convention:** `interface` for object/props contracts, `type` for unions/aliases
 
 ### Git Hooks
 

@@ -60,6 +60,26 @@ This document outlines the architectural decisions, patterns, and conventions us
 - Narrow types early with type guards
 - Use discriminated unions for complex state
 
+#### Type Modeling Convention (Project Standard)
+
+To keep typing consistent and easy to scan:
+
+- Use `interface` for object-shaped contracts (especially component props)
+- Use `type` for unions, string literals, aliases, mapped/conditional helpers
+- Prefer `ComponentProps<"...">` for DOM wrapper props in UI components
+- Keep behavior-specific prop extensions explicit (e.g., `onPress` wrappers)
+- Optimize for consistency and readability over strict ideology
+
+**Examples:**
+
+```ts
+type BadgeColor = "primary" | "secondary" | "tertiary" | "default";
+
+interface BadgeProps extends React.ComponentProps<"span"> {
+    color?: BadgeColor;
+}
+```
+
 ### Bun v1.3.x
 
 **Why:**

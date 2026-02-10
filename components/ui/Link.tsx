@@ -1,7 +1,7 @@
 "use client";
 
-import { Link as HeroLink } from "@heroui/react";
 import NextLink from "next/link";
+import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 type LinkVariant = "primary" | "secondary" | "muted";
@@ -14,8 +14,7 @@ const variantClasses: Record<LinkVariant, string> = {
     muted: "text-slate-400 hover:text-sky-500 transition-colors font-baloo font-semibold",
 };
 
-export interface ThoughtfulLinkProps
-    extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+export interface ThoughtfulLinkProps extends Omit<ComponentProps<"a">, "href"> {
     href: string;
     variant?: LinkVariant;
     external?: boolean;
@@ -23,7 +22,7 @@ export interface ThoughtfulLinkProps
 
 /**
  * Link component for internal (Next.js) and external navigation.
- * Uses Next.js Link for internal routes, Hero UI Link for external.
+ * Uses Next.js Link for internal routes and anchor tags for external links.
  */
 export function Link({
     href,
@@ -41,14 +40,15 @@ export function Link({
 
     if (external || href.startsWith("http") || href.startsWith("//")) {
         return (
-            <HeroLink
+            <a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classes}
+                {...props}
             >
                 {children}
-            </HeroLink>
+            </a>
         );
     }
 

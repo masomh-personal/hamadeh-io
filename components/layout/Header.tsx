@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { IconType } from "react-icons";
 import {
     HiCode,
+    HiCollection,
     HiDocument,
     HiDocumentText,
     HiHome,
@@ -21,7 +22,7 @@ export function Header(): React.ReactElement {
 
     const navigation: Array<{ name: string; href: string; icon: IconType }> = [
         { name: "Home", href: "/", icon: HiHome },
-        { name: "Components", href: "/components", icon: HiCode },
+        { name: "Components", href: "/components", icon: HiCollection },
         { name: "Problems", href: "/leetcode", icon: HiCode },
         { name: "Blog", href: "/blog", icon: HiDocumentText },
         { name: "About", href: "/about", icon: HiUser },
@@ -36,7 +37,7 @@ export function Header(): React.ReactElement {
                     <Logo size="default" />
 
                     {/* Desktop Navigation */}
-                    <div className="hidden items-center gap-8 md:flex">
+                    <div className="hidden items-center gap-5 md:flex">
                         {navigation.map((item) => {
                             const isActive =
                                 pathname === item.href ||

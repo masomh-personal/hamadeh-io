@@ -21,6 +21,7 @@ export function Header(): React.ReactElement {
 
     const navigation: Array<{ name: string; href: string; icon: IconType }> = [
         { name: "Home", href: "/", icon: HiHome },
+        { name: "Components", href: "/components", icon: HiCode },
         { name: "Problems", href: "/leetcode", icon: HiCode },
         { name: "Blog", href: "/blog", icon: HiDocumentText },
         { name: "About", href: "/about", icon: HiUser },

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { HiArrowLeft, HiHome } from "react-icons/hi";
+import { Button, Link } from "@/components/ui";
 
 /**
  * Custom 404 Not Found page
@@ -30,7 +30,7 @@ export default function NotFound(): React.ReactElement {
                     <p className="text-lg text-slate-300">
                         Looks like this route doesn't exist in our codebase.
                     </p>
-                    <div className="rounded-lg border-2 border-slate-700 bg-slate-900/50 p-4 font-mono text-sm text-left">
+                    <div className="rounded-lg border-2 border-slate-700 bg-slate-900/50 p-4 font-mono text-left text-sm">
                         <div className="text-slate-500">
                             {"// Error details:"}
                         </div>
@@ -51,76 +51,31 @@ export default function NotFound(): React.ReactElement {
                             ;
                         </div>
                     </div>
-
-                    {/* Fun Developer Message */}
-                    {/* <div className="rounded-lg border border-slate-700 bg-slate-800/30 p-4 space-y-3">
-                        <p className="text-sm leading-relaxed text-slate-400">
-                            <span className="font-semibold text-primary">
-                                Pro tip:
-                            </span>{" "}
-                            This isn't a bug, it's an undocumented feature. Just
-                            kidding—this page really doesn't exist. 😅
-                        </p>
-                        <p className="text-sm leading-relaxed text-slate-400">
-                            But hey, at least you didn't end up on a Stack
-                            Overflow thread from 2012 where someone solved your
-                            exact problem... except it's for jQuery 1.3 and the
-                            accepted answer is "just use AngularJS." We've all
-                            been there, scrolling through 47 "this is
-                            deprecated" comments before finding out the real
-                            solution is in a GitHub discussion from last week.
-                        </p>
-                        <p className="text-sm leading-relaxed text-slate-400">
-                            Consider this your modern, AI-powered 404
-                            experience—no outdated answers, no "closed as
-                            duplicate," just a friendly nudge back to reality.
-                            Now go build something cool! 🚀
-                        </p>
-                    </div> */}
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-4 sm:flex-row">
-                    <Link
-                        href="/"
-                        className="flex items-center gap-2 rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400"
-                    >
+                    <Button href="/" className="gap-2">
                         <HiHome className="h-5 w-5" />
                         Go Home
-                    </Link>
-                    <button
-                        type="button"
-                        onClick={() => window.history.back()}
-                        className="flex items-center gap-2 rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-baloo text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-400 hover:bg-sky-950/20 hover:text-sky-400 hover:shadow-lg"
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onPress={() => window.history.back()}
+                        className="gap-2"
                     >
                         <HiArrowLeft className="h-5 w-5" />
                         Go Back
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Additional Links */}
                 <div className="mt-12 text-sm text-slate-500">
-                    Or explore:{" "}
-                    <Link
-                        href="/leetcode"
-                        className="text-primary hover:text-primary-hover transition-colors"
-                    >
-                        Problems
-                    </Link>
+                    Or explore: <Link href="/leetcode">Problems</Link>
                     {" • "}
-                    <Link
-                        href="/blog"
-                        className="text-primary hover:text-primary-hover transition-colors"
-                    >
-                        Blog
-                    </Link>
+                    <Link href="/blog">Blog</Link>
                     {" • "}
-                    <Link
-                        href="/about"
-                        className="text-primary hover:text-primary-hover transition-colors"
-                    >
-                        About
-                    </Link>
+                    <Link href="/about">About</Link>
                 </div>
             </div>
         </div>

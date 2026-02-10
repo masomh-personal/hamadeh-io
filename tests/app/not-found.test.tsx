@@ -56,14 +56,9 @@ describe("NotFound Page", () => {
             ).toBeInTheDocument();
         });
 
-        test("renders the pro tip message", () => {
+        test.skip("renders the pro tip message (section removed for refinement)", () => {
             render(<NotFound />);
             expect(screen.getByText(/Pro tip:/)).toBeInTheDocument();
-            expect(
-                screen.getByText(
-                    /This isn't a bug, it's an undocumented feature/
-                )
-            ).toBeInTheDocument();
         });
     });
 
@@ -128,7 +123,7 @@ describe("NotFound Page", () => {
             render(<NotFound />);
             const backButton = screen.getByRole("button", { name: /go back/i });
             expect(backButton.className).toContain("border-slate-600");
-            expect(backButton.className).toContain("hover:border-sky-400");
+            expect(backButton.className).toContain("hover:border-sky-500");
         });
     });
 

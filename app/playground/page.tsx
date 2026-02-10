@@ -1,6 +1,6 @@
 "use client";
 
-import { HiArrowRight, HiHome } from "react-icons/hi";
+import { HiArrowRight, HiHome, HiRefresh } from "react-icons/hi";
 import { Badge, Button, Card, Link } from "@/components/ui";
 
 /**
@@ -64,13 +64,13 @@ export default function PlaygroundPage(): React.ReactElement {
                             With Icons
                         </h3>
                         <div className="flex flex-wrap gap-3">
-                            <Button className="gap-2">
-                                <HiHome className="h-5 w-5" />
+                            <Button>
+                                <HiHome />
                                 Go Home
                             </Button>
-                            <Button variant="secondary" className="gap-2">
+                            <Button variant="secondary">
                                 Next
-                                <HiArrowRight className="h-5 w-5" />
+                                <HiArrowRight />
                             </Button>
                         </div>
                     </div>
@@ -79,10 +79,32 @@ export default function PlaygroundPage(): React.ReactElement {
                         <h3 className="mb-3 font-mono text-sm text-slate-500">
                             As Link (href)
                         </h3>
-                        <Button href="/" className="gap-2">
-                            <HiHome className="h-5 w-5" />
+                        <Button href="/">
+                            <HiHome />
                             Link to Home
                         </Button>
+                    </div>
+
+                    <div>
+                        <h3 className="mb-3 font-mono text-sm text-slate-500">
+                            Loading States
+                        </h3>
+                        <div className="flex flex-wrap items-center gap-3">
+                            <Button
+                                variant="primary"
+                                isLoading
+                                loadingText="Saving changes..."
+                            />
+                            <Button variant="secondary" isLoading />
+                            <Button
+                                variant="tertiary"
+                                isLoading
+                                loadingText="Syncing..."
+                                loadingIcon={
+                                    <HiRefresh className="h-4 w-4 animate-spin" />
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
             </section>

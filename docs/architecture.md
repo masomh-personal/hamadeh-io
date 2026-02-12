@@ -67,7 +67,7 @@ To keep typing consistent and easy to scan:
 - Use `interface` for object-shaped contracts (especially component props)
 - Use `type` for unions, string literals, aliases, mapped/conditional helpers
 - Prefer `ComponentProps<"...">` for DOM wrapper props in UI components
-- Keep behavior-specific prop extensions explicit (e.g., `onPress` wrappers)
+- Keep behavior-specific prop extensions explicit (e.g., `onClick` wrappers)
 - Optimize for consistency and readability over strict ideology
 
 **Examples:**
@@ -151,7 +151,7 @@ thoughtfulcode-app/
 │   ├── about/             # Resume/about page
 │   └── api/               # API routes (Phase 2)
 ├── components/            # React components
-│   ├── ui/                # shadcn/ui components
+│   ├── ui/                # Project-owned UI wrappers/components
 │   ├── layout/            # Header, Footer, Navigation
 │   ├── leetcode/          # Solution-specific components
 │   └── blog/              # Blog-specific components

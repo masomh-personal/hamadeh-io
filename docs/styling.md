@@ -579,7 +579,6 @@ className="focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-
 - [Tailwind CSS v4](https://tailwindcss.com/) - Utility framework
 - [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/) - Accessibility
 - [Next.js Documentation](https://nextjs.org/docs) - Framework
-- [shadcn/ui](https://ui.shadcn.com/) - Component library
 
 ---
 

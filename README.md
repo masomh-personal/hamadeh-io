@@ -22,8 +22,8 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Runtime** | Bun v1.3.x | Fast installs, built-in test runner, instant TypeScript, production-ready |
 | **BaaS (Phase 2)** | Appwrite | Open source, all-in-one, no lock-in |
 | **Deployment** | Vercel | Zero-config, global CDN, automatic HTTPS |
-| **Component Library** | shadcn/ui | Copy-paste components, Tailwind-based, customizable |
-| **Icons** | lucide-react | Beautiful, tree-shakeable, TypeScript support |
+| **UI Approach** | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies |
+| **Icons** | react-icons | Broad icon coverage with tree-shakeable imports |
 
 ---
 
@@ -162,49 +162,25 @@ describe('Feature Name', () => {
 
 ## Project Structure
 
-```
+```text
 thoughtfulcode-app/
-├── app/                    # Next.js App Router pages
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Homepage
-│   ├── leetcode/         # LeetCode solutions
-│   ├── blog/              # Blog posts
-│   ├── about/             # Resume/about page
-│   └── api/               # API routes (Phase 2)
-├── components/            # React components
-│   ├── ui/                # shadcn/ui components
-│   ├── layout/            # Header, Footer, Navigation
-│   ├── leetcode/          # Solution-specific components
-│   └── blog/              # Blog-specific components
-├── lib/                   # Utilities and helpers
-│   ├── mdx.ts            # MDX processing utilities
-│   ├── schemas.ts        # Valibot schemas for frontmatter validation
-│   ├── utils.ts          # General utilities
-│   └── constants.ts      # App constants
-├── content/              # MDX content files
-│   ├── leetcode/        # LeetCode solutions
-│   ├── blog/            # Blog posts
-│   └── about/           # Resume/about content
-├── docs/                 # Documentation
-│   ├── architecture.md  # Architecture decisions and patterns
-│   └── styling.md        # Styling guidelines and conventions
+├── app/                 # Next.js App Router routes and pages
+├── components/          # Reusable UI and layout components
+│   ├── ui/              # Project-owned design-system wrappers
+│   └── layout/          # Header/Footer/navigation
+├── content/             # MDX content (leetcode, blog)
+├── docs/                # Architecture and styling docs
+├── lib/                 # Shared utilities and MDX parsers
 ├── public/              # Static assets
-│   ├── images/
-│   ├── resume.pdf
-│   └── favicon.ico
-├── scripts/             # Automation scripts
-│   └── clean.mjs       # Cross-platform clean script
-├── tests/               # Test files
-│   ├── unit/
-│   └── integration/
-├── .vscode/            # Editor settings (format on save)
-├── .husky/             # Git hooks
-├── biome.json          # Biome linting & formatting config
-├── bunfig.toml         # Bun configuration (test coverage)
-├── next.config.mjs     # Next.js config
-├── tailwind.config.ts  # Tailwind config
-├── tsconfig.json       # TypeScript config
-└── package.json        # Dependencies and scripts
+├── scripts/             # Bun scripts (clean, solution tooling)
+├── tests/               # App/component tests + mocks
+├── types/               # Global TypeScript test types
+├── biome.json           # Biome config
+├── bunfig.toml          # Bun test config
+├── next.config.mjs      # Next.js config
+├── postcss.config.mjs   # PostCSS + Tailwind v4 plugin wiring
+├── tsconfig.json        # TypeScript config
+└── package.json         # Dependencies and scripts
 ```
 
 ---
@@ -532,7 +508,7 @@ bun update <package-name>     # Update specific package
 - [ ] Evaluate Stylelint with `stylelint-config-standard` for proper `@theme` syntax support
 - [ ] Consider Prettier with `prettier-plugin-tailwindcss` as alternative formatter
 - [ ] Monitor Biome GitHub for native Tailwind v4 `@theme` syntax support
-- **Current approach**: Excluding `globals.css` from Biome (pragmatic until tooling catches up)
+- **Current approach**: Keep Tailwind v4 config CSS-first in `app/globals.css`, with Biome + tests as guardrails
 
 ---
 
@@ -541,7 +517,6 @@ bun update <package-name>     # Update specific package
 - **Next.js Documentation:** https://nextjs.org/docs
 - **MDX Documentation:** https://mdxjs.com/
 - **Tailwind CSS:** https://tailwindcss.com/docs
-- **shadcn/ui:** https://ui.shadcn.com/
 - **Biome Documentation:** https://biomejs.dev/
 - **Valibot Documentation:** https://valibot.dev/
 - **Bun Documentation:** https://bun.sh/docs

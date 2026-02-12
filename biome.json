@@ -104,6 +104,18 @@
     },
     "overrides": [
         {
+            "includes": ["next-env.d.ts"],
+            "formatter": {
+                "enabled": false
+            },
+            "linter": {
+                "enabled": false
+            },
+            "assist": {
+                "enabled": false
+            }
+        },
+        {
             "includes": ["*.mjs"],
             "formatter": {
                 "indentStyle": "space",

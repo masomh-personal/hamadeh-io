@@ -1,5 +1,4 @@
 [test]
-preload = ["./test-setup.ts"]
 coverage = true
 # Coverage threshold disabled until we have more comprehensive tests
 # coverageThreshold = { lines = 0.85, functions = 0.85, statements = 0.85 }
@@ -10,8 +9,7 @@ coveragePathIgnorePatterns = [
   ".next/**",
   "**/*.config.ts",
   "**/*.config.js",
-  "**/*.config.mjs",
-  "test-setup.ts"
+  "**/*.config.mjs"
 ]
 coverageReporter = ["text", "lcov"]
 coverageDir = "./coverage"

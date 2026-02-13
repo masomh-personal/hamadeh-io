@@ -1,0 +1,10 @@
+.next/
+node_modules/
+coverage/
+dist/
+build/
+.turbo/
+.cache/
+*.log
+*.tmp
+*.tsbuildinfo

@@ -1,0 +1,13 @@
+---
+description: Testing strategy aligned with current build-first workflow
+alwaysApply: true
+---
+
+# Testing Strategy
+
+- Follow current workflow: build/spec first, then add tests intentionally.
+- When adding tests, focus on behavior and user-visible outcomes.
+- Cover basics and edge cases first; avoid implementation-detail tests.
+- Keep tests deterministic; mock only external boundaries.
+- Prefer minimal, targeted test additions over broad speculative suites.
+- Re-enable strict test gates only after core feature stabilization.

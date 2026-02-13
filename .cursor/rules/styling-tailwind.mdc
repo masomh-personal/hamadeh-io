@@ -1,0 +1,14 @@
+---
+description: Tailwind and design-system styling guardrails
+globs: **/*.{tsx,ts,css}
+alwaysApply: false
+---
+
+# Styling and Tailwind Rules
+
+- Use Tailwind utilities first; avoid custom CSS unless necessary.
+- Use semantic design tokens/variables instead of hardcoded color values.
+- Prefer `cn` for conditional class composition.
+- Avoid arbitrary values unless reusable and documented.
+- Keep responsive behavior mobile-first.
+- Keep typography and spacing consistent with project design tokens.

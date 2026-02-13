@@ -1,0 +1,15 @@
+---
+description: UI component foundation and wrapper-first conventions
+globs: **/*.{ts,tsx,css}
+alwaysApply: false
+---
+
+# UI Library Policy
+
+- Use a wrapper-first architecture under `components/ui`.
+- Prefer Radix primitives as the headless foundation when needed.
+- Keep component APIs consistent, simple, and project-owned.
+- Avoid generator/copied patterns that reduce clarity or increase churn.
+- Prioritize accessibility defaults (focus, keyboard, semantic roles).
+- Use shared utilities (`cn`) and design tokens for styling consistency.
+- Validate new components in the Components showcase page before wider use.

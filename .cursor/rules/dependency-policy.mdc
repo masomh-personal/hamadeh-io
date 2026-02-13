@@ -1,0 +1,14 @@
+---
+description: Dependency and tooling policy for consistent project setup
+alwaysApply: true
+---
+
+# Dependency and Tooling Policy
+
+- Use Bun/Bunx for scripts and package operations in this repo.
+- Keep lint/format on Biome; do not add ESLint/Prettier unless explicitly requested.
+- Prefer per-repo dependencies over global installs.
+- Do not add a new dependency without clear user benefit and justification.
+- Prefer existing repo tooling and conventions before introducing alternatives.
+- Keep lockfile and package manager usage consistent with the project standard.
+- When changing tooling, update docs/scripts together to avoid drift.

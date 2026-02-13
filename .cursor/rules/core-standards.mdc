@@ -1,0 +1,13 @@
+---
+description: Core engineering and workflow standards for this repo
+alwaysApply: true
+---
+
+# ThoughtfulCode Core Standards
+
+- Prioritize correctness, readability, and maintainability over cleverness.
+- Keep changes minimal and scoped; avoid speculative features.
+- Apply YAGNI, KISS, and DRY consistently.
+- Prefer composition and pure functions over classes.
+- Keep functions small, single-purpose, and predictable.
+- Use comments to explain why, not what.

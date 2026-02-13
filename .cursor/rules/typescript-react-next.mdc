@@ -1,0 +1,17 @@
+---
+description: TypeScript, React, and Next.js implementation conventions
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript / React / Next.js Conventions
+
+- Use strict TypeScript patterns and explicit boundaries for untrusted data.
+- Exported functions should use explicit return types when practical.
+- Prefer `interface` for public object contracts; use `type` for unions/aliases.
+- Avoid enums; prefer `as const` objects/maps.
+- Narrow types early and use exhaustive switches for unions.
+- Default to React Server Components; keep client islands small.
+- Minimize `useEffect` and unnecessary client state.
+- Follow Next.js App Router patterns for routing, loading, and error states.
+- Use semantic HTML by default.

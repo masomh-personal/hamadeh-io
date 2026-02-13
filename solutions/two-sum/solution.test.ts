@@ -2,24 +2,20 @@
  * Tests for Two Sum
  */
 
-import { two_sum } from "./solution";
+import { twoSum } from "./solution";
 
 describe("Two Sum", () => {
     describe("Basics", () => {
-        test("example test case", () => {
-            // TODO: Add test cases based on problem examples
-            // Sample test case from LeetCode:
-            // [2,7,11,15]
-            9;
-
-            expect(true).toBe(true); // Replace with actual test
+        test("throws until implementation is added", () => {
+            expect(() => twoSum([2, 7, 11, 15], 9)).toThrow(
+                "Not implemented yet."
+            );
         });
     });
 
     describe("Edge Cases", () => {
-        test("handles edge cases", () => {
-            // TODO: Add edge case tests
-            expect(true).toBe(true); // Replace with actual test
+        test("throws for placeholder edge-case call", () => {
+            expect(() => twoSum([3, 3], 6)).toThrow("Not implemented yet.");
         });
     });
 });

@@ -14,7 +14,7 @@ export default function Home(): React.ReactElement {
                         Hi, I&apos;m Masom.
                         <br />I build thoughtful software.
                     </h1>
-                    <p className="mt-4 max-w-2xl text-slate-300 md:text-lg">
+                    <p className="text-content mt-4 max-w-2xl md:text-lg">
                         This site is my engineering workspace where I document
                         problem solving, ship reusable UI, and write practical
                         notes on building maintainable software.
@@ -45,7 +45,7 @@ export default function Home(): React.ReactElement {
 
             <section>
                 <h2 className="font-bold text-white">Quick Intro</h2>
-                <p className="mt-3 max-w-3xl text-slate-300">
+                <p className="text-content mt-3 max-w-3xl">
                     I&apos;m a full-stack engineer focused on clean
                     architecture, practical UX, and steady iteration. I use this
                     portfolio to show not just finished outcomes, but how I
@@ -64,12 +64,12 @@ export default function Home(): React.ReactElement {
                                 <HiCode className="h-4 w-4 text-sky-300" />
                                 LeetCode Solutions
                             </h3>
-                            <p className="text-slate-400">
+                            <p className="text-content-muted">
                                 Problem breakdowns, patterns, and complexity
                                 insights.
                             </p>
                         </div>
-                        <div className="pt-3 text-slate-300">
+                        <div className="text-content pt-3">
                             <Link href="/leetcode">Explore solutions</Link>
                         </div>
                     </Card>
@@ -80,12 +80,12 @@ export default function Home(): React.ReactElement {
                                 <HiDocumentText className="h-4 w-4 text-emerald-300" />
                                 Blog
                             </h3>
-                            <p className="text-slate-400">
+                            <p className="text-content-muted">
                                 Engineering notes, lessons learned, and build
                                 logs.
                             </p>
                         </div>
-                        <div className="pt-3 text-slate-300">
+                        <div className="text-content pt-3">
                             <Link href="/blog">Read posts</Link>
                         </div>
                     </Card>
@@ -96,12 +96,12 @@ export default function Home(): React.ReactElement {
                                 <HiCollection className="h-4 w-4 text-amber-300" />
                                 Components
                             </h3>
-                            <p className="text-slate-400">
+                            <p className="text-content-muted">
                                 A live gallery of reusable UI components and
                                 design tweaks.
                             </p>
                         </div>
-                        <div className="pt-3 text-slate-300">
+                        <div className="text-content pt-3">
                             <Link href="/components">Open showcase</Link>
                         </div>
                     </Card>
@@ -111,7 +111,7 @@ export default function Home(): React.ReactElement {
             <section>
                 <h2 className="font-bold text-white">Current Focus</h2>
                 <div className="mt-4 rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-5">
-                    <p className="text-slate-300">
+                    <p className="text-content">
                         I&apos;m currently building the foundation of this
                         portfolio: reusable UI wrappers, structured problem
                         content, and a clean developer workflow with Bun +

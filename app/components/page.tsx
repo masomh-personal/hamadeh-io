@@ -41,7 +41,7 @@ export default function ComponentsPage(): React.ReactElement {
                 <h1 className="font-extrabold text-white">
                     Components Showcase
                 </h1>
-                <p className="mt-2 text-slate-400">
+                <p className="text-content-muted mt-2">
                     A living gallery for design iteration, usability checks, and
                     Radix-first wrapper polish.
                 </p>
@@ -56,7 +56,7 @@ export default function ComponentsPage(): React.ReactElement {
             >
                 <TabsList
                     aria-label="Component showcase sections"
-                    className="flex h-full min-h-[520px] w-full flex-col items-stretch justify-start gap-2 rounded-xl border-2 border-slate-600 bg-gradient-to-b from-slate-800/95 to-slate-900/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.12),0_12px_30px_rgba(2,6,23,0.45)] md:sticky md:top-20"
+                    className="flex h-full min-h-[520px] w-full flex-col items-stretch justify-start gap-2 rounded-xl border-2 border-slate-600 bg-linear-to-b from-slate-800/95 to-slate-900/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.12),0_12px_30px_rgba(2,6,23,0.45)] md:sticky md:top-20"
                 >
                     <TabsTrigger
                         value="button"
@@ -64,7 +64,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <span className="flex flex-col items-start leading-tight">
                             <span>Button</span>
-                            <span className="text-xs font-normal text-slate-500">
+                            <span className="text-content-subtle text-xs font-normal">
                                 Actions and states
                             </span>
                         </span>
@@ -75,7 +75,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <span className="flex flex-col items-start leading-tight">
                             <span>Link</span>
-                            <span className="text-xs font-normal text-slate-500">
+                            <span className="text-content-subtle text-xs font-normal">
                                 Navigation patterns
                             </span>
                         </span>
@@ -86,7 +86,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <span className="flex flex-col items-start leading-tight">
                             <span>Card</span>
-                            <span className="text-xs font-normal text-slate-500">
+                            <span className="text-content-subtle text-xs font-normal">
                                 Content containers
                             </span>
                         </span>
@@ -97,7 +97,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <span className="flex flex-col items-start leading-tight">
                             <span>Badge</span>
-                            <span className="text-xs font-normal text-slate-500">
+                            <span className="text-content-subtle text-xs font-normal">
                                 Labels and status
                             </span>
                         </span>
@@ -108,7 +108,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <span className="flex flex-col items-start leading-tight">
                             <span>A11y QA</span>
-                            <span className="text-xs font-normal text-slate-500">
+                            <span className="text-content-subtle text-xs font-normal">
                                 Keyboard and focus
                             </span>
                         </span>
@@ -122,14 +122,14 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <section>
                             <h2 className="font-bold text-white">Button</h2>
-                            <p className="mb-6 text-slate-400">
+                            <p className="text-content-muted mb-6">
                                 Variants, sizing rhythm, action semantics, and
                                 edge states.
                             </p>
 
                             <div className="space-y-6">
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Variants
                                     </h3>
                                     <div className="flex flex-wrap gap-3">
@@ -151,7 +151,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Sizes
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -162,7 +162,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         With Icons
                                     </h3>
                                     <div className="flex flex-wrap gap-3">
@@ -178,7 +178,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         As Link (href)
                                     </h3>
                                     <Button href="/">
@@ -188,7 +188,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         As Child (Radix Slot)
                                     </h3>
                                     <Button asChild variant="secondary">
@@ -200,7 +200,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Edge States
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -228,7 +228,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Loading States
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -250,7 +250,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 </div>
 
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Live Submit Demo
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -284,14 +284,14 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <section>
                             <h2 className="font-bold text-white">Link</h2>
-                            <p className="mb-6 text-slate-400">
+                            <p className="text-content-muted mb-6">
                                 Internal/external navigation with consistent
                                 visual intent.
                             </p>
 
                             <div className="space-y-6">
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Variants
                                     </h3>
                                     <div className="flex flex-wrap gap-6">
@@ -313,10 +313,10 @@ export default function ComponentsPage(): React.ReactElement {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         In context
                                     </h3>
-                                    <p className="text-slate-300">
+                                    <p className="text-content">
                                         Navigate to{" "}
                                         <Link href="/leetcode">Problems</Link>,{" "}
                                         <Link href="/blog">Blog</Link>, or{" "}
@@ -333,7 +333,7 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <section>
                             <h2 className="font-bold text-white">Card</h2>
-                            <p className="mb-6 text-slate-400">
+                            <p className="text-content-muted mb-6">
                                 Container hierarchy, information density, and
                                 action placement.
                             </p>
@@ -386,13 +386,13 @@ export default function ComponentsPage(): React.ReactElement {
                     >
                         <section>
                             <h2 className="font-bold text-white">Badge</h2>
-                            <p className="mb-6 text-slate-400">
+                            <p className="text-content-muted mb-6">
                                 Label density, color clarity, and context usage.
                             </p>
 
                             <div className="space-y-6">
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Colors
                                     </h3>
                                     <div className="flex flex-wrap gap-3">
@@ -405,7 +405,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Sizes
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -415,10 +415,10 @@ export default function ComponentsPage(): React.ReactElement {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         In context
                                     </h3>
-                                    <p className="flex flex-wrap items-center gap-2 text-slate-300">
+                                    <p className="text-content flex flex-wrap items-center gap-2">
                                         <Badge size="sm">Easy</Badge>
                                         <Badge size="sm" color="secondary">
                                             Medium
@@ -430,7 +430,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     </p>
                                 </div>
                                 <div>
-                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
                                         Long Label
                                     </h3>
                                     <div className="flex flex-wrap items-center gap-3">
@@ -454,16 +454,16 @@ export default function ComponentsPage(): React.ReactElement {
                             <h2 className="font-bold text-white">
                                 Accessibility QA Checklist
                             </h2>
-                            <p className="mb-6 text-slate-400">
+                            <p className="text-content-muted mb-6">
                                 Quick manual checks for every component polish
                                 pass.
                             </p>
 
                             <div className="space-y-3 rounded-lg border border-slate-700 bg-slate-900/40 p-4">
-                                <p className="font-mono text-xs uppercase tracking-wide text-slate-500">
+                                <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                                     Manual checklist
                                 </p>
-                                <ul className="space-y-2 text-slate-300">
+                                <ul className="text-content space-y-2">
                                     <li className="flex items-start gap-2">
                                         <HiCheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                                         Keyboard-only navigation works for tabs

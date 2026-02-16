@@ -6,7 +6,7 @@ export default function AboutPage(): React.ReactElement {
         <div className="mx-auto max-w-4xl px-6 py-10 md:py-12">
             <header className="mb-8">
                 <h1 className="font-extrabold text-white">About</h1>
-                <p className="mt-2 text-slate-400">
+                <p className="text-content-muted mt-2">
                     A quick snapshot of who I am and how I approach engineering.
                 </p>
                 <Link
@@ -20,7 +20,7 @@ export default function AboutPage(): React.ReactElement {
             </header>
 
             <section className="rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6">
-                <p className="leading-7 text-slate-300">
+                <p className="text-content leading-7">
                     I&apos;m a full-stack engineer who cares about readable
                     code, practical architecture, and thoughtful user
                     experience. This page will grow into a deeper story over

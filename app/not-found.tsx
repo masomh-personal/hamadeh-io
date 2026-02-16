@@ -27,11 +27,11 @@ export default function NotFound(): React.ReactElement {
                     <h2 className="font-bold text-white">
                         Oops! Page Not Found
                     </h2>
-                    <p className="text-lg text-slate-300">
+                    <p className="text-content text-lg">
                         Looks like this route doesn't exist in our codebase.
                     </p>
                     <div className="rounded-lg border-2 border-slate-700 bg-slate-900/50 p-4 font-mono text-left text-sm">
-                        <div className="text-slate-500">
+                        <div className="text-content-subtle">
                             {"// Error details:"}
                         </div>
                         <div className="mt-1">
@@ -70,7 +70,7 @@ export default function NotFound(): React.ReactElement {
                 </div>
 
                 {/* Additional Links */}
-                <div className="mt-12 text-sm text-slate-500">
+                <div className="text-content-subtle mt-12 text-sm">
                     Or explore: <Link href="/leetcode">Problems</Link>
                     {" • "}
                     <Link href="/blog">Blog</Link>

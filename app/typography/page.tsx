@@ -101,7 +101,7 @@ export default function TypographyPage(): React.ReactElement {
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <header className="mb-10">
                 <h1 className="font-extrabold text-white">Typography Lab</h1>
-                <p className="mt-2 max-w-3xl text-slate-400">
+                <p className="text-content-muted mt-2 max-w-3xl">
                     Internal preview page for evaluating heading/body font
                     pairings. Each card shows a heading, paragraph text, a link,
                     and a button sample.
@@ -117,7 +117,7 @@ export default function TypographyPage(): React.ReactElement {
                         key={pair.id}
                         className="rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6"
                     >
-                        <p className="mb-4 font-mono text-xs uppercase tracking-wide text-slate-500">
+                        <p className="text-content-subtle mb-4 font-mono text-xs uppercase tracking-wide">
                             {pair.label}
                         </p>
 
@@ -128,7 +128,7 @@ export default function TypographyPage(): React.ReactElement {
                         </h2>
 
                         <p
-                            className={`${pair.bodyFont} mt-4 text-base leading-7 text-slate-300`}
+                            className={`${pair.bodyFont} text-content mt-4 text-base leading-7`}
                         >
                             This is sample body copy to evaluate readability,
                             rhythm, and visual tone across desktop and mobile
@@ -153,7 +153,7 @@ export default function TypographyPage(): React.ReactElement {
                             </button>
                         </div>
 
-                        <p className="mt-4 text-sm text-slate-500">
+                        <p className="text-content-subtle mt-4 text-sm">
                             {pair.notes}
                         </p>
                     </section>

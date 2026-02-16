@@ -229,6 +229,20 @@
     }
 }
 
+@layer utilities {
+    .text-content {
+        color: var(--foreground);
+    }
+
+    .text-content-muted {
+        color: var(--muted-foreground);
+    }
+
+    .text-content-subtle {
+        color: var(--color-slate-500);
+    }
+}
+
 /* ============================================
    Header & Footer Styles
    ============================================ */

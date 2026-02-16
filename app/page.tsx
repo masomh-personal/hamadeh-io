@@ -110,7 +110,7 @@ export default function Home(): React.ReactElement {
 
             <section>
                 <h2 className="font-bold text-white">Current Focus</h2>
-                <div className="mt-4 rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-5">
+                <div className="surface-card mt-4 rounded-xl p-5">
                     <p className="text-content">
                         I&apos;m currently building the foundation of this
                         portfolio: reusable UI wrappers, structured problem

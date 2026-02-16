@@ -118,7 +118,7 @@ export default function ComponentsPage(): React.ReactElement {
                 <div>
                     <TabsContent
                         value="button"
-                        className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
+                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Button</h2>
@@ -280,7 +280,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="link"
-                        className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
+                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Link</h2>
@@ -329,7 +329,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="card"
-                        className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
+                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Card</h2>
@@ -382,7 +382,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="badge"
-                        className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
+                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Badge</h2>
@@ -448,7 +448,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="qa"
-                        className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
+                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">
@@ -459,7 +459,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 pass.
                             </p>
 
-                            <div className="space-y-3 rounded-lg border border-slate-700 bg-slate-900/40 p-4">
+                            <div className="surface-panel space-y-3 rounded-lg p-4">
                                 <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                                     Manual checklist
                                 </p>

@@ -241,6 +241,38 @@
     .text-content-subtle {
         color: var(--color-slate-500);
     }
+
+    .surface-card {
+        border: 2px solid
+            color-mix(in srgb, var(--color-slate-700) 80%, transparent);
+        background-color: color-mix(
+            in srgb,
+            var(--color-slate-900) 35%,
+            transparent
+        );
+    }
+
+    .surface-card-strong {
+        border: 2px solid var(--color-slate-700);
+        background-color: color-mix(
+            in srgb,
+            var(--color-slate-900) 50%,
+            transparent
+        );
+    }
+
+    .surface-panel {
+        border: 1px solid var(--color-slate-700);
+        background-color: color-mix(
+            in srgb,
+            var(--color-slate-900) 40%,
+            transparent
+        );
+    }
+
+    .surface-outline {
+        border: 2px solid var(--color-slate-700);
+    }
 }
 
 /* ============================================

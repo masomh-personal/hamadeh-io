@@ -58,7 +58,7 @@ export default function ResumePage(): React.ReactElement {
             </header>
 
             {resumeExists ? (
-                <section className="overflow-hidden rounded-xl border-2 border-slate-700/80 bg-slate-900/35">
+                <section className="surface-card overflow-hidden rounded-xl">
                     <iframe
                         src={`${RESUME_PUBLIC_PATH}#view=FitH`}
                         title="Resume PDF Viewer"

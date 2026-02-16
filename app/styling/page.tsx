@@ -99,7 +99,7 @@ export default function StylingShowcase(): React.ReactElement {
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
                     {/* Primary Accent - Sky Blue */}
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <div className="mb-4 h-24 rounded-md bg-sky-500"></div>
                         <h3 className="mb-2 text-lg font-semibold text-white">
                             Primary Accent
@@ -111,7 +111,7 @@ export default function StylingShowcase(): React.ReactElement {
                     </div>
 
                     {/* Secondary Accent - Emerald */}
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <div className="mb-4 h-24 rounded-md bg-emerald-500"></div>
                         <h3 className="mb-2 text-lg font-semibold text-white">
                             Secondary Accent
@@ -123,7 +123,7 @@ export default function StylingShowcase(): React.ReactElement {
                     </div>
 
                     {/* Tertiary Accent - Amber */}
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <div className="mb-4 h-24 rounded-md bg-amber-400"></div>
                         <h3 className="mb-2 text-lg font-semibold text-white">
                             Tertiary Accent
@@ -137,7 +137,7 @@ export default function StylingShowcase(): React.ReactElement {
                     </div>
 
                     {/* Neutral - Slate */}
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <div className="mb-4 h-24 rounded-md bg-slate-50"></div>
                         <h3 className="mb-2 text-lg font-semibold text-white">
                             Neutral
@@ -195,7 +195,7 @@ export default function StylingShowcase(): React.ReactElement {
                     Example using Fira Code as the primary monospace font:
                 </p>
 
-                <pre className="overflow-x-auto rounded-md border-2 border-slate-700 bg-[#282c34]/50 p-6">
+                <pre className="surface-outline overflow-x-auto rounded-md bg-[#282c34]/50 p-6">
                     <code className="font-mono text-sm leading-relaxed text-slate-100">
                         {`/**
  * LeetCode: Two Sum
@@ -259,7 +259,7 @@ if (result) {
                     Spacing & Layout
                 </h2>
 
-                <div className="space-y-6 rounded-md border-2 border-slate-700 p-8">
+                <div className="surface-outline space-y-6 rounded-md p-8">
                     <div>
                         <h3 className="mb-2 text-lg font-semibold text-white">
                             Generous Whitespace
@@ -290,7 +290,7 @@ if (result) {
                 </h2>
 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <h3 className="mb-4 font-heading text-2xl font-bold text-white">
                             Baloo 2 (Headings)
                         </h3>
@@ -304,7 +304,7 @@ if (result) {
                         </p>
                     </div>
 
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <h3 className="mb-4 text-2xl font-semibold text-white">
                             Plus Jakarta Sans (Body)
                         </h3>
@@ -319,7 +319,7 @@ if (result) {
                             paramount.
                         </p>
                     </div>
-                    <div className="rounded-md border-2 border-slate-700 p-6">
+                    <div className="surface-outline rounded-md p-6">
                         <h3 className="mb-4 font-mono text-2xl font-semibold text-white">
                             Fira Code (Code)
                         </h3>

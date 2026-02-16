@@ -62,7 +62,7 @@ interface LinkButtonProps
 const variantClasses = {
     primary: "bg-sky-500",
     secondary: "bg-slate-800",
-    ghost: "bg-transparent",
+    outline: "border border-slate-500",
 } as const;
 
 type Variant = keyof typeof variantClasses;

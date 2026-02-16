@@ -21,91 +21,22 @@ This document is the single source of truth for all styling decisions in Thought
 
 ## 📝 Typography System
 
-### Font Stack
+Current decision (active):
 
-| Role | Font | Weight | Usage |
-|------|------|--------|-------|
-| **Headings (H1-H3)** | Baloo 2 | 600-800 | Main headings, hero text, CTAs |
-| **Body Text** | Plus Jakarta Sans | 400-700 | All body content, paragraphs, lists |
-| **Code/Monospace** | Fira Code | 500 | Code blocks, inline code, technical content |
+| Role | Font | Notes |
+|------|------|-------|
+| **Headings / Links / Buttons** | Quicksand | Friendly, clear visual identity |
+| **Body Text** | Lexend | Readable for long-form content |
+| **Code / Monospace** | No change (current mono stack) | Re-evaluate during CodeBlock work |
+| **Accent (optional)** | Baloo 2 (`font-baloo`) | One-off decorative or brand accents |
 
-### Typography Scale
-
-| Element | Font | Size | Weight | Line Height | Usage |
-|---------|------|------|--------|-------------|-------|
-| **Hero / H1** | Baloo 2 | 3-4rem | 800 | 1.1 | Landing page hero |
-| **Section H2** | Baloo 2 | 2.5-3rem | 700 | 1.2 | Major sections |
-| **Subsection H3** | Baloo 2 | 2-2.25rem | 600 | 1.3 | Subsections |
-| **Body Text** | Plus Jakarta Sans | 1rem | 400 | 1.6 | Main content |
-| **Body Emphasis** | Plus Jakarta Sans | 1rem | 500-600 | 1.6 | Emphasized text |
-| **Small Text** | Plus Jakarta Sans | 0.875rem | 400 | 1.5 | Captions, metadata |
-| **Buttons** | Baloo 2 | 1rem | 600 | 1.4 | Primary CTAs |
-| **Navigation** | Plus Jakarta Sans | 0.875rem | 700 | 1.4 | Nav links |
-
-### Why This Pairing Works
-
-1. **Baloo 2 for Headings & CTAs:**
-   - Friendly, rounded character adds warmth
-   - Bold weights create strong hierarchy
-   - Excellent at large sizes
-   - Distinguishes from generic tech sites
-
-2. **Plus Jakarta Sans for Body:**
-   - Modern, geometric sans-serif
-   - Excellent readability at all sizes
-   - Professional yet approachable
-   - Better than Inter for contemporary feel
-
-3. **Fira Code for Code:**
-   - Professional, crisp monospace
-   - Programming ligatures support
-   - Medium weight (500) for better readability
-   - Industry standard for code display
-
-### Font Implementation
-
-**Using Next.js Font Optimization:**
-
-```typescript
-// app/layout.tsx
-import {
-    Plus_Jakarta_Sans,
-    Baloo_2,
-    Fira_Code,
-} from "next/font/google";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-    subsets: ["latin"],
-    variable: "--font-sans",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
-const baloo2 = Baloo_2({
-    subsets: ["latin"],
-    variable: "--font-baloo",
-    display: "swap",
-    weight: ["400", "500", "600", "700", "800"],
-});
-
-const firaCode = Fira_Code({
-    subsets: ["latin"],
-    variable: "--font-mono-fira",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
-export default function RootLayout({ children }) {
-    return (
-        <html
-            lang="en"
-            className={`${plusJakartaSans.variable} ${baloo2.variable} ${firaCode.variable}`}
-        >
-            <body className="min-h-screen antialiased">{children}</body>
-        </html>
-    );
-}
-```
+Implementation notes:
+- Fonts are loaded with `next/font/google` using `display: "swap"` and limited weights/subsets.
+- Global defaults in `globals.css`:
+  - `body` -> Lexend
+  - `h1-h6`, `a`, `button` -> Quicksand
+- One-off font utilities are exposed for experimentation:
+  - `font-baloo`, `font-plus-jakarta`, `font-inter`, `font-manrope`, `font-open-sans`, `font-source-sans`.
 
 ---
 

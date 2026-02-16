@@ -5,7 +5,7 @@ export default function AboutPage(): React.ReactElement {
     return (
         <div className="mx-auto max-w-4xl px-6 py-10 md:py-12">
             <header className="mb-8">
-                <h1 className="font-baloo text-4xl font-extrabold text-white md:text-5xl">
+                <h1 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
                     About
                 </h1>
                 <p className="mt-2 text-slate-400">

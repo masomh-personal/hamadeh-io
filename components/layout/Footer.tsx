@@ -7,7 +7,7 @@ export function Footer(): React.ReactElement {
     return (
         <footer className="site-footer">
             <div className="mx-auto max-w-6xl px-6 py-6">
-                <div className="flex flex-col items-center gap-2.5">
+                <div className="flex flex-col items-center gap-2">
                     {/* Social Links */}
                     <div className="flex items-center gap-3">
                         <a

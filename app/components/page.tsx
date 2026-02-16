@@ -38,7 +38,7 @@ export default function ComponentsPage(): React.ReactElement {
     return (
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <header className="mb-10">
-                <h1 className="font-baloo text-4xl font-extrabold text-white md:text-5xl">
+                <h1 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
                     Components Showcase
                 </h1>
                 <p className="mt-2 text-slate-400">
@@ -121,7 +121,7 @@ export default function ComponentsPage(): React.ReactElement {
                         className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
                     >
                         <section>
-                            <h2 className="font-baloo text-2xl font-bold text-white">
+                            <h2 className="font-heading text-2xl font-bold text-white">
                                 Button
                             </h2>
                             <p className="mb-6 text-slate-400">
@@ -285,7 +285,7 @@ export default function ComponentsPage(): React.ReactElement {
                         className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
                     >
                         <section>
-                            <h2 className="font-baloo text-2xl font-bold text-white">
+                            <h2 className="font-heading text-2xl font-bold text-white">
                                 Link
                             </h2>
                             <p className="mb-6 text-slate-400">
@@ -336,7 +336,7 @@ export default function ComponentsPage(): React.ReactElement {
                         className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
                     >
                         <section>
-                            <h2 className="font-baloo text-2xl font-bold text-white">
+                            <h2 className="font-heading text-2xl font-bold text-white">
                                 Card
                             </h2>
                             <p className="mb-6 text-slate-400">
@@ -391,7 +391,7 @@ export default function ComponentsPage(): React.ReactElement {
                         className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
                     >
                         <section>
-                            <h2 className="font-baloo text-2xl font-bold text-white">
+                            <h2 className="font-heading text-2xl font-bold text-white">
                                 Badge
                             </h2>
                             <p className="mb-6 text-slate-400">
@@ -459,7 +459,7 @@ export default function ComponentsPage(): React.ReactElement {
                         className="min-h-[520px] rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-6 md:p-8"
                     >
                         <section>
-                            <h2 className="font-baloo text-2xl font-bold text-white">
+                            <h2 className="font-heading text-2xl font-bold text-white">
                                 Accessibility QA Checklist
                             </h2>
                             <p className="mb-6 text-slate-400">

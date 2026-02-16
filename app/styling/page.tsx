@@ -3,7 +3,7 @@ export default function StylingShowcase(): React.ReactElement {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
             {/* Hero Section */}
             <section className="mb-20 text-center">
-                <h1 className="mb-6 font-baloo text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
+                <h1 className="mb-6 font-heading text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
                     ThoughtfulCode Styling Guide
                 </h1>
                 <p className="mx-auto max-w-2xl text-xl leading-relaxed text-slate-400 md:text-2xl">
@@ -13,13 +13,13 @@ export default function StylingShowcase(): React.ReactElement {
                 <div className="mt-8 flex items-center justify-center gap-4">
                     <button
                         type="button"
-                        className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400"
+                        className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-heading text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400"
                     >
                         Get Started
                     </button>
                     <button
                         type="button"
-                        className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-baloo text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg"
+                        className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-heading text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg"
                     >
                         Learn More
                     </button>
@@ -28,14 +28,14 @@ export default function StylingShowcase(): React.ReactElement {
 
             {/* Typography Hierarchy */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Typography Hierarchy
                 </h2>
 
                 <div className="space-y-8">
                     {/* H1 Example */}
                     <div>
-                        <h1 className="mb-2 font-baloo text-4xl font-extrabold leading-tight text-white md:text-5xl">
+                        <h1 className="mb-2 font-heading text-4xl font-extrabold leading-tight text-white md:text-5xl">
                             Heading 1 - Baloo 2 ExtraBold
                         </h1>
                         <p className="text-sm text-slate-400">
@@ -45,7 +45,7 @@ export default function StylingShowcase(): React.ReactElement {
 
                     {/* H2 Example */}
                     <div>
-                        <h2 className="mb-2 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                        <h2 className="mb-2 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                             Heading 2 - Baloo 2 Bold
                         </h2>
                         <p className="text-sm text-slate-400">
@@ -55,7 +55,7 @@ export default function StylingShowcase(): React.ReactElement {
 
                     {/* H3 Example */}
                     <div>
-                        <h3 className="mb-2 font-baloo text-2xl font-semibold leading-tight text-white md:text-3xl">
+                        <h3 className="mb-2 font-heading text-2xl font-semibold leading-tight text-white md:text-3xl">
                             Heading 3 - Baloo 2 SemiBold
                         </h3>
                         <p className="text-sm text-slate-400">
@@ -93,7 +93,7 @@ export default function StylingShowcase(): React.ReactElement {
 
             {/* Color Palette */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Color Palette
                 </h2>
 
@@ -154,32 +154,32 @@ export default function StylingShowcase(): React.ReactElement {
 
             {/* Buttons & Interactive Elements */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Buttons & Interactive Elements
                 </h2>
 
                 <div className="flex flex-wrap items-center gap-4">
                     <button
                         type="button"
-                        className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400"
+                        className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-heading text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400"
                     >
                         Primary Button
                     </button>
                     <button
                         type="button"
-                        className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-baloo text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg"
+                        className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-heading text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg"
                     >
                         Secondary Button
                     </button>
                     <button
                         type="button"
-                        className="rounded-md border-2 border-transparent bg-emerald-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-emerald-300 hover:bg-emerald-400"
+                        className="rounded-md border-2 border-transparent bg-emerald-500 px-6 py-3 font-heading text-base font-semibold text-white transition-all hover:border-emerald-300 hover:bg-emerald-400"
                     >
                         Success Button
                     </button>
                     <button
                         type="button"
-                        className="cursor-pointer border-none bg-transparent p-0 font-baloo text-base font-semibold text-sky-500 transition-colors hover:text-sky-400 hover:underline"
+                        className="cursor-pointer border-none bg-transparent p-0 font-heading text-base font-semibold text-sky-500 transition-colors hover:text-sky-400 hover:underline"
                     >
                         Link Example
                     </button>
@@ -188,7 +188,7 @@ export default function StylingShowcase(): React.ReactElement {
 
             {/* Code Block Example */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Code Block Example
                 </h2>
                 <p className="mb-6 text-base text-slate-400">
@@ -255,7 +255,7 @@ if (result) {
 
             {/* Spacing Examples */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Spacing & Layout
                 </h2>
 
@@ -285,13 +285,13 @@ if (result) {
 
             {/* Font Comparison */}
             <section className="mb-20">
-                <h2 className="mb-8 font-baloo text-3xl font-bold leading-tight text-white md:text-4xl">
+                <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
                     Font Family Showcase
                 </h2>
 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                     <div className="rounded-md border-2 border-slate-700 p-6">
-                        <h3 className="mb-4 font-baloo text-2xl font-bold text-white">
+                        <h3 className="mb-4 font-heading text-2xl font-bold text-white">
                             Baloo 2 (Headings)
                         </h3>
                         <p className="mb-2 text-sm text-slate-400">

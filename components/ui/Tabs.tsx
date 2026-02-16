@@ -36,7 +36,7 @@ export function TabsTrigger({
     return (
         <TabsPrimitive.Trigger
             className={cn(
-                "rounded-sm border border-transparent px-3 py-1.5 font-baloo text-sm font-semibold text-slate-300 transition-colors",
+                "rounded-sm border border-transparent px-3 py-1.5 font-heading text-sm font-semibold text-slate-300 transition-colors",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
                 "data-[state=active]:border-sky-500 data-[state=active]:bg-sky-950/30 data-[state=active]:text-sky-300",
                 className

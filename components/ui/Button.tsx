@@ -17,16 +17,16 @@ type IconSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        "bg-sky-500 border border-sky-300/40 hover:border-sky-300 hover:bg-sky-400 font-baloo",
+        "bg-sky-500 border border-sky-300/40 hover:border-sky-300 hover:bg-sky-400 font-heading",
     secondary:
-        "bg-emerald-500 border border-emerald-300/40 hover:border-emerald-300 hover:bg-emerald-400 font-baloo",
+        "bg-emerald-500 border border-emerald-300/40 hover:border-emerald-300 hover:bg-emerald-400 font-heading",
     tertiary:
-        "bg-amber-500 border border-amber-300/50 text-slate-900 hover:border-amber-200 hover:bg-amber-400 font-baloo",
+        "bg-amber-500 border border-amber-300/50 text-slate-900 hover:border-amber-200 hover:bg-amber-400 font-heading",
     outline:
-        "border border-slate-500 bg-slate-900/30 text-slate-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-400 font-baloo",
-    danger: "bg-red-500 border border-red-300/40 hover:border-red-300 hover:bg-red-400 font-baloo",
+        "border border-slate-500 bg-slate-900/30 text-slate-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-400 font-heading",
+    danger: "bg-red-500 border border-red-300/40 hover:border-red-300 hover:bg-red-400 font-heading",
     "danger-soft":
-        "bg-red-500/20 text-red-400 border border-red-400/30 hover:bg-red-500/30 font-baloo",
+        "bg-red-500/20 text-red-400 border border-red-400/30 hover:bg-red-500/30 font-heading",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

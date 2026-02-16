@@ -5,12 +5,18 @@ import {
     Fira_Code,
     IBM_Plex_Mono,
     Inconsolata,
+    Inter,
     JetBrains_Mono,
+    Lexend,
     M_PLUS_Rounded_1c,
+    Manrope,
+    Open_Sans,
     Plus_Jakarta_Sans,
     PT_Mono,
+    Quicksand,
     Roboto_Mono,
     Source_Code_Pro,
+    Source_Sans_3,
     Space_Mono,
 } from "next/font/google";
 import "./globals.css";
@@ -19,14 +25,56 @@ import { Header } from "@/components/layout/Header";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ["latin"],
-    variable: "--font-sans",
+    variable: "--font-plus-jakarta-gf",
     display: "swap",
-    weight: ["400", "500", "600", "700"],
+    weight: ["400", "500", "600"],
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter-gf",
+    display: "swap",
+    weight: ["400", "500", "600"],
+});
+
+const manrope = Manrope({
+    subsets: ["latin"],
+    variable: "--font-manrope-gf",
+    display: "swap",
+    weight: ["400", "500", "600"],
+});
+
+const openSans = Open_Sans({
+    subsets: ["latin"],
+    variable: "--font-open-sans-gf",
+    display: "swap",
+    weight: ["400", "500", "600"],
+});
+
+const sourceSans3 = Source_Sans_3({
+    subsets: ["latin"],
+    variable: "--font-source-sans-gf",
+    display: "swap",
+    weight: ["400", "500", "600"],
+});
+
+const quicksand = Quicksand({
+    subsets: ["latin"],
+    variable: "--font-heading-gf",
+    display: "swap",
+    weight: ["500", "600", "700"],
+});
+
+const lexend = Lexend({
+    subsets: ["latin"],
+    variable: "--font-body-gf",
+    display: "swap",
+    weight: ["400", "500", "600"],
 });
 
 const baloo2 = Baloo_2({
     subsets: ["latin"],
-    variable: "--font-baloo",
+    variable: "--font-accent-gf",
     display: "swap",
     weight: ["400", "500", "600", "700", "800"],
 });
@@ -122,7 +170,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${plusJakartaSans.variable} ${baloo2.variable} ${mPlusRounded1c.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
+            className={`${quicksand.variable} ${lexend.variable} ${baloo2.variable} ${plusJakartaSans.variable} ${inter.variable} ${manrope.variable} ${openSans.variable} ${sourceSans3.variable} ${mPlusRounded1c.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
             suppressHydrationWarning
         >
             <body

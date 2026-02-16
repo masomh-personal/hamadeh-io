@@ -8,10 +8,10 @@ type LinkVariant = "primary" | "secondary" | "muted";
 
 const variantClasses: Record<LinkVariant, string> = {
     primary:
-        "text-sky-500 hover:text-sky-400 hover:underline font-baloo font-semibold",
+        "text-sky-500 hover:text-sky-400 hover:underline font-heading font-semibold",
     secondary:
-        "text-emerald-500 hover:text-emerald-400 hover:underline font-baloo font-semibold",
-    muted: "text-slate-400 hover:text-sky-500 transition-colors font-baloo font-semibold",
+        "text-emerald-500 hover:text-emerald-400 hover:underline font-heading font-semibold",
+    muted: "text-slate-400 hover:text-sky-500 transition-colors font-heading font-semibold",
 };
 
 export interface ThoughtfulLinkProps extends Omit<ComponentProps<"a">, "href"> {

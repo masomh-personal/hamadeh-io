@@ -24,7 +24,7 @@ export default function NotFound(): React.ReactElement {
 
                 {/* Error Message */}
                 <div className="mb-8 max-w-2xl space-y-4">
-                    <h2 className="font-baloo text-3xl font-bold text-white md:text-4xl">
+                    <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
                         Oops! Page Not Found
                     </h2>
                     <p className="text-lg text-slate-300">

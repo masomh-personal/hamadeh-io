@@ -20,7 +20,7 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
     return (
         <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
             <div className="mb-8">
-                <h1 className="mb-4 text-4xl font-bold text-primary-900 dark:text-primary-50">
+                <h1 className="mb-4 font-bold text-primary-900 dark:text-primary-50">
                     LeetCode Solutions
                 </h1>
                 <p className="text-lg text-primary-600 dark:text-primary-300">
@@ -44,7 +44,7 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
                             className="group rounded-lg border border-primary-200 bg-white p-6 transition-all hover:border-secondary-300 hover:shadow-lg dark:border-primary-700 dark:bg-primary-800 dark:hover:border-secondary-600"
                         >
                             <div className="mb-3 flex items-start justify-between">
-                                <h2 className="text-xl font-semibold text-primary-900 group-hover:text-secondary-600 dark:text-primary-50 dark:group-hover:text-secondary-400">
+                                <h2 className="text-lg font-semibold text-primary-900 group-hover:text-secondary-600 dark:text-primary-50 dark:group-hover:text-secondary-400">
                                     {solution.title}
                                 </h2>
                                 <span

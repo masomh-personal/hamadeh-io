@@ -10,11 +10,11 @@ export default function Home(): React.ReactElement {
                     <p className="mb-3 inline-flex rounded-md border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-300">
                         ThoughtfulCode Portfolio
                     </p>
-                    <h1 className="font-heading text-4xl font-extrabold leading-tight text-white md:text-6xl">
+                    <h1 className="font-extrabold leading-tight text-white">
                         Hi, I&apos;m Masom.
                         <br />I build thoughtful software.
                     </h1>
-                    <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+                    <p className="mt-4 max-w-2xl text-slate-300 md:text-lg">
                         This site is my engineering workspace where I document
                         problem solving, ship reusable UI, and write practical
                         notes on building maintainable software.
@@ -44,9 +44,7 @@ export default function Home(): React.ReactElement {
             </section>
 
             <section>
-                <h2 className="font-heading text-2xl font-bold text-white md:text-3xl">
-                    Quick Intro
-                </h2>
+                <h2 className="font-bold text-white">Quick Intro</h2>
                 <p className="mt-3 max-w-3xl text-slate-300">
                     I&apos;m a full-stack engineer focused on clean
                     architecture, practical UX, and steady iteration. I use this
@@ -56,13 +54,13 @@ export default function Home(): React.ReactElement {
             </section>
 
             <section>
-                <h2 className="font-heading text-2xl font-bold text-white md:text-3xl">
+                <h2 className="font-bold text-white">
                     What&apos;s On This Site
                 </h2>
                 <div className="mt-5 grid gap-4 md:grid-cols-3">
                     <Card variant="secondary">
                         <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-xl font-semibold text-slate-100">
+                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
                                 <HiCode className="h-4 w-4 text-sky-300" />
                                 LeetCode Solutions
                             </h3>
@@ -78,7 +76,7 @@ export default function Home(): React.ReactElement {
 
                     <Card variant="secondary">
                         <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-xl font-semibold text-slate-100">
+                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
                                 <HiDocumentText className="h-4 w-4 text-emerald-300" />
                                 Blog
                             </h3>
@@ -94,7 +92,7 @@ export default function Home(): React.ReactElement {
 
                     <Card variant="secondary">
                         <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-xl font-semibold text-slate-100">
+                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
                                 <HiCollection className="h-4 w-4 text-amber-300" />
                                 Components
                             </h3>
@@ -111,9 +109,7 @@ export default function Home(): React.ReactElement {
             </section>
 
             <section>
-                <h2 className="font-heading text-2xl font-bold text-white md:text-3xl">
-                    Current Focus
-                </h2>
+                <h2 className="font-bold text-white">Current Focus</h2>
                 <div className="mt-4 rounded-xl border-2 border-slate-700/80 bg-slate-900/35 p-5">
                     <p className="text-slate-300">
                         I&apos;m currently building the foundation of this

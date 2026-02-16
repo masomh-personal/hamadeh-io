@@ -13,7 +13,7 @@ export default function NotFound(): React.ReactElement {
             <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
                 {/* Error Code */}
                 <div className="mb-8">
-                    <h1 className="font-mono text-8xl font-bold text-primary md:text-9xl">
+                    <h1 className="font-mono text-7xl font-bold text-primary md:text-8xl">
                         404
                     </h1>
                     <div className="mt-2 font-mono text-sm text-muted">
@@ -24,7 +24,7 @@ export default function NotFound(): React.ReactElement {
 
                 {/* Error Message */}
                 <div className="mb-8 max-w-2xl space-y-4">
-                    <h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
+                    <h2 className="font-bold text-white">
                         Oops! Page Not Found
                     </h2>
                     <p className="text-lg text-slate-300">

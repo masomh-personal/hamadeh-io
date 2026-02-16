@@ -63,7 +63,7 @@ export default async function SolutionPage({
                         {solution.datePublished}
                     </span>
                 </div>
-                <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-5xl">
+                <h1 className="mb-4 font-bold tracking-tight text-slate-900 dark:text-slate-50">
                     {solution.title}
                 </h1>
                 <p className="text-xl leading-7 text-slate-600 dark:text-slate-300">

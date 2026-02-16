@@ -22,9 +22,7 @@ export default function ResumePage(): React.ReactElement {
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                    <h1 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
-                        Resume
-                    </h1>
+                    <h1 className="font-extrabold text-white">Resume</h1>
                     <p className="mt-2 text-slate-400">
                         View or download the latest PDF version.
                     </p>

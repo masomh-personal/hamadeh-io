@@ -100,9 +100,7 @@ export default function TypographyPage(): React.ReactElement {
     return (
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <header className="mb-10">
-                <h1 className="font-heading text-4xl font-extrabold text-white md:text-5xl">
-                    Typography Lab
-                </h1>
+                <h1 className="font-extrabold text-white">Typography Lab</h1>
                 <p className="mt-2 max-w-3xl text-slate-400">
                     Internal preview page for evaluating heading/body font
                     pairings. Each card shows a heading, paragraph text, a link,
@@ -124,7 +122,7 @@ export default function TypographyPage(): React.ReactElement {
                         </p>
 
                         <h2
-                            className={`${pair.headingFont} text-3xl font-bold tracking-tight text-white`}
+                            className={`${pair.headingFont} text-2xl font-bold tracking-tight text-white`}
                         >
                             Build thoughtful software.
                         </h2>

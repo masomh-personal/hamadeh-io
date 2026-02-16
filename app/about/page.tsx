@@ -19,7 +19,7 @@ export default function AboutPage(): React.ReactElement {
                 </Link>
             </header>
 
-            <section className="surface-card rounded-xl p-6">
+            <section className="surface-card radius-card p-6">
                 <p className="text-content leading-7">
                     I&apos;m a full-stack engineer who cares about readable
                     code, practical architecture, and thoughtful user

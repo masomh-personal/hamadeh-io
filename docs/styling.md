@@ -15,7 +15,47 @@ This document is the single source of truth for all styling decisions in Thought
 - Generous whitespace and breathing room
 - Accessibility and readability first
 - Utility-first approach with Tailwind CSS
+- Hybrid strategy: keep repetitive typography/surface tokens in `app/globals.css`
 - Mobile-first responsive design
+
+---
+
+## 🧩 Hybrid Tailwind Approach (Current)
+
+Use this decision tree:
+
+1. Start with plain Tailwind utilities in the component.
+2. If a pattern repeats 3+ times, promote it to a semantic utility in `app/globals.css`.
+3. Keep layout and per-instance spacing inline in JSX.
+4. Keep semantic utilities small and token-based (color, border, radius, shadow, text tone).
+
+Current semantic utilities:
+
+| Category | Utility | Purpose |
+|---|---|---|
+| Text | `text-content` | Primary readable content text |
+| Text | `text-content-muted` | Secondary/supporting text |
+| Text | `text-content-subtle` | Low-emphasis metadata text |
+| Surface | `surface-card` | Standard card shell (border + background) |
+| Surface | `surface-card-strong` | Higher contrast card shell |
+| Surface | `surface-panel` | Inner panel shell |
+| Surface | `surface-outline` | Border-only shell |
+| Shape | `radius-card` | Standard card corner radius |
+| Elevation | `shadow-elevated` | Reusable elevated shadow |
+
+Example pattern:
+
+```tsx
+<section className="surface-card radius-card p-6 md:p-8">
+  <h2 className="font-bold text-white">Section title</h2>
+  <p className="text-content-muted mt-2">Supporting copy</p>
+</section>
+```
+
+Why this works:
+- Keeps Tailwind fast and local for page-specific structure.
+- Prevents long-term drift in repeated visual tokens.
+- Makes global style tuning one-file changes.
 
 ---
 
@@ -94,28 +134,28 @@ Implementation notes:
 
 **Primary Button:**
 ```tsx
-<button className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400">
+<button className="rounded-md border-2 border-transparent bg-sky-500 px-6 py-3 font-heading text-base font-semibold text-white transition-all hover:border-sky-300 hover:bg-sky-400">
   Primary Action
 </button>
 ```
 
 **Secondary Button (Outline):**
 ```tsx
-<button className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-baloo text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg">
+<button className="rounded-md border-[3px] border-slate-600 bg-transparent px-6 py-3 font-heading text-base font-semibold text-slate-300 transition-all duration-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-500 hover:shadow-lg">
   Secondary Action
 </button>
 ```
 
 **Success Button:**
 ```tsx
-<button className="rounded-md border-2 border-transparent bg-emerald-500 px-6 py-3 font-baloo text-base font-semibold text-white transition-all hover:border-emerald-300 hover:bg-emerald-400">
+<button className="rounded-md border-2 border-transparent bg-emerald-500 px-6 py-3 font-heading text-base font-semibold text-white transition-all hover:border-emerald-300 hover:bg-emerald-400">
   Success Action
 </button>
 ```
 
 **Text Link:**
 ```tsx
-<a className="font-baloo text-base font-semibold text-sky-500 transition-colors hover:text-sky-400 hover:underline">
+<a className="font-heading text-base font-semibold text-sky-500 transition-colors hover:text-sky-400 hover:underline">
   Link Text
 </a>
 ```
@@ -124,35 +164,35 @@ Implementation notes:
 
 **Hero Heading:**
 ```tsx
-<h1 className="font-baloo text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
+<h1 className="font-extrabold leading-tight tracking-tight text-white">
   Build Thoughtful Software
 </h1>
 ```
 
 **Section Heading:**
 ```tsx
-<h2 className="font-baloo text-3xl md:text-4xl font-bold leading-tight text-white">
+<h2 className="font-bold leading-tight text-white">
   Section Title
 </h2>
 ```
 
 **Subsection Heading:**
 ```tsx
-<h3 className="font-baloo text-2xl md:text-3xl font-semibold leading-tight text-white">
+<h3 className="font-semibold leading-tight text-white">
   Subsection Title
 </h3>
 ```
 
 **Body Text:**
 ```tsx
-<p className="text-base leading-relaxed text-slate-300">
+<p className="text-content">
   Your content here with excellent readability.
 </p>
 ```
 
 **Small Text:**
 ```tsx
-<p className="text-sm leading-relaxed text-slate-400">
+<p className="text-content-muted text-sm">
   Captions, metadata, and secondary information.
 </p>
 ```
@@ -168,7 +208,7 @@ Implementation notes:
 
 **Code Block:**
 ```tsx
-<pre className="overflow-x-auto rounded-md bg-[#282c34]/50 p-4 border-2 border-slate-700">
+<pre className="surface-outline overflow-x-auto rounded-md bg-[#282c34]/50 p-4">
   <code className="font-mono text-sm text-slate-100">
     {codeContent}
   </code>
@@ -179,9 +219,9 @@ Implementation notes:
 
 **Pattern:**
 ```tsx
-<div className="rounded-md border-2 border-slate-700 bg-slate-800 p-6">
+<div className="surface-card radius-card p-6">
   <h3 className="text-lg font-semibold text-white">Card Title</h3>
-  <p className="text-slate-300">Card content</p>
+  <p className="text-content">Card content</p>
 </div>
 ```
 
@@ -238,8 +278,9 @@ Implementation notes:
 
 ### Font Variables
 ```css
---font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
---font-baloo: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+--font-sans: var(--font-body-gf), ui-sans-serif, system-ui, sans-serif;
+--font-heading: var(--font-heading-gf), ui-sans-serif, system-ui, sans-serif;
+--font-baloo: var(--font-accent-gf), ui-sans-serif, system-ui, sans-serif;
 --font-mono: var(--font-mono-fira), ui-monospace, SFMono-Regular, monospace;
 ```
 
@@ -249,12 +290,11 @@ Implementation notes:
 
 ### Tailwind-First Approach
 1. **Always use Tailwind utility classes** for styling
-2. Use custom CSS in `globals.css` only when necessary:
-   - Complex animations
-   - Global resets
-   - Patterns that can't be expressed with utilities
-3. **Never use `!important`** - solve specificity through proper architecture
-4. Follow DRY: Define reusable patterns using CSS variables and `@layer`
+2. Use semantic utilities in `globals.css` for repeated token combos (text tone, surface, radius, shadow)
+3. Keep layout/spacing inline in JSX (`grid`, `flex`, `gap`, `p-*`, `m-*`)
+4. Keep semantic utilities small and composable (do not create large “component CSS” classes)
+5. Use custom CSS outside `@layer` only for global concerns (resets, prose, third-party overrides)
+6. **Never use `!important`** - solve specificity through proper architecture
 
 ### Design Tokens
 - Define colors, spacing, typography in `globals.css` using CSS variables
@@ -286,8 +326,8 @@ import { cn } from '@/lib/utils';
 ## 🚀 Component-Specific Guidelines
 
 ### Header
-- Logo: Baloo 2, Bold (700), `text-xl`
-- Navigation: Plus Jakarta Sans, Bold (700), `text-sm`, normal case (not uppercase)
+- Logo: Quicksand, Bold (700), `text-xl`
+- Navigation: Quicksand, Bold (700), `text-sm`, normal case (not uppercase)
 - Hover: Sky 500 for both logo and nav links
 - Border: `border-b-2` for emphasis
 - Sticky positioning with dark background
@@ -296,7 +336,7 @@ import { cn } from '@/lib/utils';
 ```tsx
 <header className="site-header">
   <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <Link className="font-baloo text-xl font-bold text-slate-50 hover:text-sky-500">
+    <Link className="font-heading text-xl font-bold text-slate-50 hover:text-sky-500">
       ThoughtfulCode
     </Link>
   </nav>
@@ -304,7 +344,7 @@ import { cn } from '@/lib/utils';
 ```
 
 ### Footer
-- Copyright: Plus Jakarta Sans, Regular (400), `text-slate-400`
+- Copyright: Lexend, Regular (400), `text-content-muted`
 - Social links: Hover to Sky 500
 - Border: `border-t-2` for emphasis
 - Centered content layout
@@ -391,8 +431,9 @@ className="focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-
 ### Recent Changes (January 2026)
 
 1. **Fonts:**
-   - Body: Inter → Plus Jakarta Sans (more modern)
-   - Headings: Added Baloo 2 for personality
+   - Body: Lexend as the default body font
+   - Headings/links/buttons: Quicksand for identity and hierarchy
+   - Baloo 2 retained only as optional accent utility (`font-baloo`)
    - Code: JetBrains Mono → Fira Code (crisper)
 
 2. **Colors:**
@@ -504,8 +545,9 @@ className="focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-
 
 ## 📚 Resources
 
-- [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) - Body font
-- [Baloo 2](https://fonts.google.com/specimen/Baloo+2) - Heading font
+- [Lexend](https://fonts.google.com/specimen/Lexend) - Body font
+- [Quicksand](https://fonts.google.com/specimen/Quicksand) - Headings / links / buttons
+- [Baloo 2](https://fonts.google.com/specimen/Baloo+2) - Optional accent font
 - [Fira Code](https://fonts.google.com/specimen/Fira+Code) - Monospace font
 - [Tailwind CSS v4](https://tailwindcss.com/) - Utility framework
 - [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/Understanding/) - Accessibility

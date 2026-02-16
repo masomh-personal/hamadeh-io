@@ -273,6 +273,14 @@
     .surface-outline {
         border: 2px solid var(--color-slate-700);
     }
+
+    .radius-card {
+        border-radius: 0.75rem;
+    }
+
+    .shadow-elevated {
+        box-shadow: 0 10px 35px rgba(2, 6, 23, 0.45);
+    }
 }
 
 /* ============================================

@@ -118,7 +118,7 @@ export default function ComponentsPage(): React.ReactElement {
                 <div>
                     <TabsContent
                         value="button"
-                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
+                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Button</h2>
@@ -280,7 +280,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="link"
-                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
+                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Link</h2>
@@ -329,7 +329,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="card"
-                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
+                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Card</h2>
@@ -382,7 +382,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="badge"
-                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
+                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Badge</h2>
@@ -448,7 +448,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="qa"
-                        className="surface-card min-h-[520px] rounded-xl p-6 md:p-8"
+                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">

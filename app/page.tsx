@@ -30,7 +30,7 @@ export default function Home(): React.ReactElement {
                 </div>
 
                 <div className="mx-auto w-full max-w-[240px]">
-                    <div className="overflow-hidden rounded-2xl border-2 border-slate-700 bg-slate-900/60 p-2 shadow-[0_10px_35px_rgba(2,6,23,0.45)]">
+                    <div className="shadow-elevated overflow-hidden rounded-2xl border-2 border-slate-700 bg-slate-900/60 p-2">
                         <Image
                             src="/images/avatar_prof.jpg"
                             alt="Masom profile photo"
@@ -110,7 +110,7 @@ export default function Home(): React.ReactElement {
 
             <section>
                 <h2 className="font-bold text-white">Current Focus</h2>
-                <div className="surface-card mt-4 rounded-xl p-5">
+                <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
                         I&apos;m currently building the foundation of this
                         portfolio: reusable UI wrappers, structured problem

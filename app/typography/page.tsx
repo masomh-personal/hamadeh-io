@@ -115,7 +115,7 @@ export default function TypographyPage(): React.ReactElement {
                 {typographyPairs.map((pair) => (
                     <section
                         key={pair.id}
-                        className="surface-card rounded-xl p-6"
+                        className="surface-card radius-card p-6"
                     >
                         <p className="text-content-subtle mb-4 font-mono text-xs uppercase tracking-wide">
                             {pair.label}

@@ -1,6 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
+import { useState } from "react";
 import {
     HiArrowRight,
     HiCheckCircle,
@@ -24,6 +25,16 @@ import {
  * Visit /components to see all components and their variants.
  */
 export default function ComponentsPage(): React.ReactElement {
+    const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
+
+    const handleSubmitDemo = (): void => {
+        if (isSubmittingDemo) {
+            return;
+        }
+
+        setIsSubmittingDemo(true);
+    };
+
     return (
         <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <header className="mb-10">
@@ -134,7 +145,6 @@ export default function ComponentsPage(): React.ReactElement {
                                         <Button variant="outline">
                                             Outline
                                         </Button>
-                                        <Button variant="ghost">Ghost</Button>
                                         <Button variant="danger">Danger</Button>
                                         <Button variant="danger-soft">
                                             Danger Soft
@@ -210,7 +220,7 @@ export default function ComponentsPage(): React.ReactElement {
                                             label
                                         </Button>
                                         <Button
-                                            variant="ghost"
+                                            variant="outline"
                                             aria-label="Home"
                                             title="Home"
                                         >
@@ -238,6 +248,32 @@ export default function ComponentsPage(): React.ReactElement {
                                                 <HiRefresh className="h-4 w-4 animate-spin" />
                                             }
                                         />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                        Live Submit Demo
+                                    </h3>
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <Button
+                                            variant="primary"
+                                            isLoading={isSubmittingDemo}
+                                            loadingText="Submitting..."
+                                            onClick={handleSubmitDemo}
+                                        >
+                                            Submit Form
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            disabled={!isSubmittingDemo}
+                                            onClick={() =>
+                                                setIsSubmittingDemo(false)
+                                            }
+                                        >
+                                            <HiRefresh />
+                                            Reset
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

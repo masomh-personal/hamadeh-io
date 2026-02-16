@@ -10,7 +10,6 @@ type ButtonVariant =
     | "secondary"
     | "tertiary"
     | "outline"
-    | "ghost"
     | "danger"
     | "danger-soft";
 type ButtonSize = "sm" | "md" | "lg";
@@ -25,7 +24,6 @@ const variantClasses: Record<ButtonVariant, string> = {
         "bg-amber-500 border border-amber-300/50 text-slate-900 hover:border-amber-200 hover:bg-amber-400 font-baloo",
     outline:
         "border border-slate-500 bg-slate-900/30 text-slate-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-400 font-baloo",
-    ghost: "border border-transparent bg-transparent text-slate-300 hover:bg-slate-800/40 hover:text-sky-400 font-baloo",
     danger: "bg-red-500 border border-red-300/40 hover:border-red-300 hover:bg-red-400 font-baloo",
     "danger-soft":
         "bg-red-500/20 text-red-400 border border-red-400/30 hover:bg-red-500/30 font-baloo",
@@ -59,11 +57,10 @@ export interface ThoughtfulButtonProps
     onClick?: (event: ButtonClickEvent) => void;
 }
 
-const baseClasses =
-    "rounded-sm font-semibold text-white transition-all duration-200 inline-flex items-center justify-center gap-1 " +
-    "[&_svg]:block [&_svg]:shrink-0 " +
-    "cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 " +
-    "focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900";
+const baseClasses = `rounded-sm font-semibold text-white transition-all duration-200 inline-flex items-center justify-center gap-1
+[&_svg]:block [&_svg]:shrink-0
+cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
+focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
 
 function getButtonClasses({
     variant,

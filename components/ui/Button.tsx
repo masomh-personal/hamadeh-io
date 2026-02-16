@@ -1,5 +1,6 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
@@ -42,8 +43,10 @@ const iconSizeClasses: Record<IconSize, string> = {
     lg: "[&_svg]:h-4 [&_svg]:w-4",
 };
 
+type ButtonClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
+
 export interface ThoughtfulButtonProps
-    extends Omit<ComponentProps<"button">, "children"> {
+    extends Omit<ComponentProps<"button">, "children" | "onClick"> {
     variant?: ButtonVariant;
     size?: ButtonSize;
     href?: string;
@@ -52,6 +55,8 @@ export interface ThoughtfulButtonProps
     isLoading?: boolean;
     loadingText?: string;
     loadingIcon?: React.ReactNode;
+    asChild?: boolean;
+    onClick?: (event: ButtonClickEvent) => void;
 }
 
 const baseClasses =
@@ -117,9 +122,11 @@ function getButtonContent({
 function getLinkAccessibilityProps({
     isDisabled,
     isLoading,
+    onClick,
 }: {
     isDisabled: boolean;
     isLoading: boolean;
+    onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }): {
     "aria-disabled"?: true;
     "aria-busy"?: true;
@@ -133,7 +140,10 @@ function getLinkAccessibilityProps({
         onClick: (event) => {
             if (isDisabled) {
                 event.preventDefault();
+                return;
             }
+
+            onClick?.(event);
         },
     };
 }
@@ -150,11 +160,13 @@ export function Button({
     href,
     disabled,
     onClick,
+    type = "button",
     iconSize = "md",
     isLoading = false,
     loadingText,
     loadingIcon,
     children,
+    asChild = false,
     ...props
 }: ThoughtfulButtonProps): React.ReactElement {
     const isDisabled = Boolean(disabled || isLoading);
@@ -175,7 +187,37 @@ export function Button({
     const linkAccessibilityProps = getLinkAccessibilityProps({
         isDisabled,
         isLoading,
+        onClick: (event) =>
+            onClick?.(
+                event as MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+            ),
     });
+
+    if (asChild) {
+        return (
+            <Slot
+                className={classes}
+                aria-disabled={isDisabled || undefined}
+                aria-busy={isLoading || undefined}
+                data-disabled={isDisabled ? "" : undefined}
+                onClick={(event: MouseEvent<HTMLElement>) => {
+                    if (isDisabled) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    onClick?.(
+                        event as MouseEvent<
+                            HTMLButtonElement | HTMLAnchorElement
+                        >
+                    );
+                }}
+                {...props}
+            >
+                {content}
+            </Slot>
+        );
+    }
 
     if (href && !href.startsWith("http")) {
         return (
@@ -199,7 +241,7 @@ export function Button({
 
     return (
         <button
-            type="button"
+            type={type}
             className={classes}
             disabled={isDisabled}
             aria-busy={isLoading || undefined}

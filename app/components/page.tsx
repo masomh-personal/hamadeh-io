@@ -1,5 +1,6 @@
 "use client";
 
+import NextLink from "next/link";
 import {
     HiArrowRight,
     HiCheckCircle,
@@ -175,6 +176,18 @@ export default function ComponentsPage(): React.ReactElement {
                                     <Button href="/">
                                         <HiHome />
                                         Link to Home
+                                    </Button>
+                                </div>
+
+                                <div>
+                                    <h3 className="mb-3 font-mono text-sm text-slate-500">
+                                        As Child (Radix Slot)
+                                    </h3>
+                                    <Button asChild variant="secondary">
+                                        <NextLink href="/resume">
+                                            Open Resume
+                                            <HiArrowRight />
+                                        </NextLink>
                                     </Button>
                                 </div>
 

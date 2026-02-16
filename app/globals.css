@@ -100,7 +100,11 @@
         --background: var(--color-slate-900);
         --foreground: var(--color-slate-300);
         --muted: var(--color-slate-800);
-        --muted-foreground: var(--color-slate-400);
+        --muted-foreground: color-mix(
+            in srgb,
+            var(--color-slate-300) 70%,
+            var(--color-slate-400)
+        );
         --border: var(--color-slate-600);
         --accent: var(--color-sky-500);
         --accent-foreground: white;
@@ -114,6 +118,7 @@
     }
 
     html {
+        color-scheme: dark;
         font-feature-settings:
             "rlig" 1,
             "calt" 1;

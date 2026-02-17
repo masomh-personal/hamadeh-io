@@ -17,28 +17,28 @@ type IconSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        "bg-sky-500 border border-sky-200/80 hover:border-sky-100 hover:bg-sky-400 font-heading",
+        "bg-sky-500 border border-sky-200/80 hover:border-sky-100 hover:bg-sky-400 hover:shadow-sm font-heading",
     secondary:
-        "bg-emerald-500 border border-emerald-200/80 hover:border-emerald-100 hover:bg-emerald-400 font-heading",
+        "bg-emerald-500 border border-emerald-200/80 hover:border-emerald-100 hover:bg-emerald-400 hover:shadow-sm font-heading",
     tertiary:
-        "bg-amber-500 border border-amber-200 hover:border-amber-100 hover:bg-amber-400 text-slate-900 font-heading",
+        "bg-amber-500 border border-amber-200 hover:border-amber-100 hover:bg-amber-400 hover:shadow-sm text-slate-900 font-heading",
     outline:
         "border border-slate-300/70 bg-slate-900/30 text-slate-200 hover:border-sky-300 hover:bg-sky-950/20 hover:text-sky-300 font-heading",
-    danger: "bg-red-500 border border-red-200/80 hover:border-red-100 hover:bg-red-400 font-heading",
+    danger: "bg-red-500 border border-red-200/80 hover:border-red-100 hover:bg-red-400 hover:shadow-sm font-heading",
     "danger-soft":
         "bg-red-500/20 border border-red-300/70 text-red-300 hover:border-red-200 hover:bg-red-500/30 font-heading",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-    sm: "text-xs min-h-9 px-3 py-1.5",
-    md: "text-sm min-h-10 px-4 py-2",
-    lg: "text-base min-h-11 px-5 py-2.5",
+    sm: "text-xs min-h-9 px-3 py-1.5 tracking-[0.03em]",
+    md: "text-sm min-h-10 px-4 py-2 tracking-[0.045em]",
+    lg: "text-base min-h-11 px-5 py-2.5 tracking-[0.05em]",
 };
 
 const minWidthClasses: Record<ButtonSize, string> = {
-    sm: "min-w-28",
-    md: "min-w-36",
-    lg: "min-w-40",
+    sm: "min-w-24",
+    md: "min-w-32",
+    lg: "min-w-36",
 };
 
 const iconSizeClasses: Record<IconSize, string> = {
@@ -64,11 +64,19 @@ export interface ThoughtfulButtonProps
     onClick?: (event: ButtonClickEvent) => void;
 }
 
-const baseClasses = `rounded-sm font-black uppercase tracking-wide text-white transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
-enabled:hover:scale-[1.03] enabled:active:scale-[0.98] motion-reduce:transform-none
+const baseClasses = `rounded-sm font-black uppercase text-white transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
+hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none data-[disabled]:hover:scale-100 data-[disabled]:active:scale-100
 [&_svg]:block [&_svg]:shrink-0
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
+
+function shouldUseNativeAnchor(href: string): boolean {
+    return (
+        href.startsWith("#") ||
+        href.startsWith("//") ||
+        /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(href)
+    );
+}
 
 function getButtonClasses({
     variant,
@@ -138,12 +146,14 @@ function getLinkAccessibilityProps({
 }): {
     "aria-disabled"?: true;
     "aria-busy"?: true;
+    "data-disabled"?: "";
     tabIndex?: -1;
     onClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 } {
     return {
         "aria-disabled": isDisabled || undefined,
         "aria-busy": isLoading || undefined,
+        "data-disabled": isDisabled ? "" : undefined,
         tabIndex: isDisabled ? -1 : undefined,
         onClick: (event) => {
             if (isDisabled) {
@@ -229,7 +239,7 @@ export function Button({
         );
     }
 
-    if (href && !href.startsWith("http")) {
+    if (href && !shouldUseNativeAnchor(href)) {
         return (
             <NextLink
                 href={href}
@@ -255,6 +265,7 @@ export function Button({
             className={classes}
             disabled={isDisabled}
             aria-busy={isLoading || undefined}
+            data-disabled={isDisabled ? "" : undefined}
             onClick={(event: MouseEvent<HTMLButtonElement>) => onClick?.(event)}
             {...props}
         >

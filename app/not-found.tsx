@@ -9,7 +9,7 @@ import { Button, Link } from "@/components/ui";
  */
 export default function NotFound(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
                 {/* Error Code */}
                 <div className="mb-8">

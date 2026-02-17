@@ -50,7 +50,7 @@ export default async function SolutionPage({
     };
 
     return (
-        <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 md:py-12 lg:px-8">
             {/* Header */}
             <header className="mb-12">
                 <div className="mb-6 flex items-center gap-4">

@@ -4,7 +4,7 @@ import { Button, Card, Link } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl space-y-14 px-6 py-10 md:space-y-16 md:py-14">
+        <div className="mx-auto max-w-6xl space-y-10 px-6 py-8 md:space-y-12 md:py-10">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
                     <p className="mb-3 inline-flex rounded-md border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-300">

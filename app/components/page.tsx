@@ -36,7 +36,7 @@ export default function ComponentsPage(): React.ReactElement {
     };
 
     return (
-        <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
+        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
             <header className="mb-10">
                 <h1 className="font-extrabold text-white">
                     Components Showcase

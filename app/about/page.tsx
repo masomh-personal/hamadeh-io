@@ -3,7 +3,7 @@ import { Link } from "@/components/ui";
 
 export default function AboutPage(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-4xl px-6 py-10 md:py-12">
+        <div className="mx-auto max-w-4xl px-6 py-8 md:py-10">
             <header className="mb-8">
                 <h1 className="font-extrabold text-white">About</h1>
                 <p className="text-content-muted mt-2">

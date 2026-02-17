@@ -18,7 +18,7 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 py-8 sm:px-6 md:py-10 lg:px-8">
             <div className="mb-8">
                 <h1 className="mb-4 font-bold text-primary-900 dark:text-primary-50">
                     LeetCode Solutions

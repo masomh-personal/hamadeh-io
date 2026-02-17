@@ -98,7 +98,7 @@ const typographyPairs = [
 
 export default function TypographyPage(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
+        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
             <header className="mb-10">
                 <h1 className="font-extrabold text-white">Typography Lab</h1>
                 <p className="text-content-muted mt-2 max-w-3xl">

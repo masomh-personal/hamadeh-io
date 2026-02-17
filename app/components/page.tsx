@@ -2,13 +2,7 @@
 
 import NextLink from "next/link";
 import { useState } from "react";
-import {
-    HiArrowRight,
-    HiCheckCircle,
-    HiExternalLink,
-    HiHome,
-    HiRefresh,
-} from "react-icons/hi";
+import { HiArrowRight, HiCheckCircle, HiHome, HiRefresh } from "react-icons/hi";
 import {
     Badge,
     Button,
@@ -305,6 +299,9 @@ export default function ComponentsPage(): React.ReactElement {
                                         <Link href="/" variant="secondary">
                                             Secondary link
                                         </Link>
+                                        <Link href="/" variant="tertiary">
+                                            Tertiary link
+                                        </Link>
                                         <Link href="/" variant="muted">
                                             Muted link
                                         </Link>
@@ -314,9 +311,42 @@ export default function ComponentsPage(): React.ReactElement {
                                             variant="secondary"
                                         >
                                             External doc
-                                            <HiExternalLink className="ml-1 inline h-3.5 w-3.5" />
                                         </Link>
                                     </div>
+                                </div>
+                                <div>
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                                        Icon Behavior
+                                    </h3>
+                                    <div className="flex flex-wrap items-center gap-6">
+                                        <Link href="/resume">
+                                            Default icon (right)
+                                        </Link>
+                                        <Link href="/about" iconPosition="left">
+                                            Icon on left
+                                        </Link>
+                                        <Link href="/blog" showIcon={false}>
+                                            No icon
+                                        </Link>
+                                        <Link
+                                            href="/components"
+                                            icon={
+                                                <HiArrowRight className="h-3.5 w-3.5" />
+                                            }
+                                        >
+                                            Custom icon
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                                        As Child (Radix Slot)
+                                    </h3>
+                                    <Link asChild variant="secondary">
+                                        <NextLink href="/resume">
+                                            Open resume with NextLink child
+                                        </NextLink>
+                                    </Link>
                                 </div>
                                 <div>
                                     <h3 className="text-content-subtle mb-3 font-mono text-sm">

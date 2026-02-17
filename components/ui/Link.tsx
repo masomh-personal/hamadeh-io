@@ -3,6 +3,8 @@
 import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps } from "react";
+import { FiArrowRight } from "react-icons/fi";
+import { HiExternalLink } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import {
     mergeRel,
@@ -10,21 +12,88 @@ import {
     shouldUseNativeAnchor,
 } from "./component-utils";
 
-type LinkVariant = "primary" | "secondary" | "muted";
+type LinkVariant = "primary" | "secondary" | "tertiary" | "muted";
+type LinkIconPosition = "left" | "right";
 
 const variantClasses: Record<LinkVariant, string> = {
     primary:
-        "text-primary hover:text-primary-hover hover:underline font-heading font-semibold",
+        "text-primary hover:text-primary-hover hover:underline hover:bg-primary/12 font-heading font-bold",
     secondary:
-        "text-secondary hover:text-secondary-hover hover:underline font-heading font-semibold",
-    muted: "text-muted hover:text-primary transition-colors font-heading font-semibold",
+        "text-secondary hover:text-secondary-hover hover:underline hover:bg-secondary/12 font-heading font-bold",
+    tertiary:
+        "text-tertiary hover:text-tertiary-hover hover:underline hover:bg-tertiary/12 font-heading font-bold",
+    muted: "text-muted hover:text-primary hover:underline hover:bg-primary/10 font-heading font-bold",
 };
 
-export interface ThoughtfulLinkProps extends Omit<ComponentProps<"a">, "href"> {
-    href: string;
+interface ThoughtfulLinkBaseProps extends Omit<ComponentProps<"a">, "href"> {
     variant?: LinkVariant;
     external?: boolean;
-    asChild?: boolean;
+    showIcon?: boolean;
+    icon?: React.ReactNode;
+    iconPosition?: LinkIconPosition;
+}
+
+/**
+ * asChild=true: render via Radix Slot and let the child own href.
+ * asChild=false: render internal/native link directly and require href.
+ */
+type ThoughtfulLinkAsChildProps = ThoughtfulLinkBaseProps & {
+    asChild: true;
+    href?: string;
+};
+
+type ThoughtfulLinkWithHrefProps = ThoughtfulLinkBaseProps & {
+    asChild?: false;
+    href: string;
+};
+
+export type ThoughtfulLinkProps =
+    | ThoughtfulLinkAsChildProps
+    | ThoughtfulLinkWithHrefProps;
+
+function getDefaultLinkIcon({
+    openInNewTab,
+    isInternalNavigation,
+}: {
+    openInNewTab: boolean;
+    isInternalNavigation: boolean;
+}): React.ReactNode {
+    if (openInNewTab) {
+        return (
+            <HiExternalLink
+                aria-hidden="true"
+                className="h-3.5 w-3.5 shrink-0"
+            />
+        );
+    }
+
+    if (isInternalNavigation) {
+        return (
+            <FiArrowRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
+        );
+    }
+
+    return null;
+}
+
+function getLinkContent({
+    children,
+    icon,
+    iconPosition,
+    shouldRenderIcon,
+}: {
+    children: React.ReactNode;
+    icon: React.ReactNode;
+    iconPosition: LinkIconPosition;
+    shouldRenderIcon: boolean;
+}): React.ReactNode {
+    return (
+        <>
+            {iconPosition === "left" && shouldRenderIcon ? icon : null}
+            <span>{children}</span>
+            {iconPosition === "right" && shouldRenderIcon ? icon : null}
+        </>
+    );
 }
 
 /**
@@ -36,19 +105,17 @@ export function Link({
     variant = "primary",
     external = false,
     asChild = false,
+    showIcon = true,
+    icon,
+    iconPosition = "right",
     className,
     children,
     rel,
     ...props
 }: ThoughtfulLinkProps): React.ReactElement {
-    const classes = cn(
-        variantClasses[variant],
-        "underline-offset-2",
-        className
-    );
-    const useNativeAnchor = external || shouldUseNativeAnchor(href);
-    const openInNewTab = external || shouldOpenInNewTab(href);
-
+    const baseClasses =
+        "relative inline-flex items-center gap-0.5 rounded-sm px-0.5 -mx-0.5 underline-offset-2 transition-[color,background-color,transform,box-shadow] duration-200 ease-out transform-gpu hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
+    const classes = cn(variantClasses[variant], baseClasses, className);
     if (asChild) {
         return (
             <Slot className={classes} {...props}>
@@ -56,6 +123,23 @@ export function Link({
             </Slot>
         );
     }
+
+    if (!href) {
+        return <span className={classes}>{children}</span>;
+    }
+
+    const useNativeAnchor = external || shouldUseNativeAnchor(href);
+    const openInNewTab = external || shouldOpenInNewTab(href);
+    const isInternalNavigation = !useNativeAnchor;
+    const shouldRenderIcon = showIcon && !asChild;
+    const resolvedIcon =
+        icon ?? getDefaultLinkIcon({ openInNewTab, isInternalNavigation });
+    const content = getLinkContent({
+        children,
+        icon: resolvedIcon,
+        iconPosition,
+        shouldRenderIcon,
+    });
 
     if (useNativeAnchor) {
         return (
@@ -66,14 +150,14 @@ export function Link({
                 className={classes}
                 {...props}
             >
-                {children}
+                {content}
             </a>
         );
     }
 
     return (
         <NextLink href={href} className={classes} {...props}>
-            {children}
+            {content}
         </NextLink>
     );
 }

@@ -2,7 +2,11 @@
  * Shared UI link helpers used by wrapper components (for example, Button/Link).
  * Keep routing and anchor safety behavior consistent in one place.
  */
-export function shouldUseNativeAnchor(href: string): boolean {
+export function shouldUseNativeAnchor(href: string | undefined): boolean {
+    if (!href) {
+        return false;
+    }
+
     const value = href.trim().toLowerCase();
 
     return (
@@ -15,8 +19,13 @@ export function shouldUseNativeAnchor(href: string): boolean {
 /**
  * Returns true when a URL should open in a new browser tab/window.
  */
-export function shouldOpenInNewTab(href: string): boolean {
-    return href.startsWith("http") || href.startsWith("//");
+export function shouldOpenInNewTab(href: string | undefined): boolean {
+    if (!href) {
+        return false;
+    }
+
+    const value = href.trim().toLowerCase();
+    return value.startsWith("http") || value.startsWith("//");
 }
 
 /**

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
+import { HiCode, HiCollection, HiDocumentText } from "react-icons/hi";
 import { Button, Card, Link } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
@@ -130,8 +130,6 @@ export default function Home(): React.ReactElement {
                         <Link
                             href="/about"
                             variant="muted"
-                            icon={<HiUser className="h-3.5 w-3.5" />}
-                            iconPosition="left"
                             className="inline-flex items-center"
                         >
                             Learn more about me

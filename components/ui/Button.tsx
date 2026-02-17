@@ -17,22 +17,28 @@ type IconSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        "bg-sky-500 border border-sky-300/40 hover:border-sky-300 hover:bg-sky-400 font-heading",
+        "bg-sky-500 border border-sky-200/80 hover:border-sky-100 hover:bg-sky-400 font-heading",
     secondary:
-        "bg-emerald-500 border border-emerald-300/40 hover:border-emerald-300 hover:bg-emerald-400 font-heading",
+        "bg-emerald-500 border border-emerald-200/80 hover:border-emerald-100 hover:bg-emerald-400 font-heading",
     tertiary:
-        "bg-amber-500 border border-amber-300/50 text-slate-900 hover:border-amber-200 hover:bg-amber-400 font-heading",
+        "bg-amber-500 border border-amber-200 hover:border-amber-100 hover:bg-amber-400 text-slate-900 font-heading",
     outline:
-        "border border-slate-500 bg-slate-900/30 text-slate-200 hover:border-sky-500 hover:bg-sky-950/20 hover:text-sky-400 font-heading",
-    danger: "bg-red-500 border border-red-300/40 hover:border-red-300 hover:bg-red-400 font-heading",
+        "border border-slate-300/70 bg-slate-900/30 text-slate-200 hover:border-sky-300 hover:bg-sky-950/20 hover:text-sky-300 font-heading",
+    danger: "bg-red-500 border border-red-200/80 hover:border-red-100 hover:bg-red-400 font-heading",
     "danger-soft":
-        "bg-red-500/20 text-red-400 border border-red-400/30 hover:bg-red-500/30 font-heading",
+        "bg-red-500/20 border border-red-300/70 text-red-300 hover:border-red-200 hover:bg-red-500/30 font-heading",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-    sm: "text-sm px-3 py-1.5",
-    md: "text-base px-4 py-2",
-    lg: "text-lg px-5 py-2.5",
+    sm: "text-xs min-h-9 px-3 py-1.5",
+    md: "text-sm min-h-10 px-4 py-2",
+    lg: "text-base min-h-11 px-5 py-2.5",
+};
+
+const minWidthClasses: Record<ButtonSize, string> = {
+    sm: "min-w-28",
+    md: "min-w-36",
+    lg: "min-w-40",
 };
 
 const iconSizeClasses: Record<IconSize, string> = {
@@ -54,10 +60,12 @@ export interface ThoughtfulButtonProps
     loadingText?: string;
     loadingIcon?: React.ReactNode;
     asChild?: boolean;
+    enforceMinWidth?: boolean;
     onClick?: (event: ButtonClickEvent) => void;
 }
 
-const baseClasses = `rounded-sm font-semibold text-white transition-all duration-200 inline-flex items-center justify-center gap-1
+const baseClasses = `rounded-sm font-black uppercase tracking-wide text-white transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
+enabled:hover:scale-[1.03] enabled:active:scale-[0.98] motion-reduce:transform-none
 [&_svg]:block [&_svg]:shrink-0
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
@@ -68,6 +76,7 @@ function getButtonClasses({
     iconSize,
     isLoading,
     isDisabled,
+    enforceMinWidth,
     className,
 }: {
     variant: ButtonVariant;
@@ -75,11 +84,13 @@ function getButtonClasses({
     iconSize: IconSize;
     isLoading: boolean;
     isDisabled: boolean;
+    enforceMinWidth: boolean;
     className?: string;
 }): string {
     return cn(
         variantClasses[variant],
         sizeClasses[size],
+        enforceMinWidth && minWidthClasses[size],
         iconSizeClasses[iconSize],
         baseClasses,
         isLoading && "cursor-wait",
@@ -164,6 +175,7 @@ export function Button({
     loadingIcon,
     children,
     asChild = false,
+    enforceMinWidth = true,
     ...props
 }: ThoughtfulButtonProps): React.ReactElement {
     const isDisabled = Boolean(disabled || isLoading);
@@ -173,6 +185,7 @@ export function Button({
         iconSize,
         isLoading,
         isDisabled,
+        enforceMinWidth,
         className,
     });
     const content = getButtonContent({

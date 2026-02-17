@@ -219,6 +219,7 @@ export default function ComponentsPage(): React.ReactElement {
                                         </Button>
                                         <Button
                                             variant="outline"
+                                            enforceMinWidth={false}
                                             aria-label="Home"
                                             title="Home"
                                         >

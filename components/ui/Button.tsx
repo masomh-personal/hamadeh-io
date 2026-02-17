@@ -18,11 +18,11 @@ type IconSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        "bg-primary border border-primary/50 hover:border-primary-hover hover:bg-primary-hover hover:shadow-sm font-heading",
+        "bg-primary/95 border border-primary/55 hover:border-primary hover:bg-primary hover:shadow-sm font-heading",
     secondary:
-        "bg-secondary border border-secondary/50 hover:border-secondary-hover hover:bg-secondary-hover hover:shadow-sm font-heading",
+        "bg-secondary/95 border border-secondary/55 hover:border-secondary hover:bg-secondary hover:shadow-sm font-heading",
     tertiary:
-        "bg-tertiary border border-tertiary/60 hover:border-tertiary-hover hover:bg-tertiary-hover hover:shadow-sm text-slate-900 font-heading",
+        "bg-tertiary/95 border border-tertiary/60 hover:border-tertiary hover:bg-tertiary hover:shadow-sm text-slate-900 font-heading",
     outline:
         "border border-slate-300/70 bg-slate-900/30 text-slate-200 hover:border-primary hover:bg-primary/10 hover:text-primary font-heading",
     danger: "bg-red-500 border border-red-200/80 hover:border-red-100 hover:bg-red-400 hover:shadow-sm font-heading",

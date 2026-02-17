@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
+import { shouldUseNativeAnchor } from "./component-utils";
 
 type ButtonVariant =
     | "primary"
@@ -69,14 +70,6 @@ hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none data-[disabl
 [&_svg]:block [&_svg]:shrink-0
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
-
-function shouldUseNativeAnchor(href: string): boolean {
-    return (
-        href.startsWith("#") ||
-        href.startsWith("//") ||
-        /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(href)
-    );
-}
 
 function getButtonClasses({
     variant,

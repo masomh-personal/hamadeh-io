@@ -35,9 +35,13 @@
     --color-secondary: var(
         --color-emerald-500
     ); /* Secondary accent (success, positive) */
+    --color-secondary-hover: var(
+        --color-emerald-400
+    ); /* Secondary hover state */
     --color-tertiary: var(
         --color-amber-400
     ); /* Tertiary accent (highlights, badges) */
+    --color-tertiary-hover: var(--color-amber-500); /* Tertiary hover state */
     --color-muted: var(
         --color-slate-400
     ); /* Muted text (inactive, secondary) */

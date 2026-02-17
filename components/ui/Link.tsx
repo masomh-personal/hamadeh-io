@@ -1,23 +1,30 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
+import {
+    mergeRel,
+    shouldOpenInNewTab,
+    shouldUseNativeAnchor,
+} from "./component-utils";
 
 type LinkVariant = "primary" | "secondary" | "muted";
 
 const variantClasses: Record<LinkVariant, string> = {
     primary:
-        "text-sky-500 hover:text-sky-400 hover:underline font-heading font-semibold",
+        "text-primary hover:text-primary-hover hover:underline font-heading font-semibold",
     secondary:
-        "text-emerald-500 hover:text-emerald-400 hover:underline font-heading font-semibold",
-    muted: "text-slate-400 hover:text-sky-500 transition-colors font-heading font-semibold",
+        "text-secondary hover:text-secondary-hover hover:underline font-heading font-semibold",
+    muted: "text-muted hover:text-primary transition-colors font-heading font-semibold",
 };
 
 export interface ThoughtfulLinkProps extends Omit<ComponentProps<"a">, "href"> {
     href: string;
     variant?: LinkVariant;
     external?: boolean;
+    asChild?: boolean;
 }
 
 /**
@@ -28,8 +35,10 @@ export function Link({
     href,
     variant = "primary",
     external = false,
+    asChild = false,
     className,
     children,
+    rel,
     ...props
 }: ThoughtfulLinkProps): React.ReactElement {
     const classes = cn(
@@ -37,13 +46,23 @@ export function Link({
         "underline-offset-2",
         className
     );
+    const useNativeAnchor = external || shouldUseNativeAnchor(href);
+    const openInNewTab = external || shouldOpenInNewTab(href);
 
-    if (external || href.startsWith("http") || href.startsWith("//")) {
+    if (asChild) {
+        return (
+            <Slot className={classes} {...props}>
+                {children}
+            </Slot>
+        );
+    }
+
+    if (useNativeAnchor) {
         return (
             <a
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={openInNewTab ? "_blank" : undefined}
+                rel={openInNewTab ? mergeRel(rel) : rel}
                 className={classes}
                 {...props}
             >

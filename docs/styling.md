@@ -59,6 +59,39 @@ Why this works:
 
 ---
 
+## 🗺️ Token & Layer Decision Guide
+
+When deciding where a style belongs, use this order:
+
+1. `@theme` for design tokens that should map to Tailwind utilities.
+2. `@layer base` for global element defaults and app-wide CSS variables.
+3. `@layer utilities` for small, reusable semantic utility classes built from tokens.
+4. Component JSX classes for local layout/spacing and one-off composition.
+
+### Quick Rules
+
+- Put it in `@theme` when you want reusable utility classes like `text-primary`, `bg-secondary`, `border-tertiary`.
+- Put it in `@layer base` when you are styling HTML tags directly (`body`, `h1-h6`, `a`, `button`) or setting root vars (`--background`, `--foreground`, `--accent`).
+- Put it in `@layer utilities` when a semantic pattern repeats (for example `surface-card`, `text-content-muted`, `radius-card`).
+- Keep page/component-specific spacing and structure in JSX (`grid`, `flex`, `gap-*`, `p-*`, `m-*`).
+
+### Repo Examples
+
+- `@theme` token example: `--color-primary`, `--color-secondary`, `--color-muted` (enables `text-primary`, `text-secondary`, `text-muted`).
+- `@layer base` example: `body { background-color: var(--background); }`.
+- `@layer base` example: `:root { --accent: ...; --secondary: ...; --tertiary: ...; }`.
+- `@layer utilities` example: `.surface-card`, `.text-content-muted`, `.shadow-elevated`.
+- Component usage example: `Link` variants use semantic classes (`text-primary`, `text-secondary`, `text-muted`) instead of raw palette classes.
+
+### Why this structure
+
+- Token updates stay centralized, so palette changes are low-risk.
+- Base styles stay predictable across all pages.
+- Utility classes stay semantic and composable.
+- Components stay clean, DRY, and easy to refactor.
+
+---
+
 ## 📝 Typography System
 
 Current decision (active):

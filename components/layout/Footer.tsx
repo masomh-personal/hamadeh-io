@@ -37,7 +37,7 @@ export function Footer(): React.ReactElement {
                     </p>
 
                     {/* Tagline */}
-                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400 font-semibold">
+                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400 font-bold">
                         Made with
                         <IoHeart className="text-rose-500" aria-hidden="true" />
                         in ATL

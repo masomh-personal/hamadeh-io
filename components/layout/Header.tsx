@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { IconType } from "react-icons";
@@ -15,6 +14,7 @@ import {
     HiX,
 } from "react-icons/hi";
 import { Logo } from "@/components/Logo";
+import { Link } from "@/components/ui";
 
 export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,13 +48,14 @@ export function Header(): React.ReactElement {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`flex items-center gap-1 text-sm font-bold transition-colors ${
+                                    icon={<Icon className="h-3.5 w-3.5" />}
+                                    iconPosition="left"
+                                    className={`gap-1 text-sm transition-colors ${
                                         isActive
                                             ? "text-primary"
                                             : "text-muted hover:text-primary"
                                     }`}
                                 >
-                                    <Icon className="h-3.5 w-3.5" />
                                     {item.name}
                                 </Link>
                             );
@@ -94,13 +95,14 @@ export function Header(): React.ReactElement {
                                         key={item.name}
                                         href={item.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
+                                        icon={<Icon className="h-4 w-4" />}
+                                        iconPosition="left"
+                                        className={`gap-1.5 text-sm transition-colors ${
                                             isActive
                                                 ? "text-primary"
                                                 : "text-muted hover:text-primary"
                                         }`}
                                     >
-                                        <Icon className="h-4 w-4" />
                                         {item.name}
                                     </Link>
                                 );

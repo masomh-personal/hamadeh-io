@@ -1,11 +1,6 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import {
-    HiArrowLeft,
-    HiDocumentText,
-    HiDownload,
-    HiExternalLink,
-} from "react-icons/hi";
+import { HiArrowLeft, HiDocumentText, HiDownload } from "react-icons/hi";
 import { Link } from "@/components/ui";
 
 const RESUME_PUBLIC_PATH = "/resume.pdf";
@@ -32,28 +27,30 @@ export default function ResumePage(): React.ReactElement {
                     <Link
                         href="/"
                         variant="muted"
-                        className="inline-flex items-center gap-1"
+                        icon={<HiArrowLeft className="h-3.5 w-3.5" />}
+                        iconPosition="left"
+                        className="inline-flex items-center"
                     >
-                        <HiArrowLeft className="h-4 w-4" />
                         Back to Home
                     </Link>
                     <Link
                         href={RESUME_PUBLIC_PATH}
                         external
                         variant="primary"
-                        className="inline-flex items-center gap-1"
+                        className="inline-flex items-center"
                     >
-                        <HiExternalLink className="h-4 w-4" />
                         Open in New Tab
                     </Link>
-                    <a
+                    <Link
                         href={RESUME_PUBLIC_PATH}
                         download
-                        className="inline-flex items-center gap-1 font-heading font-semibold text-emerald-500 hover:text-emerald-400 hover:underline"
+                        variant="secondary"
+                        icon={<HiDownload className="h-3.5 w-3.5" />}
+                        iconPosition="left"
+                        className="inline-flex items-center"
                     >
-                        <HiDownload className="h-4 w-4" />
                         Download PDF
-                    </a>
+                    </Link>
                 </div>
             </header>
 

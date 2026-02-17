@@ -23,9 +23,10 @@ export default function AboutPage(): React.ReactElement {
                 <Link
                     href="/"
                     variant="muted"
-                    className="mt-4 inline-flex items-center gap-1"
+                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
+                    iconPosition="left"
+                    className="mt-4 inline-flex items-center"
                 >
-                    <HiArrowLeft className="h-4 w-4" />
                     Back to Home
                 </Link>
             </header>
@@ -168,7 +169,7 @@ export default function AboutPage(): React.ReactElement {
                 <Link
                     href="/resume"
                     variant="secondary"
-                    className="inline-flex items-center gap-1"
+                    className="inline-flex items-center"
                 >
                     View Full Resume
                 </Link>

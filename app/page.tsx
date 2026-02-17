@@ -130,9 +130,10 @@ export default function Home(): React.ReactElement {
                         <Link
                             href="/about"
                             variant="muted"
-                            className="inline-flex items-center gap-1"
+                            icon={<HiUser className="h-3.5 w-3.5" />}
+                            iconPosition="left"
+                            className="inline-flex items-center"
                         >
-                            <HiUser className="h-4 w-4" />
                             Learn more about me
                         </Link>
                     </div>

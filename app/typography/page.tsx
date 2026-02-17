@@ -107,7 +107,7 @@ export default function TypographyPage(): React.ReactElement {
                     and a button sample.
                 </p>
                 <Link href="/" variant="muted" className="mt-4 inline-block">
-                    ← Back to Home
+                    Back to Home
                 </Link>
             </header>
 
@@ -139,12 +139,12 @@ export default function TypographyPage(): React.ReactElement {
                         <div
                             className={`${pair.bodyFont} mt-5 flex flex-wrap items-center gap-4`}
                         >
-                            <a
+                            <Link
                                 href="/components"
-                                className={`${quicksand.className} font-semibold text-sky-400 underline-offset-2 hover:text-sky-300 hover:underline`}
+                                className={`${quicksand.className}`}
                             >
                                 Sample link
-                            </a>
+                            </Link>
                             <button
                                 type="button"
                                 className={`${quicksand.className} rounded-sm border border-sky-300/40 bg-sky-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-sky-400`}

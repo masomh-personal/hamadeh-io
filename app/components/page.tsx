@@ -45,7 +45,7 @@ export default function ComponentsPage(): React.ReactElement {
                     without locking ourselves into heavy opinionated UI kits.
                 </p>
                 <Link href="/" variant="muted" className="mt-4 inline-block">
-                    ← Back to Home
+                    Back to Home
                 </Link>
             </header>
 

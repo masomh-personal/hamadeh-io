@@ -7,7 +7,7 @@ import {
     Quicksand,
     Source_Sans_3,
 } from "next/font/google";
-import { Link } from "@/components/ui";
+import { Button, Link } from "@/components/ui";
 
 const quicksand = Quicksand({
     subsets: ["latin"],
@@ -141,16 +141,18 @@ export default function TypographyPage(): React.ReactElement {
                         >
                             <Link
                                 href="/components"
-                                className={`${quicksand.className}`}
+                                className={`${quicksand.className} inline-flex items-center whitespace-nowrap leading-none`}
                             >
                                 Sample link
                             </Link>
-                            <button
-                                type="button"
-                                className={`${quicksand.className} rounded-sm border border-sky-300/40 bg-sky-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-sky-400`}
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                enforceMinWidth={false}
+                                className={`${quicksand.className} normal-case font-semibold`}
                             >
                                 Sample button
-                            </button>
+                            </Button>
                         </div>
 
                         <p className="text-content-subtle mt-4 text-sm">

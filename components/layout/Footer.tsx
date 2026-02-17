@@ -37,7 +37,7 @@ export function Footer(): React.ReactElement {
 
                     {/* Copyright */}
                     <p className="text-content-subtle text-xs leading-tight">
-                        &copy; {currentYear} | ThoughtfulCode. All rights
+                        © {currentYear} ThoughtfulCode · Hamadeh.io. All rights
                         reserved.
                     </p>
 

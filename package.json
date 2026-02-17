@@ -8,6 +8,7 @@
     },
     "scripts": {
         "dev": "next dev",
+        "dev:fresh": "bun run clean:next && bun run dev",
         "build": "next build",
         "start": "next start",
         "check": "biome check .",
@@ -17,6 +18,7 @@
         "test": "bun test",
         "test:coverage": "bun test --coverage",
         "clean": "bun scripts/clean.ts",
+        "clean:next": "bun scripts/clean-next.ts",
         "healthcheck": "bun run format && bun run type-check && bun run check",
         "new:solution": "bun scripts/new-solution.ts",
         "publish:solution": "bun scripts/publish-solution.ts",

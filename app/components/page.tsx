@@ -57,63 +57,63 @@ export default function ComponentsPage(): React.ReactElement {
 
             <Tabs
                 defaultValue="button"
-                className="grid gap-6 md:grid-cols-[280px_minmax(0,1fr)] md:items-start"
+                className="space-y-4 md:grid md:grid-cols-[260px_minmax(0,1fr)] md:items-start md:gap-6 md:space-y-0"
             >
                 <TabsList
                     aria-label="Component showcase sections"
-                    className="flex h-full min-h-[520px] w-full flex-col items-stretch justify-start gap-2 rounded-xl border-2 border-slate-600 bg-linear-to-b from-slate-800/95 to-slate-900/95 p-3 shadow-[0_0_0_1px_rgba(56,189,248,0.12),0_12px_30px_rgba(2,6,23,0.45)] md:sticky md:top-20"
+                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:h-full md:min-h-[520px] md:flex-col md:items-stretch md:justify-start md:gap-2 md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
                 >
                     <TabsTrigger
                         value="button"
-                        className="w-full justify-start rounded-md border border-transparent px-4 py-3 text-left text-base data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
                     >
                         <span className="flex flex-col items-start leading-tight">
-                            <span>Button</span>
-                            <span className="text-content-subtle text-xs font-normal">
+                            <span className="whitespace-nowrap">Button</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Actions and states
                             </span>
                         </span>
                     </TabsTrigger>
                     <TabsTrigger
                         value="link"
-                        className="w-full justify-start rounded-md border border-transparent px-4 py-3 text-left text-base data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
                     >
                         <span className="flex flex-col items-start leading-tight">
-                            <span>Link</span>
-                            <span className="text-content-subtle text-xs font-normal">
+                            <span className="whitespace-nowrap">Link</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Navigation patterns
                             </span>
                         </span>
                     </TabsTrigger>
                     <TabsTrigger
                         value="card"
-                        className="w-full justify-start rounded-md border border-transparent px-4 py-3 text-left text-base data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
                     >
                         <span className="flex flex-col items-start leading-tight">
-                            <span>Card</span>
-                            <span className="text-content-subtle text-xs font-normal">
+                            <span className="whitespace-nowrap">Card</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Content containers
                             </span>
                         </span>
                     </TabsTrigger>
                     <TabsTrigger
                         value="badge"
-                        className="w-full justify-start rounded-md border border-transparent px-4 py-3 text-left text-base data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
                     >
                         <span className="flex flex-col items-start leading-tight">
-                            <span>Badge</span>
-                            <span className="text-content-subtle text-xs font-normal">
+                            <span className="whitespace-nowrap">Badge</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Labels and status
                             </span>
                         </span>
                     </TabsTrigger>
                     <TabsTrigger
                         value="qa"
-                        className="w-full justify-start rounded-md border border-transparent px-4 py-3 text-left text-base data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
                     >
                         <span className="flex flex-col items-start leading-tight">
-                            <span>A11y QA</span>
-                            <span className="text-content-subtle text-xs font-normal">
+                            <span className="whitespace-nowrap">A11y QA</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Keyboard and focus
                             </span>
                         </span>
@@ -123,7 +123,7 @@ export default function ComponentsPage(): React.ReactElement {
                 <div>
                     <TabsContent
                         value="button"
-                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Button</h2>
@@ -286,7 +286,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="link"
-                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Link</h2>
@@ -335,7 +335,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="card"
-                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Card</h2>
@@ -388,7 +388,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="badge"
-                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">Badge</h2>
@@ -454,7 +454,7 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent
                         value="qa"
-                        className="surface-card radius-card min-h-[520px] p-6 md:p-8"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
                     >
                         <section>
                             <h2 className="font-bold text-white">

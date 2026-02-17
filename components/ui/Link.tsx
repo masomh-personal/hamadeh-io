@@ -114,7 +114,7 @@ export function Link({
     ...props
 }: ThoughtfulLinkProps): React.ReactElement {
     const baseClasses =
-        "relative inline-flex items-center gap-0.5 rounded-sm px-0.5 -mx-0.5 underline-offset-2 transition-[color,background-color,transform,box-shadow] duration-200 ease-out transform-gpu hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
+        "relative inline-flex items-center gap-0.75 rounded-sm px-0.5 -mx-0.5 underline-offset-2 transition-[color,background-color,transform,box-shadow] duration-200 ease-out transform-gpu hover:scale-[1.02] active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
     const classes = cn(variantClasses[variant], baseClasses, className);
     if (asChild) {
         return (

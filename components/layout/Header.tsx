@@ -37,7 +37,7 @@ export function Header(): React.ReactElement {
                     <Logo size="default" />
 
                     {/* Desktop Navigation */}
-                    <div className="hidden items-center gap-5 md:flex">
+                    <div className="hidden items-center gap-4 md:flex">
                         {navigation.map((item) => {
                             const isActive =
                                 pathname === item.href ||
@@ -50,7 +50,7 @@ export function Header(): React.ReactElement {
                                     href={item.href}
                                     icon={<Icon className="h-3.5 w-3.5" />}
                                     iconPosition="left"
-                                    className={`gap-1 text-sm transition-colors ${
+                                    className={`text-sm transition-colors ${
                                         isActive
                                             ? "text-primary"
                                             : "text-muted hover:text-primary"
@@ -97,7 +97,7 @@ export function Header(): React.ReactElement {
                                         onClick={() => setMobileMenuOpen(false)}
                                         icon={<Icon className="h-4 w-4" />}
                                         iconPosition="left"
-                                        className={`gap-1.5 text-sm transition-colors ${
+                                        className={`text-sm transition-colors ${
                                             isActive
                                                 ? "text-primary"
                                                 : "text-muted hover:text-primary"

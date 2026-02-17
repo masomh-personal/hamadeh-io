@@ -42,8 +42,13 @@ export default function ComponentsPage(): React.ReactElement {
                     Components Showcase
                 </h1>
                 <p className="text-content-muted mt-2">
-                    A living gallery for design iteration, usability checks, and
-                    Radix-first wrapper polish.
+                    This page is a living component lab for our UI system. We
+                    use a wrapper-first approach: Radix primitives provide
+                    accessible behavior and interaction patterns, while our own
+                    components define styling, spacing, and visual identity. The
+                    goal is to iterate quickly, validate UX and keyboard
+                    behavior, and keep a clean, maintainable design system
+                    without locking ourselves into heavy opinionated UI kits.
                 </p>
                 <Link href="/" variant="muted" className="mt-4 inline-block">
                     ← Back to Home

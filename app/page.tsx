@@ -19,12 +19,12 @@ export default function Home(): React.ReactElement {
                         problem solving, ship reusable UI, and write practical
                         notes on building maintainable software.
                     </p>
-                    <div className="mt-7 flex flex-wrap items-center gap-3">
-                        <Button href="/leetcode" size="md">
-                            View LeetCode Solutions
-                        </Button>
+                    <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                         <Button href="/resume" variant="secondary" size="md">
                             View Resume
+                        </Button>
+                        <Button href="/leetcode" size="md">
+                            View LeetCode Solutions
                         </Button>
                     </div>
                 </div>
@@ -112,10 +112,19 @@ export default function Home(): React.ReactElement {
                 <h2 className="font-bold text-white">Current Focus</h2>
                 <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
-                        I&apos;m currently building the foundation of this
-                        portfolio: reusable UI wrappers, structured problem
-                        content, and a clean developer workflow with Bun +
-                        Biome.
+                        This site is my public engineering workspace where I
+                        practice shipping consistently, document technical
+                        decisions, and raise the quality bar over time. I&apos;m
+                        building it to showcase how I think through problems,
+                        not just polished outcomes.
+                    </p>
+                    <p className="text-content-muted mt-3">
+                        My current goal is to build a maintainable foundation:
+                        reusable component wrappers, predictable styling
+                        patterns, and a clean workflow with Bun + Biome. Over
+                        time, this becomes a record of my growth as an engineer,
+                        the standards I hold, and the kind of systems I want to
+                        build professionally.
                     </p>
                     <div className="mt-4">
                         <Link

@@ -3,10 +3,12 @@
  * Keep routing and anchor safety behavior consistent in one place.
  */
 export function shouldUseNativeAnchor(href: string): boolean {
+    const value = href.trim().toLowerCase();
+
     return (
-        href.startsWith("#") ||
-        href.startsWith("//") ||
-        /^[a-zA-Z][a-zA-Z\d+\-.]*:/.test(href)
+        value.startsWith("#") ||
+        value.startsWith("//") ||
+        /^[a-z][a-z\d+\-.]*:/.test(value)
     );
 }
 

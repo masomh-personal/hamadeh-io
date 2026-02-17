@@ -1,5 +1,6 @@
 import { IoHeart } from "react-icons/io5";
 import { SiGithub, SiLinkedin } from "react-icons/si";
+import { Link } from "@/components/ui";
 
 export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();
@@ -7,37 +8,41 @@ export function Footer(): React.ReactElement {
     return (
         <footer className="site-footer">
             <div className="mx-auto max-w-6xl px-6 py-6">
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex flex-col items-center gap-1.5">
                     {/* Social Links */}
-                    <div className="flex items-center gap-3">
-                        <a
+                    <div className="flex items-center gap-1">
+                        <Link
                             href="https://github.com/masomh-personal"
                             target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-muted transition-colors hover:text-primary"
+                            external
+                            variant="muted"
+                            showIcon={false}
+                            className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
                             aria-label="GitHub"
                         >
                             <SiGithub className="footer-icon" />
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="https://www.linkedin.com/in/masomh/"
                             target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-muted transition-colors hover:text-primary"
+                            external
+                            variant="muted"
+                            showIcon={false}
+                            className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
                             aria-label="LinkedIn"
                         >
                             <SiLinkedin className="footer-icon" />
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Copyright */}
-                    <p className="text-xs text-slate-400">
+                    <p className="text-content-subtle text-xs leading-tight">
                         &copy; {currentYear} | ThoughtfulCode. All rights
                         reserved.
                     </p>
 
                     {/* Tagline */}
-                    <p className="flex items-center gap-2 font-baloo text-sm text-slate-400 font-bold">
+                    <p className="text-content-subtle flex items-center gap-1.5 font-baloo text-sm leading-tight font-bold">
                         Made with
                         <IoHeart className="text-rose-500" aria-hidden="true" />
                         in ATL

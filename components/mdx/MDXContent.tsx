@@ -3,14 +3,16 @@
  * Renders markdown content with syntax highlighting
  */
 
-import ReactMarkdown from "react-markdown";
+import { MarkdownAsync } from "react-markdown";
 import rehypePrettyCode from "rehype-pretty-code";
 
 interface MDXContentProps {
     content: string;
 }
 
-export function MDXContent({ content }: MDXContentProps): React.ReactElement {
+export async function MDXContent({
+    content,
+}: MDXContentProps): Promise<React.ReactElement> {
     const codeTheme = {
         dark: "github-dark-default",
         light: "github-light-default",
@@ -18,7 +20,7 @@ export function MDXContent({ content }: MDXContentProps): React.ReactElement {
 
     return (
         <div className="prose max-w-none">
-            <ReactMarkdown
+            <MarkdownAsync
                 rehypePlugins={[
                     [
                         rehypePrettyCode,
@@ -30,7 +32,7 @@ export function MDXContent({ content }: MDXContentProps): React.ReactElement {
                 ]}
             >
                 {content}
-            </ReactMarkdown>
+            </MarkdownAsync>
         </div>
     );
 }

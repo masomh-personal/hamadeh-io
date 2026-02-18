@@ -159,16 +159,16 @@ export async function getAllBlogPosts(
  * @throws Error if post not found or invalid
  */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
-    const contentDir = join(process.cwd(), "content", "blog");
-    const files = await findContentFiles(contentDir, [".md"]);
+    // Resolve by frontmatter slug (not filename) so routing remains stable
+    // even when file names differ from public slugs.
+    const posts = await getAllBlogPosts(true);
+    const post = posts.find((entry) => entry.slug === slug);
 
-    const filePath = files.find((path) => getSlugFromFilePath(path) === slug);
-
-    if (!filePath) {
+    if (!post) {
         throw new Error(`Blog post with slug "${slug}" not found`);
     }
 
-    return getBlogPostByPath(filePath);
+    return post;
 }
 
 /**

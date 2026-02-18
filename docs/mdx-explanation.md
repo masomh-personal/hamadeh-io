@@ -84,7 +84,7 @@ const withMDX = createMDX({
 });
 ```
 
-**Result:** Code blocks are automatically highlighted with `highlight.js`.
+**Result:** Code blocks are automatically highlighted with Shiki via `rehype-pretty-code`.
 
 ### 5. **Usage in Pages**
 

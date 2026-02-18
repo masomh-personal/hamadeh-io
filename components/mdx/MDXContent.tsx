@@ -4,16 +4,31 @@
  */
 
 import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
+import rehypePrettyCode from "rehype-pretty-code";
 
 interface MDXContentProps {
     content: string;
 }
 
 export function MDXContent({ content }: MDXContentProps): React.ReactElement {
+    const codeTheme = {
+        dark: "github-dark-default",
+        light: "github-light-default",
+    } as const;
+
     return (
         <div className="prose max-w-none">
-            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+            <ReactMarkdown
+                rehypePlugins={[
+                    [
+                        rehypePrettyCode,
+                        {
+                            theme: codeTheme,
+                            keepBackground: false,
+                        },
+                    ],
+                ]}
+            >
                 {content}
             </ReactMarkdown>
         </div>

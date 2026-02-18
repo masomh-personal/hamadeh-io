@@ -15,7 +15,7 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Language** | TypeScript | Type safety, best practice, portfolio showcase |
 | **Styling** | Tailwind CSS | Utility-first, fast development, great with Next.js |
 | **Content** | MDX (@next/mdx) | Markdown + React components, version controlled |
-| **Syntax Highlighting** | rehype-highlight + highlight.js | Beautiful code blocks for technical content |
+| **Syntax Highlighting** | rehype-pretty-code + Shiki | Editor-grade code blocks for technical content |
 | **Frontmatter Parsing** | gray-matter | Extract metadata from MDX files |
 | **Frontmatter Validation** | Valibot | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance |
 | **Linting & Formatting** | Biome | All-in-one tool (replaces ESLint + Prettier), 25x faster, zero config |
@@ -472,7 +472,7 @@ git commit -m "feat: add two-sum solution"
 
 #### Blog Post Workflow
 
-1. Create MDX file in `content/blog/[slug].mdx`
+1. Create Markdown file in `content/blog/[slug].md`
 2. Add frontmatter with title, slug, datePublished, tags
 3. Write content in Markdown
 4. Set `status: "published"` when ready

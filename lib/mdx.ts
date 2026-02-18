@@ -4,7 +4,7 @@
  */
 
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { basename, extname, join } from "node:path";
 import matter from "gray-matter";
 import {
     type BlogFrontmatter,
@@ -39,7 +39,7 @@ export async function getAllSolutions(): Promise<LeetCodeSolution[]> {
 
     try {
         // Recursively find all .mdx files
-        const files = await findMdxFiles(contentDir);
+        const files = await findContentFiles(contentDir, [".mdx"]);
 
         for (const filePath of files) {
             try {
@@ -76,10 +76,10 @@ export async function getSolutionBySlug(
     slug: string
 ): Promise<LeetCodeSolution> {
     const contentDir = join(process.cwd(), "content", "leetcode");
-    const files = await findMdxFiles(contentDir);
+    const files = await findContentFiles(contentDir, [".mdx"]);
 
-    // Find file matching slug
-    const filePath = files.find((path) => path.includes(`${slug}.mdx`));
+    // Find file matching slug exactly (avoid partial-match collisions)
+    const filePath = files.find((path) => getSlugFromFilePath(path) === slug);
 
     if (!filePath) {
         throw new Error(`Solution with slug "${slug}" not found`);
@@ -120,7 +120,8 @@ export async function getAllBlogPosts(
     const posts: BlogPost[] = [];
 
     try {
-        const files = await findMdxFiles(contentDir);
+        // Blog content is Markdown-only for now
+        const files = await findContentFiles(contentDir, [".md"]);
 
         for (const filePath of files) {
             try {
@@ -159,9 +160,9 @@ export async function getAllBlogPosts(
  */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
     const contentDir = join(process.cwd(), "content", "blog");
-    const files = await findMdxFiles(contentDir);
+    const files = await findContentFiles(contentDir, [".md"]);
 
-    const filePath = files.find((path) => path.includes(`${slug}.mdx`));
+    const filePath = files.find((path) => getSlugFromFilePath(path) === slug);
 
     if (!filePath) {
         throw new Error(`Blog post with slug "${slug}" not found`);
@@ -191,11 +192,15 @@ async function getBlogPostByPath(filePath: string): Promise<BlogPost> {
 }
 
 /**
- * Recursively find all .mdx files in a directory
+ * Recursively find content files in a directory by extension
  * @param dir - Directory to search
- * @returns Array of full file paths to .mdx files
+ * @param extensions - File extensions to include (e.g., [".mdx"])
+ * @returns Array of full file paths
  */
-async function findMdxFiles(dir: string): Promise<string[]> {
+async function findContentFiles(
+    dir: string,
+    extensions: string[]
+): Promise<string[]> {
     const files: string[] = [];
     const entries = await readdir(dir, { withFileTypes: true });
 
@@ -204,12 +209,21 @@ async function findMdxFiles(dir: string): Promise<string[]> {
 
         if (entry.isDirectory()) {
             // Recursively search subdirectories
-            const subFiles = await findMdxFiles(fullPath);
+            const subFiles = await findContentFiles(fullPath, extensions);
             files.push(...subFiles);
-        } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
+        } else if (entry.isFile() && extensions.includes(extname(entry.name))) {
             files.push(fullPath);
         }
     }
 
     return files;
+}
+
+/**
+ * Extract content slug from file path
+ * @param filePath - Full path to content file
+ * @returns Filename without extension
+ */
+function getSlugFromFilePath(filePath: string): string {
+    return basename(filePath, extname(filePath));
 }

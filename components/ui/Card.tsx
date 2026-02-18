@@ -18,7 +18,7 @@ const variantClasses: Record<CardVariant, string> = {
 };
 type CardActionBase = Omit<
     ThoughtfulButtonProps,
-    "children" | "variant" | "enforceMinWidth"
+    "children" | "variant" | "enforceMinWidth" | "asChild"
 >;
 
 type CardActionWithTextLabel = CardActionBase & {
@@ -132,14 +132,15 @@ export function Card({
                                             ? `${label}-${index}`
                                             : `${actionProps["aria-label"]}-${index}`
                                     }
+                                    {...actionProps}
                                     size="sm"
                                     enforceMinWidth={false}
+                                    asChild={false}
                                     variant={variantForPosition}
                                     className={cn(
                                         "w-full whitespace-nowrap text-center text-[0.75rem] leading-none tracking-[0.038em]",
                                         actionClassName
                                     )}
-                                    {...actionProps}
                                 >
                                     {label}
                                 </Button>

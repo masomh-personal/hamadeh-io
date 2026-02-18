@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -54,15 +52,9 @@ const sizeClasses = {
 } as const;
 
 const iconSizeClasses = {
-    sm: "[&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
-    md: "[&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
-    lg: "[&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
-} as const;
-
-const iconContainerSizeClasses = {
-    sm: "h-3.5 w-3.5",
-    md: "h-3.5 w-3.5",
-    lg: "h-3.5 w-3.5",
+    sm: "h-3.5 w-3.5 [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
+    md: "h-3.5 w-3.5 [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
+    lg: "h-3.5 w-3.5 [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:block",
 } as const;
 
 export interface BadgeProps extends Omit<ComponentProps<"span">, "children"> {
@@ -93,7 +85,7 @@ export function Badge({
             aria-hidden="true"
             className={cn(
                 "inline-flex shrink-0 items-center justify-center leading-none",
-                iconContainerSizeClasses[size]
+                iconSizeClasses[size]
             )}
         >
             {icon}
@@ -106,7 +98,6 @@ export function Badge({
                 "inline-flex items-center gap-1 rounded-md border font-baloo font-semibold uppercase tracking-[0.03em] whitespace-nowrap",
                 resolvedToneClasses,
                 sizeClasses[size],
-                iconSizeClasses[size],
                 className
             )}
             {...props}

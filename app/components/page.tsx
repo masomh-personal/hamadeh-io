@@ -382,7 +382,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     icon={
                                         <HiCheckCircle className="text-emerald-300" />
                                     }
-                                    className="min-h-72"
+                                    className="min-h-68"
                                     actions={[
                                         {
                                             label: "Action",
@@ -396,7 +396,7 @@ export default function ComponentsPage(): React.ReactElement {
                                 <Card
                                     title="No Actions"
                                     subtitle="When no actions are provided, no actions area renders."
-                                    className="min-h-72"
+                                    className="min-h-68"
                                 >
                                     <p>
                                         This keeps the layout clean for purely
@@ -408,7 +408,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     title="Secondary Variant"
                                     subtitle="Two actions split 50/50 with left primary and right secondary."
                                     variant="secondary"
-                                    className="min-h-72"
+                                    className="min-h-68"
                                     actions={[
                                         {
                                             label: "Primary",
@@ -424,7 +424,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     title="Transparent Variant"
                                     subtitle="Great for subtle contexts where you want structure without heavy surface contrast."
                                     variant="transparent"
-                                    className="min-h-72"
+                                    className="min-h-68"
                                 >
                                     <p>
                                         Transparent keeps hierarchy while
@@ -436,7 +436,7 @@ export default function ComponentsPage(): React.ReactElement {
                                     title="Tertiary Variant"
                                     subtitle="Useful for warm highlight moments or friendly emphasis blocks."
                                     variant="tertiary"
-                                    className="min-h-72"
+                                    className="min-h-68"
                                     actions={[
                                         { label: "Start", href: "/components" },
                                         { label: "Learn more", href: "/about" },
@@ -450,19 +450,16 @@ export default function ComponentsPage(): React.ReactElement {
 
                                 <Card
                                     title="Long Subtitle Handling"
-                                    subtitle="This subtitle is intentionally much longer than ideal to demonstrate max-length truncation behavior for card metadata and keep each card in the grid visually balanced."
-                                    className="min-h-72"
+                                    subtitle="This subtitle is intentionally much longer than ideal to show the presentational-first behavior. The component renders provided content as-is, so consumers can see when copy gets too verbose and decide where to enforce content constraints."
+                                    className="min-h-68"
                                     actions={[
                                         {
-                                            label: "Preview truncation",
+                                            label: "Review content",
                                             href: "/components",
                                         },
                                     ]}
                                 >
-                                    <p>
-                                        Hover the subtitle text to see the full
-                                        value via native tooltip.
-                                    </p>
+                                    <p>Long copy is visible by design.</p>
                                 </Card>
                             </div>
                         </section>

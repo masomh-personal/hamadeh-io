@@ -37,8 +37,7 @@ type CardActions = [] | [CardAction] | [CardAction, CardAction];
 export interface ThoughtfulCardProps
     extends Omit<ComponentProps<"article">, "children" | "title"> {
     title: ReactNode;
-    subtitle?: ReactNode;
-    subtitleMaxLength?: number;
+    subtitle?: string;
     icon?: ReactNode;
     iconClassName?: string;
     actions?: CardActions;
@@ -54,7 +53,6 @@ export interface ThoughtfulCardProps
 export function Card({
     title,
     subtitle,
-    subtitleMaxLength = 80,
     icon,
     iconClassName,
     actions,
@@ -66,13 +64,6 @@ export function Card({
     const visibleActions = actions ?? [];
     const hasActions = visibleActions.length;
     const hasTwoActions = visibleActions.length === 2;
-    const subtitleText = typeof subtitle === "string" ? subtitle : undefined;
-    const isSubtitleTruncated =
-        typeof subtitleText === "string" &&
-        subtitleText.length > subtitleMaxLength;
-    const resolvedSubtitle = isSubtitleTruncated
-        ? `${subtitleText?.slice(0, subtitleMaxLength).trimEnd()}...`
-        : subtitle;
 
     return (
         <article
@@ -101,25 +92,10 @@ export function Card({
                     ) : null}
                     <span>{title}</span>
                 </h3>
-                {resolvedSubtitle ? (
-                    <div className="group/subtitle relative mt-1.5">
-                        <p
-                            className="text-content-subtle [display:-webkit-box] overflow-hidden text-xs leading-relaxed [-webkit-box-orient:vertical] [-webkit-line-clamp:2]"
-                            title={
-                                isSubtitleTruncated ? subtitleText : undefined
-                            }
-                        >
-                            {resolvedSubtitle}
-                        </p>
-                        {isSubtitleTruncated && subtitleText ? (
-                            <span
-                                role="tooltip"
-                                className="surface-panel pointer-events-none absolute top-full left-0 z-20 mt-2 max-w-[18rem] rounded-md border border-slate-400/70 px-2 py-1 text-[0.7rem] leading-snug text-slate-200 opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.45)] transition-opacity duration-150 group-hover/subtitle:opacity-100"
-                            >
-                                {subtitleText}
-                            </span>
-                        ) : null}
-                    </div>
+                {subtitle ? (
+                    <p className="text-content-subtle mt-1.5 text-xs leading-relaxed">
+                        {subtitle}
+                    </p>
                 ) : null}
             </header>
 

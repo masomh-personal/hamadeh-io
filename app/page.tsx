@@ -63,7 +63,7 @@ export default function Home(): React.ReactElement {
                         subtitle="Problem breakdowns, patterns, and complexity insights."
                         icon={<HiCode className="h-4 w-4 text-sky-300" />}
                         variant="secondary"
-                        className="min-h-60"
+                        className="min-h-56"
                         actions={[
                             { label: "Explore solutions", href: "/leetcode" },
                         ]}
@@ -81,7 +81,7 @@ export default function Home(): React.ReactElement {
                             <HiDocumentText className="h-4 w-4 text-emerald-300" />
                         }
                         variant="secondary"
-                        className="min-h-60"
+                        className="min-h-56"
                         actions={[{ label: "Read posts", href: "/blog" }]}
                     >
                         <p>
@@ -97,7 +97,7 @@ export default function Home(): React.ReactElement {
                             <HiCollection className="h-4 w-4 text-amber-300" />
                         }
                         variant="secondary"
-                        className="min-h-60"
+                        className="min-h-56"
                         actions={[
                             { label: "Open showcase", href: "/components" },
                         ]}

@@ -298,7 +298,7 @@
         overflow: hidden;
         border-color: color-mix(
             in srgb,
-            var(--color-slate-300) 95%,
+            var(--color-slate-500) 88%,
             transparent
         );
         box-shadow: 0 10px 26px rgba(2, 6, 23, 0.32);
@@ -338,7 +338,7 @@
         transform: translateY(-1px);
         border-color: color-mix(
             in srgb,
-            var(--color-slate-200) 95%,
+            var(--color-slate-400) 92%,
             transparent
         );
         box-shadow: 0 16px 34px rgba(2, 6, 23, 0.42);

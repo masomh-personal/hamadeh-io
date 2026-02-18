@@ -371,46 +371,53 @@ export default function ComponentsPage(): React.ReactElement {
                             <h2 className="font-bold text-white">Card</h2>
                             <p className="text-content-muted mb-6">
                                 Container hierarchy, information density, and
-                                action placement.
+                                action placement with polished rhythm and
+                                interaction states.
                             </p>
 
                             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                                <Card>
-                                    <Card.Header>
-                                        <Card.Title>Default Card</Card.Title>
-                                        <Card.Description>
-                                            A simple card with all slots
-                                        </Card.Description>
-                                    </Card.Header>
-                                    <Card.Content>
-                                        <p>Body content goes here.</p>
-                                    </Card.Content>
-                                    <Card.Footer>
-                                        <Button size="sm">Action</Button>
-                                    </Card.Footer>
+                                <Card
+                                    title="Default + Divider"
+                                    subtitle="Single-action cards render one full-width primary button."
+                                    icon={
+                                        <HiCheckCircle className="text-emerald-300" />
+                                    }
+                                    className="min-h-72"
+                                    actions={[
+                                        {
+                                            label: "Action",
+                                            href: "/components",
+                                        },
+                                    ]}
+                                >
+                                    <p>Body content goes here.</p>
                                 </Card>
 
-                                <Card>
-                                    <Card.Header>
-                                        <Card.Title>Minimal</Card.Title>
-                                    </Card.Header>
-                                    <Card.Content>
-                                        <p>Just title and content.</p>
-                                    </Card.Content>
+                                <Card
+                                    title="No Actions"
+                                    subtitle="When no actions are provided, no actions area renders."
+                                    className="min-h-72"
+                                >
+                                    <p>
+                                        This keeps the layout clean for purely
+                                        informational cards.
+                                    </p>
                                 </Card>
 
-                                <Card variant="secondary">
-                                    <Card.Header>
-                                        <Card.Title>
-                                            Secondary Variant
-                                        </Card.Title>
-                                        <Card.Description>
-                                            Medium prominence
-                                        </Card.Description>
-                                    </Card.Header>
-                                    <Card.Content>
-                                        <p>Different visual weight.</p>
-                                    </Card.Content>
+                                <Card
+                                    title="Secondary Variant"
+                                    subtitle="Two actions split 50/50 with left primary and right secondary."
+                                    variant="secondary"
+                                    className="min-h-72"
+                                    actions={[
+                                        {
+                                            label: "Primary",
+                                            href: "/components",
+                                        },
+                                        { label: "Secondary", href: "/about" },
+                                    ]}
+                                >
+                                    <p>Different visual weight and tone.</p>
                                 </Card>
                             </div>
                         </section>

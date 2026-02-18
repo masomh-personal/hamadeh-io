@@ -58,52 +58,54 @@ export default function Home(): React.ReactElement {
                     What&apos;s On This Site
                 </h2>
                 <div className="mt-5 grid gap-4 md:grid-cols-3">
-                    <Card variant="secondary">
-                        <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
-                                <HiCode className="h-4 w-4 text-sky-300" />
-                                LeetCode Solutions
-                            </h3>
-                            <p className="text-content-muted">
-                                Problem breakdowns, patterns, and complexity
-                                insights.
-                            </p>
-                        </div>
-                        <div className="text-content pt-3">
-                            <Link href="/leetcode">Explore solutions</Link>
-                        </div>
+                    <Card
+                        title="LeetCode Solutions"
+                        subtitle="Problem breakdowns, patterns, and complexity insights."
+                        icon={<HiCode className="h-4 w-4 text-sky-300" />}
+                        variant="secondary"
+                        className="min-h-60"
+                        actions={[
+                            { label: "Explore solutions", href: "/leetcode" },
+                        ]}
+                    >
+                        <p>
+                            Practice-focused writeups with clear tradeoffs and
+                            complexity analysis.
+                        </p>
                     </Card>
 
-                    <Card variant="secondary">
-                        <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
-                                <HiDocumentText className="h-4 w-4 text-emerald-300" />
-                                Blog
-                            </h3>
-                            <p className="text-content-muted">
-                                Engineering notes, lessons learned, and build
-                                logs.
-                            </p>
-                        </div>
-                        <div className="text-content pt-3">
-                            <Link href="/blog">Read posts</Link>
-                        </div>
+                    <Card
+                        title="Blog"
+                        subtitle="Engineering notes, lessons learned, and build logs."
+                        icon={
+                            <HiDocumentText className="h-4 w-4 text-emerald-300" />
+                        }
+                        variant="secondary"
+                        className="min-h-60"
+                        actions={[{ label: "Read posts", href: "/blog" }]}
+                    >
+                        <p>
+                            Short technical posts about implementation choices
+                            and iteration.
+                        </p>
                     </Card>
 
-                    <Card variant="secondary">
-                        <div className="pb-3">
-                            <h3 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-100">
-                                <HiCollection className="h-4 w-4 text-amber-300" />
-                                Components
-                            </h3>
-                            <p className="text-content-muted">
-                                A live gallery of reusable UI components and
-                                design tweaks.
-                            </p>
-                        </div>
-                        <div className="text-content pt-3">
-                            <Link href="/components">Open showcase</Link>
-                        </div>
+                    <Card
+                        title="Components"
+                        subtitle="A live gallery of reusable UI components and design tweaks."
+                        icon={
+                            <HiCollection className="h-4 w-4 text-amber-300" />
+                        }
+                        variant="secondary"
+                        className="min-h-60"
+                        actions={[
+                            { label: "Open showcase", href: "/components" },
+                        ]}
+                    >
+                        <p>
+                            UI primitives and wrappers that evolve with
+                            practical design feedback.
+                        </p>
                     </Card>
                 </div>
             </section>

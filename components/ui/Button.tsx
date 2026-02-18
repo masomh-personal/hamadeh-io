@@ -3,6 +3,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
+import { HiCog } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import { shouldUseNativeAnchor } from "./component-utils";
 
@@ -43,9 +44,9 @@ const minWidthClasses: Record<ButtonSize, string> = {
 };
 
 const iconSizeClasses: Record<IconSize, string> = {
-    sm: "[&_svg]:h-3 [&_svg]:w-3",
-    md: "[&_svg]:h-3.5 [&_svg]:w-3.5",
-    lg: "[&_svg]:h-4 [&_svg]:w-4",
+    sm: "[&_svg]:h-3.5 [&_svg]:w-3.5",
+    md: "[&_svg]:h-4 [&_svg]:w-4",
+    lg: "[&_svg]:h-4.5 [&_svg]:w-4.5",
 };
 
 type ButtonClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
@@ -118,8 +119,8 @@ function getButtonContent({
     return (
         <>
             {loadingIcon ?? (
-                <span
-                    className="h-3.5 w-3.5 animate-spin rounded-full border border-current border-r-transparent"
+                <HiCog
+                    className="animate-[spin_1.6s_linear_infinite]"
                     aria-hidden="true"
                 />
             )}

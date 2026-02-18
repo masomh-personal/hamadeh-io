@@ -2,7 +2,14 @@
 
 import NextLink from "next/link";
 import { useState } from "react";
-import { HiArrowRight, HiCheckCircle, HiHome, HiRefresh } from "react-icons/hi";
+import {
+    HiArrowRight,
+    HiCheckCircle,
+    HiCode,
+    HiCog,
+    HiHome,
+    HiRefresh,
+} from "react-icons/hi";
 import {
     Badge,
     Button,
@@ -235,15 +242,25 @@ export default function ComponentsPage(): React.ReactElement {
                                         <Button
                                             variant="primary"
                                             isLoading
-                                            loadingText="Saving changes..."
+                                            loadingText="Refreshing..."
+                                            loadingIcon={
+                                                <HiRefresh className="h-4 w-4 animate-[spin_1.6s_linear_infinite]" />
+                                            }
                                         />
-                                        <Button variant="secondary" isLoading />
+                                        <Button
+                                            variant="secondary"
+                                            isLoading
+                                            loadingText="Building..."
+                                            loadingIcon={
+                                                <HiCog className="h-4 w-4 animate-[spin_1.6s_linear_infinite]" />
+                                            }
+                                        />
                                         <Button
                                             variant="tertiary"
                                             isLoading
-                                            loadingText="Syncing..."
+                                            loadingText="Processing..."
                                             loadingIcon={
-                                                <HiRefresh className="h-4 w-4 animate-spin" />
+                                                <HiCode className="h-4 w-4 animate-[spin_1.6s_linear_infinite]" />
                                             }
                                         />
                                     </div>

@@ -419,6 +419,51 @@ export default function ComponentsPage(): React.ReactElement {
                                 >
                                     <p>Different visual weight and tone.</p>
                                 </Card>
+
+                                <Card
+                                    title="Transparent Variant"
+                                    subtitle="Great for subtle contexts where you want structure without heavy surface contrast."
+                                    variant="transparent"
+                                    className="min-h-72"
+                                >
+                                    <p>
+                                        Transparent keeps hierarchy while
+                                        blending more with the page background.
+                                    </p>
+                                </Card>
+
+                                <Card
+                                    title="Tertiary Variant"
+                                    subtitle="Useful for warm highlight moments or friendly emphasis blocks."
+                                    variant="tertiary"
+                                    className="min-h-72"
+                                    actions={[
+                                        { label: "Start", href: "/components" },
+                                        { label: "Learn more", href: "/about" },
+                                    ]}
+                                >
+                                    <p>
+                                        Tertiary provides a different tone while
+                                        preserving the same card structure.
+                                    </p>
+                                </Card>
+
+                                <Card
+                                    title="Long Subtitle Handling"
+                                    subtitle="This subtitle is intentionally much longer than ideal to demonstrate max-length truncation behavior for card metadata and keep each card in the grid visually balanced."
+                                    className="min-h-72"
+                                    actions={[
+                                        {
+                                            label: "Preview truncation",
+                                            href: "/components",
+                                        },
+                                    ]}
+                                >
+                                    <p>
+                                        Hover the subtitle text to see the full
+                                        value via native tooltip.
+                                    </p>
+                                </Card>
                             </div>
                         </section>
                     </TabsContent>

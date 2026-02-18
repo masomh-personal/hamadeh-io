@@ -4,10 +4,9 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Button, type ThoughtfulButtonProps } from "./Button";
 
-const cardChromeClasses =
-    "relative overflow-hidden border-slate-300/95 shadow-[0_10px_26px_rgba(2,6,23,0.32)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-linear-to-b before:from-white/[0.045] before:to-transparent before:opacity-90 after:pointer-events-none after:absolute after:inset-0 after:rounded-[inherit] after:ring-1 after:ring-white/5";
-const cardHoverClasses =
-    "transition-[box-shadow,border-color,transform] duration-200 ease-out motion-reduce:transition-none hover:-translate-y-px hover:border-slate-200/95 hover:shadow-[0_16px_34px_rgba(2,6,23,0.42)]";
+const cardChromeClasses = "card-chrome";
+const cardHoverClasses = "card-hover";
+const cardHoverTransparentClasses = "card-hover-transparent";
 const baseClasses =
     "surface-card radius-card flex h-full flex-col p-3 text-content sm:p-4";
 type CardVariant = "default" | "transparent" | "secondary" | "tertiary";
@@ -17,12 +16,21 @@ const variantClasses: Record<CardVariant, string> = {
     secondary: "surface-card-strong",
     tertiary: "surface-panel",
 };
-type CardAction = Omit<
+type CardActionBase = Omit<
     ThoughtfulButtonProps,
     "children" | "variant" | "enforceMinWidth"
-> & {
-    label: ReactNode;
+>;
+
+type CardActionWithTextLabel = CardActionBase & {
+    label: string;
 };
+
+type CardActionWithCustomLabel = CardActionBase & {
+    label: ReactNode;
+    "aria-label": string;
+};
+
+type CardAction = CardActionWithTextLabel | CardActionWithCustomLabel;
 
 type CardActions = [] | [CardAction] | [CardAction, CardAction];
 
@@ -46,7 +54,7 @@ export interface ThoughtfulCardProps
 export function Card({
     title,
     subtitle,
-    subtitleMaxLength = 110,
+    subtitleMaxLength = 80,
     icon,
     iconClassName,
     actions,
@@ -58,10 +66,13 @@ export function Card({
     const visibleActions = actions ?? [];
     const hasActions = visibleActions.length;
     const hasTwoActions = visibleActions.length === 2;
-    const resolvedSubtitle =
-        typeof subtitle === "string" && subtitle.length > subtitleMaxLength
-            ? `${subtitle.slice(0, subtitleMaxLength).trimEnd()}...`
-            : subtitle;
+    const subtitleText = typeof subtitle === "string" ? subtitle : undefined;
+    const isSubtitleTruncated =
+        typeof subtitleText === "string" &&
+        subtitleText.length > subtitleMaxLength;
+    const resolvedSubtitle = isSubtitleTruncated
+        ? `${subtitleText?.slice(0, subtitleMaxLength).trimEnd()}...`
+        : subtitle;
 
     return (
         <article
@@ -69,6 +80,7 @@ export function Card({
                 baseClasses,
                 cardChromeClasses,
                 cardHoverClasses,
+                variant === "transparent" && cardHoverTransparentClasses,
                 variantClasses[variant],
                 className
             )}
@@ -90,9 +102,24 @@ export function Card({
                     <span>{title}</span>
                 </h3>
                 {resolvedSubtitle ? (
-                    <p className="text-content-subtle mt-1.5 text-xs leading-relaxed">
-                        {resolvedSubtitle}
-                    </p>
+                    <div className="group/subtitle relative mt-1.5">
+                        <p
+                            className="text-content-subtle [display:-webkit-box] overflow-hidden text-xs leading-relaxed [-webkit-box-orient:vertical] [-webkit-line-clamp:2]"
+                            title={
+                                isSubtitleTruncated ? subtitleText : undefined
+                            }
+                        >
+                            {resolvedSubtitle}
+                        </p>
+                        {isSubtitleTruncated && subtitleText ? (
+                            <span
+                                role="tooltip"
+                                className="surface-panel pointer-events-none absolute top-full left-0 z-20 mt-2 max-w-[18rem] rounded-md border border-slate-400/70 px-2 py-1 text-[0.7rem] leading-snug text-slate-200 opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.45)] transition-opacity duration-150 group-hover/subtitle:opacity-100"
+                            >
+                                {subtitleText}
+                            </span>
+                        ) : null}
+                    </div>
                 ) : null}
             </header>
 
@@ -127,13 +154,13 @@ export function Card({
                                     key={
                                         typeof label === "string"
                                             ? `${label}-${index}`
-                                            : `action-${index}`
+                                            : `${actionProps["aria-label"]}-${index}`
                                     }
                                     size="sm"
                                     enforceMinWidth={false}
                                     variant={variantForPosition}
                                     className={cn(
-                                        "w-full text-[0.75rem] tracking-[0.038em]",
+                                        "w-full whitespace-nowrap text-center text-[0.75rem] leading-none tracking-[0.038em]",
                                         actionClassName
                                     )}
                                     {...actionProps}

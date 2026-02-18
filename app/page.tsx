@@ -1,15 +1,18 @@
 import Image from "next/image";
 import { HiCode, HiCollection, HiDocumentText } from "react-icons/hi";
-import { Button, Card, Link } from "@/components/ui";
+import { Badge, Button, Card, Link } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
     return (
         <div className="mx-auto max-w-6xl space-y-10 px-6 py-8 md:space-y-12 md:py-10">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
-                    <p className="mb-3 inline-flex rounded-md border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-300">
-                        ThoughtfulCode Portfolio
-                    </p>
+                    <Badge
+                        className="mb-3"
+                        variant="primary"
+                        size="md"
+                        text="ThoughtfulCode Portfolio"
+                    />
                     <h1 className="font-extrabold leading-tight text-white">
                         Hi, I&apos;m Masom.
                         <br />I build thoughtful software.

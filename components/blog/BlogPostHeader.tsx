@@ -29,7 +29,7 @@ export function BlogPostHeader({
             <div className="my-4 border-b border-surface-outline/80" />
 
             {tags.length > 0 ? (
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="flex flex-wrap gap-2">
                     {tags.map((tag) => {
                         const tagPresentation = getBlogTagPresentation(tag);
 

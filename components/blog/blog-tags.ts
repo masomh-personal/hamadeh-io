@@ -14,18 +14,30 @@ interface BlogTagDefinition {
 
 const TAG_TONE: BlogTagTone = "soft";
 
+function defineTag(
+    text: string,
+    variant: BlogTagVariant,
+    overrides?: Partial<Pick<BlogTagDefinition, "tone">>
+): BlogTagDefinition {
+    return {
+        text,
+        variant,
+        tone: overrides?.tone ?? TAG_TONE,
+    };
+}
+
 /**
  * Central tag style registry for blog UI.
  * If tags later come from a database, we can map DB values to this registry.
  */
 export const BLOG_TAGS: Record<string, BlogTagDefinition> = {
-    engineering: { text: "engineering", variant: "primary", tone: TAG_TONE },
-    nextjs: { text: "nextjs", variant: "brand", tone: TAG_TONE },
-    markdown: { text: "markdown", variant: "secondary", tone: TAG_TONE },
-    shiki: { text: "shiki", variant: "tertiary", tone: TAG_TONE },
-    typescript: { text: "typescript", variant: "primary", tone: TAG_TONE },
-    backend: { text: "backend", variant: "secondary", tone: TAG_TONE },
-    async: { text: "async", variant: "error", tone: TAG_TONE },
+    engineering: defineTag("engineering", "primary"),
+    nextjs: defineTag("nextjs", "brand"),
+    markdown: defineTag("markdown", "secondary"),
+    shiki: defineTag("shiki", "tertiary"),
+    typescript: defineTag("typescript", "primary"),
+    backend: defineTag("backend", "secondary"),
+    async: defineTag("async", "error"),
 };
 
 interface BlogTagPresentation {

@@ -38,6 +38,8 @@ export const BLOG_TAGS: Record<string, BlogTagDefinition> = {
     typescript: defineTag("typescript", "primary"),
     backend: defineTag("backend", "secondary"),
     async: defineTag("async", "error"),
+    ai: defineTag("ai", "brand"),
+    methodology: defineTag("methodology", "tertiary"),
 };
 
 interface BlogTagPresentation {

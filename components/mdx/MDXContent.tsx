@@ -19,7 +19,7 @@ export async function MDXContent({
     } as const;
 
     return (
-        <div className="prose max-w-none">
+        <div className="prose prose-invert max-w-none">
             <MarkdownAsync
                 rehypePlugins={[
                     [

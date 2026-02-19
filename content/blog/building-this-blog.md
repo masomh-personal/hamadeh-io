@@ -6,8 +6,6 @@ excerpt: "How I designed a clean blog architecture with Markdown-first content, 
 tags: ["engineering", "nextjs", "markdown"]
 ---
 
-# Building the Blog Foundation
-
 I wanted a blog setup that stays simple today but does not paint me into a corner tomorrow.
 
 The goals were straightforward:

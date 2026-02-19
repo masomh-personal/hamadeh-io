@@ -3,7 +3,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
-import { HiCog } from "react-icons/hi";
+import { HiCode } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import { shouldUseNativeAnchor } from "./component-utils";
 
@@ -66,9 +66,10 @@ export interface ThoughtfulButtonProps
     onClick?: (event: ButtonClickEvent) => void;
 }
 
-const baseClasses = `rounded-sm font-black uppercase text-white transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
+const baseClasses = `relative rounded-sm font-black uppercase text-white transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
 hover:scale-[1.03] active:scale-[0.98] motion-reduce:transform-none data-[disabled]:hover:scale-100 data-[disabled]:active:scale-100
 [&_svg]:block [&_svg]:shrink-0
+after:pointer-events-none after:absolute after:inset-[-1px] after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-200 after:content-[''] hover:after:opacity-100 data-[disabled]:hover:after:opacity-0 hover:after:shadow-[0_0_0_1px_rgba(186,230,253,0.62),0_0_10px_rgba(56,189,248,0.24)]
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
 
@@ -119,7 +120,7 @@ function getButtonContent({
     return (
         <>
             {loadingIcon ?? (
-                <HiCog
+                <HiCode
                     className="animate-[spin_1.6s_linear_infinite]"
                     aria-hidden="true"
                 />

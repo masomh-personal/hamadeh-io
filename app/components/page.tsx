@@ -6,8 +6,11 @@ import {
     HiArrowLeft,
     HiArrowRight,
     HiCheckCircle,
+    HiChip,
     HiCode,
     HiCog,
+    HiCollection,
+    HiDocumentText,
     HiHome,
     HiRefresh,
 } from "react-icons/hi";
@@ -31,6 +34,46 @@ import {
 export default function ComponentsPage(): React.ReactElement {
     const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
     type ShowcaseBlogPost = Parameters<typeof BlogPostCard>[0]["post"];
+    const triggerBaseClasses =
+        "shrink-0 justify-center rounded-md border border-transparent px-3 py-1.5 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 hover:[&_svg.tab-trigger-icon]:text-sky-200 data-[state=active]:[&_svg.tab-trigger-icon]:text-sky-300 data-[state=active]:[&_span.tab-trigger-subtitle]:text-sky-100/80 md:relative md:w-full md:justify-start md:px-4 md:py-2 md:pl-5 md:text-left md:text-base md:before:pointer-events-none md:before:absolute md:before:left-2 md:before:top-1/2 md:before:h-6 md:before:w-1 md:before:-translate-y-1/2 md:before:rounded-full md:before:bg-sky-400 md:before:opacity-0 md:data-[state=active]:before:opacity-100 md:data-[state=active]:before:shadow-[0_0_8px_rgba(56,189,248,0.45)]";
+    const showcaseSections = [
+        {
+            value: "button",
+            label: "Button",
+            subtitle: "Actions and states",
+            icon: HiCog,
+        },
+        {
+            value: "link",
+            label: "Link",
+            subtitle: "Navigation patterns",
+            icon: HiArrowRight,
+        },
+        {
+            value: "card",
+            label: "Card",
+            subtitle: "Content containers",
+            icon: HiCollection,
+        },
+        {
+            value: "badge",
+            label: "Badge",
+            subtitle: "Labels and status",
+            icon: HiChip,
+        },
+        {
+            value: "blog",
+            label: "Blog",
+            subtitle: "Cards and post meta",
+            icon: HiDocumentText,
+        },
+        {
+            value: "qa",
+            label: "A11y QA",
+            subtitle: "Keyboard and focus",
+            icon: HiCheckCircle,
+        },
+    ] as const;
 
     const publishedBlogPost: ShowcaseBlogPost = {
         title: "Building the Blog Foundation (Markdown + Shiki)",
@@ -96,74 +139,28 @@ export default function ComponentsPage(): React.ReactElement {
             >
                 <TabsList
                     aria-label="Component showcase sections"
-                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:max-h-[420px] md:flex-col md:items-stretch md:justify-start md:gap-2 md:overflow-y-auto md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
+                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:h-auto md:self-start md:flex-col md:items-stretch md:justify-start md:gap-2 md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
                 >
-                    <TabsTrigger
-                        value="button"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">Button</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Actions and states
+                    {showcaseSections.map((section) => (
+                        <TabsTrigger
+                            key={section.value}
+                            value={section.value}
+                            className={triggerBaseClasses}
+                        >
+                            <span className="flex flex-col items-start leading-tight">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                                    <section.icon
+                                        aria-hidden="true"
+                                        className="tab-trigger-icon h-3.5 w-3.5 shrink-0 text-slate-400 transition-colors duration-200"
+                                    />
+                                    {section.label}
+                                </span>
+                                <span className="tab-trigger-subtitle text-content-subtle hidden text-xs font-normal transition-colors duration-200 md:inline">
+                                    {section.subtitle}
+                                </span>
                             </span>
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="link"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">Link</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Navigation patterns
-                            </span>
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="card"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">Card</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Content containers
-                            </span>
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="badge"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">Badge</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Labels and status
-                            </span>
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="blog"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">Blog</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Cards and post meta
-                            </span>
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="qa"
-                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
-                    >
-                        <span className="flex flex-col items-start leading-tight">
-                            <span className="whitespace-nowrap">A11y QA</span>
-                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
-                                Keyboard and focus
-                            </span>
-                        </span>
-                    </TabsTrigger>
+                        </TabsTrigger>
+                    ))}
                 </TabsList>
 
                 <div>

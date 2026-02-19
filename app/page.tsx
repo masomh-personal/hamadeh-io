@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { HiCode, HiCollection, HiDocumentText } from "react-icons/hi";
+import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { Badge, Button, Card, Link } from "@/components/ui";
+import { Badge, Button, Card } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
     return (
@@ -15,13 +15,16 @@ export default function Home(): React.ReactElement {
                         text="ThoughtfulCode Portfolio"
                     />
                     <h1 className="font-extrabold leading-tight text-white">
-                        Hi, I&apos;m Masom.
-                        <br />I build thoughtful software.
+                        Hi! I&apos;m Masom.
+                        <br />I love building thoughtful software.
                     </h1>
                     <p className="text-content mt-4 max-w-2xl md:text-lg">
-                        This site is my engineering workspace where I document
-                        problem solving, ship reusable UI, and write practical
-                        notes on building maintainable software.
+                        This is my portfolio and engineering workspace. I use it
+                        to showcase real projects, break down LeetCode problems,
+                        share what I&apos;m learning through blog posts, and
+                        build a component library from scratch. Everything here
+                        reflects how I think about software: start with a clear
+                        spec, keep it well-structured, and build it to last.
                     </p>
                     <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                         <Button href="/resume" variant="secondary" size="md">
@@ -48,13 +51,41 @@ export default function Home(): React.ReactElement {
             </section>
 
             <section>
-                <h2 className="font-bold text-white">Quick Intro</h2>
-                <p className="text-content mt-3 max-w-3xl">
-                    I&apos;m a full-stack engineer focused on clean
-                    architecture, practical UX, and steady iteration. I use this
-                    portfolio to show not just finished outcomes, but how I
-                    think through tradeoffs and improve systems over time.
-                </p>
+                <h2 className="font-bold text-white">About Me</h2>
+                <div className="surface-card radius-card mt-4 p-5">
+                    <p className="text-content">
+                        I&apos;m a full-stack engineer who&apos;s had the chance
+                        to lead teams, mentor developers, and sit at the
+                        intersection of business and code. I have a background
+                        in Computer Science, a Master&apos;s in Information
+                        Systems, and I&apos;m currently pursuing a second
+                        Master&apos;s in Software Engineering because I
+                        genuinely never want to stop learning.
+                    </p>
+                    <p className="text-content mt-3">
+                        I love the craft of building software, but I&apos;ve
+                        learned that great products come from more than just
+                        great code. They come from clear communication, good
+                        judgment on tradeoffs, and teams that trust each other.
+                        Those are the skills I invest in just as much as the
+                        technical ones.
+                    </p>
+                    <p className="text-content-muted mt-3">
+                        AI is changing how we write code, and I think that makes
+                        the human side even more important: strategy, context,
+                        knowing what to build and why. I&apos;m working toward a
+                        lead engineering role where I can stay hands-on with
+                        architecture while bringing real business understanding
+                        to technical decisions. This site is where I practice
+                        all of it in the open.
+                    </p>
+                    <div className="mt-5 flex justify-end">
+                        <Button href="/about" variant="tertiary" size="sm">
+                            <HiUser />
+                            Learn more about me
+                        </Button>
+                    </div>
+                </div>
             </section>
 
             <section>
@@ -108,36 +139,6 @@ export default function Home(): React.ReactElement {
                             practical design feedback.
                         </p>
                     </Card>
-                </div>
-            </section>
-
-            <section>
-                <h2 className="font-bold text-white">Current Focus</h2>
-                <div className="surface-card radius-card mt-4 p-5">
-                    <p className="text-content">
-                        This site is my public engineering workspace where I
-                        practice shipping consistently, document technical
-                        decisions, and raise the quality bar over time. I&apos;m
-                        building it to showcase how I think through problems,
-                        not just polished outcomes.
-                    </p>
-                    <p className="text-content-muted mt-3">
-                        My current goal is to build a maintainable foundation:
-                        reusable component wrappers, predictable styling
-                        patterns, and a clean workflow with Bun + Biome. Over
-                        time, this becomes a record of my growth as an engineer,
-                        the standards I hold, and the kind of systems I want to
-                        build professionally.
-                    </p>
-                    <div className="mt-4">
-                        <Link
-                            href="/about"
-                            variant="muted"
-                            className="inline-flex items-center"
-                        >
-                            Learn more about me
-                        </Link>
-                    </div>
                 </div>
             </section>
         </PageContainer>

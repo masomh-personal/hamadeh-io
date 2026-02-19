@@ -37,10 +37,8 @@
     --color-secondary-hover: var(
         --color-emerald-400
     ); /* Secondary hover state */
-    --color-tertiary: var(
-        --color-amber-400
-    ); /* Tertiary accent (highlights, badges) */
-    --color-tertiary-hover: var(--color-amber-500); /* Tertiary hover state */
+    --color-tertiary: #d97706; /* Amber 600 - Tertiary accent */
+    --color-tertiary-hover: #f59e0b; /* Amber 500 - Tertiary hover state */
     --color-muted: var(
         --color-slate-400
     ); /* Muted text (inactive, secondary) */
@@ -88,10 +86,10 @@
     --color-sky-600: #0284c7;
     --color-sky-950: #082f49;
 
-    /* Color Palette - Amber/Gold (Tertiary) */
-    --color-amber-400: #fbbf24;
-    --color-amber-500: #f59e0b;
-    --color-amber-600: #d97706;
+    /* Color Palette - Indigo (Tertiary) */
+    --color-indigo-500: #6366f1;
+    --color-indigo-600: #4f46e5;
+    --color-indigo-700: #4338ca;
 }
 
 /* ============================================
@@ -113,7 +111,7 @@
         --accent-foreground: white;
         --secondary: var(--color-emerald-500);
         --secondary-foreground: white;
-        --tertiary: var(--color-amber-400);
+        --tertiary: #d97706;
         --tertiary-foreground: white;
 
         /* Component-specific variables */

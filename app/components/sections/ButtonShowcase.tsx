@@ -31,7 +31,6 @@ export function ButtonShowcase(): React.ReactElement {
                         <Button variant="tertiary">Tertiary</Button>
                         <Button variant="outline">Outline</Button>
                         <Button variant="danger">Danger</Button>
-                        <Button variant="danger-soft">Danger Soft</Button>
                     </div>
                 </div>
 

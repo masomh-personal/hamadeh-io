@@ -44,15 +44,16 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
             {tags.length > 0 ? (
                 <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) => {
-                        const tagPresentation = getBlogTagPresentation(tag);
+                        const { text, tone, variant } =
+                            getBlogTagPresentation(tag);
 
                         return (
                             <Badge
                                 key={tag}
-                                text={tagPresentation.text}
+                                text={text}
                                 size="sm"
-                                tone={tagPresentation.tone}
-                                variant={tagPresentation.variant}
+                                tone={tone}
+                                variant={variant}
                             />
                         );
                     })}

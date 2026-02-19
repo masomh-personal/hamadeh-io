@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HiArrowLeft } from "react-icons/hi";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { Link } from "@/components/ui";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
@@ -16,10 +17,19 @@ export default async function BlogPage(): Promise<React.ReactElement> {
         <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
             <header className="mb-4">
                 <h1 className="font-extrabold text-white">Blog</h1>
-                <p className="text-content mt-3 max-w-3xl md:text-lg">
+                <p className="text-content-muted mt-2">
                     Writing about engineering decisions, problem solving, and
                     lessons learned while building software.
                 </p>
+                <Link
+                    href="/"
+                    variant="muted"
+                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
+                    iconPosition="left"
+                    className="mt-4 inline-flex items-center"
+                >
+                    Back to Home
+                </Link>
             </header>
 
             {posts.length === 0 ? (

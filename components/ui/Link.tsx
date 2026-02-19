@@ -17,12 +17,12 @@ type LinkIconPosition = "left" | "right";
 
 const variantClasses: Record<LinkVariant, string> = {
     primary:
-        "text-primary hover:text-primary-hover hover:underline hover:bg-primary/12 font-heading font-bold text-[0.9rem]",
+        "text-primary hover:text-primary-hover hover:underline font-heading font-bold text-[0.9rem]",
     secondary:
-        "text-secondary hover:text-secondary-hover hover:underline hover:bg-secondary/12 font-heading font-bold text-[0.9rem]",
+        "text-secondary hover:text-secondary-hover hover:underline font-heading font-bold text-[0.9rem]",
     tertiary:
-        "text-tertiary hover:text-tertiary-hover hover:underline hover:bg-tertiary/12 font-heading font-bold text-[0.9rem]",
-    muted: "text-muted hover:text-primary hover:underline hover:bg-primary/10 font-heading font-bold text-[0.9rem]",
+        "text-tertiary hover:text-tertiary-hover hover:underline font-heading font-bold text-[0.9rem]",
+    muted: "text-muted hover:text-primary hover:underline font-heading font-bold text-[0.9rem]",
 };
 
 interface ThoughtfulLinkBaseProps extends Omit<ComponentProps<"a">, "href"> {

@@ -1,4 +1,3 @@
-import { HiXCircle } from "react-icons/hi";
 import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +19,7 @@ const skeletonRows = [
 export function LoadingOverlay({
     message = "Loading...",
     icon,
-    showSkeleton = true,
+    showSkeleton = false,
     onDismiss,
     className,
 }: LoadingOverlayProps): React.ReactElement {
@@ -32,20 +31,11 @@ export function LoadingOverlay({
             )}
         >
             <div className="w-full max-w-sm space-y-3 px-6">
-                {onDismiss ? (
-                    <div className="flex justify-center">
-                        <button
-                            type="button"
-                            onClick={onDismiss}
-                            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-red-400/40 bg-red-500/15 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-red-300 transition-all hover:border-red-400/70 hover:bg-red-500/25 hover:text-red-200 active:scale-95"
-                        >
-                            <HiXCircle className="h-3.5 w-3.5" />
-                            Dismiss
-                        </button>
-                    </div>
-                ) : null}
-
-                <LoadingIndicator message={message} icon={icon} />
+                <LoadingIndicator
+                    message={message}
+                    icon={icon}
+                    onDismiss={onDismiss}
+                />
 
                 {showSkeleton ? (
                     <div className="surface-card radius-card overflow-hidden px-5 py-4">

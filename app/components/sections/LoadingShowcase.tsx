@@ -10,7 +10,7 @@ const presets = [
         label: "Default",
         message: "Loading...",
         icon: undefined,
-        skeleton: true,
+        skeleton: false,
     },
     {
         label: "Blog Post",
@@ -37,11 +37,11 @@ const presets = [
     },
 ] as const;
 
-const VARIANT_ORDER: Array<"primary" | "secondary" | "tertiary" | "outline"> = [
+const VARIANT_ORDER: Array<"primary" | "secondary" | "tertiary" | "danger"> = [
     "primary",
     "secondary",
     "tertiary",
-    "outline",
+    "danger",
 ];
 
 export function LoadingShowcase(): React.ReactElement {

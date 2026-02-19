@@ -52,7 +52,7 @@ export default async function BlogPostPage({
 
     return (
         <PageContainer>
-            <article>
+            <article className="surface-card radius-card card-chrome p-6 md:p-10">
                 <BlogPostHeader post={post} />
                 <MDXContent content={post.content} />
             </article>

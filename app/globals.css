@@ -257,7 +257,7 @@
             color-mix(in srgb, var(--color-slate-700) 80%, transparent);
         background-color: color-mix(
             in srgb,
-            var(--color-slate-900) 35%,
+            var(--color-slate-800) 55%,
             transparent
         );
     }

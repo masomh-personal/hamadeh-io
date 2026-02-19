@@ -1,3 +1,4 @@
+import { HiDocumentText } from "react-icons/hi";
 import { Badge } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
@@ -14,7 +15,11 @@ export function BlogPostHeader({
 
     return (
         <header className="mb-8">
-            <div className="text-content-subtle font-mono mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-wide">
+            <div className="text-content-subtle font-mono mb-3 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-xs uppercase tracking-wide">
+                <HiDocumentText
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-sky-300"
+                />
                 <span>Published {formatPublishedDate(datePublished)}</span>
             </div>
 

@@ -19,17 +19,18 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
             prefetch={false}
             className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content transition-all sm:p-5"
         >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+                <HiDocumentText
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-sky-300"
+                />
                 <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                     {formatPublishedDate(post.datePublished)}
                 </p>
             </div>
 
-            <h2 className="font-heading mt-2 flex items-start gap-1 text-xl font-semibold text-white">
-                <span className="mt-1 shrink-0 text-sky-300 [&_svg]:h-5 [&_svg]:w-5">
-                    <HiDocumentText aria-hidden="true" />
-                </span>
-                <span>{post.title}</span>
+            <h2 className="font-heading mt-2 text-xl font-semibold text-white">
+                {post.title}
             </h2>
 
             <div className="my-3 border-b border-surface-outline/80" />

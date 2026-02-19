@@ -5,27 +5,28 @@
 
 import { MarkdownAsync } from "react-markdown";
 import rehypePrettyCode from "rehype-pretty-code";
+import { CodeBlock } from "./CodeBlock";
 
 interface MDXContentProps {
     content: string;
 }
 
+const markdownComponents = {
+    pre: CodeBlock,
+} as const;
+
 export async function MDXContent({
     content,
 }: MDXContentProps): Promise<React.ReactElement> {
-    const codeTheme = {
-        dark: "github-dark-default",
-        light: "github-light-default",
-    } as const;
-
     return (
         <div className="prose prose-invert max-w-none">
             <MarkdownAsync
+                components={markdownComponents}
                 rehypePlugins={[
                     [
                         rehypePrettyCode,
                         {
-                            theme: codeTheme,
+                            theme: "github-dark-default",
                             keepBackground: false,
                         },
                     ],

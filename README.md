@@ -238,7 +238,6 @@ title: "Why I Love TypeScript"
 slug: "why-i-love-typescript"
 datePublished: "2026-01-18"
 updatedAt: "2026-01-18"  # Track revisions
-status: "published"  # "published" | "draft"
 excerpt: "Exploring the benefits of TypeScript for modern web development"
 tags: ["typescript", "web-development"]
 ---
@@ -475,7 +474,6 @@ git commit -m "feat: add two-sum solution"
 1. Create Markdown file in `content/blog/[slug].md`
 2. Add frontmatter with title, slug, datePublished, tags
 3. Write content in Markdown
-4. Set `status: "published"` when ready
 
 ### Common Workflows
 

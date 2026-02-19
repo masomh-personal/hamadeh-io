@@ -17,18 +17,10 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
             href={`/blog/${post.slug}`}
             className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content transition-all sm:p-5"
         >
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
                 <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                     {formatPublishedDate(post.datePublished)}
                 </p>
-                {post.status === "draft" ? (
-                    <Badge
-                        text="Draft"
-                        size="sm"
-                        tone="soft"
-                        variant="tertiary"
-                    />
-                ) : null}
             </div>
 
             <h2 className="font-heading mt-2 flex items-start gap-1 text-xl font-semibold text-white">
@@ -44,31 +36,33 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                 {post.excerpt}
             </p>
 
-            {tags.length > 0 ? (
-                <div className="mt-4 flex flex-wrap gap-x-2 gap-y-2.5 pb-2">
-                    {tags.map((tag) => {
-                        const { text, tone, variant } =
-                            getBlogTagPresentation(tag);
+            <div className="mt-auto pt-5">
+                {tags.length > 0 ? (
+                    <div className="flex flex-wrap gap-x-2 gap-y-2.5 pb-4">
+                        {tags.map((tag) => {
+                            const { text, tone, variant } =
+                                getBlogTagPresentation(tag);
 
-                        return (
-                            <Badge
-                                key={tag}
-                                text={text}
-                                size="sm"
-                                tone={tone}
-                                variant={variant}
-                                className="font-baloo font-normal"
-                            />
-                        );
-                    })}
+                            return (
+                                <Badge
+                                    key={tag}
+                                    text={text}
+                                    size="sm"
+                                    tone={tone}
+                                    variant={variant}
+                                    className="font-baloo font-normal"
+                                />
+                            );
+                        })}
+                    </div>
+                ) : null}
+
+                <div className="flex justify-center border-t border-surface-outline/70 pt-4">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-sky-200">
+                        Read Post
+                        <HiArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
                 </div>
-            ) : null}
-
-            <div className="mt-auto flex justify-center border-t border-surface-outline/70 pt-3">
-                <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-sky-200">
-                    Read Post
-                    <HiArrowRight className="h-4 w-4" aria-hidden="true" />
-                </span>
             </div>
         </Link>
     );

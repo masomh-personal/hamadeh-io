@@ -110,12 +110,9 @@ async function getSolutionByPath(filePath: string): Promise<LeetCodeSolution> {
 
 /**
  * Get all blog posts from the content directory
- * @param includeDrafts - Whether to include draft posts (default: false)
  * @returns Array of parsed and validated blog posts, sorted by date (newest first)
  */
-export async function getAllBlogPosts(
-    includeDrafts = false
-): Promise<BlogPost[]> {
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
     const contentDir = join(process.cwd(), "content", "blog");
     const posts: BlogPost[] = [];
 
@@ -126,12 +123,6 @@ export async function getAllBlogPosts(
         for (const filePath of files) {
             try {
                 const post = await getBlogPostByPath(filePath);
-
-                // Filter out drafts unless explicitly included
-                if (!includeDrafts && post.status === "draft") {
-                    continue;
-                }
-
                 posts.push(post);
             } catch (error) {
                 console.error(`Error processing ${filePath}:`, error);
@@ -161,7 +152,7 @@ export async function getAllBlogPosts(
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
     // Resolve by frontmatter slug (not filename) so routing remains stable
     // even when file names differ from public slugs.
-    const posts = await getAllBlogPosts(true);
+    const posts = await getAllBlogPosts();
     const post = posts.find((entry) => entry.slug === slug);
 
     if (!post) {

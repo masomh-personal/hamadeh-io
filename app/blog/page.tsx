@@ -20,7 +20,10 @@ export default async function BlogPage(): Promise<React.ReactElement> {
                 <h1 className="font-extrabold text-white">Blog</h1>
                 <p className="text-content-muted mt-2">
                     Writing about engineering decisions, problem solving, and
-                    lessons learned while building software.
+                    lessons learned while building software. I also share
+                    thoughts on data structures, algorithms, computer science
+                    fundamentals, modern front-end work, and new technology
+                    I&apos;m actively exploring.
                 </p>
                 <BackToHomeLink className="mt-4" />
             </header>

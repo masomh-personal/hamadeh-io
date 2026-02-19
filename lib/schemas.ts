@@ -76,9 +76,6 @@ export const BlogFrontmatterSchema = v.object({
     updatedAt: v.optional(
         v.pipe(v.string(), v.isoDate("Updated date must be in ISO format"))
     ),
-    status: v.optional(
-        v.picklist(["published", "draft"], "Status must be published or draft")
-    ),
     excerpt: v.pipe(
         v.string(),
         v.minLength(1, "Excerpt is required"),

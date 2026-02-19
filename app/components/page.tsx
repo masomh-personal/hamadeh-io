@@ -80,7 +80,6 @@ export default function ComponentsPage(): React.ReactElement {
         title: "Building the Blog Foundation (Markdown + Shiki)",
         slug: "building-blog-foundation-markdown-shiki",
         datePublished: "2026-02-18",
-        status: "published",
         excerpt:
             "How I designed a clean blog architecture with Markdown-first content, premium syntax highlighting, and room to scale.",
         tags: ["engineering", "nextjs", "markdown"],
@@ -88,15 +87,14 @@ export default function ComponentsPage(): React.ReactElement {
         filePath: "content/blog/building-blog-foundation-markdown-shiki.md",
     };
 
-    const draftBlogPost: ShowcaseBlogPost = {
+    const secondaryBlogPost: ShowcaseBlogPost = {
         title: "Async Patterns in Modern TypeScript Services",
         slug: "async-patterns-modern-typescript-services",
         datePublished: "2026-02-20",
-        status: "draft",
         excerpt:
-            "Draft article exploring cancellation, timeouts, and error boundaries in async workflows.",
+            "Article exploring cancellation, timeouts, and error boundaries in async workflows.",
         tags: ["typescript", "backend", "async"],
-        content: "Draft showcase content.",
+        content: "Secondary showcase content.",
         filePath: "content/blog/async-patterns-modern-typescript-services.md",
     };
 
@@ -695,25 +693,29 @@ export default function ComponentsPage(): React.ReactElement {
                             <div className="space-y-8">
                                 <div>
                                     <h3 className="text-content-subtle mb-3 font-mono text-sm">
-                                        BlogPostCard states
+                                        BlogPostCard examples
                                     </h3>
                                     <div className="grid gap-4 lg:grid-cols-2">
                                         <BlogPostCard
                                             post={publishedBlogPost}
                                         />
-                                        <BlogPostCard post={draftBlogPost} />
+                                        <BlogPostCard
+                                            post={secondaryBlogPost}
+                                        />
                                     </div>
                                 </div>
 
                                 <div>
                                     <h3 className="text-content-subtle mb-3 font-mono text-sm">
-                                        BlogPostHeader states
+                                        BlogPostHeader examples
                                     </h3>
                                     <div className="space-y-4">
                                         <BlogPostHeader
                                             post={publishedBlogPost}
                                         />
-                                        <BlogPostHeader post={draftBlogPost} />
+                                        <BlogPostHeader
+                                            post={secondaryBlogPost}
+                                        />
                                     </div>
                                 </div>
                             </div>

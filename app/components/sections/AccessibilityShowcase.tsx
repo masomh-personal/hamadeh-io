@@ -4,7 +4,7 @@ export function AccessibilityShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Accessibility QA Checklist</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Quick manual checks for every component polish pass.
             </p>
 

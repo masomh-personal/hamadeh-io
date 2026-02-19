@@ -16,13 +16,13 @@ export function ButtonShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Button</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Variants, sizing rhythm, action semantics, and edge states.
             </p>
 
             <div className="space-y-6">
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Variants
                     </h3>
                     <div className="flex flex-wrap gap-3">
@@ -36,7 +36,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Sizes
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -47,7 +47,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         With Icons
                     </h3>
                     <div className="flex flex-wrap gap-3">
@@ -63,7 +63,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         As Link (href)
                     </h3>
                     <Button href="/">
@@ -73,7 +73,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         As Child (Radix Slot)
                     </h3>
                     <Button asChild variant="secondary">
@@ -85,7 +85,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Edge States
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -108,7 +108,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Loading States
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -140,7 +140,7 @@ export function ButtonShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Live Submit Demo
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">

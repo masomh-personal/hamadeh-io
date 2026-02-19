@@ -5,13 +5,13 @@ export function BadgeShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Badge</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Label density, color clarity, and context usage.
             </p>
 
             <div className="space-y-6">
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Variants
                     </h3>
                     <div className="flex flex-wrap gap-3">
@@ -23,7 +23,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Tones
                     </h3>
                     <div className="flex flex-wrap gap-3">
@@ -37,7 +37,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Sizes
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -47,7 +47,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         With Icons
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -66,7 +66,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         In context (LeetCode difficulty tags)
                     </h3>
                     <p className="text-content flex flex-wrap items-center gap-2">
@@ -80,7 +80,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </p>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Font Comparison
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
@@ -112,7 +112,7 @@ export function BadgeShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Long Label
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">

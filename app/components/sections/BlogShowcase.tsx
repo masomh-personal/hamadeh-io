@@ -29,14 +29,14 @@ export function BlogShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Blog</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Blog-specific components for list cards and post headers,
                 including metadata states.
             </p>
 
             <div className="space-y-8">
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         BlogPostCard examples
                     </h3>
                     <div className="grid gap-4 lg:grid-cols-2">
@@ -46,7 +46,7 @@ export function BlogShowcase(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         BlogPostHeader examples
                     </h3>
                     <div className="space-y-4">

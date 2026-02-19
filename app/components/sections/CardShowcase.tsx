@@ -5,7 +5,7 @@ export function CardShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Card</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Container hierarchy, information density, and action placement
                 with polished rhythm and interaction states.
             </p>

@@ -6,13 +6,13 @@ export function LinkShowcase(): React.ReactElement {
     return (
         <section>
             <h2 className="font-bold text-white">Link</h2>
-            <p className="text-content-muted mb-6">
+            <p className="text-content-muted mb-4">
                 Internal/external navigation with consistent visual intent.
             </p>
 
             <div className="space-y-6">
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Variants
                     </h3>
                     <div className="flex flex-wrap gap-6">
@@ -36,7 +36,7 @@ export function LinkShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Icon Behavior
                     </h3>
                     <div className="flex flex-wrap items-center gap-6">
@@ -56,7 +56,7 @@ export function LinkShowcase(): React.ReactElement {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         As Child (Radix Slot)
                     </h3>
                     <Link asChild variant="secondary">
@@ -66,7 +66,7 @@ export function LinkShowcase(): React.ReactElement {
                     </Link>
                 </div>
                 <div>
-                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         In context
                     </h3>
                     <p className="text-content">

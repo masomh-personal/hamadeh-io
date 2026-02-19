@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { getAllSolutions } from "@/lib/mdx";
 
 export const metadata: Metadata = {
@@ -18,16 +20,17 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8 sm:px-6 md:py-10 lg:px-8">
-            <div className="mb-8">
-                <h1 className="mb-4 font-bold text-primary-900 dark:text-primary-50">
+        <PageContainer>
+            <header className="mb-4">
+                <h1 className="font-extrabold text-white">
                     LeetCode Solutions
                 </h1>
-                <p className="text-lg text-primary-600 dark:text-primary-300">
+                <p className="text-content-muted mt-2">
                     Detailed solutions with explanations, complexity analysis,
                     and thought process
                 </p>
-            </div>
+                <BackToHomeLink className="mt-4" />
+            </header>
 
             {solutions.length === 0 ? (
                 <div className="rounded-lg border border-primary-200 bg-primary-50 p-8 text-center dark:border-primary-700 dark:bg-primary-800">
@@ -74,6 +77,6 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
                     ))}
                 </div>
             )}
-        </div>
+        </PageContainer>
     );
 }

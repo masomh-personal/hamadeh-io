@@ -7,6 +7,8 @@ import {
     Quicksand,
     Source_Sans_3,
 } from "next/font/google";
+import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { Button, Link } from "@/components/ui";
 
 const quicksand = Quicksand({
@@ -98,7 +100,7 @@ const typographyPairs = [
 
 export default function TypographyPage(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+        <PageContainer>
             <header className="mb-4">
                 <h1 className="font-extrabold text-white">Typography Lab</h1>
                 <p className="text-content-muted mt-2 max-w-3xl">
@@ -106,9 +108,7 @@ export default function TypographyPage(): React.ReactElement {
                     pairings. Each card shows a heading, paragraph text, a link,
                     and a button sample.
                 </p>
-                <Link href="/" variant="muted" className="mt-4 inline-block">
-                    Back to Home
-                </Link>
+                <BackToHomeLink className="mt-4" />
             </header>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -161,6 +161,6 @@ export default function TypographyPage(): React.ReactElement {
                     </section>
                 ))}
             </div>
-        </div>
+        </PageContainer>
     );
 }

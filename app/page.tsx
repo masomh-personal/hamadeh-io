@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { HiCode, HiCollection, HiDocumentText } from "react-icons/hi";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { Badge, Button, Card, Link } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl space-y-10 px-6 py-8 md:space-y-12 md:py-10">
+        <PageContainer className="space-y-10 md:space-y-12">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
                     <Badge
@@ -142,6 +143,6 @@ export default function Home(): React.ReactElement {
                     </div>
                 </div>
             </section>
-        </div>
+        </PageContainer>
     );
 }

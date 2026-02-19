@@ -3,7 +3,6 @@
 import NextLink from "next/link";
 import { useState } from "react";
 import {
-    HiArrowLeft,
     HiArrowRight,
     HiCheckCircle,
     HiChip,
@@ -16,6 +15,8 @@ import {
 } from "react-icons/hi";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
+import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
+import { PageContainer } from "@/components/layout/PageContainer";
 import {
     Badge,
     Button,
@@ -108,7 +109,7 @@ export default function ComponentsPage(): React.ReactElement {
     };
 
     return (
-        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+        <PageContainer>
             <header className="mb-4">
                 <h1 className="font-extrabold text-white">
                     Components Showcase
@@ -122,15 +123,7 @@ export default function ComponentsPage(): React.ReactElement {
                     behavior, and keep a clean, maintainable design system
                     without locking ourselves into heavy opinionated UI kits.
                 </p>
-                <Link
-                    href="/"
-                    variant="muted"
-                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
-                    iconPosition="left"
-                    className="mt-4 inline-flex items-center whitespace-nowrap"
-                >
-                    Back to Home
-                </Link>
+                <BackToHomeLink className="mt-4" />
             </header>
 
             <Tabs
@@ -779,6 +772,6 @@ export default function ComponentsPage(): React.ReactElement {
                     </TabsContent>
                 </div>
             </Tabs>
-        </div>
+        </PageContainer>
     );
 }

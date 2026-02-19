@@ -1,16 +1,17 @@
 import {
     HiAcademicCap,
-    HiArrowLeft,
     HiChip,
     HiCode,
     HiLightningBolt,
     HiUser,
 } from "react-icons/hi";
+import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { Link } from "@/components/ui";
 
 export default function AboutPage(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-5xl px-6 py-8 md:py-10">
+        <PageContainer>
             <header className="mb-4">
                 <h1 className="font-extrabold text-white">About Me</h1>
                 <p className="text-content-muted mt-2 max-w-4xl">
@@ -20,15 +21,7 @@ export default function AboutPage(): React.ReactElement {
                     portfolio reflects how I think, ship, and continuously raise
                     quality over time.
                 </p>
-                <Link
-                    href="/"
-                    variant="muted"
-                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
-                    iconPosition="left"
-                    className="mt-4 inline-flex items-center"
-                >
-                    Back to Home
-                </Link>
+                <BackToHomeLink className="mt-4" />
             </header>
 
             <section className="mb-6 grid gap-4 md:grid-cols-2">
@@ -174,6 +167,6 @@ export default function AboutPage(): React.ReactElement {
                     View Full Resume
                 </Link>
             </div>
-        </div>
+        </PageContainer>
     );
 }

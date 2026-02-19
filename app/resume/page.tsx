@@ -1,6 +1,8 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { HiArrowLeft, HiDocumentText, HiDownload } from "react-icons/hi";
+import { HiDocumentText, HiDownload } from "react-icons/hi";
+import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { Link } from "@/components/ui";
 
 const RESUME_PUBLIC_PATH = "/resume.pdf";
@@ -14,7 +16,7 @@ export default function ResumePage(): React.ReactElement {
     const resumeExists = hasResumePdf();
 
     return (
-        <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
+        <PageContainer>
             <header className="mb-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                     <h1 className="font-extrabold text-white">Resume</h1>
@@ -24,15 +26,7 @@ export default function ResumePage(): React.ReactElement {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 text-sm font-semibold">
-                    <Link
-                        href="/"
-                        variant="muted"
-                        icon={<HiArrowLeft className="h-3.5 w-3.5" />}
-                        iconPosition="left"
-                        className="inline-flex items-center"
-                    >
-                        Back to Home
-                    </Link>
+                    <BackToHomeLink />
                     <Link
                         href={RESUME_PUBLIC_PATH}
                         external
@@ -78,6 +72,6 @@ export default function ResumePage(): React.ReactElement {
                     </p>
                 </section>
             )}
-        </div>
+        </PageContainer>
     );
 }

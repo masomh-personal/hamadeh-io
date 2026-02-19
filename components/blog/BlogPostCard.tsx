@@ -15,6 +15,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
     return (
         <Link
             href={`/blog/${post.slug}`}
+            prefetch={false}
             className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content transition-all sm:p-5"
         >
             <div className="flex items-center gap-3">

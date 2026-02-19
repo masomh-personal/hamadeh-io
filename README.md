@@ -480,6 +480,7 @@ git commit -m "feat: add two-sum solution"
 - Wrap route pages with `PageContainer` from `components/layout/PageContainer.tsx`
 - Prefer consistent page shell spacing over per-page container classes
 - Use route-level `loading.tsx` for async transitions when page rendering can take noticeable time
+- For content-heavy detail routes (for example blog or problem detail pages), prefer `prefetch={false}` on list-card links so content loads on explicit user intent (click)
 
 ### Common Workflows
 

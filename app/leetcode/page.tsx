@@ -44,6 +44,7 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
                         <Link
                             key={solution.slug}
                             href={`/leetcode/${solution.slug}`}
+                            prefetch={false}
                             className="group rounded-lg border border-primary-200 bg-white p-6 transition-all hover:border-secondary-300 hover:shadow-lg dark:border-primary-700 dark:bg-primary-800 dark:hover:border-secondary-600"
                         >
                             <div className="mb-3 flex items-start justify-between">

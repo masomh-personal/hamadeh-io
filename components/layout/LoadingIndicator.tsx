@@ -4,11 +4,15 @@ import { cn } from "@/lib/utils";
 interface LoadingIndicatorProps {
     message?: string;
     className?: string;
+    iconClassName?: string;
+    messageClassName?: string;
 }
 
 export function LoadingIndicator({
     message = "Loading...",
     className,
+    iconClassName,
+    messageClassName,
 }: LoadingIndicatorProps): React.ReactElement {
     return (
         <div
@@ -18,10 +22,20 @@ export function LoadingIndicator({
             )}
         >
             <HiCode
-                className="h-5 w-5 animate-[spin_1.2s_linear_infinite] text-sky-300"
+                className={cn(
+                    "h-5 w-5 animate-[spin_1.2s_linear_infinite] text-sky-300",
+                    iconClassName
+                )}
                 aria-hidden="true"
             />
-            <p className="text-content text-sm font-medium">{message}</p>
+            <p
+                className={cn(
+                    "text-content text-sm font-medium",
+                    messageClassName
+                )}
+            >
+                {message}
+            </p>
         </div>
     );
 }

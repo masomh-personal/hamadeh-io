@@ -17,7 +17,7 @@ export function CopyCodeButton({ code }: { code: string }): React.ReactElement {
             type="button"
             onClick={handleCopy}
             aria-label={copied ? "Copied" : "Copy code"}
-            className="absolute top-3 right-3 z-10 rounded-md p-1.5 text-slate-400 transition-colors hover:bg-white/10 hover:text-slate-200"
+            className="cursor-pointer rounded-md border border-transparent p-1.5 text-slate-400 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform-gpu hover:scale-110 hover:border-primary/40 hover:bg-primary/10 hover:text-primary-hover active:scale-90 active:duration-150 motion-reduce:transform-none"
         >
             {copied ? (
                 <HiCheck className="h-4 w-4 text-green-400" />

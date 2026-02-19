@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HiArrowRight, HiDocumentText } from "react-icons/hi";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
 
@@ -23,8 +24,11 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                 ) : null}
             </div>
 
-            <h2 className="font-heading mt-2 text-xl font-semibold text-white">
-                {post.title}
+            <h2 className="font-heading mt-2 flex items-start gap-1 text-xl font-semibold text-white">
+                <span className="mt-1 shrink-0 text-sky-300 [&_svg]:h-5 [&_svg]:w-5">
+                    <HiDocumentText aria-hidden="true" />
+                </span>
+                <span>{post.title}</span>
             </h2>
 
             <div className="my-3 border-b border-surface-outline/80" />
@@ -46,9 +50,12 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                 </div>
             ) : null}
 
-            <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-sky-300">
-                Read post
-            </p>
+            <div className="mt-5 flex justify-center border-t border-surface-outline/70 pt-3">
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-sky-200">
+                    Read Post
+                    <HiArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
+            </div>
         </Link>
     );
 }

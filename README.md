@@ -475,6 +475,12 @@ git commit -m "feat: add two-sum solution"
 2. Add frontmatter with title, slug, datePublished, tags
 3. Write content in Markdown
 
+#### Page Layout Convention
+
+- Wrap route pages with `PageContainer` from `components/layout/PageContainer.tsx`
+- Prefer consistent page shell spacing over per-page container classes
+- Use route-level `loading.tsx` for async transitions when page rendering can take noticeable time
+
 ### Common Workflows
 
 **Before Committing:**

@@ -1,6 +1,8 @@
+import { PageContainer } from "@/components/layout/PageContainer";
+
 export default function StylingShowcase(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-10 lg:px-8">
+        <PageContainer>
             {/* Hero Section */}
             <section className="mb-20 text-center">
                 <h1 className="mb-6 font-heading text-5xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
@@ -337,6 +339,6 @@ if (result) {
                     </div>
                 </div>
             </section>
-        </div>
+        </PageContainer>
     );
 }

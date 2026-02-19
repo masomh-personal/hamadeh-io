@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { MDXContent } from "@/components/mdx/MDXContent";
 import { getAllSolutions, getSolutionBySlug } from "@/lib/mdx";
 
@@ -50,65 +51,67 @@ export default async function SolutionPage({
     };
 
     return (
-        <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 md:py-12 lg:px-8">
-            {/* Header */}
-            <header className="mb-4">
-                <div className="mb-6 flex items-center gap-4">
-                    <span
-                        className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide ${difficultyColors[solution.difficulty]}`}
-                    >
-                        {solution.difficulty}
-                    </span>
-                    <span className="text-sm text-slate-500 dark:text-slate-400">
-                        {solution.datePublished}
-                    </span>
-                </div>
-                <h1 className="mb-4 font-bold tracking-tight text-slate-900 dark:text-slate-50">
-                    {solution.title}
-                </h1>
-                <p className="text-xl leading-7 text-slate-600 dark:text-slate-300">
-                    {solution.excerpt}
-                </p>
-            </header>
-
-            {/* Topics */}
-            <div className="mb-10 flex flex-wrap gap-2">
-                {solution.topics.map((topic) => (
-                    <span
-                        key={topic}
-                        className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                    >
-                        {topic}
-                    </span>
-                ))}
-            </div>
-
-            {/* Complexity */}
-            <div className="mb-12 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/50">
-                <div className="grid grid-cols-2 gap-6">
-                    <div>
-                        <p className="mb-2 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                            Time Complexity
-                        </p>
-                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
-                            {solution.timeComplexity}
-                        </p>
+        <PageContainer>
+            <article>
+                {/* Header */}
+                <header className="mb-4">
+                    <div className="mb-6 flex items-center gap-4">
+                        <span
+                            className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide ${difficultyColors[solution.difficulty]}`}
+                        >
+                            {solution.difficulty}
+                        </span>
+                        <span className="text-sm text-slate-500 dark:text-slate-400">
+                            {solution.datePublished}
+                        </span>
                     </div>
-                    <div>
-                        <p className="mb-2 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                            Space Complexity
-                        </p>
-                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
-                            {solution.spaceComplexity}
-                        </p>
+                    <h1 className="mb-4 font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                        {solution.title}
+                    </h1>
+                    <p className="text-xl leading-7 text-slate-600 dark:text-slate-300">
+                        {solution.excerpt}
+                    </p>
+                </header>
+
+                {/* Topics */}
+                <div className="mb-10 flex flex-wrap gap-2">
+                    {solution.topics.map((topic) => (
+                        <span
+                            key={topic}
+                            className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                        >
+                            {topic}
+                        </span>
+                    ))}
+                </div>
+
+                {/* Complexity */}
+                <div className="mb-12 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/50">
+                    <div className="grid grid-cols-2 gap-6">
+                        <div>
+                            <p className="mb-2 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                Time Complexity
+                            </p>
+                            <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+                                {solution.timeComplexity}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="mb-2 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                Space Complexity
+                            </p>
+                            <p className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+                                {solution.spaceComplexity}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* MDX Content */}
-            <div className="mt-12">
-                <MDXContent content={solution.content} />
-            </div>
-        </article>
+                {/* MDX Content */}
+                <div className="mt-12">
+                    <MDXContent content={solution.content} />
+                </div>
+            </article>
+        </PageContainer>
     );
 }

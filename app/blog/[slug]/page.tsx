@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { MDXContent } from "@/components/mdx/MDXContent";
 import {
     getPublishedBlogPostBySlug,
@@ -50,9 +51,11 @@ export default async function BlogPostPage({
     }
 
     return (
-        <article className="mx-auto max-w-4xl px-6 py-10 md:py-12">
-            <BlogPostHeader post={post} />
-            <MDXContent content={post.content} />
-        </article>
+        <PageContainer>
+            <article>
+                <BlogPostHeader post={post} />
+                <MDXContent content={post.content} />
+            </article>
+        </PageContainer>
     );
 }

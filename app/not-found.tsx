@@ -1,6 +1,7 @@
 "use client";
 
 import { HiArrowLeft, HiHome } from "react-icons/hi";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { Button, Link } from "@/components/ui";
 
 /**
@@ -9,7 +10,7 @@ import { Button, Link } from "@/components/ui";
  */
 export default function NotFound(): React.ReactElement {
     return (
-        <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
+        <PageContainer className="py-10 md:py-12">
             <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
                 {/* Error Code */}
                 <div className="mb-8">
@@ -78,6 +79,6 @@ export default function NotFound(): React.ReactElement {
                     <Link href="/about">About</Link>
                 </div>
             </div>
-        </div>
+        </PageContainer>
     );
 }

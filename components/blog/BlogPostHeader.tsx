@@ -14,7 +14,7 @@ export function BlogPostHeader({
 
     return (
         <header className="surface-card radius-card card-chrome mb-6 p-4 md:p-5">
-            <div className="text-content-subtle mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-wide">
+            <div className="text-content-subtle font-mono mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-wide">
                 <span>Published {formatPublishedDate(datePublished)}</span>
             </div>
 
@@ -40,6 +40,7 @@ export function BlogPostHeader({
                                 size="sm"
                                 tone={tagPresentation.tone}
                                 variant={tagPresentation.variant}
+                                className="font-baloo font-normal"
                             />
                         );
                     })}

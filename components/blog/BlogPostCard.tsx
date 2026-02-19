@@ -15,16 +15,19 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
     return (
         <Link
             href={`/blog/${post.slug}`}
-            className="surface-card radius-card card-chrome card-hover block h-full p-4 text-content transition-all sm:p-5"
+            className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content transition-all sm:p-5"
         >
             <div className="flex items-center justify-between gap-3">
-                <p className="text-content-subtle text-xs uppercase tracking-wide">
+                <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                     {formatPublishedDate(post.datePublished)}
                 </p>
                 {post.status === "draft" ? (
-                    <span className="rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-xs font-medium uppercase tracking-wide text-amber-300">
-                        Draft
-                    </span>
+                    <Badge
+                        text="Draft"
+                        size="sm"
+                        tone="soft"
+                        variant="tertiary"
+                    />
                 ) : null}
             </div>
 
@@ -42,7 +45,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
             </p>
 
             {tags.length > 0 ? (
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-x-2 gap-y-2.5 pb-2">
                     {tags.map((tag) => {
                         const { text, tone, variant } =
                             getBlogTagPresentation(tag);
@@ -54,13 +57,14 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                                 size="sm"
                                 tone={tone}
                                 variant={variant}
+                                className="font-baloo font-normal"
                             />
                         );
                     })}
                 </div>
             ) : null}
 
-            <div className="mt-5 flex justify-center border-t border-surface-outline/70 pt-3">
+            <div className="mt-auto flex justify-center border-t border-surface-outline/70 pt-3">
                 <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-sky-200">
                     Read Post
                     <HiArrowRight className="h-4 w-4" aria-hidden="true" />

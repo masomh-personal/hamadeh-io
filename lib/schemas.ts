@@ -89,7 +89,7 @@ export const BlogFrontmatterSchema = v.object({
             v.array(
                 v.pipe(v.string(), v.minLength(1, "Tags must be non-empty"))
             ),
-            v.maxLength(4, "At most 4 tags are allowed")
+            v.maxLength(3, "At most 3 tags are allowed")
         )
     ),
 });

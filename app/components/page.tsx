@@ -3,6 +3,7 @@
 import NextLink from "next/link";
 import { useState } from "react";
 import {
+    HiArrowLeft,
     HiArrowRight,
     HiCheckCircle,
     HiCode,
@@ -65,7 +66,7 @@ export default function ComponentsPage(): React.ReactElement {
 
     return (
         <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
-            <header className="mb-10">
+            <header className="mb-4">
                 <h1 className="font-extrabold text-white">
                     Components Showcase
                 </h1>
@@ -78,7 +79,13 @@ export default function ComponentsPage(): React.ReactElement {
                     behavior, and keep a clean, maintainable design system
                     without locking ourselves into heavy opinionated UI kits.
                 </p>
-                <Link href="/" variant="muted" className="mt-4 inline-block">
+                <Link
+                    href="/"
+                    variant="muted"
+                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
+                    iconPosition="left"
+                    className="mt-4 inline-flex items-center whitespace-nowrap"
+                >
                     Back to Home
                 </Link>
             </header>
@@ -89,7 +96,7 @@ export default function ComponentsPage(): React.ReactElement {
             >
                 <TabsList
                     aria-label="Component showcase sections"
-                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:h-full md:min-h-[520px] md:flex-col md:items-stretch md:justify-start md:gap-2 md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
+                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:max-h-[420px] md:flex-col md:items-stretch md:justify-start md:gap-2 md:overflow-y-auto md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
                 >
                     <TabsTrigger
                         value="button"

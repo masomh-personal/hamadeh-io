@@ -52,7 +52,7 @@ export default async function SolutionPage({
     return (
         <article className="mx-auto max-w-4xl px-4 py-10 sm:px-6 md:py-12 lg:px-8">
             {/* Header */}
-            <header className="mb-12">
+            <header className="mb-4">
                 <div className="mb-6 flex items-center gap-4">
                     <span
                         className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide ${difficultyColors[solution.difficulty]}`}

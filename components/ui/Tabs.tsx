@@ -36,9 +36,10 @@ export function TabsTrigger({
     return (
         <TabsPrimitive.Trigger
             className={cn(
-                "rounded-sm border border-transparent px-3 py-1.5 font-heading text-sm font-semibold text-slate-300 transition-colors",
+                "cursor-pointer rounded-sm border border-transparent px-3 py-1.5 font-heading text-sm font-semibold text-slate-300 transition-[color,background-color,border-color,transform,box-shadow] duration-200 ease-out transform-gpu hover:scale-[1.01] active:scale-[0.98] motion-reduce:transform-none hover:border-slate-500/70 hover:bg-slate-800/60 hover:text-sky-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
                 "data-[state=active]:border-sky-500 data-[state=active]:bg-sky-950/30 data-[state=active]:text-sky-300",
+                "data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60 data-[disabled]:hover:scale-100 data-[disabled]:active:scale-100",
                 className
             )}
             data-slot="tabs-trigger"

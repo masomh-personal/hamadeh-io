@@ -15,7 +15,7 @@ export default function ResumePage(): React.ReactElement {
 
     return (
         <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
-            <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <header className="mb-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                     <h1 className="font-extrabold text-white">Resume</h1>
                     <p className="text-content-muted mt-2">

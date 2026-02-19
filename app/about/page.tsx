@@ -11,7 +11,7 @@ import { Link } from "@/components/ui";
 export default function AboutPage(): React.ReactElement {
     return (
         <div className="mx-auto max-w-5xl px-6 py-8 md:py-10">
-            <header className="mb-10">
+            <header className="mb-4">
                 <h1 className="font-extrabold text-white">About Me</h1>
                 <p className="text-content-muted mt-2 max-w-4xl">
                     I&apos;m a full-stack software engineer based in Atlanta. I

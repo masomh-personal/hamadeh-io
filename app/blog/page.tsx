@@ -14,7 +14,7 @@ export default async function BlogPage(): Promise<React.ReactElement> {
 
     return (
         <div className="mx-auto max-w-6xl px-6 py-8 md:py-10">
-            <header className="mb-8">
+            <header className="mb-4">
                 <h1 className="font-extrabold text-white">Blog</h1>
                 <p className="text-content mt-3 max-w-3xl md:text-lg">
                     Writing about engineering decisions, problem solving, and

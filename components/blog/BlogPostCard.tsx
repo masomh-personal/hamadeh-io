@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HiArrowRight, HiDocumentText } from "react-icons/hi";
+import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
 import { Badge } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
@@ -65,6 +66,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                     </span>
                 </div>
             </div>
+            <NavigationOverlay message="Loading post..." prominent />
         </Link>
     );
 }

@@ -5,11 +5,8 @@ import { useState } from "react";
 import {
     HiArrowRight,
     HiCheckCircle,
-    HiChip,
     HiCode,
     HiCog,
-    HiCollection,
-    HiDocumentText,
     HiHome,
     HiRefresh,
 } from "react-icons/hi";
@@ -36,44 +33,14 @@ export default function ComponentsPage(): React.ReactElement {
     const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
     type ShowcaseBlogPost = Parameters<typeof BlogPostCard>[0]["post"];
     const triggerBaseClasses =
-        "shrink-0 justify-center rounded-md border border-transparent px-3 py-1.5 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 hover:[&_svg.tab-trigger-icon]:text-sky-200 data-[state=active]:[&_svg.tab-trigger-icon]:text-sky-300 data-[state=active]:[&_span.tab-trigger-subtitle]:text-sky-100/80 md:relative md:w-full md:justify-start md:px-4 md:py-2 md:pl-5 md:text-left md:text-base md:before:pointer-events-none md:before:absolute md:before:left-2 md:before:top-1/2 md:before:h-6 md:before:w-1 md:before:-translate-y-1/2 md:before:rounded-full md:before:bg-sky-400 md:before:opacity-0 md:data-[state=active]:before:opacity-100 md:data-[state=active]:before:shadow-[0_0_8px_rgba(56,189,248,0.45)]";
+        "shrink-0 justify-center rounded-md border border-transparent px-3 py-1.5 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 data-[state=active]:[&_span.tab-trigger-subtitle]:text-sky-100/80 md:relative md:w-full md:justify-start md:px-4 md:py-2 md:pl-7 md:text-left md:text-base md:before:pointer-events-none md:before:absolute md:before:left-2 md:before:top-1/2 md:before:h-6 md:before:w-1 md:before:-translate-y-1/2 md:before:rounded-full md:before:bg-sky-400 md:before:opacity-0 md:data-[state=active]:before:opacity-100 md:data-[state=active]:before:shadow-[0_0_8px_rgba(56,189,248,0.45)]";
     const showcaseSections = [
-        {
-            value: "button",
-            label: "Button",
-            subtitle: "Actions and states",
-            icon: HiCog,
-        },
-        {
-            value: "link",
-            label: "Link",
-            subtitle: "Navigation patterns",
-            icon: HiArrowRight,
-        },
-        {
-            value: "card",
-            label: "Card",
-            subtitle: "Content containers",
-            icon: HiCollection,
-        },
-        {
-            value: "badge",
-            label: "Badge",
-            subtitle: "Labels and status",
-            icon: HiChip,
-        },
-        {
-            value: "blog",
-            label: "Blog",
-            subtitle: "Cards and post meta",
-            icon: HiDocumentText,
-        },
-        {
-            value: "qa",
-            label: "A11y QA",
-            subtitle: "Keyboard and focus",
-            icon: HiCheckCircle,
-        },
+        { value: "button", label: "Button", subtitle: "Actions and states" },
+        { value: "link", label: "Link", subtitle: "Navigation patterns" },
+        { value: "card", label: "Card", subtitle: "Content containers" },
+        { value: "badge", label: "Badge", subtitle: "Labels and status" },
+        { value: "blog", label: "Blog", subtitle: "Cards and post meta" },
+        { value: "qa", label: "A11y QA", subtitle: "Keyboard and focus" },
     ] as const;
 
     const publishedBlogPost: ShowcaseBlogPost = {
@@ -139,11 +106,7 @@ export default function ComponentsPage(): React.ReactElement {
                             className={triggerBaseClasses}
                         >
                             <span className="flex flex-col items-start leading-tight">
-                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                                    <section.icon
-                                        aria-hidden="true"
-                                        className="tab-trigger-icon h-3.5 w-3.5 shrink-0 text-slate-400 transition-colors duration-200"
-                                    />
+                                <span className="whitespace-nowrap">
                                     {section.label}
                                 </span>
                                 <span className="tab-trigger-subtitle text-content-subtle hidden text-xs font-normal transition-colors duration-200 md:inline">

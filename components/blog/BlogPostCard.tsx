@@ -42,7 +42,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
             </p>
 
             {tags.length > 0 ? (
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {tags.map((tag) => {
                         const tagPresentation = getBlogTagPresentation(tag);
 
@@ -51,7 +51,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                                 key={tag}
                                 text={tagPresentation.text}
                                 size="sm"
-                                tone="soft"
+                                tone="solid"
                                 variant={tagPresentation.variant}
                             />
                         );

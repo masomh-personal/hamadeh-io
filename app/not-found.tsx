@@ -31,7 +31,7 @@ export default function NotFound(): React.ReactElement {
                     <p className="text-content text-lg">
                         Looks like this route doesn't exist in our codebase.
                     </p>
-                    <div className="surface-card-strong rounded-lg p-4 font-mono text-left text-sm">
+                    <div className="surface-card rounded-lg p-4 font-mono text-left text-sm">
                         <div className="text-content-subtle">
                             {"// Error details:"}
                         </div>

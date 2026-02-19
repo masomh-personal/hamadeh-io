@@ -1,4 +1,4 @@
-import { HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle, HiLightningBolt, HiTemplate } from "react-icons/hi";
 import { Card } from "@/components/ui";
 
 export function CardShowcase(): React.ReactElement {
@@ -12,7 +12,7 @@ export function CardShowcase(): React.ReactElement {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <Card
-                    title="Default + Divider"
+                    title="Single Action"
                     subtitle="Single-action cards render one full-width primary button."
                     icon={<HiCheckCircle className="text-emerald-300" />}
                     className="min-h-68"
@@ -33,43 +33,39 @@ export function CardShowcase(): React.ReactElement {
                 </Card>
 
                 <Card
-                    title="Secondary Variant"
+                    title="Two Actions"
                     subtitle="Two actions split 50/50 with left primary and right secondary."
-                    variant="secondary"
                     className="min-h-68"
                     actions={[
                         { label: "Primary", href: "/components" },
                         { label: "Secondary", href: "/about" },
                     ]}
                 >
-                    <p>Different visual weight and tone.</p>
+                    <p>Dual actions for confirm/cancel patterns.</p>
                 </Card>
 
                 <Card
-                    title="Transparent Variant"
-                    subtitle="Great for subtle contexts where you want structure without heavy surface contrast."
-                    variant="transparent"
+                    title="With Icon"
+                    subtitle="Icons add a visual anchor to the card header."
+                    icon={<HiLightningBolt className="text-amber-300" />}
                     className="min-h-68"
                 >
                     <p>
-                        Transparent keeps hierarchy while blending more with the
-                        page background.
+                        Icons help differentiate cards at a glance in grid
+                        layouts.
                     </p>
                 </Card>
 
                 <Card
-                    title="Tertiary Variant"
-                    subtitle="Useful for warm highlight moments or friendly emphasis blocks."
-                    variant="tertiary"
+                    title="Dense Content"
+                    subtitle="Cards handle varying content lengths gracefully."
+                    icon={<HiTemplate className="text-sky-300" />}
                     className="min-h-68"
-                    actions={[
-                        { label: "Start", href: "/components" },
-                        { label: "Learn more", href: "/about" },
-                    ]}
+                    actions={[{ label: "View details", href: "/components" }]}
                 >
                     <p>
-                        Tertiary provides a different tone while preserving the
-                        same card structure.
+                        The body area grows to fill available space while
+                        actions stay pinned to the bottom.
                     </p>
                 </Card>
 

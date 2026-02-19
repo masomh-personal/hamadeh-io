@@ -66,7 +66,6 @@ export default function Home(): React.ReactElement {
                         title="LeetCode Solutions"
                         subtitle="Problem breakdowns, patterns, and complexity insights."
                         icon={<HiCode className="h-4 w-4 text-sky-300" />}
-                        variant="secondary"
                         className="min-h-56"
                         actions={[
                             { label: "Explore solutions", href: "/leetcode" },
@@ -84,7 +83,6 @@ export default function Home(): React.ReactElement {
                         icon={
                             <HiDocumentText className="h-4 w-4 text-emerald-300" />
                         }
-                        variant="secondary"
                         className="min-h-56"
                         actions={[{ label: "Read posts", href: "/blog" }]}
                     >
@@ -100,7 +98,6 @@ export default function Home(): React.ReactElement {
                         icon={
                             <HiCollection className="h-4 w-4 text-amber-300" />
                         }
-                        variant="secondary"
                         className="min-h-56"
                         actions={[
                             { label: "Open showcase", href: "/components" },

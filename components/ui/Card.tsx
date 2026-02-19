@@ -4,18 +4,8 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Button, type ThoughtfulButtonProps } from "./Button";
 
-const cardChromeClasses = "card-chrome";
-const cardHoverClasses = "card-hover";
-const cardHoverTransparentClasses = "card-hover-transparent";
 const baseClasses =
-    "surface-card radius-card flex h-full flex-col p-3 text-content sm:p-4";
-type CardVariant = "default" | "transparent" | "secondary" | "tertiary";
-const variantClasses: Record<CardVariant, string> = {
-    default: "",
-    transparent: "bg-transparent",
-    secondary: "surface-card-strong",
-    tertiary: "surface-panel",
-};
+    "surface-card radius-card card-chrome card-hover flex h-full flex-col p-3 text-content sm:p-4";
 type CardActionBase = Omit<
     ThoughtfulButtonProps,
     "children" | "variant" | "enforceMinWidth" | "asChild"
@@ -42,7 +32,6 @@ export interface ThoughtfulCardProps
     iconClassName?: string;
     actions?: CardActions;
     children: ReactNode;
-    variant?: CardVariant;
 }
 
 /**
@@ -56,7 +45,6 @@ export function Card({
     icon,
     iconClassName,
     actions,
-    variant = "default",
     className,
     children,
     ...props
@@ -66,17 +54,7 @@ export function Card({
     const hasTwoActions = visibleActions.length === 2;
 
     return (
-        <article
-            className={cn(
-                baseClasses,
-                cardChromeClasses,
-                cardHoverClasses,
-                variant === "transparent" && cardHoverTransparentClasses,
-                variantClasses[variant],
-                className
-            )}
-            {...props}
-        >
+        <article className={cn(baseClasses, className)} {...props}>
             <header className="relative z-10 shrink-0">
                 <h3 className="font-heading flex items-center gap-1 text-xl font-semibold text-white">
                     {icon ? (

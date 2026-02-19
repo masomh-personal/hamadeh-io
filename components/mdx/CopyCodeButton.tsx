@@ -25,7 +25,7 @@ export function CopyCodeButton({
             type="button"
             onClick={handleCopy}
             aria-label={copied ? "Copied" : "Copy code"}
-            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1.5 text-slate-400 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform-gpu hover:scale-105 hover:border-primary/40 hover:bg-primary/10 hover:text-primary-hover active:scale-90 active:duration-150 motion-reduce:transform-none"
+            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-1.5 py-1 text-slate-400 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform-gpu hover:scale-105 hover:border-primary/40 hover:bg-primary/10 hover:text-primary-hover active:scale-90 active:duration-150 motion-reduce:transform-none"
         >
             {language ? (
                 <span className="font-mono text-[0.7rem] tracking-wide select-none">

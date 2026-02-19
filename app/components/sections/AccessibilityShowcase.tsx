@@ -8,7 +8,7 @@ export function AccessibilityShowcase(): React.ReactElement {
                 Quick manual checks for every component polish pass.
             </p>
 
-            <div className="surface-panel space-y-3 rounded-lg p-4">
+            <div className="surface-card space-y-3 rounded-lg p-4">
                 <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
                     Manual checklist
                 </p>

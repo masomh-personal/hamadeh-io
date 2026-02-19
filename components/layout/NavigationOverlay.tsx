@@ -1,55 +1,54 @@
 "use client";
 
 import { useLinkStatus } from "next/link";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import { cn } from "@/lib/utils";
 
 interface NavigationOverlayProps {
     message?: string;
-    prominent?: boolean;
+    icon?: React.ReactNode;
     showSkeleton?: boolean;
 }
 
-const skeletonLineWidths = ["w-1/3", "w-full", "w-5/6", "w-11/12", "w-2/3"];
+const skeletonRows = [
+    { width: "w-1/3", delay: 0 },
+    { width: "w-full", delay: 60 },
+    { width: "w-5/6", delay: 120 },
+    { width: "w-2/3", delay: 180 },
+];
 
-/**
- * Client-side overlay that fires the instant a <Link> click begins navigating.
- * Must be rendered as a child of next/link's <Link>.
- */
 export function NavigationOverlay({
     message = "Loading...",
-    prominent = false,
+    icon,
     showSkeleton = true,
 }: NavigationOverlayProps): React.ReactElement | null {
     const { pending } = useLinkStatus();
+    const [mainEl, setMainEl] = useState<HTMLElement | null>(null);
 
-    if (!pending) return null;
+    useEffect(() => {
+        setMainEl(document.getElementById("main-content"));
+    }, []);
+
+    if (!(pending && mainEl)) return null;
 
     const overlay = (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 opacity-0 backdrop-blur-sm animate-[fadeIn_300ms_200ms_forwards]">
-            <div className="w-full max-w-xl space-y-3 px-6">
-                <LoadingIndicator
-                    message={message}
-                    className={cn("px-6 py-5", prominent && "px-7 py-6")}
-                    iconClassName={cn(prominent && "h-6 w-6")}
-                    messageClassName={cn(prominent && "text-lg font-semibold")}
-                />
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/60 opacity-0 backdrop-blur-sm animate-[fadeIn_300ms_200ms_forwards]">
+            <div className="w-full max-w-md space-y-3 px-6">
+                <LoadingIndicator message={message} icon={icon} />
 
                 {showSkeleton ? (
-                    <div className="surface-card radius-card p-5">
-                        <div className="space-y-3">
-                            {skeletonLineWidths.map((widthClass, index) => (
+                    <div className="surface-card radius-card overflow-hidden px-5 py-4">
+                        <div className="space-y-2">
+                            {skeletonRows.map((row) => (
                                 <div
-                                    key={widthClass}
+                                    key={`${row.width}-${row.delay}`}
                                     className={cn(
-                                        "h-4 rounded bg-slate-700/45 motion-safe:animate-pulse",
-                                        widthClass
+                                        "skeleton-shimmer h-2.5 rounded",
+                                        row.width
                                     )}
-                                    style={{
-                                        animationDelay: `${index * 140}ms`,
-                                        animationDuration: "1.4s",
-                                    }}
+                                    style={{ animationDelay: `${row.delay}ms` }}
                                 />
                             ))}
                         </div>
@@ -59,5 +58,5 @@ export function NavigationOverlay({
         </div>
     );
 
-    return createPortal(overlay, document.body);
+    return createPortal(overlay, mainEl);
 }

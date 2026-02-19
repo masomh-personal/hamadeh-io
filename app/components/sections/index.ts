@@ -4,3 +4,4 @@ export { BlogShowcase } from "./BlogShowcase";
 export { ButtonShowcase } from "./ButtonShowcase";
 export { CardShowcase } from "./CardShowcase";
 export { LinkShowcase } from "./LinkShowcase";
+export { LoadingShowcase } from "./LoadingShowcase";

@@ -67,7 +67,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                     </span>
                 </div>
             </div>
-            <NavigationOverlay message="Loading post..." prominent />
+            <NavigationOverlay message="Loading post..." />
         </Link>
     );
 }

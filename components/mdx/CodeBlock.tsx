@@ -56,15 +56,12 @@ export function CodeBlock(
     const code = extractTextContent(props.children).trimEnd();
     const language = extractLanguage(props.children);
 
+    const label = language ? getLanguageLabel(language) : undefined;
+
     return (
         <div className="relative">
-            <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-0.5">
-                {language ? (
-                    <span className="font-mono text-[0.625rem] tracking-wide text-slate-400 select-none">
-                        {getLanguageLabel(language)}
-                    </span>
-                ) : null}
-                <CopyCodeButton code={code} />
+            <div className="absolute top-2.5 right-2.5 z-10">
+                <CopyCodeButton code={code} language={label} />
             </div>
             <pre {...props} />
         </div>

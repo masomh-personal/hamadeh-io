@@ -84,7 +84,14 @@ export const BlogFrontmatterSchema = v.object({
         v.minLength(1, "Excerpt is required"),
         v.maxLength(200, "Excerpt must be 200 characters or less")
     ),
-    tags: v.optional(v.array(v.string())),
+    tags: v.optional(
+        v.pipe(
+            v.array(
+                v.pipe(v.string(), v.minLength(1, "Tags must be non-empty"))
+            ),
+            v.maxLength(4, "At most 4 tags are allowed")
+        )
+    ),
 });
 
 /**

@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { HiArrowRight, HiDocumentText } from "react-icons/hi";
+import { Badge } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
+import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostCardProps {
     post: BlogPost;
 }
 
 export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
+    const tags = post.tags ?? [];
+
     return (
         <Link
             href={`/blog/${post.slug}`}
@@ -37,16 +41,21 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                 {post.excerpt}
             </p>
 
-            {post.tags && post.tags.length > 0 ? (
+            {tags.length > 0 ? (
                 <div className="mt-4 flex flex-wrap gap-2">
-                    {post.tags.slice(0, 4).map((tag) => (
-                        <span
-                            key={tag}
-                            className="rounded bg-slate-800 px-2 py-1 text-[0.68rem] uppercase tracking-wide text-slate-300"
-                        >
-                            #{tag}
-                        </span>
-                    ))}
+                    {tags.map((tag) => {
+                        const tagPresentation = getBlogTagPresentation(tag);
+
+                        return (
+                            <Badge
+                                key={tag}
+                                text={tagPresentation.text}
+                                size="sm"
+                                tone="soft"
+                                variant={tagPresentation.variant}
+                            />
+                        );
+                    })}
                 </div>
             ) : null}
 

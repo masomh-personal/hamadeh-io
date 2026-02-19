@@ -5,7 +5,7 @@ datePublished: "2026-02-18"
 updatedAt: "2026-02-18"
 status: "published"
 excerpt: "How I designed a clean blog architecture with Markdown-first content, premium syntax highlighting, and room to scale."
-tags: ["blog", "nextjs", "markdown", "shiki", "engineering"]
+tags: ["engineering", "nextjs", "markdown", "shiki"]
 ---
 
 # Building the Blog Foundation

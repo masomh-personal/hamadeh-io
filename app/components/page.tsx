@@ -10,6 +10,8 @@ import {
     HiHome,
     HiRefresh,
 } from "react-icons/hi";
+import { BlogPostCard } from "@/components/blog/BlogPostCard";
+import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
 import {
     Badge,
     Button,
@@ -27,6 +29,32 @@ import {
  */
 export default function ComponentsPage(): React.ReactElement {
     const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
+    type ShowcaseBlogPost = Parameters<typeof BlogPostCard>[0]["post"];
+
+    const publishedBlogPost: ShowcaseBlogPost = {
+        title: "Building the Blog Foundation (Markdown + Shiki)",
+        slug: "building-blog-foundation-markdown-shiki",
+        datePublished: "2026-02-18",
+        updatedAt: "2026-02-18",
+        status: "published",
+        excerpt:
+            "How I designed a clean blog architecture with Markdown-first content, premium syntax highlighting, and room to scale.",
+        tags: ["blog", "nextjs", "markdown", "shiki"],
+        content: "Sample markdown content for component showcase.",
+        filePath: "content/blog/building-blog-foundation-markdown-shiki.md",
+    };
+
+    const draftBlogPost: ShowcaseBlogPost = {
+        title: "Async Patterns in Modern TypeScript Services",
+        slug: "async-patterns-modern-typescript-services",
+        datePublished: "2026-02-20",
+        status: "draft",
+        excerpt:
+            "Draft article exploring cancellation, timeouts, and error boundaries in async workflows.",
+        tags: ["typescript", "backend", "async"],
+        content: "Draft showcase content.",
+        filePath: "content/blog/async-patterns-modern-typescript-services.md",
+    };
 
     const handleSubmitDemo = (): void => {
         if (isSubmittingDemo) {
@@ -105,6 +133,17 @@ export default function ComponentsPage(): React.ReactElement {
                             <span className="whitespace-nowrap">Badge</span>
                             <span className="text-content-subtle hidden text-xs font-normal md:inline">
                                 Labels and status
+                            </span>
+                        </span>
+                    </TabsTrigger>
+                    <TabsTrigger
+                        value="blog"
+                        className="shrink-0 justify-center rounded-md border border-transparent px-3 py-2 text-sm data-[state=active]:border-sky-400 data-[state=active]:bg-sky-500/10 data-[state=active]:text-sky-300 md:w-full md:justify-start md:px-4 md:py-3 md:text-left md:text-base"
+                    >
+                        <span className="flex flex-col items-start leading-tight">
+                            <span className="whitespace-nowrap">Blog</span>
+                            <span className="text-content-subtle hidden text-xs font-normal md:inline">
+                                Cards and post meta
                             </span>
                         </span>
                     </TabsTrigger>
@@ -640,6 +679,45 @@ export default function ComponentsPage(): React.ReactElement {
                                             className="max-w-[220px] truncate"
                                             text="This label intentionally truncates in narrow layouts"
                                         />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </TabsContent>
+
+                    <TabsContent
+                        value="blog"
+                        className="surface-card radius-card min-h-0 p-5 md:min-h-[520px] md:p-8"
+                    >
+                        <section>
+                            <h2 className="font-bold text-white">Blog</h2>
+                            <p className="text-content-muted mb-6">
+                                Blog-specific components for list cards and post
+                                headers, including metadata states.
+                            </p>
+
+                            <div className="space-y-8">
+                                <div>
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                                        BlogPostCard states
+                                    </h3>
+                                    <div className="grid gap-4 lg:grid-cols-2">
+                                        <BlogPostCard
+                                            post={publishedBlogPost}
+                                        />
+                                        <BlogPostCard post={draftBlogPost} />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-content-subtle mb-3 font-mono text-sm">
+                                        BlogPostHeader states
+                                    </h3>
+                                    <div className="space-y-4">
+                                        <BlogPostHeader
+                                            post={publishedBlogPost}
+                                        />
+                                        <BlogPostHeader post={draftBlogPost} />
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,7 @@
+import { Badge } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
+import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostHeaderProps {
     post: BlogPost;
@@ -8,6 +10,8 @@ interface BlogPostHeaderProps {
 export function BlogPostHeader({
     post,
 }: BlogPostHeaderProps): React.ReactElement {
+    const tags = post.tags ?? [];
+
     return (
         <header className="surface-card radius-card card-chrome mb-10 p-6 md:p-7">
             <div className="text-content-subtle mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-wide">
@@ -27,16 +31,21 @@ export function BlogPostHeader({
 
             <div className="my-4 border-b border-surface-outline/80" />
 
-            {post.tags && post.tags.length > 0 ? (
+            {tags.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                        <span
-                            key={tag}
-                            className="rounded bg-slate-800 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-slate-300"
-                        >
-                            {tag}
-                        </span>
-                    ))}
+                    {tags.map((tag) => {
+                        const tagPresentation = getBlogTagPresentation(tag);
+
+                        return (
+                            <Badge
+                                key={tag}
+                                text={tagPresentation.text}
+                                size="sm"
+                                tone="solid"
+                                variant={tagPresentation.variant}
+                            />
+                        );
+                    })}
                 </div>
             ) : null}
         </header>

@@ -38,7 +38,7 @@ export function BlogPostHeader({
                                 key={tag}
                                 text={tagPresentation.text}
                                 size="sm"
-                                tone="solid"
+                                tone={tagPresentation.tone}
                                 variant={tagPresentation.variant}
                             />
                         );

@@ -51,7 +51,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                                 key={tag}
                                 text={tagPresentation.text}
                                 size="sm"
-                                tone="solid"
+                                tone={tagPresentation.tone}
                                 variant={tagPresentation.variant}
                             />
                         );

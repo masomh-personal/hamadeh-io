@@ -3,7 +3,7 @@ import path from "node:path";
 import { HiDocumentText, HiDownload } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Link } from "@/components/ui";
+import { Button, Link } from "@/components/ui";
 
 const RESUME_PUBLIC_PATH = "/resume.pdf";
 
@@ -30,16 +30,16 @@ export default function ResumePage(): React.ReactElement {
                         >
                             Open in New Tab
                         </Link>
-                        <Link
+                        <Button
+                            size="sm"
                             href={RESUME_PUBLIC_PATH}
                             download
                             variant="secondary"
-                            icon={<HiDownload className="h-3.5 w-3.5" />}
-                            iconPosition="left"
                             className="inline-flex items-center"
                         >
+                            <HiDownload className="h-3.5 w-3.5" />
                             Download PDF
-                        </Link>
+                        </Button>
                     </>
                 }
             />

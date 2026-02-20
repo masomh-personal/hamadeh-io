@@ -117,6 +117,7 @@
         --tertiary-foreground: white;
 
         /* Component-specific variables */
+        --icon-size-header: 1.125rem;
         --icon-size-footer: 1.4rem;
     }
 

@@ -70,7 +70,7 @@ export function Header(): React.ReactElement {
                             className="inline-flex items-center justify-center rounded-md p-0 leading-none"
                             aria-label="LinkedIn"
                         >
-                            <SiLinkedin className="size-(--icon-size-footer)" />
+                            <SiLinkedin className="size-(--icon-size-header)" />
                         </Link>
                     </div>
 

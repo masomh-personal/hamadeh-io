@@ -81,7 +81,7 @@ export function Logo({
     return (
         <Link
             href="/"
-            className="transition-opacity hover:opacity-80"
+            className="inline-flex rounded-lg px-2 py-1 transition-colors duration-200 hover:bg-slate-700/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             aria-label="ThoughtfulCode Home"
         >
             {logoContent}

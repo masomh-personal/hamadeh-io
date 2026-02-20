@@ -1,41 +1,38 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { HiDocumentText, HiRefresh } from "react-icons/hi";
+import { HiChip, HiCube, HiDatabase, HiTerminal } from "react-icons/hi";
 import { LoadingOverlay } from "@/components/layout/LoadingOverlay";
 import { Button } from "@/components/ui";
 
 const AUTODISMISS_SECONDS = 10;
 
+const iconClass = "h-8 w-8 animate-[spin_1.2s_linear_infinite] text-sky-300";
+
 const presets = [
     {
-        label: "Default",
+        label: "Chip",
         message: "Loading...",
-        icon: undefined,
+        icon: <HiChip className={iconClass} />,
         skeleton: false,
     },
     {
-        label: "Blog Post",
-        message: "Loading post...",
-        icon: (
-            <HiDocumentText className="h-8 w-8 animate-[spin_1.2s_linear_infinite] text-emerald-400" />
-        ),
-        skeleton: true,
-    },
-    {
-        label: "Custom Icon",
-        message: "Refreshing...",
-        icon: (
-            <HiRefresh className="h-8 w-8 animate-[spin_1.2s_linear_infinite] text-amber-400" />
-        ),
+        label: "Terminal",
+        message: "Loading...",
+        icon: <HiTerminal className={iconClass} />,
         skeleton: false,
     },
     {
-        label: "Long Text",
-        message:
-            "Hang tight, we're fetching your content and preparing the layout...",
-        icon: undefined,
-        skeleton: true,
+        label: "Cube",
+        message: "Loading...",
+        icon: <HiCube className={iconClass} />,
+        skeleton: false,
+    },
+    {
+        label: "Database",
+        message: "Loading...",
+        icon: <HiDatabase className={iconClass} />,
+        skeleton: false,
     },
 ] as const;
 

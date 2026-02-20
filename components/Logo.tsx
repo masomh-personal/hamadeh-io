@@ -1,17 +1,17 @@
-import Image from "next/image";
 import Link from "next/link";
+import { HiTerminal } from "react-icons/hi";
 
 /**
  * Logo component for ThoughtfulCode brand
  *
  * Design concept:
- * - SVG logo image (code window with thought bubbles) on the left
+ * - HiTerminal icon (code/terminal) on the left
  * - "Thoughtful" in Baloo 2 (human, approachable)
  * - "Code" in monospace (technical, programming)
  * - "()" method invocation suffix (developer-friendly)
  * - Different font weights for visual hierarchy
  *
- * Result: [SVG Logo] ThoughtfulCode()
+ * Result: [Terminal Icon] ThoughtfulCode()
  *
  * @param size - Logo size variant
  * @param clickable - Whether the logo should be wrapped in a Link
@@ -25,35 +25,26 @@ export function Logo({
 }): React.ReactElement {
     const sizes = {
         small: {
-            container: "text-base", // 16px
-            parens: "text-sm", // 14px
-            imageWidth: 20,
-            imageHeight: 20,
+            container: "text-base",
+            parens: "text-sm",
+            icon: "h-5 w-5",
         },
         default: {
-            container: "text-xl", // 20px
-            parens: "text-lg", // 18px
-            imageWidth: 28,
-            imageHeight: 28,
+            container: "text-xl",
+            parens: "text-lg",
+            icon: "h-7 w-7",
         },
         large: {
-            container: "text-3xl", // 30px
-            parens: "text-2xl", // 24px
-            imageWidth: 40,
-            imageHeight: 40,
+            container: "text-3xl",
+            parens: "text-2xl",
+            icon: "h-10 w-10",
         },
     };
 
     const logoContent = (
         <span className={`flex gap-1.5 items-center ${sizes[size].container}`}>
-            {/* SVG Logo Image */}
-            <Image
-                src="/branding/logo.svg"
-                alt=""
-                width={sizes[size].imageWidth}
-                height={sizes[size].imageHeight}
-                className="shrink-0"
-                priority
+            <HiTerminal
+                className={`${sizes[size].icon} shrink-0 text-primary`}
                 aria-hidden="true"
             />
             {/* Text Logo */}

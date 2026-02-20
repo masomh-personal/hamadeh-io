@@ -1,4 +1,4 @@
-import { HiCode } from "react-icons/hi";
+import { HiTerminal } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 
 interface LoadingIndicatorProps {
@@ -20,7 +20,7 @@ export function LoadingIndicator({
             )}
         >
             {icon ?? (
-                <HiCode
+                <HiTerminal
                     className="h-8 w-8 animate-[spin_1.2s_linear_infinite] text-sky-300"
                     aria-hidden="true"
                 />

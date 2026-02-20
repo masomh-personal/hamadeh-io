@@ -1,19 +1,13 @@
 import Image from "next/image";
 import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { Badge, Button, Card } from "@/components/ui";
+import { Button, Card } from "@/components/ui";
 
 export default function Home(): React.ReactElement {
     return (
         <PageContainer className="space-y-10 md:space-y-12">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
-                    <Badge
-                        className="mb-3"
-                        variant="primary"
-                        size="md"
-                        text="ThoughtfulCode Portfolio"
-                    />
                     <h1 className="font-extrabold leading-tight text-white">
                         Hi! I&apos;m Masom.
                         <br />I love building thoughtful software.

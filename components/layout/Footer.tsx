@@ -6,7 +6,7 @@ export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="site-footer">
+        <footer className="w-full border-t border-(--border) bg-(--background)">
             <div className="mx-auto max-w-6xl px-6 py-6">
                 <div className="flex flex-col items-center gap-1.5">
                     {/* Social Links */}
@@ -20,7 +20,7 @@ export function Footer(): React.ReactElement {
                             className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
                             aria-label="GitHub"
                         >
-                            <SiGithub className="footer-icon" />
+                            <SiGithub className="size-(--icon-size-footer)" />
                         </Link>
                         <Link
                             href="https://www.linkedin.com/in/masomh/"
@@ -31,7 +31,7 @@ export function Footer(): React.ReactElement {
                             className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
                             aria-label="LinkedIn"
                         >
-                            <SiLinkedin className="footer-icon" />
+                            <SiLinkedin className="size-(--icon-size-footer)" />
                         </Link>
                     </div>
 

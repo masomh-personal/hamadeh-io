@@ -58,7 +58,7 @@ export default function ComponentsPage(): React.ReactElement {
             >
                 <TabsList
                     aria-label="Component showcase sections"
-                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-slate-700/70 bg-slate-900/40 p-2 md:sticky md:top-20 md:h-auto md:self-start md:flex-col md:items-stretch md:justify-start md:gap-2 md:rounded-xl md:border md:border-slate-600/90 md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
+                    className="flex w-full items-center gap-2 overflow-x-auto rounded-lg border border-surface-card bg-slate-900/40 p-2 md:sticky md:top-20 md:h-auto md:self-start md:flex-col md:items-stretch md:justify-start md:gap-2 md:rounded-xl md:border md:border-surface-card md:bg-linear-to-b md:from-slate-800/90 md:to-slate-900/90 md:p-3 md:shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
                 >
                     {showcaseSections.map((section) => (
                         <TabsTrigger

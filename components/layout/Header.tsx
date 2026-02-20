@@ -30,7 +30,7 @@ export function Header(): React.ReactElement {
     ];
 
     return (
-        <header className="site-header">
+        <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)">
             <nav className="mx-auto max-w-6xl px-6">
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
@@ -82,7 +82,7 @@ export function Header(): React.ReactElement {
 
                 {/* Mobile Navigation */}
                 {mobileMenuOpen && (
-                    <div className="border-t-2 border-slate-700 py-4 md:hidden">
+                    <div className="border-t border-surface-card py-4 md:hidden">
                         <div className="flex flex-col gap-3">
                             {navigation.map((item) => {
                                 const isActive =

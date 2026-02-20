@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
-import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
 
@@ -16,17 +16,10 @@ export default async function BlogPage(): Promise<React.ReactElement> {
 
     return (
         <PageContainer>
-            <header className="mb-4">
-                <h1 className="font-extrabold text-white">Blogs</h1>
-                <p className="text-content-muted mt-2">
-                    Writing about engineering decisions, problem solving, and
-                    lessons learned while building software. I also share
-                    thoughts on data structures, algorithms, computer science
-                    fundamentals, modern front-end work, and new technology
-                    I&apos;m actively exploring.
-                </p>
-                <BackToHomeLink className="mt-4" />
-            </header>
+            <PageHeader
+                title="Blogs"
+                description="Writing about engineering decisions, problem solving, and lessons learned while building software. I also share thoughts on data structures, algorithms, computer science fundamentals, modern front-end work, and new technology I'm actively exploring."
+            />
 
             {posts.length === 0 ? (
                 <div className="surface-card radius-card p-8">

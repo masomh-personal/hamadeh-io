@@ -1,7 +1,7 @@
 "use client";
 
-import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
 import {
     AccessibilityShowcase,
@@ -36,21 +36,10 @@ const tabContentClasses =
 export default function ComponentsPage(): React.ReactElement {
     return (
         <PageContainer>
-            <header className="mb-4">
-                <h1 className="font-extrabold text-white">
-                    Components Showcase
-                </h1>
-                <p className="text-content-muted mt-2">
-                    This page is a living component lab for our UI system. We
-                    use a wrapper-first approach: Radix primitives provide
-                    accessible behavior and interaction patterns, while our own
-                    components define styling, spacing, and visual identity. The
-                    goal is to iterate quickly, validate UX and keyboard
-                    behavior, and keep a clean, maintainable design system
-                    without locking ourselves into heavy opinionated UI kits.
-                </p>
-                <BackToHomeLink className="mt-4" />
-            </header>
+            <PageHeader
+                title="Components Showcase"
+                description="This page is a living component lab for our UI system. We use a wrapper-first approach: Radix primitives provide accessible behavior and interaction patterns, while our own components define styling, spacing, and visual identity. The goal is to iterate quickly, validate UX and keyboard behavior, and keep a clean, maintainable design system without locking ourselves into heavy opinionated UI kits."
+            />
 
             <Tabs
                 defaultValue="button"

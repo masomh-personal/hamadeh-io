@@ -5,24 +5,18 @@ import {
     HiLightningBolt,
     HiUser,
 } from "react-icons/hi";
-import { BackToHomeLink } from "@/components/layout/BackToHomeLink";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
 
 export default function AboutPage(): React.ReactElement {
     return (
         <PageContainer>
-            <header className="mb-4">
-                <h1 className="font-extrabold text-white">About Me</h1>
-                <p className="text-content-muted mt-2 max-w-4xl">
-                    I&apos;m a full-stack software engineer based in Atlanta. I
-                    build maintainable systems, lead with clarity, and bridge
-                    product goals with practical engineering execution. This
-                    portfolio reflects how I think, ship, and continuously raise
-                    quality over time.
-                </p>
-                <BackToHomeLink className="mt-4" />
-            </header>
+            <PageHeader
+                title="About Me"
+                description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, lead with clarity, and bridge product goals with practical engineering execution. This portfolio reflects how I think, ship, and continuously raise quality over time."
+                descriptionClassName="max-w-4xl"
+            />
 
             <section className="mb-6 grid gap-4 md:grid-cols-2">
                 <article className="surface-card radius-card p-5">

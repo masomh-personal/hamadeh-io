@@ -1,4 +1,6 @@
+import { HiXCircle } from "react-icons/hi";
 import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
+import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 interface LoadingOverlayProps {
@@ -6,6 +8,8 @@ interface LoadingOverlayProps {
     icon?: React.ReactNode;
     showSkeleton?: boolean;
     onDismiss?: () => void;
+    /** Seconds until auto-dismiss; when provided, shown in the dismiss button (e.g. "Dismiss Overlay (5)") */
+    secondsRemaining?: number | null;
     className?: string;
 }
 
@@ -21,21 +25,18 @@ export function LoadingOverlay({
     icon,
     showSkeleton = false,
     onDismiss,
+    secondsRemaining,
     className,
 }: LoadingOverlayProps): React.ReactElement {
     return (
         <div
             className={cn(
-                "absolute inset-0 z-40 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm",
+                "absolute inset-0 z-40 flex flex-col items-center justify-center bg-slate-950/60 backdrop-blur-sm",
                 className
             )}
         >
             <div className="w-full max-w-sm space-y-3 px-6">
-                <LoadingIndicator
-                    message={message}
-                    icon={icon}
-                    onDismiss={onDismiss}
-                />
+                <LoadingIndicator message={message} icon={icon} />
 
                 {showSkeleton ? (
                     <div className="surface-card radius-card overflow-hidden px-5 py-4">
@@ -54,6 +55,20 @@ export function LoadingOverlay({
                     </div>
                 ) : null}
             </div>
+
+            {onDismiss ? (
+                <Button
+                    variant="danger-soft"
+                    size="sm"
+                    iconSize="sm"
+                    onClick={onDismiss}
+                    className="mt-4"
+                >
+                    <HiXCircle />
+                    Dismiss Overlay
+                    {secondsRemaining != null ? ` (${secondsRemaining})` : ""}
+                </Button>
+            ) : null}
         </div>
     );
 }

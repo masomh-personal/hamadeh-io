@@ -13,6 +13,7 @@ import {
     HiUser,
     HiX,
 } from "react-icons/hi";
+import { SiLinkedin } from "react-icons/si";
 import { Logo } from "@/components/Logo";
 import { Link } from "@/components/ui";
 
@@ -60,6 +61,17 @@ export function Header(): React.ReactElement {
                                 </Link>
                             );
                         })}
+                        <Link
+                            href="https://www.linkedin.com/in/masomh/"
+                            target="_blank"
+                            external
+                            variant="muted"
+                            showIcon={false}
+                            className="inline-flex items-center justify-center rounded-md p-0 leading-none"
+                            aria-label="LinkedIn"
+                        >
+                            <SiLinkedin className="size-(--icon-size-footer)" />
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -107,6 +119,17 @@ export function Header(): React.ReactElement {
                                     </Link>
                                 );
                             })}
+                            <Link
+                                href="https://www.linkedin.com/in/masomh/"
+                                target="_blank"
+                                external
+                                icon={<SiLinkedin className="h-4 w-4" />}
+                                iconPosition="left"
+                                className="text-sm transition-colors text-muted hover:text-primary"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                LinkedIn
+                            </Link>
                         </div>
                     </div>
                 )}

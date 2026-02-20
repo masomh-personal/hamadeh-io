@@ -56,8 +56,6 @@ export interface ThoughtfulButtonProps
     variant?: ButtonVariant;
     size?: ButtonSize;
     href?: string;
-    /** When href is set, pass true to trigger download instead of navigate */
-    download?: boolean;
     children?: React.ReactNode;
     iconSize?: IconSize;
     isLoading?: boolean;
@@ -183,7 +181,6 @@ export function Button({
     children,
     asChild = false,
     enforceMinWidth = true,
-    download: downloadAttr,
     ...props
 }: ThoughtfulButtonProps): React.ReactElement {
     const isDisabled = Boolean(disabled || isLoading);
@@ -251,12 +248,7 @@ export function Button({
 
     if (href) {
         return (
-            <a
-                href={href}
-                className={classes}
-                download={downloadAttr}
-                {...linkAccessibilityProps}
-            >
+            <a href={href} className={classes} {...linkAccessibilityProps}>
                 {content}
             </a>
         );

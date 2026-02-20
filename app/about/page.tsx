@@ -16,6 +16,15 @@ export default function AboutPage(): React.ReactElement {
                 title="About Me"
                 description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, lead with clarity, and bridge product goals with practical engineering execution. This portfolio reflects how I think, ship, and continuously raise quality over time."
                 descriptionClassName="max-w-4xl"
+                actions={
+                    <Link
+                        href="/resume"
+                        variant="secondary"
+                        className="inline-flex items-center"
+                    >
+                        View Full Resume
+                    </Link>
+                }
             />
 
             <section className="mb-6 grid gap-4 md:grid-cols-2">
@@ -151,16 +160,6 @@ export default function AboutPage(): React.ReactElement {
                     </ul>
                 </article>
             </section>
-
-            <div className="mt-6">
-                <Link
-                    href="/resume"
-                    variant="secondary"
-                    className="inline-flex items-center"
-                >
-                    View Full Resume
-                </Link>
-            </div>
         </PageContainer>
     );
 }

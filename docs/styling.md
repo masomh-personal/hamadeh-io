@@ -57,6 +57,8 @@ Why this works:
 - Prevents long-term drift in repeated visual tokens.
 - Makes global style tuning one-file changes.
 
+**Layout components (Header, Footer):** Styles are colocated in the component using Tailwind classes instead of global CSS. This follows DRY and keeps components self-contained. Use `border-(--border)` and `bg-(--background)` to reference theme variables.
+
 ---
 
 ## 🗺️ Token & Layer Decision Guide
@@ -362,12 +364,12 @@ import { cn } from '@/lib/utils';
 - Logo: Quicksand, Bold (700), `text-xl`
 - Navigation: Quicksand, Bold (700), `text-sm`, normal case (not uppercase)
 - Hover: Sky 500 for both logo and nav links
-- Border: `border-b-2` for emphasis
+- Border: `border-b border-(--border)` (1px, theme color)
 - Sticky positioning with dark background
 
 **Pattern:**
 ```tsx
-<header className="site-header">
+<header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)">
   <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <Link className="font-heading text-xl font-bold text-slate-50 hover:text-sky-500">
       ThoughtfulCode
@@ -379,12 +381,12 @@ import { cn } from '@/lib/utils';
 ### Footer
 - Copyright: Lexend, Regular (400), `text-content-muted`
 - Social links: Hover to Sky 500
-- Border: `border-t-2` for emphasis
+- Border: `border-t border-(--border)` (1px, theme color)
 - Centered content layout
 
 **Pattern:**
 ```tsx
-<footer className="site-footer">
+<footer className="w-full border-t border-(--border) bg-(--background)">
   <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
     <p className="text-slate-400">Content</p>
   </div>

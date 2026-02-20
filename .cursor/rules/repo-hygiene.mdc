@@ -9,5 +9,5 @@ alwaysApply: true
 - Never revert unrelated user changes without explicit request.
 - Avoid destructive git operations unless explicitly approved.
 - Run local checks after meaningful edits (`type-check` and `check`).
-- Keep docs/config in sync when tooling or conventions change.
+- Keep docs/config in sync when tooling, conventions, or major decisions change.
 - Prefer small, verifiable steps and clear change summaries.

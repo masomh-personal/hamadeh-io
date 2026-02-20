@@ -47,12 +47,14 @@ export default function MyPage() {
 ## Layout Components
 
 ### Header
-- **Background**: Full-width with `site-header` class
+- **Layout**: Sticky, full-width, with theme border and background
+- **Classes**: `sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)`
 - **Content**: Constrained to `max-w-6xl px-6`
 - **Height**: Fixed at `h-16` (64px)
 
 ### Footer
-- **Background**: Full-width with `site-footer` class
+- **Layout**: Full-width with theme border and background
+- **Classes**: `w-full border-t border-(--border) bg-(--background)`
 - **Content**: Constrained to `max-w-6xl px-6`
 - **Padding**: `py-6` (24px vertical)
 
@@ -122,6 +124,5 @@ export default function HomePage() {
 
 ## Related Files
 - `app/layout.tsx` - Root layout with Header/Footer
-- `components/layout/Header.tsx` - Header component
-- `components/layout/Footer.tsx` - Footer component
-- `app/globals.css` - `.site-header` and `.site-footer` styles
+- `components/layout/Header.tsx` - Header component (layout styles colocated)
+- `components/layout/Footer.tsx` - Footer component (layout styles colocated)

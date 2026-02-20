@@ -1,7 +1,7 @@
 "use client";
 
 import { useLinkStatus } from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { LoadingOverlay } from "@/components/layout/LoadingOverlay";
 
@@ -11,10 +11,19 @@ interface NavigationOverlayProps {
     showSkeleton?: boolean;
 }
 
+function emptySubscribe(): () => void {
+    return () => {};
+}
+
+function getMainContentSnapshot(): HTMLElement | null {
+    return document.getElementById("main-content");
+}
+
 /**
  * Client-side overlay that fires the instant a <Link> click begins navigating.
  * Portals into <main> so header/footer stay interactive.
  * All visual rendering is delegated to LoadingOverlay.
+ * Uses useSyncExternalStore to avoid hydration flash from useEffect(setState, []).
  */
 export function NavigationOverlay({
     message = "Loading...",
@@ -22,11 +31,11 @@ export function NavigationOverlay({
     showSkeleton = false,
 }: NavigationOverlayProps): React.ReactElement | null {
     const { pending } = useLinkStatus();
-    const [mainEl, setMainEl] = useState<HTMLElement | null>(null);
-
-    useEffect(() => {
-        setMainEl(document.getElementById("main-content"));
-    }, []);
+    const mainEl = useSyncExternalStore(
+        emptySubscribe,
+        getMainContentSnapshot,
+        () => null
+    );
 
     if (!(pending && mainEl)) return null;
 

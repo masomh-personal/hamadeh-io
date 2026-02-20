@@ -30,7 +30,7 @@ function defineTag(
  * Central tag style registry for blog UI.
  * If tags later come from a database, we can map DB values to this registry.
  */
-export const BLOG_TAGS: Record<string, BlogTagDefinition> = {
+const BLOG_TAGS: Record<string, BlogTagDefinition> = {
     engineering: defineTag("engineering", "primary"),
     nextjs: defineTag("nextjs", "brand"),
     markdown: defineTag("markdown", "secondary"),

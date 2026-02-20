@@ -17,7 +17,7 @@ export default async function BlogPage(): Promise<React.ReactElement> {
     return (
         <PageContainer>
             <header className="mb-4">
-                <h1 className="font-extrabold text-white">Blog</h1>
+                <h1 className="font-extrabold text-white">Blogs</h1>
                 <p className="text-content-muted mt-2">
                     Writing about engineering decisions, problem solving, and
                     lessons learned while building software. I also share

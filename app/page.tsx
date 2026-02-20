@@ -79,7 +79,7 @@ export default function Home(): React.ReactElement {
                         to technical decisions. This site is where I practice
                         all of it in the open.
                     </p>
-                    <div className="mt-5 flex justify-end gap-3">
+                    <div className="mt-1 flex justify-end gap-3">
                         <Button href="/blog" variant="secondary" size="sm">
                             <HiDocumentText />
                             Read the blog

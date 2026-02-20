@@ -1,53 +1,63 @@
 export function StylingFontShowcase(): React.ReactElement {
     return (
-        <section className="mb-20">
-            <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
+        <section className="mb-20" aria-labelledby="fonts-heading">
+            <h2
+                id="fonts-heading"
+                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+            >
                 Font Family Showcase
             </h2>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <div className="surface-outline rounded-md p-6">
-                    <h3 className="mb-4 font-heading text-2xl font-bold text-white">
-                        Baloo 2 (Headings)
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div className="surface-card radius-card p-6">
+                    <h3 className="mb-4 font-heading text-xl font-bold text-white">
+                        Quicksand (Headings)
                     </h3>
-                    <p className="mb-2 text-sm text-slate-400">
-                        Friendly, rounded, attention-grabbing
+                    <p className="text-content-subtle mb-2 text-sm">
+                        Rounded, friendly, section titles
                     </p>
-                    <p className="text-base leading-relaxed text-slate-300">
-                        This font adds personality and warmth to your portfolio.
-                        Perfect for hero sections and major headings where you
-                        want to make an impact.
+                    <p className="text-content text-sm leading-relaxed">
+                        Used for h1–h3 and buttons. Provides clear hierarchy and
+                        a modern, approachable feel.
                     </p>
                 </div>
 
-                <div className="surface-outline rounded-md p-6">
-                    <h3 className="mb-4 text-2xl font-semibold text-white">
-                        Plus Jakarta Sans (Body)
+                <div className="surface-card radius-card p-6">
+                    <h3 className="mb-4 font-body text-xl font-semibold text-white">
+                        Lexend (Body)
                     </h3>
-                    <p className="mb-2 text-sm text-slate-400">
-                        Modern, geometric, highly readable
+                    <p className="text-content-subtle mb-2 text-sm">
+                        Highly readable, geometric
                     </p>
-                    <p className="text-base leading-relaxed text-slate-300">
-                        This modern sans-serif font ensures excellent
-                        readability at all sizes with a contemporary geometric
-                        feel. Perfect for body text, paragraphs, and content
-                        where clarity and modern aesthetics are paramount.
+                    <p className="text-content text-sm leading-relaxed">
+                        Default body font for paragraphs and content. Optimized
+                        for readability at all sizes.
                     </p>
                 </div>
 
-                <div className="surface-outline rounded-md p-6">
-                    <h3 className="mb-4 font-mono text-2xl font-semibold text-white">
+                <div className="surface-card radius-card p-6">
+                    <h3 className="mb-4 font-baloo text-xl font-bold text-white">
+                        Baloo 2 (Accent)
+                    </h3>
+                    <p className="text-content-subtle mb-2 text-sm">
+                        Playful, rounded, personality
+                    </p>
+                    <p className="text-content text-sm leading-relaxed">
+                        Used for logo, badges, and decorative accents where we
+                        want warmth and character.
+                    </p>
+                </div>
+
+                <div className="surface-card radius-card p-6">
+                    <h3 className="mb-4 font-mono text-xl font-semibold text-white">
                         Fira Code (Code)
                     </h3>
-                    <p className="mb-2 text-sm text-slate-400">
-                        Modern monospace with ligatures, crisp & professional
+                    <p className="text-content-subtle mb-2 text-sm">
+                        Monospace with ligatures
                     </p>
-                    <p className="font-mono text-base leading-relaxed text-slate-300">
-                        This modern monospace font features programming
-                        ligatures that improve code readability. It&apos;s
-                        crisp, professional, and designed specifically for
-                        coding with excellent character distinction and balanced
-                        proportions.
+                    <p className="font-mono text-content text-sm leading-relaxed">
+                        Primary monospace for code blocks and technical
+                        snippets. Ligatures improve code readability.
                     </p>
                 </div>
             </div>

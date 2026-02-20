@@ -1,54 +1,55 @@
 export function StylingColorPalette(): React.ReactElement {
     return (
-        <section className="mb-20">
-            <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
+        <section className="mb-20" aria-labelledby="color-heading">
+            <h2
+                id="color-heading"
+                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+            >
                 Color Palette
             </h2>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-                <div className="surface-outline rounded-md p-6">
-                    <div className="mb-4 h-24 rounded-md bg-sky-500"></div>
+                <div className="surface-card radius-card p-6">
+                    <div className="mb-4 h-24 rounded-md bg-primary" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
-                        Primary Accent
+                        Primary
                     </h3>
-                    <p className="text-sm text-slate-400">Sky Blue 500</p>
-                    <p className="mt-2 text-xs text-slate-500">
-                        Used for links, buttons, and interactive elements
+                    <p className="text-content-subtle text-sm">Sky (accent)</p>
+                    <p className="text-content-muted mt-2 text-xs">
+                        Links, buttons, interactive elements
                     </p>
                 </div>
 
-                <div className="surface-outline rounded-md p-6">
-                    <div className="mb-4 h-24 rounded-md bg-emerald-500"></div>
+                <div className="surface-card radius-card p-6">
+                    <div className="mb-4 h-24 rounded-md bg-secondary" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
-                        Secondary Accent
+                        Secondary
                     </h3>
-                    <p className="text-sm text-slate-400">Emerald 500</p>
-                    <p className="mt-2 text-xs text-slate-500">
-                        Used for success states and positive indicators
+                    <p className="text-content-subtle text-sm">Emerald</p>
+                    <p className="text-content-muted mt-2 text-xs">
+                        Success states, positive indicators
                     </p>
                 </div>
 
-                <div className="surface-outline rounded-md p-6">
-                    <div className="mb-4 h-24 rounded-md bg-amber-400"></div>
+                <div className="surface-card radius-card p-6">
+                    <div className="mb-4 h-24 rounded-md bg-tertiary" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
-                        Tertiary Accent
+                        Tertiary
                     </h3>
-                    <p className="text-sm text-slate-400">Amber 400 (Gold)</p>
-                    <p className="mt-2 text-xs text-slate-500">
-                        Used for highlights, badges, and special emphasis
+                    <p className="text-content-subtle text-sm">Amber</p>
+                    <p className="text-content-muted mt-2 text-xs">
+                        Highlights, badges, emphasis
                     </p>
                 </div>
 
-                <div className="surface-outline rounded-md p-6">
-                    <div className="mb-4 h-24 rounded-md bg-slate-50"></div>
+                <div className="surface-card radius-card p-6">
+                    <div className="mb-4 h-24 rounded-md bg-slate-100" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
                         Neutral
                     </h3>
-                    <p className="text-sm text-slate-400">
-                        Slate scale (50-950)
-                    </p>
-                    <p className="mt-2 text-xs text-slate-500">
-                        Used for backgrounds, text, and borders
+                    <p className="text-content-subtle text-sm">Slate scale</p>
+                    <p className="text-content-muted mt-2 text-xs">
+                        Backgrounds, text, borders
                     </p>
                 </div>
             </div>

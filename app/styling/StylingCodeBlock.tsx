@@ -53,16 +53,19 @@ if (result) {
 
 export function StylingCodeBlock(): React.ReactElement {
     return (
-        <section className="mb-20">
-            <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
+        <section className="mb-20" aria-labelledby="code-heading">
+            <h2
+                id="code-heading"
+                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+            >
                 Code Block Example
             </h2>
-            <p className="mb-6 text-base text-slate-400">
-                Example using Fira Code as the primary monospace font:
+            <p className="text-content-muted mb-6 text-base">
+                Fira Code is the primary monospace font for code blocks.
             </p>
 
-            <pre className="surface-outline overflow-x-auto rounded-md bg-[#282c34]/50 p-6">
-                <code className="font-mono text-sm leading-relaxed text-slate-100">
+            <pre className="surface-card radius-card overflow-x-auto p-6">
+                <code className="font-mono text-content text-sm leading-relaxed">
                     {CODE_EXAMPLE}
                 </code>
             </pre>

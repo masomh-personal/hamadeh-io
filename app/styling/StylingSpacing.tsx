@@ -1,28 +1,30 @@
 export function StylingSpacing(): React.ReactElement {
     return (
-        <section className="mb-20">
-            <h2 className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
-                Spacing & Layout
+        <section className="mb-20" aria-labelledby="spacing-heading">
+            <h2
+                id="spacing-heading"
+                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+            >
+                Spacing &amp; Layout
             </h2>
 
-            <div className="surface-outline space-y-6 rounded-md p-8">
+            <div className="surface-card radius-card space-y-6 p-8">
                 <div>
                     <h3 className="mb-2 text-lg font-semibold text-white">
-                        Generous Whitespace
+                        Generous whitespace
                     </h3>
-                    <p className="text-slate-400">
-                        We use generous spacing between sections (py-20 to
-                        py-32) and comfortable padding within components for
-                        better readability.
+                    <p className="text-content-muted">
+                        Sections use mb-20; components use comfortable padding
+                        for readability.
                     </p>
                 </div>
                 <div>
                     <h3 className="mb-2 text-lg font-semibold text-white">
-                        Clear Hierarchy
+                        Clear hierarchy
                     </h3>
-                    <p className="text-slate-400">
-                        Headings have proper spacing (mb-6 to mb-8), and
-                        paragraphs maintain consistent rhythm with mb-6 spacing.
+                    <p className="text-content-muted">
+                        Section headings use mb-8; paragraphs use consistent
+                        rhythm (e.g. mb-6).
                     </p>
                 </div>
             </div>

@@ -3,7 +3,7 @@ export function StylingSpacing(): React.ReactElement {
         <section className="mb-20" aria-labelledby="spacing-heading">
             <h2
                 id="spacing-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Spacing &amp; Layout
             </h2>

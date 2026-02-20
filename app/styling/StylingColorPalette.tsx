@@ -3,7 +3,7 @@ export function StylingColorPalette(): React.ReactElement {
         <section className="mb-20" aria-labelledby="color-heading">
             <h2
                 id="color-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Color Palette
             </h2>

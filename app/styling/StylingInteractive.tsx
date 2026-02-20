@@ -7,7 +7,7 @@ export function StylingInteractive(): React.ReactElement {
         <section className="mb-20" aria-labelledby="interactive-heading">
             <h2
                 id="interactive-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Buttons &amp; Interactive Elements
             </h2>

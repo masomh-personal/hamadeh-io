@@ -3,14 +3,14 @@ export function StylingTypography(): React.ReactElement {
         <section className="mb-20" aria-labelledby="typography-heading">
             <h2
                 id="typography-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Typography Hierarchy
             </h2>
 
             <div className="space-y-8">
                 <div>
-                    <h1 className="mb-2 font-heading text-4xl font-extrabold leading-tight text-white md:text-5xl">
+                    <h1 className="mb-2 font-heading text-3xl font-extrabold leading-tight text-white md:text-4xl">
                         Heading 1 – Quicksand
                     </h1>
                     <p className="text-content-muted text-sm">
@@ -19,7 +19,7 @@ export function StylingTypography(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h2 className="mb-2 font-heading text-3xl font-bold leading-tight text-white md:text-4xl">
+                    <h2 className="mb-2 font-heading text-2xl font-bold leading-tight text-white md:text-3xl">
                         Heading 2 – Quicksand
                     </h2>
                     <p className="text-content-muted text-sm">
@@ -28,7 +28,7 @@ export function StylingTypography(): React.ReactElement {
                 </div>
 
                 <div>
-                    <h3 className="mb-2 font-heading text-2xl font-semibold leading-tight text-white md:text-3xl">
+                    <h3 className="mb-2 font-heading text-xl font-semibold leading-tight text-white md:text-2xl">
                         Heading 3 – Quicksand
                     </h3>
                     <p className="text-content-muted text-sm">

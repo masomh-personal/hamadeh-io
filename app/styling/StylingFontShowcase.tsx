@@ -3,7 +3,7 @@ export function StylingFontShowcase(): React.ReactElement {
         <section className="mb-20" aria-labelledby="fonts-heading">
             <h2
                 id="fonts-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Font Family Showcase
             </h2>

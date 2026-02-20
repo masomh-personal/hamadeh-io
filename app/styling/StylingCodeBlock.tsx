@@ -56,7 +56,7 @@ export function StylingCodeBlock(): React.ReactElement {
         <section className="mb-20" aria-labelledby="code-heading">
             <h2
                 id="code-heading"
-                className="mb-8 font-heading text-3xl font-bold leading-tight text-white md:text-4xl"
+                className="mb-8 font-heading text-2xl font-bold leading-tight text-white md:text-3xl"
             >
                 Code Block Example
             </h2>

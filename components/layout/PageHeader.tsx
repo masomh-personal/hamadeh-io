@@ -20,7 +20,7 @@ interface PageHeaderProps {
 
 const titleSizeClasses = {
     default: "font-extrabold text-white",
-    large: "font-heading text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl",
+    large: "font-heading text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl",
 };
 
 export function PageHeader({

@@ -21,7 +21,7 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Linting & Formatting** | Biome | All-in-one tool (replaces ESLint + Prettier), 25x faster, zero config |
 | **Runtime** | Bun v1.3.x | Fast installs, built-in test runner, instant TypeScript, production-ready |
 | **BaaS (Phase 2)** | Appwrite | Open source, all-in-one, no lock-in |
-| **Deployment** | Vercel | Zero-config, global CDN, automatic HTTPS |
+| **Deployment** | Appwrite (Sites) | All-in-one with BaaS; deploy from Git, same platform as backend |
 | **UI Approach** | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies |
 | **Icons** | react-icons | Broad icon coverage with tree-shakeable imports |
 
@@ -80,7 +80,9 @@ bun start
 | `bun run type-check` | Run TypeScript type checking |
 | `bun run test` | Run tests with Bun test runner |
 | `bun run test:coverage` | Run tests with coverage report |
-| `bun run healthcheck` | Run type-check, lint, and format checks |
+| `bun run healthcheck` | Run format, type-check, lint (Biome), and React Doctor (React/Next health) |
+| `bun run doctor` | Run React Doctor only (verbose; security, performance, correctness, Next.js rules) |
+| `bun run doctor:score` | Run React Doctor and output only the 0–100 score |
 | `bun run clean` | Remove node_modules and lock files, reinstall |
 | `bun run new:solution <url-or-slug>` | Scaffold new LeetCode solution from URL |
 | `bun run publish:solution <slug>` | Generate MDX from completed solution |
@@ -142,6 +144,8 @@ describe('Feature Name', () => {
 - **Import Organization:** Auto-sorts imports
 - **Format on Save:** Configured in `.vscode/settings.json`
 
+**React Doctor** (run via `healthcheck` and in CI) scans for React/Next.js health: security, performance, correctness, architecture, dead code, and framework-specific rules. Outputs a 0–100 score; 75+ is "Great".
+
 ### TypeScript
 
 - **Strict Mode:** Enabled
@@ -152,11 +156,10 @@ describe('Feature Name', () => {
 ### Git Hooks
 
 **Pre-commit (Husky):**
-- Formats and lints staged files with Biome
+- Type check and lint-staged (Biome on staged files)
 
 **Pre-push (Husky):**
-- Type checking (`tsc --noEmit`)
-- Comprehensive check (linting + formatting)
+- Full healthcheck (format, type-check, Biome, React Doctor) then build. Push only succeeds if both pass, so `main` stays green.
 
 ---
 
@@ -301,16 +304,13 @@ tags: ["typescript", "web-development"]
 
 ## Deployment
 
-**Vercel (Recommended):**
-1. Connect GitHub repository
-2. Automatic deployments on push to `main`
-3. Preview deployments for pull requests
-4. Environment variables in Vercel dashboard
-5. Custom domain setup
+**Appwrite (BaaS + Sites):**
+- **BaaS:** Database, auth, and backend services (same platform as deployment).
+- **Sites:** Connect the GitHub repository in Appwrite Console; pushes to `main` trigger automatic build and deploy. Preview deployments for other branches.
+- Configure in Appwrite: **Install:** `bun install`, **Build:** `bun run build`, **Output:** `.next`. Set environment variables in the Appwrite project.
 
-**Build Command:** `bun run build`  
-**Output Directory:** `.next`  
-**Runtime:** Bun (Vercel supports Bun for Next.js deployments). Fallback to Node.js 24.x LTS available if needed.
+**CI (GitHub Actions):**
+- On every push and pull request, the CI workflow runs `bun run healthcheck` (format, type-check, Biome, React Doctor) and `bun run build`. Only merge when CI passes so Appwrite Sites never builds broken code.
 
 ---
 
@@ -486,7 +486,7 @@ git commit -m "feat: add two-sum solution"
 
 **Before Committing:**
 ```bash
-bun run healthcheck  # Runs type-check, lint, and format check
+bun run healthcheck  # Format, type-check, Biome check, React Doctor
 ```
 
 **Before Pushing:**

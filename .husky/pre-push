@@ -1,2 +1,3 @@
-bun run check
+bun run healthcheck
+bun run build
 # bun test  # Temporarily disabled until tests are updated

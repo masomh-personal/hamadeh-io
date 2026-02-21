@@ -6,6 +6,9 @@ import {
     HiUser,
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
+
+const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
+
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
 
@@ -14,7 +17,7 @@ export default function AboutPage(): React.ReactElement {
         <PageContainer>
             <PageHeader
                 title="About Me"
-                description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, lead with clarity, and bridge product goals with practical engineering execution. This portfolio reflects how I think, ship, and continuously raise quality over time."
+                description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
                 descriptionClassName="max-w-4xl"
                 actions={
                     <Link
@@ -33,11 +36,14 @@ export default function AboutPage(): React.ReactElement {
                         <HiUser className="h-4 w-4 text-sky-300" />
                         Professional Snapshot
                     </h2>
-                    <p className="text-content mt-3">
-                        I specialize in API architecture, backend systems, and
-                        modern web applications. I currently serve as a Senior
-                        Software Engineer at Converse (Nike), where I lead a
-                        small team and help shape implementation strategy across
+                    <div className={SECTION_DIVIDER} />
+                    <p className="text-content">
+                        I specialize in RESTful APIs, backend systems, and
+                        modern web applications using TypeScript, Node.js, and
+                        React. I serve as a Senior Software Engineer at Converse
+                        (Nike), where I recently stepped into a technical lead
+                        role for a team of 4, driving sprint planning, backlog
+                        refinement, and technical specification across
                         customer-facing commerce features.
                     </p>
                 </article>
@@ -47,12 +53,13 @@ export default function AboutPage(): React.ReactElement {
                         <HiLightningBolt className="h-4 w-4 text-amber-300" />
                         Current Focus
                     </h2>
-                    <p className="text-content mt-3">
+                    <div className={SECTION_DIVIDER} />
+                    <p className="text-content">
                         I&apos;m focused on building systems that scale in both
-                        performance and maintainability: reusable UI patterns,
-                        clear API contracts, practical CI/CD discipline, and
-                        documentation that helps teams move faster with less
-                        ambiguity.
+                        performance and maintainability: component libraries and
+                        Storybook-driven design, clear API contracts, practical
+                        CI/CD discipline, and technical specifications that help
+                        teams move faster with less ambiguity.
                     </p>
                 </article>
             </section>
@@ -62,6 +69,7 @@ export default function AboutPage(): React.ReactElement {
                     <HiCode className="h-4 w-4 text-emerald-300" />
                     Experience Highlights
                 </h2>
+                <div className={SECTION_DIVIDER} />
                 <div className="mt-4 space-y-5">
                     <article>
                         <h3 className="font-semibold text-white">
@@ -72,12 +80,17 @@ export default function AboutPage(): React.ReactElement {
                         </p>
                         <p className="text-content mt-2">
                             Technical lead for a team of 4 engineers, driving
-                            sprint planning, backlog refinement, and technical
-                            decision making. I translate functional
-                            specifications into implementation-ready technical
-                            plans, and lead development across React,
-                            TypeScript, and Salesforce Commerce Cloud (PWA Kit)
-                            product lines.
+                            sprint planning, backlog refinement, and code
+                            reviews while remaining hands-on. Led development of
+                            the DDS component library (30+ components in
+                            Storybook). Translate functional specs into
+                            technical specifications, data models, and API
+                            contracts. Build customer-facing commerce features
+                            with React, TypeScript, and Salesforce Commerce
+                            Cloud (PWA Kit). Author content schemas via
+                            Amplience CMS, integrate RESTful APIs for commerce
+                            workflows, and support CI/CD with GitHub Actions and
+                            Jenkins.
                         </p>
                     </article>
 
@@ -90,12 +103,15 @@ export default function AboutPage(): React.ReactElement {
                             October 2020 - February 2022
                         </p>
                         <p className="text-content mt-2">
-                            Contributed to migrating 3 legacy monoliths toward
+                            Retained through Uber&apos;s acquisition of
+                            Routematch. Migrated 3 legacy monoliths to
                             service-oriented architecture using Node.js and
-                            modern JavaScript. Built APIs and internal tools for
-                            transit operations, increased test coverage by 15%,
-                            and supported incident response for 24/7 critical
-                            systems.
+                            JavaScript. Built RESTful APIs and internal tools
+                            for transit routing and scheduling. Maintained web
+                            apps in Angular and Vue. Increased unit and API test
+                            coverage by 15% with Mocha, Chai, and Postman.
+                            Participated in on-call incident response for 24/7
+                            transit operations.
                         </p>
                     </article>
 
@@ -107,11 +123,44 @@ export default function AboutPage(): React.ReactElement {
                             February 2022 - May 2025
                         </p>
                         <p className="text-content mt-2">
-                            Designed and delivered full-stack applications while
-                            completing graduate studies. Reduced technical debt
-                            for early-stage companies, improved API integration
-                            performance, and introduced structured Agile
-                            execution with clearer technical documentation.
+                            Built full-stack applications with TypeScript,
+                            React, Next.js, Supabase, Appwrite, and Tailwind
+                            CSS. Adopted Bun as primary runtime and test runner.
+                            Reduced technical debt for early-stage companies via
+                            Agile workflows and modularized legacy codebases.
+                            Refactored CPaaS API integrations with database
+                            indexing and endpoint optimization.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3 className="font-semibold text-white">
+                            Software Engineer, Routematch (Acquired by Uber)
+                        </h3>
+                        <p className="text-content-muted text-sm">
+                            October 2018 - October 2020
+                        </p>
+                        <p className="text-content mt-2">
+                            Developed RESTful APIs with Node.js and Express,
+                            modernizing legacy integrations for transit
+                            platforms. Maintained Vue and AngularJS web apps.
+                            Wrote PostgreSQL queries and stored procedures.
+                            Contributed to microservices architecture with
+                            Docker.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3 className="font-semibold text-white">
+                            Associate Software Engineer, Connecture/DRX
+                        </h3>
+                        <p className="text-content-muted text-sm">
+                            October 2012 - February 2017
+                        </p>
+                        <p className="text-content mt-2">
+                            Began professional software engineering career
+                            supporting healthcare web applications for insurance
+                            enrollment and benefits management.
                         </p>
                     </article>
                 </div>
@@ -123,18 +172,20 @@ export default function AboutPage(): React.ReactElement {
                         <HiAcademicCap className="h-4 w-4 text-sky-300" />
                         Education
                     </h2>
+                    <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
                         <li>
                             M.S. Software Engineering (in progress, expected
-                            2027), Kennesaw State University
+                            December 2027), Kennesaw State University
                         </li>
                         <li>
                             M.S. Management Information Systems, Kennesaw State
-                            University (2024, GPA 4.0)
+                            University (May 2024, GPA 4.0), including Graduate
+                            Certificate in Information Security and Assurance
                         </li>
                         <li>
                             B.S. Computer Science, Kennesaw State University
-                            (2010)
+                            (May 2010)
                         </li>
                     </ul>
                 </article>
@@ -144,18 +195,25 @@ export default function AboutPage(): React.ReactElement {
                         <HiChip className="h-4 w-4 text-emerald-300" />
                         Technical Strengths
                     </h2>
+                    <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
-                        <li>Languages: JavaScript, TypeScript, Python, SQL</li>
                         <li>
-                            Frameworks: Node.js, Express, React, Vue, Next.js
+                            Languages: TypeScript, JavaScript, SQL, Python, Lua
                         </li>
                         <li>
-                            Systems: REST API design, PostgreSQL/Supabase,
-                            CI/CD, Docker
+                            Runtimes & Frameworks: Node.js, Bun, React, Next.js,
+                            Express, Vue
                         </li>
                         <li>
-                            Workflow: spec-driven planning, clear technical
-                            documentation, pragmatic execution
+                            Systems: REST API design, PostgreSQL, Supabase,
+                            Appwrite, Amplience CMS, Docker, GitHub Actions,
+                            Jenkins
+                        </li>
+                        <li>Testing: Vitest, bun:test, Jest, Mocha, Chai</li>
+                        <li>
+                            Workflow: spec-driven development, AI-assisted
+                            engineering (Cursor, Copilot, Claude) as copilot,
+                            Jira, Confluence, Agile/Scrum
                         </li>
                     </ul>
                 </article>

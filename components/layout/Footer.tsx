@@ -29,7 +29,7 @@ export function Footer(): React.ReactElement {
                         rel="noopener noreferrer"
                         title={title || "View repository"}
                         aria-label="GitHub repository"
-                        className="group inline-flex items-center gap-2 rounded-md border border-white/20 bg-[#161b22] px-2.5 py-1.5 text-[0.625rem] font-medium text-[#c9d1d9] shadow-sm transition-colors duration-200 hover:border-white/40 hover:text-white hover:shadow-md"
+                        className="group inline-flex items-center gap-2 rounded-md border border-slate-300/60 bg-slate-600/90 px-2.5 py-1.5 text-[0.625rem] font-medium text-slate-200 shadow-[0_0_14px_rgba(203,213,225,0.12)] backdrop-blur-sm transition-all duration-200 hover:border-slate-300 hover:bg-slate-500/90 hover:text-white hover:shadow-[0_0_18px_rgba(226,232,240,0.18)]"
                     >
                         <span className="flex items-center gap-1.5 font-mono">
                             <SiGithub

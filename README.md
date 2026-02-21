@@ -329,18 +329,33 @@ tags: ["typescript", "web-development"]
 
 ## Environment Variables
 
-```bash
-# .env.local (Phase 1 - No secrets needed)
-NEXT_PUBLIC_SITE_URL=https://thoughtfulcode.dev
-NEXT_PUBLIC_SITE_NAME=ThoughtfulCode
-NEXT_PUBLIC_AUTHOR_NAME=Masom
-NEXT_PUBLIC_AUTHOR_EMAIL=contact@thoughtfulcode.dev
+Copy `.env.local.example` to `.env.local` and fill in your values:
 
-# .env.local (Phase 2 - Appwrite)
-NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
-NEXT_PUBLIC_APPWRITE_PROJECT_ID=your-project-id
-APPWRITE_API_KEY=your-api-key
+```bash
+# Unix / macOS / Git Bash
+cp .env.local.example .env.local
+
+# Windows (PowerShell)
+Copy-Item .env.local.example .env.local
+
+# Windows (cmd)
+copy .env.local.example .env.local
 ```
+
+Use the same variables in **Appwrite Console → Project → Settings → Environment Variables** for deployment.
+
+| Variable | Required | Notes |
+|----------|----------|-------|
+| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical site URL (e.g. https://thoughtfulcode.dev) |
+| `NEXT_PUBLIC_SITE_NAME` | Yes | Site/brand name |
+| `NEXT_PUBLIC_AUTHOR_NAME` | Yes | Author name |
+| `NEXT_PUBLIC_AUTHOR_EMAIL` | Yes | Contact email |
+| `NEXT_PUBLIC_GIT_BRANCH` | No | Branch name for footer badge (format: `branch-sha`); empty shows `---` |
+| `NEXT_PUBLIC_GIT_SHA` | No | Commit hash; footer shows last 5 chars; empty shows `---` |
+| `NEXT_PUBLIC_GIT_FULL_SHA` | No | Full 40-char SHA; enables badge link to specific commit |
+| `NEXT_PUBLIC_APPWRITE_ENDPOINT` | Phase 2 | Appwrite API endpoint |
+| `NEXT_PUBLIC_APPWRITE_PROJECT_ID` | Phase 2 | Appwrite project ID |
+| `APPWRITE_API_KEY` | Phase 2 | Server-only; never expose to client |
 
 ---
 

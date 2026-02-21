@@ -1,51 +1,59 @@
-import { IoHeart } from "react-icons/io5";
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { Link } from "@/components/ui";
+import { SiGithub } from "react-icons/si";
+
+const GITHUB_REPO = "masomh-personal/thoughtfulcode-app";
 
 export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();
+    const gitBranch = process.env.NEXT_PUBLIC_GIT_BRANCH;
+    const gitSha = process.env.NEXT_PUBLIC_GIT_SHA;
+    const gitFullSha = process.env.NEXT_PUBLIC_GIT_FULL_SHA;
+    const shaLast5 = gitSha ? gitSha.slice(-8) : null;
+    const badgeLabel = [gitBranch || "---", shaLast5 || "---"].join(" | ");
+    const repoUrl = `https://github.com/${GITHUB_REPO}`;
+    const commitUrl = gitFullSha ? `${repoUrl}/commit/${gitFullSha}` : repoUrl;
+    const title = [
+        gitBranch && `Branch: ${gitBranch}`,
+        gitSha && `SHA: ${gitFullSha || gitSha}`,
+    ]
+        .filter(Boolean)
+        .join("\n");
 
     return (
         <footer className="w-full border-t border-(--border) bg-(--background)">
             <div className="mx-auto max-w-6xl px-6 py-6">
-                <div className="flex flex-col items-center gap-1.5">
-                    {/* Social Links */}
-                    <div className="flex items-center gap-1">
-                        <Link
-                            href="https://github.com/masomh-personal"
-                            target="_blank"
-                            external
-                            variant="muted"
-                            showIcon={false}
-                            className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
-                            aria-label="GitHub"
-                        >
-                            <SiGithub className="size-(--icon-size-footer)" />
-                        </Link>
-                        <Link
-                            href="https://www.linkedin.com/in/masomh/"
-                            target="_blank"
-                            external
-                            variant="muted"
-                            showIcon={false}
-                            className="inline-flex items-center justify-center rounded-md p-1.5 leading-none"
-                            aria-label="LinkedIn"
-                        >
-                            <SiLinkedin className="size-(--icon-size-footer)" />
-                        </Link>
-                    </div>
+                <div className="flex flex-col items-center gap-2">
+                    {/* Line 1: GitHub badge (branch-sha, sha = last 5 chars) */}
+                    <a
+                        href={commitUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={title || "View repository"}
+                        aria-label="GitHub repository"
+                        className="group inline-flex items-center gap-2 rounded-md border border-white/20 bg-[#161b22] px-2.5 py-1.5 text-[0.625rem] font-medium text-[#c9d1d9] shadow-sm transition-colors duration-200 hover:border-white/40 hover:text-white hover:shadow-md"
+                    >
+                        <span className="flex items-center gap-1.5 font-mono">
+                            <SiGithub
+                                className="size-4 shrink-0 opacity-80"
+                                aria-hidden
+                            />
+                            {badgeLabel}
+                        </span>
+                    </a>
 
-                    {/* Copyright */}
-                    <p className="text-content-subtle text-xs leading-tight">
-                        © {currentYear} ThoughtfulCode · Hamadeh.io. All rights
-                        reserved.
-                    </p>
-
-                    {/* Tagline */}
-                    <p className="text-content-subtle flex items-center gap-1.5 font-baloo text-sm leading-tight font-bold">
-                        Made with
-                        <IoHeart className="text-rose-500" aria-hidden="true" />
-                        in ATL
+                    {/* Line 2: Copyright and tagline */}
+                    <p className="text-content-subtle flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-xs leading-tight">
+                        <span>
+                            © <strong>{currentYear}</strong> ThoughtfulCode ·
+                            Hamadeh.io
+                        </span>
+                        <span aria-hidden>·</span>
+                        <span className="font-baloo font-bold">
+                            Made with
+                            <span className="mx-0.5" aria-hidden>
+                                ❤️
+                            </span>
+                            in ATL
+                        </span>
                     </p>
                 </div>
             </div>

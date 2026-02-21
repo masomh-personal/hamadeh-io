@@ -1,6 +1,6 @@
 import { SiGithub } from "react-icons/si";
 
-const GITHUB_REPO = "masomh-personal/thoughtfulcode-app";
+const GITHUB_REPO = "masomh-personal/thoughtfulcode";
 
 export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();

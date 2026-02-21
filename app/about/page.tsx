@@ -3,17 +3,20 @@ import {
     HiAcademicCap,
     HiChip,
     HiCode,
+    HiExternalLink,
     HiLightningBolt,
     HiUser,
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Button } from "@/components/ui";
+import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
 
-import { Link } from "@/components/ui";
-
 export default function AboutPage(): React.ReactElement {
+    const showResumeButton = hasResumePdf();
+
     return (
         <PageContainer>
             <PageHeader
@@ -31,13 +34,18 @@ export default function AboutPage(): React.ReactElement {
                 description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
                 descriptionClassName="max-w-4xl"
                 actions={
-                    <Link
-                        href="/resume"
-                        variant="secondary"
-                        className="inline-flex shrink-0 items-center whitespace-nowrap"
-                    >
-                        View Full Resume
-                    </Link>
+                    showResumeButton ? (
+                        <Button
+                            href={RESUME_PUBLIC_PATH}
+                            variant="secondary"
+                            icon={<HiExternalLink />}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex shrink-0 items-center whitespace-nowrap"
+                        >
+                            View Full Resume
+                        </Button>
+                    ) : undefined
                 }
             />
 

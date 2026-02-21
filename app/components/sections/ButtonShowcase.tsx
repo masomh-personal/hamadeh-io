@@ -50,13 +50,13 @@ export function ButtonShowcase(): React.ReactElement {
                         With Icons
                     </h3>
                     <div className="flex flex-wrap gap-3">
-                        <Button>
-                            <HiHome />
-                            Go Home
-                        </Button>
-                        <Button variant="secondary">
+                        <Button icon={<HiHome />}>Go Home</Button>
+                        <Button
+                            variant="secondary"
+                            icon={<HiArrowRight />}
+                            iconPosition="right"
+                        >
                             Next
-                            <HiArrowRight />
                         </Button>
                     </div>
                 </div>
@@ -65,8 +65,7 @@ export function ButtonShowcase(): React.ReactElement {
                     <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         As Link (href)
                     </h3>
-                    <Button href="/">
-                        <HiHome />
+                    <Button href="/" icon={<HiHome />}>
                         Link to Home
                     </Button>
                 </div>
@@ -76,8 +75,8 @@ export function ButtonShowcase(): React.ReactElement {
                         As Child (Radix Slot)
                     </h3>
                     <Button asChild variant="secondary">
-                        <NextLink href="/resume">
-                            Open Resume
+                        <NextLink href="/about">
+                            Open About
                             <HiArrowRight />
                         </NextLink>
                     </Button>
@@ -98,11 +97,10 @@ export function ButtonShowcase(): React.ReactElement {
                         <Button
                             variant="outline"
                             enforceMinWidth={false}
+                            icon={<HiHome />}
                             aria-label="Home"
                             title="Home"
-                        >
-                            <HiHome />
-                        </Button>
+                        />
                     </div>
                 </div>
 
@@ -154,9 +152,9 @@ export function ButtonShowcase(): React.ReactElement {
                         <Button
                             variant="outline"
                             disabled={!isSubmittingDemo}
+                            icon={<HiRefresh />}
                             onClick={() => setIsSubmittingDemo(false)}
                         >
-                            <HiRefresh />
                             Reset
                         </Button>
                     </div>

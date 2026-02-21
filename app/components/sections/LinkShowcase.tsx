@@ -40,9 +40,9 @@ export function LinkShowcase(): React.ReactElement {
                         Icon Behavior
                     </h3>
                     <div className="flex flex-wrap items-center gap-6">
-                        <Link href="/resume">Default icon (right)</Link>
-                        <Link href="/about" iconPosition="left">
-                            Icon on left
+                        <Link href="/about">Default icon (left)</Link>
+                        <Link href="/about" iconPosition="right">
+                            Icon on right
                         </Link>
                         <Link href="/blog" showIcon={false}>
                             No icon
@@ -60,8 +60,8 @@ export function LinkShowcase(): React.ReactElement {
                         As Child (Radix Slot)
                     </h3>
                     <Link asChild variant="secondary">
-                        <NextLink href="/resume">
-                            Open resume with NextLink child
+                        <NextLink href="/about">
+                            Open About with NextLink child
                         </NextLink>
                     </Link>
                 </div>

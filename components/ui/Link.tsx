@@ -107,7 +107,7 @@ export function Link({
     asChild = false,
     showIcon = true,
     icon,
-    iconPosition = "right",
+    iconPosition = "left",
     className,
     children,
     rel,

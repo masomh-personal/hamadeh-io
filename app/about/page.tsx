@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
     HiAcademicCap,
     HiChip,
@@ -6,16 +7,26 @@ import {
     HiUser,
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
 
-import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
 
 export default function AboutPage(): React.ReactElement {
     return (
         <PageContainer>
             <PageHeader
+                avatar={
+                    <Image
+                        src="/images/about.jpg"
+                        alt="Masom Hamadeh"
+                        width={160}
+                        height={160}
+                        className="size-32 rounded-full object-cover sm:size-40"
+                        sizes="(max-width: 640px) 128px, 160px"
+                    />
+                }
                 title="About Me"
                 description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
                 descriptionClassName="max-w-4xl"
@@ -23,7 +34,7 @@ export default function AboutPage(): React.ReactElement {
                     <Link
                         href="/resume"
                         variant="secondary"
-                        className="inline-flex items-center"
+                        className="inline-flex shrink-0 items-center whitespace-nowrap"
                     >
                         View Full Resume
                     </Link>

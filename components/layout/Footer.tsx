@@ -8,13 +8,12 @@ export function Footer(): React.ReactElement {
     const version = packageJson.version ?? "?.?.?";
     const gitBranch = process.env.NEXT_PUBLIC_GIT_BRANCH;
     const gitSha = process.env.NEXT_PUBLIC_GIT_SHA;
-    const gitFullSha = process.env.NEXT_PUBLIC_GIT_FULL_SHA;
-    const shaLast5 = gitSha ? gitSha.slice(0, 7) : null;
+    const shaShort = gitSha ? gitSha.slice(0, 7) : null;
     const repoUrl = `https://github.com/${GITHUB_REPO}`;
-    const commitUrl = gitFullSha ? `${repoUrl}/commit/${gitFullSha}` : repoUrl;
+    const branchUrl = gitBranch ? `${repoUrl}/tree/${gitBranch}` : repoUrl;
     const title = [
         gitBranch && `Branch: ${gitBranch}`,
-        gitSha && `SHA: ${gitFullSha || gitSha}`,
+        gitSha && `SHA: ${gitSha}`,
     ]
         .filter(Boolean)
         .join("\n");
@@ -23,29 +22,20 @@ export function Footer(): React.ReactElement {
         <footer className="w-full border-t border-(--border) bg-(--background)">
             <div className="mx-auto max-w-6xl px-6 py-6">
                 <div className="flex flex-col items-center gap-2">
-                    {/* Line 1: GitHub badge (v{version} @ {branch} | SHA: {last 5 chars}) */}
+                    {/* GitHub badge — colors align with Badge brand/soft tokens */}
                     <a
-                        href={commitUrl}
+                        href={branchUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={title || "View repository"}
-                        aria-label="GitHub repository"
-                        className="group inline-flex items-center gap-2 rounded-md border border-slate-300/70 bg-slate-700/80 px-3 py-1.5 text-[0.6875rem] font-normal tracking-wide shadow-[0_0_14px_rgba(203,213,225,0.12)] backdrop-blur-sm transition-all duration-200 hover:border-slate-200 hover:bg-slate-600/90 hover:shadow-[0_0_18px_rgba(226,232,240,0.22)]"
+                        aria-label="View GitHub repository"
+                        className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-slate-300/80 bg-slate-500/25 px-4 py-2 font-baloo text-[0.8125rem] font-semibold tracking-[0.03em] text-slate-200 transform-gpu transition-all duration-200 ease-out hover:scale-[1.02] hover:bg-slate-500/35 active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
                     >
-                        <span className="flex items-center gap-1.5 font-mono text-white">
-                            <SiGithub
-                                className="size-3.5 shrink-0 text-slate-300"
-                                aria-hidden
-                            />
-                            <span className="text-sky-400">v{version}</span>
-                            <span className="text-slate-400">@</span>
-                            <span className="text-emerald-400">
-                                {gitBranch || "---"}
-                            </span>
-                            <span className="text-slate-400">|</span>
-                            <span className="text-slate-300">
-                                SHA: {shaLast5 || "-------"}
-                            </span>
+                        <SiGithub className="size-3.5 shrink-0" aria-hidden />
+                        <span className="text-secondary">v{version}</span>
+                        <span>@ {gitBranch ?? "---"} | SHA:</span>
+                        <span className="font-mono font-semibold text-primary">
+                            {shaShort ?? "-------"}
                         </span>
                     </a>
 

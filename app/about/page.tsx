@@ -86,7 +86,7 @@ export default function AboutPage(): React.ReactElement {
                         <h3 className="font-semibold text-white">
                             Senior Software Engineer, Converse (Nike)
                         </h3>
-                        <p className="text-content-muted text-sm">
+                        <p className="text-content-muted text-sm italic">
                             May 2025 - Present
                         </p>
                         <p className="text-content mt-2">
@@ -110,7 +110,7 @@ export default function AboutPage(): React.ReactElement {
                             Software Engineer I, Uber Technologies (via
                             Routematch acquisition)
                         </h3>
-                        <p className="text-content-muted text-sm">
+                        <p className="text-content-muted text-sm italic">
                             October 2020 - February 2022
                         </p>
                         <p className="text-content mt-2">
@@ -130,7 +130,7 @@ export default function AboutPage(): React.ReactElement {
                         <h3 className="font-semibold text-white">
                             Freelance Software Engineer, MHDesigns
                         </h3>
-                        <p className="text-content-muted text-sm">
+                        <p className="text-content-muted text-sm italic">
                             February 2022 - May 2025
                         </p>
                         <p className="text-content mt-2">
@@ -148,7 +148,7 @@ export default function AboutPage(): React.ReactElement {
                         <h3 className="font-semibold text-white">
                             Software Engineer, Routematch (Acquired by Uber)
                         </h3>
-                        <p className="text-content-muted text-sm">
+                        <p className="text-content-muted text-sm italic">
                             October 2018 - October 2020
                         </p>
                         <p className="text-content mt-2">
@@ -165,7 +165,7 @@ export default function AboutPage(): React.ReactElement {
                         <h3 className="font-semibold text-white">
                             Associate Software Engineer, Connecture/DRX
                         </h3>
-                        <p className="text-content-muted text-sm">
+                        <p className="text-content-muted text-sm italic">
                             October 2012 - February 2017
                         </p>
                         <p className="text-content mt-2">
@@ -186,17 +186,19 @@ export default function AboutPage(): React.ReactElement {
                     <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
                         <li>
-                            M.S. Software Engineering (in progress, expected
-                            December 2027), Kennesaw State University
+                            <strong>M.S. Software Engineering</strong> (in
+                            progress, expected December 2027), Kennesaw State
+                            University
                         </li>
                         <li>
-                            M.S. Management Information Systems, Kennesaw State
-                            University (May 2024, GPA 4.0), including Graduate
-                            Certificate in Information Security and Assurance
+                            <strong>M.S. Management Information Systems</strong>
+                            , Kennesaw State University (May 2024, GPA 4.0),
+                            including Graduate Certificate in Information
+                            Security and Assurance
                         </li>
                         <li>
-                            B.S. Computer Science, Kennesaw State University
-                            (May 2010)
+                            <strong>B.S. Computer Science</strong>, Kennesaw
+                            State University (May 2010)
                         </li>
                     </ul>
                 </article>
@@ -209,22 +211,26 @@ export default function AboutPage(): React.ReactElement {
                     <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
                         <li>
-                            Languages: TypeScript, JavaScript, SQL, Python, Lua
+                            <strong>Languages:</strong> TypeScript, JavaScript,
+                            SQL, Python, Lua
                         </li>
                         <li>
-                            Runtimes & Frameworks: Node.js, Bun, React, Next.js,
-                            Express, Vue
+                            <strong>Runtimes & Frameworks:</strong> Node.js,
+                            Bun, React, Next.js, Express, Vue
                         </li>
                         <li>
-                            Systems: REST API design, PostgreSQL, Supabase,
-                            Appwrite, Amplience CMS, Docker, GitHub Actions,
-                            Jenkins
+                            <strong>Systems:</strong> REST API design,
+                            PostgreSQL, Supabase, Appwrite, Amplience CMS,
+                            Docker, GitHub Actions, Jenkins
                         </li>
-                        <li>Testing: Vitest, bun:test, Jest, Mocha, Chai</li>
                         <li>
-                            Workflow: spec-driven development, AI-assisted
-                            engineering (Cursor, Copilot, Claude) as copilot,
-                            Jira, Confluence, Agile/Scrum
+                            <strong>Testing:</strong> Vitest, bun:test, Jest,
+                            Mocha, Chai
+                        </li>
+                        <li>
+                            <strong>Workflow:</strong> spec-driven development,
+                            AI-assisted engineering (Cursor, Copilot, Claude) as
+                            copilot, Jira, Confluence, Agile/Scrum
                         </li>
                     </ul>
                 </article>

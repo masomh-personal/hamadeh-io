@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { getAllSolutions } from "@/lib/mdx";
 
 export const metadata: Metadata = {
-    title: "LeetCode Solutions | ThoughtfulCode",
+    title: "LeetCode Solutions | hamadeh.io",
     description:
         "Collection of LeetCode solutions with detailed explanations and complexity analysis",
 };

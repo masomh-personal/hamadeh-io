@@ -22,12 +22,12 @@ export async function generateMetadata({
     try {
         const solution = await getSolutionBySlug(slug);
         return {
-            title: `${solution.title} | ThoughtfulCode`,
+            title: `${solution.title} | hamadeh.io`,
             description: solution.excerpt,
         };
     } catch {
         return {
-            title: "Solution Not Found | ThoughtfulCode",
+            title: "Solution Not Found | hamadeh.io",
         };
     }
 }

@@ -67,7 +67,7 @@ export interface BadgeProps extends Omit<ComponentProps<"span">, "children"> {
 }
 
 /**
- * Badge component with ThoughtfulCode design system.
+ * Badge component with hamadeh.io design system.
  */
 export function Badge({
     text,

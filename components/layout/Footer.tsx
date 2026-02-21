@@ -1,6 +1,6 @@
 import { SiGithub } from "react-icons/si";
 
-const GITHUB_REPO = "masomh-personal/thoughtfulcode";
+const GITHUB_REPO = "masomh-personal/hamadeh-io";
 
 export function Footer(): React.ReactElement {
     const currentYear = new Date().getFullYear();
@@ -43,8 +43,7 @@ export function Footer(): React.ReactElement {
                     {/* Line 2: Copyright and tagline */}
                     <p className="text-content-subtle flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-xs leading-tight">
                         <span>
-                            © <strong>{currentYear}</strong> ThoughtfulCode ·
-                            Hamadeh.io
+                            © <strong>{currentYear}</strong> hamadeh.io
                         </span>
                         <span aria-hidden>·</span>
                         <span className="font-baloo font-bold">

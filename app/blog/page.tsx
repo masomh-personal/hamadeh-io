@@ -6,7 +6,7 @@ import { Link } from "@/components/ui";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
 
 export const metadata: Metadata = {
-    title: "Blog | ThoughtfulCode",
+    title: "Blog | hamadeh.io",
     description:
         "Engineering notes on software development, CS fundamentals, and practical coding lessons.",
 };

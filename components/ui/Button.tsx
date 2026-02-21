@@ -162,7 +162,7 @@ function getLinkAccessibilityProps({
 }
 
 /**
- * Button component with ThoughtfulCode design system.
+ * Button component with hamadeh.io design system.
  * Primary = Sky, Secondary = Emerald, Tertiary = Amber.
  * Pass href to render as a link-style button.
  */

@@ -1,7 +1,7 @@
-# ThoughtfulCode - Styling Guide
+# hamadeh.io - Styling Guide
 ## Official Design System & Implementation Reference
 
-This document is the single source of truth for all styling decisions in ThoughtfulCode. Always reference this guide before making design changes.
+This document is the single source of truth for all styling decisions in hamadeh.io. Always reference this guide before making design changes.
 
 ---
 
@@ -372,7 +372,7 @@ import { cn } from '@/lib/utils';
 <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)">
   <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <Link className="font-heading text-xl font-bold text-slate-50 hover:text-sky-500">
-      ThoughtfulCode
+      hamadeh.io
     </Link>
   </nav>
 </header>
@@ -604,4 +604,4 @@ className="focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-
 
 ---
 
-*This is the single source of truth for all styling decisions in ThoughtfulCode. Always reference this guide before making design changes.*
+*This is the single source of truth for all styling decisions in hamadeh.io. Always reference this guide before making design changes.*

@@ -1,7 +1,7 @@
 # Layout System
 
 ## Overview
-ThoughtfulCode uses a consistent layout system with a fixed max-width content container and edge-to-edge backgrounds.
+hamadeh.io uses a consistent layout system with a fixed max-width content container and edge-to-edge backgrounds.
 
 ## Layout Structure
 

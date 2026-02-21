@@ -1,4 +1,4 @@
-# ThoughtfulCode
+# hamadeh.io
 
 A modern, performance-focused portfolio website showcasing software engineering skills, LeetCode solutions, algorithms, data structures, and technical writing.
 
@@ -40,7 +40,7 @@ A modern, performance-focused portfolio website showcasing software engineering 
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd thoughtfulcode-app
+cd hamadeh-io
 
 # Install dependencies
 bun install
@@ -166,7 +166,7 @@ describe('Feature Name', () => {
 ## Project Structure
 
 ```text
-thoughtfulcode-app/
+hamadeh-io/
 ├── app/                 # Next.js App Router routes and pages
 ├── components/          # Reusable UI and layout components
 │   ├── ui/              # Project-owned design-system wrappers
@@ -346,7 +346,7 @@ Use the same variables in **Appwrite Console → Project → Settings → Enviro
 
 | Variable | Required | Notes |
 |----------|----------|-------|
-| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical site URL (e.g. https://thoughtfulcode.dev) |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical site URL (e.g. https://hamadeh.io) |
 | `NEXT_PUBLIC_SITE_NAME` | Yes | Site/brand name |
 | `NEXT_PUBLIC_AUTHOR_NAME` | Yes | Author name |
 | `NEXT_PUBLIC_AUTHOR_EMAIL` | Yes | Contact email |

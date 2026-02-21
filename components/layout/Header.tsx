@@ -21,13 +21,28 @@ export function Header(): React.ReactElement {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const navigation: Array<{ name: string; href: string; icon: IconType }> = [
+    type NavItem = {
+        name: string;
+        href: string;
+        icon: IconType;
+        external?: boolean;
+        iconOnlyOnDesktop?: boolean;
+    };
+
+    const navigation: NavItem[] = [
         { name: "Home", href: "/", icon: HiHome },
         { name: "Components", href: "/components", icon: HiCollection },
         { name: "Problems", href: "/leetcode", icon: HiCode },
         { name: "Blog", href: "/blog", icon: HiDocumentText },
         { name: "About", href: "/about", icon: HiUser },
         { name: "Resume", href: "/resume", icon: HiDocument },
+        {
+            name: "LinkedIn",
+            href: "https://www.linkedin.com/in/masomh/",
+            icon: SiLinkedin,
+            external: true,
+            iconOnlyOnDesktop: true,
+        },
     ];
 
     return (
@@ -41,10 +56,27 @@ export function Header(): React.ReactElement {
                     <div className="hidden items-center gap-4 md:flex">
                         {navigation.map((item) => {
                             const isActive =
-                                pathname === item.href ||
-                                (item.href !== "/" &&
-                                    pathname?.startsWith(item.href));
+                                !item.external &&
+                                (pathname === item.href ||
+                                    (item.href !== "/" &&
+                                        pathname?.startsWith(item.href)));
                             const Icon = item.icon;
+                            if (item.iconOnlyOnDesktop) {
+                                return (
+                                    <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        target="_blank"
+                                        external
+                                        variant="muted"
+                                        showIcon={false}
+                                        className="inline-flex items-center justify-center rounded-md p-0 leading-none"
+                                        aria-label={item.name}
+                                    >
+                                        <Icon className="size-(--icon-size-header)" />
+                                    </Link>
+                                );
+                            }
                             return (
                                 <Link
                                     key={item.name}
@@ -61,17 +93,6 @@ export function Header(): React.ReactElement {
                                 </Link>
                             );
                         })}
-                        <Link
-                            href="https://www.linkedin.com/in/masomh/"
-                            target="_blank"
-                            external
-                            variant="muted"
-                            showIcon={false}
-                            className="inline-flex items-center justify-center rounded-md p-0 leading-none"
-                            aria-label="LinkedIn"
-                        >
-                            <SiLinkedin className="size-(--icon-size-header)" />
-                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -98,16 +119,29 @@ export function Header(): React.ReactElement {
                         <div className="flex flex-col gap-3">
                             {navigation.map((item) => {
                                 const isActive =
-                                    pathname === item.href ||
-                                    (item.href !== "/" &&
-                                        pathname?.startsWith(item.href));
+                                    !item.external &&
+                                    (pathname === item.href ||
+                                        (item.href !== "/" &&
+                                            pathname?.startsWith(item.href)));
                                 const Icon = item.icon;
                                 return (
                                     <Link
                                         key={item.name}
                                         href={item.href}
+                                        target={
+                                            item.external ? "_blank" : undefined
+                                        }
+                                        external={item.external}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        icon={<Icon className="h-4 w-4" />}
+                                        icon={
+                                            <Icon
+                                                className={
+                                                    item.external
+                                                        ? "h-3.5 w-3.5 pr-0.5"
+                                                        : "h-4 w-4"
+                                                }
+                                            />
+                                        }
                                         iconPosition="left"
                                         className={`text-sm transition-colors ${
                                             isActive
@@ -119,17 +153,6 @@ export function Header(): React.ReactElement {
                                     </Link>
                                 );
                             })}
-                            <Link
-                                href="https://www.linkedin.com/in/masomh/"
-                                target="_blank"
-                                external
-                                icon={<SiLinkedin className="h-4 w-4" />}
-                                iconPosition="left"
-                                className="text-sm transition-colors text-muted hover:text-primary"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
-                                LinkedIn
-                            </Link>
                         </div>
                     </div>
                 )}

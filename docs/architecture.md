@@ -1,6 +1,6 @@
 # Architecture Decisions
 
-This document outlines the architectural decisions, patterns, and conventions used in ThoughtfulCode.
+This document outlines the architectural decisions, patterns, and conventions used in hamadeh.io.
 
 ---
 
@@ -142,7 +142,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 ## Project Structure
 
 ```
-thoughtfulcode-app/
+hamadeh-io/
 ├── app/                    # Next.js App Router pages
 │   ├── layout.tsx         # Root layout (Server Component)
 │   ├── page.tsx           # Homepage (Server Component)

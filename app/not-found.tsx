@@ -56,16 +56,15 @@ export default function NotFound(): React.ReactElement {
 
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-4 sm:flex-row">
-                    <Button href="/" className="gap-2">
-                        <HiHome className="h-5 w-5" />
+                    <Button href="/" icon={<HiHome />} iconSize="lg">
                         Go Home
                     </Button>
                     <Button
                         variant="secondary"
+                        icon={<HiArrowLeft />}
+                        iconSize="lg"
                         onClick={() => window.history.back()}
-                        className="gap-2"
                     >
-                        <HiArrowLeft className="h-5 w-5" />
                         Go Back
                     </Button>
                 </div>

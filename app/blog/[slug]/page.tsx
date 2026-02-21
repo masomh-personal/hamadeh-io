@@ -28,12 +28,12 @@ export async function generateMetadata({
         const post = await getPublishedBlogPostBySlug(slug);
 
         return {
-            title: `${post.title} | ThoughtfulCode`,
+            title: `${post.title} | hamadeh.io`,
             description: post.excerpt,
         };
     } catch {
         return {
-            title: "Post Not Found | ThoughtfulCode",
+            title: "Post Not Found | hamadeh.io",
         };
     }
 }

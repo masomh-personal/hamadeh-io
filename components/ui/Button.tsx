@@ -50,19 +50,27 @@ const iconSizeClasses: Record<IconSize, string> = {
 };
 
 type ButtonClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
+type IconPosition = "left" | "right";
 
 export interface ThoughtfulButtonProps
-    extends Omit<ComponentProps<"button">, "children" | "onClick"> {
+    extends Omit<
+        ComponentProps<"button">,
+        "children" | "onClick" | "target" | "rel"
+    > {
     variant?: ButtonVariant;
     size?: ButtonSize;
     href?: string;
     children?: React.ReactNode;
+    icon?: React.ReactNode;
+    iconPosition?: IconPosition;
     iconSize?: IconSize;
     isLoading?: boolean;
     loadingText?: string;
     loadingIcon?: React.ReactNode;
     asChild?: boolean;
     enforceMinWidth?: boolean;
+    target?: string;
+    rel?: string;
     onClick?: (event: ButtonClickEvent) => void;
 }
 
@@ -106,26 +114,38 @@ function getButtonContent({
     isLoading,
     loadingIcon,
     loadingText,
+    icon,
+    iconPosition = "left",
     children,
 }: {
     isLoading: boolean;
     loadingIcon?: React.ReactNode;
     loadingText?: string;
+    icon?: React.ReactNode;
+    iconPosition?: IconPosition;
     children?: React.ReactNode;
 }): React.ReactNode {
-    if (!isLoading) {
-        return children;
+    if (isLoading) {
+        return (
+            <>
+                {loadingIcon ?? (
+                    <HiCode
+                        className="animate-[spin_1.6s_linear_infinite]"
+                        aria-hidden="true"
+                    />
+                )}
+                <span>{loadingText ?? "Loading..."}</span>
+            </>
+        );
     }
+
+    const iconNode = icon ? <span aria-hidden="true">{icon}</span> : null;
 
     return (
         <>
-            {loadingIcon ?? (
-                <HiCode
-                    className="animate-[spin_1.6s_linear_infinite]"
-                    aria-hidden="true"
-                />
-            )}
-            <span>{loadingText ?? "Loading..."}</span>
+            {iconPosition === "left" && iconNode}
+            {children}
+            {iconPosition === "right" && iconNode}
         </>
     );
 }
@@ -162,7 +182,7 @@ function getLinkAccessibilityProps({
 }
 
 /**
- * Button component with ThoughtfulCode design system.
+ * Button component with hamadeh.io design system.
  * Primary = Sky, Secondary = Emerald, Tertiary = Amber.
  * Pass href to render as a link-style button.
  */
@@ -174,6 +194,8 @@ export function Button({
     disabled,
     onClick,
     type = "button",
+    icon,
+    iconPosition = "left",
     iconSize = "md",
     isLoading = false,
     loadingText,
@@ -181,6 +203,8 @@ export function Button({
     children,
     asChild = false,
     enforceMinWidth = true,
+    target,
+    rel,
     ...props
 }: ThoughtfulButtonProps): React.ReactElement {
     const isDisabled = Boolean(disabled || isLoading);
@@ -197,6 +221,8 @@ export function Button({
         isLoading,
         loadingIcon,
         loadingText,
+        icon,
+        iconPosition,
         children,
     });
     const linkAccessibilityProps = getLinkAccessibilityProps({
@@ -207,6 +233,11 @@ export function Button({
                 event as MouseEvent<HTMLButtonElement | HTMLAnchorElement>
             ),
     });
+    const linkProps = {
+        ...linkAccessibilityProps,
+        ...(target !== undefined && { target }),
+        ...(rel !== undefined && { rel }),
+    };
 
     if (asChild) {
         return (
@@ -229,18 +260,14 @@ export function Button({
                 }}
                 {...props}
             >
-                {content}
+                {children}
             </Slot>
         );
     }
 
     if (href && !shouldUseNativeAnchor(href)) {
         return (
-            <NextLink
-                href={href}
-                className={classes}
-                {...linkAccessibilityProps}
-            >
+            <NextLink href={href} className={classes} {...linkProps}>
                 {content}
             </NextLink>
         );
@@ -248,7 +275,7 @@ export function Button({
 
     if (href) {
         return (
-            <a href={href} className={classes} {...linkAccessibilityProps}>
+            <a href={href} className={classes} {...linkProps}>
                 {content}
             </a>
         );

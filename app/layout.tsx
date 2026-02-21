@@ -86,10 +86,9 @@ const mPlusRounded1c = M_PLUS_Rounded_1c({
     weight: ["400", "500", "700", "800", "900"],
 });
 
-// Default monospace (IBM Plex Mono)
 const ibmPlexMono = IBM_Plex_Mono({
     subsets: ["latin"],
-    variable: "--font-mono",
+    variable: "--font-mono-ibm",
     display: "swap",
     weight: ["400", "500", "600", "700"],
 });
@@ -152,7 +151,7 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "ThoughtfulCode | Masom's Portfolio",
+    title: "hamadeh.io | Masom Hamadeh",
     description:
         "Full-stack portfolio showcasing software engineering skills, LeetCode solutions, and technical writing",
     icons: {

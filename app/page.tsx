@@ -1,9 +1,18 @@
 import Image from "next/image";
-import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
+import {
+    HiCode,
+    HiCollection,
+    HiDocumentText,
+    HiExternalLink,
+    HiUser,
+} from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Button, Card } from "@/components/ui";
+import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
 export default function Home(): React.ReactElement {
+    const showResumeButton = hasResumePdf();
+
     return (
         <PageContainer className="space-y-10 md:space-y-12">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
@@ -21,9 +30,18 @@ export default function Home(): React.ReactElement {
                         spec, keep it well-structured, and build it to last.
                     </p>
                     <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                        <Button href="/resume" variant="secondary" size="md">
-                            View Resume
-                        </Button>
+                        {showResumeButton && (
+                            <Button
+                                href={RESUME_PUBLIC_PATH}
+                                variant="secondary"
+                                size="md"
+                                icon={<HiExternalLink />}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Resume
+                            </Button>
+                        )}
                         <Button href="/leetcode" size="md">
                             View LeetCode Solutions
                         </Button>
@@ -74,12 +92,20 @@ export default function Home(): React.ReactElement {
                         all of it in the open.
                     </p>
                     <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                        <Button href="/blog" variant="secondary" size="sm">
-                            <HiDocumentText />
+                        <Button
+                            href="/blog"
+                            variant="secondary"
+                            size="sm"
+                            icon={<HiDocumentText />}
+                        >
                             Read the blog
                         </Button>
-                        <Button href="/about" variant="tertiary" size="sm">
-                            <HiUser />
+                        <Button
+                            href="/about"
+                            variant="tertiary"
+                            size="sm"
+                            icon={<HiUser />}
+                        >
                             Learn more about me
                         </Button>
                     </div>

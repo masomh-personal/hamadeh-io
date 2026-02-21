@@ -61,10 +61,10 @@ export function LoadingOverlay({
                     variant="danger-soft"
                     size="sm"
                     iconSize="sm"
+                    icon={<HiXCircle />}
                     onClick={onDismiss}
                     className="mt-4"
                 >
-                    <HiXCircle />
                     Dismiss Overlay
                     {secondsRemaining != null ? ` (${secondsRemaining})` : ""}
                 </Button>

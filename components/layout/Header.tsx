@@ -6,7 +6,6 @@ import type { IconType } from "react-icons";
 import {
     HiCode,
     HiCollection,
-    HiDocument,
     HiDocumentText,
     HiHome,
     HiMenu,
@@ -35,7 +34,6 @@ export function Header(): React.ReactElement {
         { name: "Problems", href: "/leetcode", icon: HiCode },
         { name: "Blog", href: "/blog", icon: HiDocumentText },
         { name: "About", href: "/about", icon: HiUser },
-        { name: "Resume", href: "/resume", icon: HiDocument },
         {
             name: "LinkedIn",
             href: "https://www.linkedin.com/in/masomh/",

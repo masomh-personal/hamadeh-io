@@ -3,7 +3,7 @@ description: Core engineering and workflow standards for this repo
 alwaysApply: true
 ---
 
-# ThoughtfulCode Core Standards
+# hamadeh.io Core Standards
 
 - Prioritize correctness, readability, and maintainability over cleverness.
 - Keep changes minimal and scoped; avoid speculative features.

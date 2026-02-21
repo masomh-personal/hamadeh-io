@@ -1,6 +1,6 @@
 # Color System - The Tailwind Way
 
-This document explains ThoughtfulCode's color system and how to maintain consistency across all components.
+This document explains hamadeh.io's color system and how to maintain consistency across all components.
 
 ## 🎯 Philosophy: Tailwind-First + DRY
 
@@ -330,5 +330,5 @@ If you find hardcoded colors in existing components, migrate them:
 ---
 
 **Last Updated:** 2026-01-20  
-**Maintainer:** ThoughtfulCode Team  
+**Maintainer:** hamadeh.io  
 **Follow this guide for ALL future components!** ✅

@@ -260,7 +260,7 @@ export function Button({
                 }}
                 {...props}
             >
-                {content}
+                {children}
             </Slot>
         );
     }

@@ -81,6 +81,30 @@ export function BadgeShowcase(): React.ReactElement {
                 </div>
                 <div>
                     <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
+                        Tag variants (Blog filters)
+                    </h3>
+                    <p className="text-content flex flex-wrap items-center gap-2">
+                        <Badge
+                            size="sm"
+                            variant="tag-primary"
+                            text="Engineering"
+                        />
+                        <Badge size="sm" variant="tag-brand" text="Nextjs" />
+                        <Badge
+                            size="sm"
+                            variant="tag-secondary"
+                            text="Markdown"
+                        />
+                        <Badge
+                            size="sm"
+                            variant="tag-tertiary"
+                            text="Methodology"
+                        />
+                        <Badge size="sm" variant="tag-error" text="Async" />
+                    </p>
+                </div>
+                <div>
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
                         Font Comparison
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">

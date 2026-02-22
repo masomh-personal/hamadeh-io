@@ -2,7 +2,7 @@ import type { BadgeProps } from "@/components/ui";
 
 type BlogTagVariant = Extract<
     BadgeProps["variant"],
-    "primary" | "secondary" | "tertiary" | "brand" | "error"
+    "tag-primary" | "tag-secondary" | "tag-tertiary" | "tag-brand" | "tag-error"
 >;
 type BlogTagTone = NonNullable<BadgeProps["tone"]>;
 
@@ -13,6 +13,7 @@ interface BlogTagDefinition {
 }
 
 const TAG_TONE: BlogTagTone = "soft";
+const TAG_VARIANT: BlogTagVariant = "tag-brand";
 
 function defineTag(
     text: string,
@@ -31,15 +32,15 @@ function defineTag(
  * If tags later come from a database, we can map DB values to this registry.
  */
 const BLOG_TAGS: Record<string, BlogTagDefinition> = {
-    engineering: defineTag("engineering", "primary"),
-    nextjs: defineTag("nextjs", "brand"),
-    markdown: defineTag("markdown", "secondary"),
-    shiki: defineTag("shiki", "tertiary"),
-    typescript: defineTag("typescript", "primary"),
-    backend: defineTag("backend", "secondary"),
-    async: defineTag("async", "error"),
-    ai: defineTag("ai", "brand"),
-    methodology: defineTag("methodology", "tertiary"),
+    engineering: defineTag("engineering", "tag-primary"),
+    nextjs: defineTag("nextjs", "tag-brand"),
+    markdown: defineTag("markdown", "tag-secondary"),
+    shiki: defineTag("shiki", "tag-tertiary"),
+    typescript: defineTag("typescript", "tag-primary"),
+    backend: defineTag("backend", "tag-secondary"),
+    async: defineTag("async", "tag-error"),
+    ai: defineTag("ai", "tag-brand"),
+    methodology: defineTag("methodology", "tag-tertiary"),
 };
 
 interface BlogTagPresentation {
@@ -54,15 +55,15 @@ export function getBlogTagPresentation(tag: string): BlogTagPresentation {
 
     if (configuredTag) {
         return {
-            text: `#${configuredTag.text.toUpperCase()}`,
+            text: configuredTag.text.toUpperCase(),
             variant: configuredTag.variant,
             tone: configuredTag.tone,
         };
     }
 
     return {
-        text: `#${normalizedTag.toUpperCase()}`,
-        variant: "brand",
+        text: normalizedTag.toUpperCase(),
+        variant: TAG_VARIANT,
         tone: TAG_TONE,
     };
 }

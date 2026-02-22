@@ -453,12 +453,12 @@ describe('Feature Name', () => {
 - Validate requests with Valibot
 - Rate limiting for public endpoints
 
-### Database Integration (Appwrite)
+### Optional Backend Integration
 
-- Use Appwrite SDK for database operations
-- Keep database logic in `lib/appwrite/`
-- Type-safe database queries
-- Environment variables for Appwrite config
+- Add a backend only when product requirements justify it (auth, write paths, private data)
+- Keep data-access logic isolated in `lib/backend/` or provider-specific adapters
+- Keep typed boundaries and schema validation at API edges
+- Keep secrets server-only and avoid `NEXT_PUBLIC_` for sensitive values
 
 ---
 

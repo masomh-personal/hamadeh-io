@@ -20,8 +20,8 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Frontmatter Validation** | Valibot | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance |
 | **Linting & Formatting** | Biome | All-in-one tool (replaces ESLint + Prettier), 25x faster, zero config |
 | **Runtime** | Bun v1.3.x | Fast installs, built-in test runner, instant TypeScript, production-ready |
-| **BaaS (Phase 2)** | Appwrite | Open source, all-in-one, no lock-in |
-| **Deployment** | Appwrite (Sites) | All-in-one with BaaS; deploy from Git, same platform as backend |
+| **BaaS (Future, optional)** | Supabase / Appwrite | Add only when write-path/auth requirements appear |
+| **Deployment** | Vercel | Git-native deploys, previews for PRs, simple static-first workflow |
 | **UI Approach** | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies |
 | **Icons** | react-icons | Broad icon coverage with tree-shakeable imports |
 
@@ -304,13 +304,15 @@ tags: ["typescript", "web-development"]
 
 ## Deployment
 
-**Appwrite (BaaS + Sites):**
-- **BaaS:** Database, auth, and backend services (same platform as deployment).
-- **Sites:** Connect the GitHub repository in Appwrite Console; pushes to `main` trigger automatic build and deploy. Preview deployments for other branches.
-- Configure in Appwrite: **Install:** `bun install`, **Build:** `bun run build`, **Output:** `.next`. Set environment variables in the Appwrite project.
+**Vercel (Node runtime, static-first):**
+- Connect GitHub repository in Vercel.
+- Set **Production Branch** to `main`.
+- Keep preview deployments enabled for pull requests and non-production branches.
+- Add required environment variables in **Vercel → Project Settings → Environment Variables**.
 
 **CI (GitHub Actions):**
-- On every push and pull request, the CI workflow runs `bun run healthcheck` (format, type-check, Biome, React Doctor) and `bun run build`. Only merge when CI passes so Appwrite Sites never builds broken code.
+- On every push and pull request, the CI workflow runs `bun run healthcheck` (format, type-check, Biome, React Doctor) and `bun run build`.
+- Merge to `main` only after CI passes, then Vercel promotes that commit to production.
 
 ---
 
@@ -342,7 +344,7 @@ Copy-Item .env.local.example .env.local
 copy .env.local.example .env.local
 ```
 
-Use the same variables in **Appwrite Console → Project → Settings → Environment Variables** for deployment.
+Use the same variables in **Vercel → Project Settings → Environment Variables** for deployment.
 
 | Variable | Required | Notes |
 |----------|----------|-------|
@@ -353,9 +355,8 @@ Use the same variables in **Appwrite Console → Project → Settings → Enviro
 | `NEXT_PUBLIC_GIT_BRANCH` | No | Branch name for footer badge (format: `branch-sha`); empty shows `---` |
 | `NEXT_PUBLIC_GIT_SHA` | No | Commit hash; footer shows last 5 chars; empty shows `---` |
 | `NEXT_PUBLIC_GIT_FULL_SHA` | No | Full 40-char SHA; enables badge link to specific commit |
-| `NEXT_PUBLIC_APPWRITE_ENDPOINT` | Phase 2 | Appwrite API endpoint |
-| `NEXT_PUBLIC_APPWRITE_PROJECT_ID` | Phase 2 | Appwrite project ID |
-| `APPWRITE_API_KEY` | Phase 2 | Server-only; never expose to client |
+| `BACKEND_API_URL` | Phase 2 | Optional backend endpoint (server use unless intentionally public) |
+| `BACKEND_API_KEY` | Phase 2 | Server-only; never expose to client |
 
 ---
 

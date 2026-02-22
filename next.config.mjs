@@ -1,15 +1,24 @@
 import { execSync } from "node:child_process";
 
-function getGitInfo() {
+function runGitCommand(command) {
     try {
-        const branch = execSync("git rev-parse --abbrev-ref HEAD")
-            .toString()
-            .trim();
-        const sha = execSync("git rev-parse HEAD").toString().trim();
-        return { branch, sha };
+        return execSync(command).toString().trim();
     } catch {
-        return { branch: "---", sha: "" };
+        return "";
     }
+}
+
+function getGitInfo() {
+    const branchFromEnv =
+        process.env.NEXT_PUBLIC_GIT_BRANCH ?? process.env.GITHUB_REF_NAME;
+    const shaFromEnv =
+        process.env.NEXT_PUBLIC_GIT_SHA ?? process.env.GITHUB_SHA;
+
+    const branch =
+        branchFromEnv || runGitCommand("git rev-parse --abbrev-ref HEAD");
+    const sha = shaFromEnv || runGitCommand("git rev-parse HEAD");
+
+    return { branch: branch || "---", sha: sha || "" };
 }
 
 const { branch, sha } = getGitInfo();

@@ -17,7 +17,7 @@ export default function Home(): React.ReactElement {
         <PageContainer className="space-y-10 md:space-y-12">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
-                    <h1 className="font-extrabold leading-tight text-white">
+                    <h1 className="text-center font-extrabold leading-tight text-white md:text-left">
                         Hi! I&apos;m Masom.
                         <br />I love building thoughtful software.
                     </h1>

@@ -17,7 +17,7 @@ export default function Home(): React.ReactElement {
         <PageContainer className="space-y-10 md:space-y-12">
             <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
-                    <h1 className="font-extrabold leading-tight text-white">
+                    <h1 className="text-center font-extrabold leading-tight text-white md:text-left">
                         Hi! I&apos;m Masom.
                         <br />I love building thoughtful software.
                     </h1>
@@ -120,7 +120,7 @@ export default function Home(): React.ReactElement {
                     <Card
                         title="LeetCode Solutions"
                         subtitle="Problem breakdowns, patterns, and complexity insights."
-                        icon={<HiCode className="h-4 w-4 text-sky-300" />}
+                        icon={<HiCode className="h-4 w-4 text-primary" />}
                         className="min-h-56"
                         actions={[
                             { label: "Explore solutions", href: "/leetcode" },
@@ -136,7 +136,7 @@ export default function Home(): React.ReactElement {
                         title="Blog"
                         subtitle="Engineering notes, lessons learned, and build logs."
                         icon={
-                            <HiDocumentText className="h-4 w-4 text-emerald-300" />
+                            <HiDocumentText className="h-4 w-4 text-secondary" />
                         }
                         className="min-h-56"
                         actions={[{ label: "Read posts", href: "/blog" }]}
@@ -151,7 +151,7 @@ export default function Home(): React.ReactElement {
                         title="Components"
                         subtitle="A live gallery of reusable UI components and design tweaks."
                         icon={
-                            <HiCollection className="h-4 w-4 text-amber-300" />
+                            <HiCollection className="h-4 w-4 text-tertiary" />
                         }
                         className="min-h-56"
                         actions={[

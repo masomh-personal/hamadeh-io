@@ -28,7 +28,7 @@ function getMainContentSnapshot(): HTMLElement | null {
 export function NavigationOverlay({
     message = "Loading...",
     icon,
-    showSkeleton = false,
+    showSkeleton = true,
 }: NavigationOverlayProps): React.ReactElement | null {
     const { pending } = useLinkStatus();
     const mainEl = useSyncExternalStore(

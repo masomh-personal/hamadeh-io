@@ -12,7 +12,7 @@ interface LoadingOverlayProps {
 export function LoadingOverlay({
     message = "Loading...",
     icon,
-    showSkeleton = false,
+    showSkeleton = true,
     topContent,
     className,
 }: LoadingOverlayProps): React.ReactElement {

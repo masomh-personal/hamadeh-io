@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui";
 import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
@@ -49,7 +50,7 @@ export default function AboutPage(): React.ReactElement {
                 }
             />
 
-            <section className="mb-6 grid gap-4 md:grid-cols-2">
+            <PageSection className="grid gap-4 md:grid-cols-2">
                 <article className="surface-card radius-card p-5">
                     <h2 className="inline-flex items-center gap-2 font-bold text-white">
                         <HiUser className="h-4 w-4 text-sky-300" />
@@ -81,9 +82,9 @@ export default function AboutPage(): React.ReactElement {
                         teams move faster with less ambiguity.
                     </p>
                 </article>
-            </section>
+            </PageSection>
 
-            <section className="surface-card radius-card mb-6 p-6">
+            <PageSection className="surface-card radius-card p-6">
                 <h2 className="inline-flex items-center gap-2 font-bold text-white">
                     <HiCode className="h-4 w-4 text-emerald-300" />
                     Experience Highlights
@@ -183,9 +184,9 @@ export default function AboutPage(): React.ReactElement {
                         </p>
                     </article>
                 </div>
-            </section>
+            </PageSection>
 
-            <section className="grid gap-4 md:grid-cols-2">
+            <PageSection className="grid gap-4 md:grid-cols-2">
                 <article className="surface-card radius-card p-5">
                     <h2 className="inline-flex items-center gap-2 font-bold text-white">
                         <HiAcademicCap className="h-4 w-4 text-sky-300" />
@@ -242,7 +243,7 @@ export default function AboutPage(): React.ReactElement {
                         </li>
                     </ul>
                 </article>
-            </section>
+            </PageSection>
         </PageContainer>
     );
 }

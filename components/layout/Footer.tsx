@@ -20,21 +20,27 @@ export function Footer(): React.ReactElement {
 
     return (
         <footer className="w-full border-t border-(--border) bg-(--background)">
-            <div className="mx-auto max-w-6xl px-6 py-6">
-                <div className="flex flex-col items-center gap-2">
-                    {/* GitHub badge — colors align with Badge brand/soft tokens */}
+            <div className="mx-auto max-w-6xl px-6 py-4">
+                <div className="flex flex-col items-center gap-1.5">
+                    {/* Compact GitHub badge keeps build metadata available but subtle */}
                     <a
                         href={branchUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={title || "View repository"}
                         aria-label="View GitHub repository"
-                        className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-md border border-slate-300/80 bg-slate-500/25 px-4 py-2 font-baloo text-[0.8125rem] font-semibold tracking-[0.03em] text-slate-200 transform-gpu transition-all duration-200 ease-out hover:scale-[1.02] hover:bg-slate-500/35 active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                        className="inline-flex items-center gap-1 whitespace-nowrap rounded-md border-[0.5px] border-white/95 bg-[color-mix(in_srgb,var(--color-slate-800)_80%,transparent)] px-3 py-1.5 font-baloo text-[0.75rem] font-semibold tracking-[0.02em] text-content shadow-[0_2px_10px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)] transform-gpu transition-[color,background-color,transform,box-shadow,border-color] duration-200 ease-out hover:scale-[1.02] hover:bg-[color-mix(in_srgb,var(--color-slate-800)_92%,transparent)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.36),0_0_0_1px_rgba(255,255,255,0.16),0_0_14px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.12)] active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-(--background)"
                     >
-                        <SiGithub className="size-3.5 shrink-0" aria-hidden />
-                        <span className="text-secondary">v{version}</span>
-                        <span>@ {gitBranch ?? "---"} | SHA:</span>
-                        <span className="font-mono font-semibold text-primary">
+                        <SiGithub
+                            className="relative -top-px size-3.5 shrink-0 text-slate-200"
+                            aria-hidden
+                        />
+                        <span className="text-emerald-200">v{version}</span>
+                        <span aria-hidden>·</span>
+                        <span>{gitBranch ?? "---"}</span>
+                        <span aria-hidden>·</span>
+                        <span>SHA</span>
+                        <span className="font-mono text-[0.6875rem] leading-none tracking-normal text-content">
                             {shaShort ?? "-------"}
                         </span>
                     </a>
@@ -42,7 +48,8 @@ export function Footer(): React.ReactElement {
                     {/* Line 2: Copyright and tagline */}
                     <p className="text-content-subtle flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 text-xs leading-tight">
                         <span>
-                            © <strong>{currentYear}</strong> hamadeh.io
+                            © <strong>{currentYear}</strong> hamadeh.io. All
+                            rights reserved.
                         </span>
                         <span aria-hidden>·</span>
                         <span className="font-baloo font-bold">

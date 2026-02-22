@@ -40,6 +40,8 @@ const BLOG_TAGS: Record<string, BlogTagDefinition> = {
     backend: defineTag("backend", "tag-secondary"),
     async: defineTag("async", "tag-error"),
     ai: defineTag("ai", "tag-brand"),
+    react: defineTag("react", "tag-error"),
+    dsa: defineTag("dsa", "tag-brand"),
     methodology: defineTag("methodology", "tag-tertiary"),
 };
 

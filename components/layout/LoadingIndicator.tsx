@@ -36,14 +36,14 @@ export function LoadingIndicator({
             {showSkeletonBackground ? (
                 <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 opacity-55"
+                    className="pointer-events-none absolute inset-0 opacity-34"
                 >
                     <div className="flex h-full flex-col justify-evenly px-5 py-4">
                         {skeletonRows.map((row) => (
                             <div
                                 key={`${row.width}-${row.delay}`}
                                 className={cn(
-                                    "skeleton-shimmer h-2.5 rounded",
+                                    "skeleton-shimmer h-2 rounded",
                                     row.width
                                 )}
                                 style={{ animationDelay: `${row.delay}ms` }}
@@ -61,7 +61,7 @@ export function LoadingIndicator({
                 <span
                     className={cn(
                         showSkeletonBackground &&
-                            "drop-shadow-[0_2px_6px_rgba(2,6,23,0.9)]"
+                            "drop-shadow-[0_2px_8px_rgba(2,6,23,0.98)]"
                     )}
                 >
                     {icon ?? (
@@ -73,9 +73,9 @@ export function LoadingIndicator({
                 </span>
                 <p
                     className={cn(
-                        "font-baloo text-lg font-bold uppercase tracking-wide text-white",
+                        "font-baloo text-xl font-black uppercase tracking-wide text-white leading-tight",
                         showSkeletonBackground &&
-                            "drop-shadow-[0_2px_6px_rgba(2,6,23,0.95)]"
+                            "[text-shadow:0_1px_0_rgba(15,23,42,1),0_0_1px_rgba(15,23,42,1),0_4px_14px_rgba(2,6,23,0.98)]"
                     )}
                 >
                     {message}

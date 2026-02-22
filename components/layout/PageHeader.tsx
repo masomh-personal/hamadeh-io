@@ -18,12 +18,15 @@ interface PageHeaderProps {
     showBackLink?: boolean;
     /** Optional actions (e.g. buttons/links). Rendered below the description and Back to Home link, inside the main content flow. */
     actions?: React.ReactNode;
+    /** Whether to render a subtle divider below the header content */
+    showDivider?: boolean;
 }
 
 const titleSizeClasses = {
     default: "font-extrabold text-white",
     large: "font-heading text-3xl font-extrabold leading-tight tracking-tight text-white md:text-4xl",
 };
+const PAGE_HEADER_BASE_CLASS = "mb-8 md:mb-10";
 
 export function PageHeader({
     title,
@@ -34,6 +37,7 @@ export function PageHeader({
     descriptionClassName,
     showBackLink = true,
     actions,
+    showDivider = false,
 }: PageHeaderProps): React.ReactElement {
     const content = (
         <>
@@ -66,19 +70,26 @@ export function PageHeader({
 
     if (avatar != null) {
         return (
-            <header
-                className={cn(
-                    "mb-4 grid grid-cols-1 gap-4 md:grid-cols-[auto_1fr] md:gap-6 md:items-start",
-                    className
-                )}
-            >
-                <div className="shrink-0 place-self-center pr-4 md:place-self-start md:border-r-2 md:border-slate-600/80 md:pr-8">
-                    {avatar}
+            <header className={cn(PAGE_HEADER_BASE_CLASS, className)}>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-[auto_1fr] md:items-start md:gap-6">
+                    <div className="shrink-0 place-self-center pr-4 md:place-self-start md:border-r-2 md:border-slate-600/80 md:pr-8">
+                        {avatar}
+                    </div>
+                    <div>{content}</div>
                 </div>
-                <div>{content}</div>
+                {showDivider ? (
+                    <hr className="mt-6 border-surface-outline/60" />
+                ) : null}
             </header>
         );
     }
 
-    return <header className={cn("mb-4", className)}>{content}</header>;
+    return (
+        <header className={cn(PAGE_HEADER_BASE_CLASS, className)}>
+            {content}
+            {showDivider ? (
+                <hr className="mt-6 border-surface-outline/60" />
+            ) : null}
+        </header>
+    );
 }

@@ -34,6 +34,7 @@ export default function AboutPage(): React.ReactElement {
                 title="About Me"
                 description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
                 descriptionClassName="max-w-4xl"
+                showDivider
                 actions={
                     showResumeButton ? (
                         <Button

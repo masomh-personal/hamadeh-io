@@ -100,16 +100,16 @@ export default function AboutPage(): React.ReactElement {
                         <p className="text-content mt-2">
                             Technical lead for a team of 4 engineers, driving
                             sprint planning, backlog refinement, and code
-                            reviews while remaining hands-on. Led development of
-                            the DDS component library (30+ components in
-                            Storybook). Translate functional specs into
+                            reviews while remaining hands-on. Leads development
+                            of the DDS component library (30+ components in
+                            Storybook). Translates functional specs into
                             technical specifications, data models, and API
-                            contracts. Build customer-facing commerce features
+                            contracts. Builds customer-facing commerce features
                             with React, TypeScript, and Salesforce Commerce
-                            Cloud (PWA Kit). Author content schemas via
-                            Amplience CMS, integrate RESTful APIs for commerce
-                            workflows, and support CI/CD with GitHub Actions and
-                            Jenkins.
+                            Cloud (PWA Kit). Authors content schemas in
+                            Amplience CMS, integrates RESTful APIs for commerce
+                            workflows, and supports CI/CD with GitHub Actions
+                            and Jenkins.
                         </p>
                     </article>
 

@@ -14,30 +14,32 @@ type ButtonVariant =
     | "outline"
     | "danger"
     | "danger-soft";
-type ButtonSize = "sm" | "md" | "lg";
+type ButtonSize = "xs" | "sm" | "md" | "lg";
 type IconSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        "bg-primary/95 border border-primary/55 hover:border-primary hover:bg-primary hover:shadow-sm text-white font-heading",
+        "bg-primary/95 border border-primary/55 shadow-[0_0_0_1px_rgba(56,189,248,0.2)] hover:border-primary hover:bg-primary hover:shadow-sm hover:after:shadow-[0_0_0_1px_rgba(125,211,252,0.6),0_0_12px_rgba(56,189,248,0.24)] text-white font-heading",
     secondary:
-        "bg-secondary/95 border border-secondary/55 hover:border-secondary hover:bg-secondary hover:shadow-sm text-white font-heading",
+        "bg-secondary/95 border border-secondary/55 shadow-[0_0_0_1px_rgba(16,185,129,0.24)] hover:border-secondary hover:bg-secondary hover:shadow-sm hover:after:shadow-[0_0_0_1px_rgba(52,211,153,0.55),0_0_12px_rgba(16,185,129,0.22)] text-white font-heading",
     tertiary:
-        "bg-tertiary/95 border border-tertiary/60 hover:border-tertiary hover:bg-tertiary hover:shadow-sm text-white font-heading",
+        "bg-tertiary/95 border border-tertiary/60 shadow-[0_0_0_1px_rgba(245,158,11,0.24)] hover:border-tertiary hover:bg-tertiary hover:shadow-sm hover:after:shadow-[0_0_0_1px_rgba(251,191,36,0.62),0_0_12px_rgba(245,158,11,0.26)] text-white font-heading",
     outline:
-        "border border-slate-300/70 bg-slate-900/30 text-slate-200 hover:border-primary hover:bg-primary/10 hover:text-primary font-heading",
-    danger: "bg-red-500 border border-red-200/80 hover:border-red-100 hover:bg-red-400 hover:shadow-sm text-white font-heading",
+        "border border-slate-300/70 bg-slate-900/30 shadow-[0_0_0_1px_rgba(148,163,184,0.2)] text-slate-200 hover:border-primary hover:bg-primary/10 hover:text-primary hover:after:shadow-[0_0_0_1px_rgba(148,163,184,0.45),0_0_10px_rgba(56,189,248,0.18)] font-heading",
+    danger: "bg-red-500 border border-red-200/80 shadow-[0_0_0_1px_rgba(239,68,68,0.24)] hover:border-red-100 hover:bg-red-400 hover:shadow-sm hover:after:shadow-[0_0_0_1px_rgba(254,202,202,0.6),0_0_12px_rgba(239,68,68,0.26)] text-white font-heading",
     "danger-soft":
-        "bg-red-500/20 border border-red-300/70 text-red-300 hover:border-red-200 hover:bg-red-500/30 font-heading",
+        "bg-red-500/20 border border-red-300/70 shadow-[0_0_0_1px_rgba(248,113,113,0.24)] text-red-300 hover:border-red-200 hover:bg-red-500/30 hover:after:shadow-[0_0_0_1px_rgba(252,165,165,0.56),0_0_12px_rgba(248,113,113,0.2)] font-heading",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
+    xs: "text-[0.5625rem] min-h-7 px-2 py-1 tracking-[0.025em]",
     sm: "text-[0.6875rem] min-h-9 px-3 py-1.5 tracking-[0.03em]",
     md: "text-[0.8125rem] min-h-10 px-4 py-2 tracking-[0.045em]",
     lg: "text-[0.9375rem] min-h-11 px-5 py-2.5 tracking-[0.05em]",
 };
 
 const minWidthClasses: Record<ButtonSize, string> = {
+    xs: "min-w-20",
     sm: "min-w-24",
     md: "min-w-32",
     lg: "min-w-36",
@@ -77,7 +79,7 @@ export interface ThoughtfulButtonProps
 const baseClasses = `relative rounded-sm font-black uppercase transition-all duration-200 inline-flex items-center justify-center gap-[0.375rem] transform-gpu
 hover:scale-[1.015] active:scale-[0.99] motion-reduce:transform-none data-[disabled]:hover:scale-100 data-[disabled]:active:scale-100
 [&_svg]:block [&_svg]:shrink-0
-after:pointer-events-none after:absolute after:inset-[-1px] after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-200 after:content-[''] hover:after:opacity-100 data-[disabled]:hover:after:opacity-0 hover:after:shadow-[0_0_0_1px_rgba(186,230,253,0.62),0_0_10px_rgba(56,189,248,0.24)]
+after:pointer-events-none after:absolute after:inset-[-1px] after:rounded-[inherit] after:opacity-0 after:transition-opacity after:duration-200 after:content-[''] hover:after:opacity-100 data-[disabled]:hover:after:opacity-0
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
 

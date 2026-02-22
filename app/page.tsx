@@ -7,6 +7,7 @@ import {
     HiUser,
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { PageSection } from "@/components/layout/PageSection";
 import { Button, Card } from "@/components/ui";
 import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
@@ -14,8 +15,8 @@ export default function Home(): React.ReactElement {
     const showResumeButton = hasResumePdf();
 
     return (
-        <PageContainer className="space-y-10 md:space-y-12">
-            <section className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
+        <PageContainer>
+            <PageSection className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
                     <h1 className="text-center font-extrabold leading-tight text-white md:text-left">
                         Hi! I&apos;m Masom.
@@ -60,9 +61,9 @@ export default function Home(): React.ReactElement {
                         />
                     </div>
                 </div>
-            </section>
+            </PageSection>
 
-            <section>
+            <PageSection>
                 <h2 className="font-bold text-white">About Me</h2>
                 <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
@@ -110,9 +111,9 @@ export default function Home(): React.ReactElement {
                         </Button>
                     </div>
                 </div>
-            </section>
+            </PageSection>
 
-            <section>
+            <PageSection>
                 <h2 className="font-bold text-white">
                     What&apos;s On This Site
                 </h2>
@@ -164,7 +165,7 @@ export default function Home(): React.ReactElement {
                         </p>
                     </Card>
                 </div>
-            </section>
+            </PageSection>
         </PageContainer>
     );
 }

@@ -24,6 +24,7 @@ export default async function LeetCodePage(): Promise<React.ReactElement> {
             <PageHeader
                 title="LeetCode Solutions"
                 description="Detailed solutions with explanations, complexity analysis, and thought process"
+                showDivider
             />
 
             {solutions.length === 0 ? (

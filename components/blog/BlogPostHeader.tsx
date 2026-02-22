@@ -1,5 +1,5 @@
 import { HiArrowLeft, HiDocumentText } from "react-icons/hi";
-import { Badge, Link } from "@/components/ui";
+import { Badge, Button } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
 import { getBlogTagPresentation } from "./blog-tags";
@@ -21,15 +21,17 @@ export function BlogPostHeader({
                     className="h-4 w-4 shrink-0 text-sky-300"
                 />
                 <span>Published {formatPublishedDate(datePublished)}</span>
-                <Link
+                <Button
                     href="/blog"
-                    variant="muted"
-                    icon={<HiArrowLeft className="h-3 w-3" />}
+                    variant="secondary"
+                    size="sm"
+                    icon={<HiArrowLeft className="h-3.5 w-3.5" />}
                     iconPosition="left"
-                    className="ml-auto text-xs"
+                    enforceMinWidth={false}
+                    className="ml-auto"
                 >
-                    Back to Blogs
-                </Link>
+                    Back to Blog
+                </Button>
             </div>
 
             <h1 className="font-heading text-xl font-extrabold tracking-tight text-white md:text-2xl lg:text-3xl">

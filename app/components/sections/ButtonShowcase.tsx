@@ -39,6 +39,7 @@ export function ButtonShowcase(): React.ReactElement {
                         Sizes
                     </h3>
                     <div className="flex flex-wrap items-center gap-3">
+                        <Button size="xs">Extra Small</Button>
                         <Button size="sm">Small</Button>
                         <Button size="md">Medium</Button>
                         <Button size="lg">Large</Button>
@@ -57,6 +58,32 @@ export function ButtonShowcase(): React.ReactElement {
                             iconPosition="right"
                         >
                             Next
+                        </Button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
+                        Size Contrast (No Icon vs Icon)
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <Button size="xs" variant="tertiary">
+                            XS Label
+                        </Button>
+                        <Button size="xs" variant="tertiary" icon={<HiHome />}>
+                            XS Icon
+                        </Button>
+                        <Button size="sm" variant="secondary">
+                            SM Label
+                        </Button>
+                        <Button size="sm" variant="secondary" icon={<HiHome />}>
+                            SM Icon
+                        </Button>
+                        <Button size="md" variant="primary">
+                            MD Label
+                        </Button>
+                        <Button size="md" variant="primary" icon={<HiHome />}>
+                            MD Icon
                         </Button>
                     </div>
                 </div>

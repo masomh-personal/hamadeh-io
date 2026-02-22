@@ -17,7 +17,7 @@ The goals were straightforward:
 
 ## Why Markdown-First
 
-For this portfolio, blog posts are mostly prose plus code snippets.  
+For this portfolio, blog posts are mostly prose plus code snippets.
 That means plain Markdown is enough right now.
 
 I am intentionally **not** using embedded React inside content yet. This keeps authoring friction low and reduces rendering complexity.

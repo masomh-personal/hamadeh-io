@@ -9,6 +9,7 @@ import {
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { PageSection } from "@/components/layout/PageSection";
 import { Button } from "@/components/ui";
 import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
@@ -33,6 +34,7 @@ export default function AboutPage(): React.ReactElement {
                 title="About Me"
                 description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
                 descriptionClassName="max-w-4xl"
+                showDivider
                 actions={
                     showResumeButton ? (
                         <Button
@@ -49,7 +51,7 @@ export default function AboutPage(): React.ReactElement {
                 }
             />
 
-            <section className="mb-6 grid gap-4 md:grid-cols-2">
+            <PageSection className="grid gap-4 md:grid-cols-2">
                 <article className="surface-card radius-card p-5">
                     <h2 className="inline-flex items-center gap-2 font-bold text-white">
                         <HiUser className="h-4 w-4 text-sky-300" />
@@ -81,9 +83,9 @@ export default function AboutPage(): React.ReactElement {
                         teams move faster with less ambiguity.
                     </p>
                 </article>
-            </section>
+            </PageSection>
 
-            <section className="surface-card radius-card mb-6 p-6">
+            <PageSection className="surface-card radius-card p-6">
                 <h2 className="inline-flex items-center gap-2 font-bold text-white">
                     <HiCode className="h-4 w-4 text-emerald-300" />
                     Experience Highlights
@@ -100,16 +102,16 @@ export default function AboutPage(): React.ReactElement {
                         <p className="text-content mt-2">
                             Technical lead for a team of 4 engineers, driving
                             sprint planning, backlog refinement, and code
-                            reviews while remaining hands-on. Led development of
-                            the DDS component library (30+ components in
-                            Storybook). Translate functional specs into
+                            reviews while remaining hands-on. Leads development
+                            of the DDS component library (30+ components in
+                            Storybook). Translates functional specs into
                             technical specifications, data models, and API
-                            contracts. Build customer-facing commerce features
+                            contracts. Builds customer-facing commerce features
                             with React, TypeScript, and Salesforce Commerce
-                            Cloud (PWA Kit). Author content schemas via
-                            Amplience CMS, integrate RESTful APIs for commerce
-                            workflows, and support CI/CD with GitHub Actions and
-                            Jenkins.
+                            Cloud (PWA Kit). Authors content schemas in
+                            Amplience CMS, integrates RESTful APIs for commerce
+                            workflows, and supports CI/CD with GitHub Actions
+                            and Jenkins.
                         </p>
                     </article>
 
@@ -183,9 +185,9 @@ export default function AboutPage(): React.ReactElement {
                         </p>
                     </article>
                 </div>
-            </section>
+            </PageSection>
 
-            <section className="grid gap-4 md:grid-cols-2">
+            <PageSection className="grid gap-4 md:grid-cols-2">
                 <article className="surface-card radius-card p-5">
                     <h2 className="inline-flex items-center gap-2 font-bold text-white">
                         <HiAcademicCap className="h-4 w-4 text-sky-300" />
@@ -242,7 +244,7 @@ export default function AboutPage(): React.ReactElement {
                         </li>
                     </ul>
                 </article>
-            </section>
+            </PageSection>
         </PageContainer>
     );
 }

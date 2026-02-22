@@ -120,7 +120,7 @@ export default function Home(): React.ReactElement {
                     <Card
                         title="LeetCode Solutions"
                         subtitle="Problem breakdowns, patterns, and complexity insights."
-                        icon={<HiCode className="h-4 w-4 text-sky-300" />}
+                        icon={<HiCode className="h-4 w-4 text-primary" />}
                         className="min-h-56"
                         actions={[
                             { label: "Explore solutions", href: "/leetcode" },
@@ -136,7 +136,7 @@ export default function Home(): React.ReactElement {
                         title="Blog"
                         subtitle="Engineering notes, lessons learned, and build logs."
                         icon={
-                            <HiDocumentText className="h-4 w-4 text-emerald-300" />
+                            <HiDocumentText className="h-4 w-4 text-secondary" />
                         }
                         className="min-h-56"
                         actions={[{ label: "Read posts", href: "/blog" }]}
@@ -151,7 +151,7 @@ export default function Home(): React.ReactElement {
                         title="Components"
                         subtitle="A live gallery of reusable UI components and design tweaks."
                         icon={
-                            <HiCollection className="h-4 w-4 text-amber-300" />
+                            <HiCollection className="h-4 w-4 text-tertiary" />
                         }
                         className="min-h-56"
                         actions={[

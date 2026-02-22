@@ -10,9 +10,13 @@ function runGitCommand(command) {
 
 function getGitInfo() {
     const branchFromEnv =
-        process.env.NEXT_PUBLIC_GIT_BRANCH ?? process.env.GITHUB_REF_NAME;
+        process.env.NEXT_PUBLIC_GIT_BRANCH ??
+        process.env.VERCEL_GIT_COMMIT_REF ??
+        process.env.GITHUB_REF_NAME;
     const shaFromEnv =
-        process.env.NEXT_PUBLIC_GIT_SHA ?? process.env.GITHUB_SHA;
+        process.env.NEXT_PUBLIC_GIT_SHA ??
+        process.env.VERCEL_GIT_COMMIT_SHA ??
+        process.env.GITHUB_SHA;
 
     const branch =
         branchFromEnv || runGitCommand("git rev-parse --abbrev-ref HEAD");

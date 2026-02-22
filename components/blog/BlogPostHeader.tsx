@@ -28,7 +28,7 @@ export function BlogPostHeader({
                     icon={<HiArrowLeft className="h-3.5 w-3.5" />}
                     iconPosition="left"
                     enforceMinWidth={false}
-                    className="ml-auto"
+                    className="mt-3 basis-full justify-center px-4 sm:mt-0 sm:basis-auto sm:justify-start sm:px-3 sm:ml-auto"
                 >
                     Back to Blog
                 </Button>

@@ -35,7 +35,7 @@ export function Footer(): React.ReactElement {
                             className="relative -top-px size-3.5 shrink-0 text-slate-200"
                             aria-hidden
                         />
-                        <span className="text-emerald-200">v{version}</span>
+                        <span className="text-secondary">v{version}</span>
                         <span aria-hidden>·</span>
                         <span>{gitBranch ?? "---"}</span>
                         <span aria-hidden>·</span>

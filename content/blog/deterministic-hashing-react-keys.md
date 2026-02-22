@@ -6,7 +6,7 @@ excerpt: "A production SSR bug caused by random list keys in React, and how dete
 tags: ["engineering", "react", "dsa"]
 ---
 
-## Situation
+## The Bug We Hit
 
 Early in my career, I worked on a project rebuilding a component library from scratch. We were pulling product data from an internal CMS and rendering dynamic product lists in React.
 
@@ -20,7 +20,7 @@ We needed unique IDs. The data was not giving them to us. So we had to generate 
 
 ---
 
-## Task
+## What We Needed
 
 The goal was straightforward: enrich each incoming product object with a unique `id` before it ever reached a React component.
 
@@ -30,7 +30,7 @@ Simple enough in theory. That is where things went sideways.
 
 ---
 
-## Action
+## The First Fix (And Why It Failed)
 
 A developer on the team wrote the initial solution. The structure was sound: iterate through the array, attach an ID, and return the enriched objects. The issue was the ID strategy itself.
 
@@ -56,55 +56,31 @@ Random IDs. Every call to this function produced a completely different set of I
 
 In a purely client-rendered app, this might have gone unnoticed for a while. But we were using server-side rendering, and that is where hydration errors started appearing.
 
-### Why React Behaves This Way
+### Why Hydration Broke
 
 React's reconciliation depends on keys to match list items between renders. If a key changes, React treats that item as new: it unmounts the old node and mounts a new one, which can reset local state and trigger unnecessary work.
 
 In our case, the server rendered one set of random IDs and the client generated another from the same data. React compared those trees, saw key mismatches, and flagged hydration issues. The console filled with warnings, and list items remounted unnecessarily.
 
-The root issue was that the function violated a fundamental requirement: **given the same input, it must always return the same output.** A UUID generator by design does the opposite.
+The root issue was that the function violated a fundamental requirement: **given the same input, it must always return the same output.** A random ID generator by design does the opposite.
 
-### The Fix: Deterministic Hashing
+### The Deterministic Fix
 
 We replaced random generation with a deterministic hashing approach.
 
 A hash function takes an input and maps it to a fixed-size output. The critical property is determinism: the same input always produces the same hash. If you hash the product object itself, you get an ID derived from the object's content. As long as the object does not change, neither does its ID. That is exactly the stability guarantee React needs.
 
-Two caveats still matter: keys must be stable and unique among siblings, and determinism depends on consistent serialization.
-
-In a perfect world, every CMS would provide a unique ID on every object. Good systems do exactly that. But production data is rarely perfect, so the practical approach is to check first: if an `id` already exists, keep it. Only generate a deterministic hash when one is missing. That makes the function defensive rather than case-specific.
+In a perfect world, every CMS would provide a unique ID on every object. Good systems do exactly that. But production data is rarely perfect, so the practical approach is to check first: if an `id` already exists, keep it. Only generate a deterministic hash when one is missing.
 
 ```typescript
-import hash from "object-hash";
-
-/**
- * Generates a deterministic hash for serializable input using object-hash.
- *
- * Approach: Uses a maintained library implementation and explicit options
- * to keep output stable across object key ordering.
- *
- * Time Complexity: O(n) where n is the serialized input size
- * Space Complexity: O(n) for hashing internals/output
- *
- * @param value - Serializable value to hash
- * @returns A stable hex hash string
- */
-function deterministicHash(value: unknown): string {
-  return hash(value, {
-    algorithm: "sha1",
-    encoding: "hex",
-    unorderedObjects: true,
-    unorderedArrays: false,
-  });
-}
+import { hash } from "hash-it";
 
 /**
  * Ensures every object in an array has a stable `id` field.
  *
- * Approach: If the object already has an `id`, it is left untouched.
- * If not, the object is hashed with object-hash. Duplicate hashes are
- * disambiguated with a deterministic occurrence suffix (`-1`, `-2`, ...),
- * keeping keys unique among siblings.
+ * If the object already has an `id`, it is left untouched.
+ * Otherwise, a deterministic hash is derived from the object's content
+ * using hash-it (zero-dependency, order-agnostic, synchronous).
  *
  * Time Complexity: O(n * m) where n is array length and m is avg object size
  * Space Complexity: O(n) for the returned array
@@ -115,35 +91,29 @@ function deterministicHash(value: unknown): string {
 function ensureDeterministicIds<T extends Record<string, unknown>>(
   items: T[]
 ): (T & { id: string })[] {
-  const seenIds = new Map<string, number>();
-
-  const uniquifyId = (baseId: string): string => {
-    const occurrence = seenIds.get(baseId) ?? 0;
-    seenIds.set(baseId, occurrence + 1);
-    return occurrence === 0 ? baseId : `${baseId}-${occurrence}`;
-  };
-
   return items.map((item) => {
-    // If the data source already provided an id, trust it and move on
     if (item.id && typeof item.id === "string" && item.id.length > 0) {
       return item as T & { id: string };
     }
 
-    // Otherwise, derive an id from object content.
-    const derivedId = uniquifyId(deterministicHash(item));
+    const derivedId = String(hash(item));
     return { ...item, id: derivedId };
   });
 }
 ```
+
+For simplicity, this example keeps things minimal. In a production setting, you might add collision disambiguation for duplicate-content siblings, or opt for a cryptographic hash (e.g., SHA-256 via Web Crypto) for stronger guarantees.
 Now the server and client ran the same function on the same data and arrived at the same IDs each time, so reconciliation behaved as intended.
 
 ---
 
-## Result
+## What Changed in Production
 
 Swapping random generation for deterministic ID derivation resolved hydration issues across our product-list surfaces. Warning noise dropped, unnecessary remounts stopped, and initial-load state loss disappeared.
 
 This utility is now my default pattern: keep upstream IDs when present, derive stable IDs when missing, and preserve predictable behavior across server and client.
+
+## The Takeaway
 
 There is a broader algorithm principle here that shows up far beyond React. Hash functions are the foundation of hash maps, caches, database indexing, and deduplication systems for exactly this reason. The determinism is the feature. The same input always maps to the same output, and that predictability is what makes those systems fast and correct.
 

@@ -1,0 +1,52 @@
+---
+description: Generate a PR title and description by diffing origin/develop vs origin/main
+alwaysApply: false
+---
+
+# PR Title & Description Generator
+
+When the user asks to "create PR title and description" (or similar), do the following — no fluff, output in markdown for copy/paste.
+
+## Steps
+
+1. Run `git fetch origin develop main` to ensure refs are current.
+2. Run `git log origin/main..origin/develop --oneline` to get all commits.
+3. Run `git diff origin/main...origin/develop --stat` to get changed files.
+
+## Output format
+
+Produce exactly this — nothing before or after:
+
+```
+## PR Title
+
+\`\`\`
+<concise conventional-commit-style title>
+\`\`\`
+
+## PR Description
+
+\`\`\`markdown
+## Summary
+- <bullet per logical change group, no filler>
+
+## Changes
+
+### <Type> (e.g. Features, Bug Fixes, Refactoring, Styles)
+- <scope if any>: <description>
+
+## File Changes
+\`\`\`
+<git diff --stat output>
+\`\`\`
+\`\`\`
+```
+
+## Rules
+
+- Title must be conventional-commit style: `type: short imperative summary` or `type/type: ...` for mixed batches.
+- Group commits by conventional type (feat → Features, fix → Bug Fixes, refactor → Refactoring, style → Styles, docs → Documentation, chore → Chores).
+- Omit any section with no commits of that type.
+- No marketing language, no "this PR", no "I", no filler.
+- Keep each bullet under one line.
+- The file changes block uses the raw `--stat` output verbatim.

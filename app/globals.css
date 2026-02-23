@@ -432,13 +432,15 @@
 
 .prose.prose-content :where(h2):not(:where([class~="not-prose"] *)) {
     margin-top: 1.8rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
     font-size: 1.45rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
 }
 
 .prose.prose-content :where(h3):not(:where([class~="not-prose"] *)) {
     margin-top: 1.45rem;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.65rem;
     font-size: 1.22rem;
 }
 

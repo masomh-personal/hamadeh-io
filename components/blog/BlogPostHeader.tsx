@@ -24,7 +24,7 @@ export function BlogPostHeader({
                 <Button
                     href="/blog"
                     variant="secondary"
-                    size="sm"
+                    size="xs"
                     icon={<HiArrowLeft className="h-3.5 w-3.5" />}
                     iconPosition="left"
                     enforceMinWidth={false}

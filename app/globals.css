@@ -406,6 +406,10 @@
    Long-form Markdown Prose Variant
    Tightens vertical rhythm while preserving
    markdown semantics (no synthetic separators).
+   We intentionally follow Tailwind Typography's
+   selector pattern (`:where(...)` + `not-prose`)
+   so styles keep low specificity and do not leak
+   into prose opt-out islands.
    ============================================ */
 .prose.prose-content {
     --tw-prose-body: var(--foreground);

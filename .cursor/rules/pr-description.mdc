@@ -5,13 +5,13 @@ alwaysApply: false
 
 # PR Title & Description Generator
 
-When the user asks to "create PR title and description" (or similar), do the following — no fluff, output in markdown for copy/paste.
+When the user asks to "create PR title and description" (or similar), do the following — output in clean markdown for copy/paste, optimized for bookkeeping and future reference.
 
 ## Steps
 
 1. Run `git fetch origin develop main` to ensure refs are current.
 2. Run `git log origin/main..origin/develop --oneline` to get all commits.
-3. Run `git diff origin/main...origin/develop --stat` to get changed files.
+3. Run `git diff origin/main...origin/develop --stat` to understand the scope of changes.
 
 ## Output format
 
@@ -28,25 +28,27 @@ Produce exactly this — nothing before or after:
 
 \`\`\`markdown
 ## Summary
-- <bullet per logical change group, no filler>
+
+<2–4 sentences explaining the overall goal of this PR — what problem it solves, what was changed at a high level, and why. Write as if you're explaining to your future self 6 months from now.>
 
 ## Changes
 
-### <Type> (e.g. Features, Bug Fixes, Refactoring, Styles)
-- <scope if any>: <description>
+### <Type> (e.g. Features, Bug Fixes, Refactoring, Styles, Chores)
+- <scope>: <what changed and why it was needed — one line, but complete enough to be self-contained>
 
-## File Changes
-\`\`\`
-<git diff --stat output>
-\`\`\`
+## Notes
+
+<Optional: any caveats, follow-up work, known tradeoffs, or context that won't be obvious from the code. Omit this section entirely if there's nothing worth capturing.>
 \`\`\`
 ```
 
 ## Rules
 
 - Title must be conventional-commit style: `type: short imperative summary` or `type/type: ...` for mixed batches.
+- The Summary section must be prose, not bullets — explain intent and context, not just what files changed.
 - Group commits by conventional type (feat → Features, fix → Bug Fixes, refactor → Refactoring, style → Styles, docs → Documentation, chore → Chores).
+- Each change bullet should say both what changed and why — enough context to be useful as a log entry.
 - Omit any section with no commits of that type.
+- Omit the Notes section if there's nothing meaningful to capture.
 - No marketing language, no "this PR", no "I", no filler.
-- Keep each bullet under one line.
-- The file changes block uses the raw `--stat` output verbatim.
+- Do NOT include a File Changes / diff stat block.

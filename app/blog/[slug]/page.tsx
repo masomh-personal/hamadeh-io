@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { MDXContent } from "@/components/mdx/MDXContent";
+import { RichMarkdownContent } from "@/components/markdown/RichMarkdownContent";
 import {
     getPublishedBlogPostBySlug,
     listPublishedBlogPosts,
@@ -54,7 +54,7 @@ export default async function BlogPostPage({
         <PageContainer>
             <article className="surface-card radius-card card-chrome p-6 md:p-10">
                 <BlogPostHeader post={post} />
-                <MDXContent content={post.content} />
+                <RichMarkdownContent content={post.content} />
             </article>
         </PageContainer>
     );

@@ -99,7 +99,7 @@ export default function Home(): React.ReactElement {
                             size="sm"
                             icon={<HiDocumentText />}
                         >
-                            Read the blog
+                            Read my blog
                         </Button>
                         <Button
                             href="/about"

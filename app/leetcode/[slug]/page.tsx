@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { MDXContent } from "@/components/mdx/MDXContent";
+import { RichMarkdownContent } from "@/components/markdown/RichMarkdownContent";
 import { getAllSolutions, getSolutionBySlug } from "@/lib/mdx";
 
 interface PageProps {
@@ -109,7 +109,7 @@ export default async function SolutionPage({
 
                 {/* MDX Content */}
                 <div className="mt-12">
-                    <MDXContent content={solution.content} />
+                    <RichMarkdownContent content={solution.content} />
                 </div>
             </article>
         </PageContainer>

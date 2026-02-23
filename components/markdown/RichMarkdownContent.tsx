@@ -1,13 +1,14 @@
 /**
- * MDX Content Renderer
+ * Rich Markdown Content Renderer
  * Renders markdown content with syntax highlighting
  */
 
 import { MarkdownAsync } from "react-markdown";
 import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 import { CodeBlock } from "./CodeBlock";
 
-interface MDXContentProps {
+interface RichMarkdownContentProps {
     content: string;
 }
 
@@ -15,13 +16,14 @@ const markdownComponents = {
     pre: CodeBlock,
 } as const;
 
-export async function MDXContent({
+export async function RichMarkdownContent({
     content,
-}: MDXContentProps): Promise<React.ReactElement> {
+}: RichMarkdownContentProps): Promise<React.ReactElement> {
     return (
-        <div className="prose prose-invert max-w-none">
+        <div className="prose prose-invert prose-content max-w-none">
             <MarkdownAsync
                 components={markdownComponents}
+                remarkPlugins={[remarkGfm]}
                 rehypePlugins={[
                     [
                         rehypePrettyCode,

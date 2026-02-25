@@ -101,6 +101,28 @@ const tagPaddingClasses = {
     lg: "px-3 py-2",
 } as const;
 
+function getBlogTagInlineStyle(
+    isBlogTag: boolean,
+    tagColor: string | undefined,
+    tagBackgroundColor: string | undefined,
+    style: ComponentProps<"span">["style"]
+): ComponentProps<"span">["style"] {
+    if (!isBlogTag) {
+        return style;
+    }
+
+    if (tagColor === undefined || tagColor.length === 0) {
+        return style;
+    }
+
+    return {
+        borderColor: tagColor,
+        color: tagColor,
+        backgroundColor: tagBackgroundColor,
+        ...style,
+    };
+}
+
 export interface BadgeProps extends Omit<ComponentProps<"span">, "children"> {
     text: string;
     icon?: ReactNode;
@@ -108,6 +130,9 @@ export interface BadgeProps extends Omit<ComponentProps<"span">, "children"> {
     variant?: BadgeStyle;
     tone?: BadgeTone;
     size?: keyof typeof sizeClasses;
+    isBlogTag?: boolean;
+    tagColor?: string;
+    tagBackgroundColor?: string;
 }
 
 /**
@@ -120,11 +145,24 @@ export function Badge({
     variant = "brand",
     tone = "soft",
     size = "md",
+    isBlogTag = false,
+    tagColor,
+    tagBackgroundColor,
     className,
+    style,
     ...props
 }: BadgeProps): React.ReactElement {
-    const resolvedToneClasses = colorClassesByTone[tone][variant];
-    const isTagVariant = variant.startsWith("tag-");
+    const hasCustomBlogTagColor = isBlogTag && Boolean(tagColor);
+    const resolvedToneClasses = hasCustomBlogTagColor
+        ? ""
+        : colorClassesByTone[tone][variant];
+    const isTagVariant = isBlogTag || variant.startsWith("tag-");
+    const resolvedStyle = getBlogTagInlineStyle(
+        isBlogTag,
+        tagColor,
+        tagBackgroundColor,
+        style
+    );
     const tagPrefix = isTagVariant ? (
         <span
             aria-hidden="true"
@@ -158,6 +196,7 @@ export function Badge({
                 isTagVariant && tagPaddingClasses[size],
                 className
             )}
+            style={resolvedStyle}
             {...props}
         >
             {tagPrefix}

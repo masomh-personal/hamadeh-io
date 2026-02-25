@@ -146,14 +146,14 @@ hamadeh-io/
 ├── app/                    # Next.js App Router pages
 │   ├── layout.tsx         # Root layout (Server Component)
 │   ├── page.tsx           # Homepage (Server Component)
-│   ├── leetcode/         # LeetCode solutions (dynamic routes)
+│   ├── problems/         # Code problems (dynamic routes)
 │   ├── blog/              # Blog posts (dynamic routes)
 │   ├── about/             # Resume/about page
 │   └── api/               # API routes (Phase 2)
 ├── components/            # React components
 │   ├── ui/                # Project-owned UI wrappers/components
 │   ├── layout/            # Header, Footer, Navigation
-│   ├── leetcode/          # Solution-specific components
+│   ├── problems/          # Problem-specific components
 │   └── blog/              # Blog-specific components
 ├── lib/                   # Utilities and helpers
 │   ├── mdx.ts            # MDX processing utilities
@@ -161,7 +161,7 @@ hamadeh-io/
 │   ├── utils.ts          # General utilities
 │   └── constants.ts      # App constants
 ├── content/              # MDX content files
-│   ├── leetcode/        # LeetCode solutions
+│   ├── problems/        # Code problems
 │   ├── blog/            # Blog posts
 │   └── about/           # Resume/about content
 ├── public/              # Static assets
@@ -184,9 +184,9 @@ hamadeh-io/
 
 **Example:**
 ```typescript
-// app/leetcode/[slug]/page.tsx
-export default async function LeetCodePage({ params }: Props) {
-    const solution = await getSolutionBySlug(params.slug);
+// app/problems/[slug]/page.tsx
+export default async function ProblemPage({ params }: Props) {
+    const solution = await getProblemBySlug(params.slug);
     
     return <SolutionView solution={solution} />;
 }
@@ -232,22 +232,22 @@ export function ThemeToggle() {
 ### Static Generation (SSG)
 
 **All content pages use SSG:**
-- LeetCode solutions
+- Code problems
 - Blog posts
 - About page
 
 **Pattern:**
 ```typescript
-// app/leetcode/[slug]/page.tsx
+// app/problems/[slug]/page.tsx
 export async function generateStaticParams() {
-    const solutions = await getAllSolutions();
+    const solutions = await getAllProblems();
     return solutions.map((solution) => ({
         slug: solution.slug,
     }));
 }
 
-export default async function LeetCodePage({ params }: Props) {
-    const solution = await getSolutionBySlug(params.slug);
+export default async function ProblemPage({ params }: Props) {
+    const solution = await getProblemBySlug(params.slug);
     return <SolutionView solution={solution} />;
 }
 ```
@@ -266,15 +266,15 @@ export default async function LeetCodePage({ params }: Props) {
 // lib/mdx.ts
 import matter from 'gray-matter';
 import { parse } from 'valibot';
-import { leetCodeSolutionSchema } from './schemas';
+import { problemFrontmatterSchema } from './schemas';
 
-export async function getSolutionBySlug(slug: string): Promise<LeetCodeSolution> {
-    const filePath = path.join(process.cwd(), 'content', 'leetcode', `${slug}.mdx`);
+export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
+    const filePath = path.join(process.cwd(), 'content', 'problems', `${slug}.md`);
     const fileContents = await fs.readFile(filePath, 'utf8');
     const { data, content } = matter(fileContents);
     
     // Validate frontmatter
-    const frontmatter = parse(leetCodeSolutionSchema, data);
+    const frontmatter = parse(problemFrontmatterSchema, data);
     
     return {
         ...frontmatter,
@@ -295,9 +295,9 @@ type Result<T, E = Error> =
     | { success: true; data: T }
     | { success: false; error: E };
 
-export async function getSolutionBySlug(
+export async function getProblemBySlug(
     slug: string
-): Promise<Result<LeetCodeSolution, 'NOT_FOUND' | 'INVALID_FORMAT'>> {
+): Promise<Result<ProblemPost, 'NOT_FOUND' | 'INVALID_FORMAT'>> {
     try {
         const solution = await readSolutionFile(slug);
         return { success: true, data: solution };

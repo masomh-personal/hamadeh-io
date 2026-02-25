@@ -71,7 +71,7 @@ export default function NotFound(): React.ReactElement {
 
                 {/* Additional Links */}
                 <div className="text-content-subtle mt-12 text-sm">
-                    Or explore: <Link href="/leetcode">Problems</Link>
+                    Or explore: <Link href="/problems">Code Problems</Link>
                     {" • "}
                     <Link href="/blog">Blog</Link>
                     {" • "}

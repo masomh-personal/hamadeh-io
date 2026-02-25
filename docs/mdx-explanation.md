@@ -4,18 +4,19 @@
 
 **MDX = Markdown + JSX**
 
-MDX allows you to write content in Markdown (familiar, simple syntax) while embedding React components when needed. It's perfect for technical content like LeetCode solutions and blog posts.
+Markdown allows you to write content in a familiar format while keeping content version-controlled and easy to render. It's perfect for technical content like code problem writeups and blog posts.
 
 ## How Our MDX Setup Works
 
 ### 1. **Content Files** (`content/` directory)
 
-We write content in `.mdx` files with frontmatter (metadata) at the top:
+We write content in `.md` files with frontmatter (metadata) at the top:
 
-```mdx
+```md
 ---
-title: "LeetCode #1: Two Sum"
+title: "Two Sum"
 slug: "two-sum"
+source: "leetcode"
 difficulty: "easy"
 datePublished: "2026-01-15"
 ---
@@ -38,7 +39,7 @@ function twoSum(nums: number[], target: number): number[] {
 We use **Valibot** to validate frontmatter at build time:
 
 ```typescript
-export const LeetCodeFrontmatterSchema = v.object({
+export const ProblemFrontmatterSchema = v.object({
     title: v.pipe(v.string(), v.minLength(1)),
     slug: v.string(),
     difficulty: v.picklist(["easy", "medium", "hard"]),
@@ -57,11 +58,11 @@ export const LeetCodeFrontmatterSchema = v.object({
 Our utilities read, parse, and validate MDX files:
 
 ```typescript
-// Get all solutions
-const solutions = await getAllSolutions();
+// Get all problem posts
+const solutions = await getAllProblems();
 
-// Get single solution by slug
-const solution = await getSolutionBySlug("two-sum");
+// Get single problem by slug
+const solution = await getProblemBySlug("two-sum");
 ```
 
 **What happens:**
@@ -91,14 +92,14 @@ const withMDX = createMDX({
 In Next.js pages, we use the utilities:
 
 ```typescript
-// app/leetcode/[slug]/page.tsx
+// app/problems/[slug]/page.tsx
 export async function generateStaticParams() {
-    const solutions = await getAllSolutions();
+    const solutions = await getAllProblems();
     return solutions.map((s) => ({ slug: s.slug }));
 }
 
 export default async function SolutionPage({ params }) {
-    const solution = await getSolutionBySlug(params.slug);
+    const solution = await getProblemBySlug(params.slug);
     return <SolutionView solution={solution} />;
 }
 ```
@@ -204,13 +205,13 @@ Valibot is tiny (~1KB):
    ```
 
 2. **Build Time:**
-   - Next.js reads `content/leetcode/two-sum.mdx`
-   - `getAllSolutions()` parses and validates
+   - Next.js reads `content/problems/two-sum.md`
+   - `getAllProblems()` parses and validates
    - Valibot ensures frontmatter is correct
    - If invalid → build fails with clear error
 
 3. **Static Generation:**
-   - Next.js generates `/leetcode/two-sum` page
+   - Next.js generates `/problems/two-sum` page
    - MDX content rendered as React components
    - Code blocks highlighted with syntax highlighting
    - Page is fully static (no runtime processing)
@@ -226,7 +227,7 @@ Our setup handles errors gracefully:
 
 ```typescript
 // If file doesn't exist
-getSolutionBySlug("non-existent"); // Throws: "Solution not found"
+getProblemBySlug("non-existent"); // Throws: "Problem not found"
 
 // If frontmatter is invalid
 // Build fails with Valibot error message:

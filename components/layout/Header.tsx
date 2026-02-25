@@ -31,7 +31,7 @@ export function Header(): React.ReactElement {
     const navigation: NavItem[] = [
         { name: "Home", href: "/", icon: HiHome },
         { name: "Components", href: "/components", icon: HiCollection },
-        { name: "Problems", href: "/leetcode", icon: HiCode },
+        { name: "Code Problems", href: "/problems", icon: HiCode },
         { name: "Blog", href: "/blog", icon: HiDocumentText },
         { name: "About", href: "/about", icon: HiUser },
         {

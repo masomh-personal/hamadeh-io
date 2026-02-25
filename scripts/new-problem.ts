@@ -1,14 +1,13 @@
 #!/usr/bin/env bun
 
 /**
- * LeetCode Solution Scaffolder
+ * Problem scaffolder
  *
- * Fetches problem metadata from LeetCode's GraphQL API and scaffolds
- * a solution folder with starter files.
+ * Supports LeetCode URL/slug input and scaffolds a local solution workspace.
  *
  * Usage:
- *   bun run new:solution https://leetcode.com/problems/two-sum/
- *   bun run new:solution two-sum
+ *   bun run new:problem https://leetcode.com/problems/two-sum/
+ *   bun run new:problem two-sum
  */
 
 import { mkdir, writeFile } from "node:fs/promises";
@@ -18,7 +17,7 @@ interface LeetCodeProblem {
     title: string;
     difficulty: string;
     content: string;
-    topicTags: Array<{ name: string; slug: string }>;
+    topicTags: Array<{ name: string }>;
     codeSnippets: Array<{ lang: string; code: string }>;
     sampleTestCase: string;
 }
@@ -26,28 +25,19 @@ interface LeetCodeProblem {
 interface ProblemMetadata {
     title: string;
     slug: string;
+    source: "leetcode" | "dsa" | "custom";
     difficulty: "easy" | "medium" | "hard";
-    topics: string[];
     datePublished: string;
     timeComplexity: string;
     spaceComplexity: string;
     excerpt: string;
-    relatedProblems: string[];
-    companies: string[];
-    hints: string[];
 }
 
-/**
- * Extract slug from LeetCode URL or return as-is if already a slug
- */
 function extractSlug(input: string): string {
     const urlMatch = input.match(/leetcode\.com\/problems\/([^/]+)/);
     return urlMatch?.[1] ?? input;
 }
 
-/**
- * Fetch problem data from LeetCode GraphQL API
- */
 async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
     const query = `
         query getQuestionDetail($titleSlug: String!) {
@@ -57,7 +47,6 @@ async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
                 content
                 topicTags {
                     name
-                    slug
                 }
                 codeSnippets {
                     lang
@@ -97,9 +86,6 @@ async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
     return data.data.question;
 }
 
-/**
- * Convert HTML content to plain text (basic conversion)
- */
 function htmlToText(html: string): string {
     return html
         .replace(/<[^>]*>/g, " ")
@@ -111,9 +97,6 @@ function htmlToText(html: string): string {
         .trim();
 }
 
-/**
- * Create metadata.json for the solution
- */
 function createMetadata(
     problem: LeetCodeProblem,
     slug: string
@@ -123,25 +106,19 @@ function createMetadata(
     return {
         title: problem.title,
         slug,
+        source: "leetcode",
         difficulty: problem.difficulty.toLowerCase() as
             | "easy"
             | "medium"
             | "hard",
-        topics: problem.topicTags.map((tag) => tag.slug),
         datePublished: new Date().toISOString().split("T")[0] ?? "",
-        timeComplexity: "O(?)", // User will fill in
-        spaceComplexity: "O(?)", // User will fill in
+        timeComplexity: "O(?)",
+        spaceComplexity: "O(?)",
         excerpt,
-        relatedProblems: [],
-        companies: [],
-        hints: [],
     };
 }
 
-/**
- * Create solution.ts starter file
- */
-function createSolutionFile(problem: LeetCodeProblem, _slug: string): string {
+function createSolutionFile(problem: LeetCodeProblem): string {
     const tsSnippet = problem.codeSnippets.find((s) => s.lang === "TypeScript");
     const jsSnippet = problem.codeSnippets.find((s) => s.lang === "JavaScript");
     const starterCode = tsSnippet?.code || jsSnippet?.code || "";
@@ -166,9 +143,6 @@ ${starterCode}
 `;
 }
 
-/**
- * Create solution.test.ts starter file
- */
 function createTestFile(problem: LeetCodeProblem, slug: string): string {
     const functionName = slug.replace(/-/g, "_");
 
@@ -176,6 +150,7 @@ function createTestFile(problem: LeetCodeProblem, slug: string): string {
  * Tests for ${problem.title}
  */
 
+import { describe, expect, test } from "bun:test";
 import { ${functionName} } from "./solution";
 
 describe("${problem.title}", () => {
@@ -199,72 +174,55 @@ describe("${problem.title}", () => {
 `;
 }
 
-/**
- * Main scaffolding function
- */
 async function scaffold(input: string): Promise<void> {
     const slug = extractSlug(input);
 
-    console.log(`📥 Fetching problem data for: ${slug}...`);
+    console.log(`Fetching problem data for: ${slug}...`);
 
     try {
         const problem = await fetchProblemData(slug);
 
-        console.log(`✅ Found: ${problem.title} (${problem.difficulty})`);
-        console.log(
-            `📚 Topics: ${problem.topicTags.map((t) => t.name).join(", ")}`
-        );
+        console.log(`Found: ${problem.title} (${problem.difficulty})`);
 
-        // Create solution directory
         const solutionDir = join(process.cwd(), "solutions", slug);
         await mkdir(solutionDir, { recursive: true });
 
-        // Create metadata.json
         const metadata = createMetadata(problem, slug);
         await writeFile(
             join(solutionDir, "metadata.json"),
             JSON.stringify(metadata, null, 4)
         );
 
-        // Create solution.ts
-        const solutionContent = createSolutionFile(problem, slug);
+        const solutionContent = createSolutionFile(problem);
         await writeFile(join(solutionDir, "solution.ts"), solutionContent);
 
-        // Create solution.test.ts
         const testContent = createTestFile(problem, slug);
         await writeFile(join(solutionDir, "solution.test.ts"), testContent);
 
-        console.log(
-            `\n✨ Successfully scaffolded solution at: solutions/${slug}/`
-        );
-        console.log(`\n📝 Next steps:`);
-        console.log(
-            `   1. Implement your solution in solutions/${slug}/solution.ts`
-        );
-        console.log(`   2. Write tests in solutions/${slug}/solution.test.ts`);
-        console.log(
-            `   3. Update timeComplexity and spaceComplexity in metadata.json`
-        );
-        console.log(`   4. Run: bun test solutions/${slug}/solution.test.ts`);
-        console.log(`   5. When ready: bun run publish:solution ${slug}`);
+        console.log(`\nCreated: solutions/${slug}/`);
+        console.log("\nNext steps:");
+        console.log(`  1. Implement solution in solutions/${slug}/solution.ts`);
+        console.log(`  2. Write tests in solutions/${slug}/solution.test.ts`);
+        console.log(`  3. Fill complexity fields in metadata.json`);
+        console.log(`  4. Run: bun test solutions/${slug}/solution.test.ts`);
+        console.log(`  5. Publish: bun run publish:problem ${slug}`);
     } catch (error) {
         console.error(
-            `\n❌ Error: ${error instanceof Error ? error.message : String(error)}`
+            `\nError: ${error instanceof Error ? error.message : String(error)}`
         );
         process.exit(1);
     }
 }
 
-// CLI entry point
 const input = process.argv[2];
 
 if (!input) {
-    console.error("Usage: bun run new:solution <leetcode-url-or-slug>");
+    console.error("Usage: bun run new:problem <leetcode-url-or-slug>");
     console.error("\nExamples:");
     console.error(
-        "  bun run new:solution https://leetcode.com/problems/two-sum/"
+        "  bun run new:problem https://leetcode.com/problems/two-sum/"
     );
-    console.error("  bun run new:solution two-sum");
+    console.error("  bun run new:problem two-sum");
     process.exit(1);
 }
 

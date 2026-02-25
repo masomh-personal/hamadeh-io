@@ -1,18 +1,13 @@
 import Link from "next/link";
 import { HiCode, HiEye } from "react-icons/hi";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
+import { Badge } from "@/components/ui";
 import { formatPublishedDate } from "@/lib/date";
 import type { ProblemPost } from "@/lib/mdx";
 
 interface ProblemPostCardProps {
     problem: ProblemPost;
 }
-
-const difficultyClasses = {
-    easy: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
-    medium: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300",
-    hard: "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300",
-} as const;
 
 export function ProblemPostCard({
     problem,
@@ -21,6 +16,7 @@ export function ProblemPostCard({
         problem.source === "leetcode"
             ? `${problem.title} (LeetCode)`
             : problem.title;
+    const difficultyVariant = `leetcode-${problem.difficulty}` as const;
 
     return (
         <Link
@@ -38,11 +34,11 @@ export function ProblemPostCard({
                         {formatPublishedDate(problem.datePublished)}
                     </p>
                 </div>
-                <span
-                    className={`rounded px-2 py-1 text-xs font-semibold uppercase ${difficultyClasses[problem.difficulty]}`}
-                >
-                    {problem.difficulty}
-                </span>
+                <Badge
+                    text={problem.difficulty}
+                    variant={difficultyVariant}
+                    size="sm"
+                />
             </div>
 
             <h2 className="font-heading mt-2 text-xl font-semibold text-white">

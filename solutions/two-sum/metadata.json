@@ -6,5 +6,5 @@
     "datePublished": "2026-02-25",
     "timeComplexity": "O(n)",
     "spaceComplexity": "O(n)",
-    "excerpt": "Given an array of integers nums and an integer target , return indices of the two numbers such that they add up to target . You may assume that each input would have exactly one solution , and you may"
+    "excerpt": "Given an array of integers and a target, return the indices of two numbers that add up to the target."
 }

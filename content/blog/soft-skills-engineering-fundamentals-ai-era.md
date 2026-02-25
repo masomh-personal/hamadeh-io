@@ -70,6 +70,9 @@ In the AI era, fundamentals matter more because AI can generate many plausible s
 - **DRY** reduces duplication and lowers bug surface area.
 - **Separation of concerns** keeps modules focused and boundaries clean.
 - **Abstraction** helps hide complexity at the right level, not everywhere.
+- **Single Responsibility Principle (SRP)** keeps functions and modules easier to reason about and change safely.
+- **High cohesion, low coupling** keeps related logic together while reducing fragile dependencies across the system.
+- **Fail fast with explicit errors** surfaces bad inputs and broken assumptions early, before they turn into hidden production bugs.
 
 Without fundamentals, AI-assisted output can drift into complexity quickly. With fundamentals, you can evaluate suggestions with confidence and steer toward robust, maintainable systems.
 

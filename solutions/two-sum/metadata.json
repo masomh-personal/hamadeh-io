@@ -4,7 +4,7 @@
     "source": "leetcode",
     "difficulty": "easy",
     "datePublished": "2026-02-25",
-    "timeComplexity": "O(?)",
-    "spaceComplexity": "O(?)",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
     "excerpt": "Given an array of integers nums and an integer target , return indices of the two numbers such that they add up to target . You may assume that each input would have exactly one solution , and you may"
 }

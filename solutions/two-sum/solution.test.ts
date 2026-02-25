@@ -54,6 +54,14 @@ describe("twoSum", () => {
         expect(result.sort((a, b) => a - b)).toEqual([1, 2]);
     });
 
+    test("handles a 1000-element array efficiently", () => {
+        const nums = Array.from({ length: 1000 }, (_, index) => index);
+        const target = 1997; // unique valid pair: 998 + 999
+        const result = twoSum(nums, target);
+
+        expect(result.sort((a, b) => a - b)).toEqual([998, 999]);
+    });
+
     test("returns empty array when no pair exists (defensive behavior)", () => {
         const nums = [1, 2, 3, 4];
         const target = 100;

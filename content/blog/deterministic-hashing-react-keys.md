@@ -18,8 +18,6 @@ React requires a stable, unique `key` prop on every element in a rendered list. 
 
 We needed unique IDs. The data was not giving them to us. So we had to generate them ourselves.
 
----
-
 ## What We Needed
 
 The goal was straightforward: enrich each incoming product object with a unique `id` before it ever reached a React component.
@@ -27,8 +25,6 @@ The goal was straightforward: enrich each incoming product object with a unique 
 The function needed to run on the raw CMS array, walk each object, and attach a stable identifier. It also had to be reusable because product lists appeared in multiple places across the component library.
 
 Simple enough in theory. That is where things went sideways.
-
----
 
 ## The First Fix (And Why It Failed)
 
@@ -104,8 +100,6 @@ function ensureDeterministicIds<T extends Record<string, unknown>>(
 
 For simplicity, this example keeps things minimal. In a production setting, you might add collision disambiguation for duplicate-content siblings, or opt for a cryptographic hash (e.g., SHA-256 via Web Crypto) for stronger guarantees.
 Now the server and client ran the same function on the same data and arrived at the same IDs each time, so reconciliation behaved as intended.
-
----
 
 ## What Changed in Production
 

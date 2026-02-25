@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { HiArrowLeft, HiCode } from "react-icons/hi";
+import { HiArrowLeft, HiDocumentText } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { RichMarkdownContent } from "@/components/markdown/RichMarkdownContent";
 import { Badge, Button } from "@/components/ui";
@@ -90,12 +90,6 @@ export default async function ProblemPostPage({
         notFound();
     }
     const difficultyVariant = `leetcode-${problem.difficulty}` as const;
-    const sourceLabel =
-        problem.source === "leetcode"
-            ? "LeetCode"
-            : problem.source === "dsa"
-              ? "DSA"
-              : "Custom";
     const { problemParagraphs, remainingContent } = getProblemSectionContent(
         problem.content
     );
@@ -105,26 +99,15 @@ export default async function ProblemPostPage({
             <article className="surface-card radius-card card-chrome p-6 md:p-10">
                 <header>
                     <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
-                        <Badge
-                            text={problem.difficulty}
-                            variant={difficultyVariant}
-                            size="sm"
-                        />
-                        <span className="text-content-subtle inline-flex items-center gap-1.5 text-xs uppercase tracking-wide">
-                            <HiCode
+                        <span className="text-content-subtle inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wide">
+                            <HiDocumentText
                                 aria-hidden="true"
-                                className="h-3.5 w-3.5 shrink-0 text-sky-300"
+                                className="h-4 w-4 shrink-0 text-sky-300"
                             />
-                            <span>Source: {sourceLabel}</span>
-                        </span>
-                        <span
-                            className="text-content-subtle text-xs"
-                            aria-hidden="true"
-                        >
-                            |
-                        </span>
-                        <span className="text-content-subtle font-mono text-xs uppercase tracking-wide">
-                            {formatPublishedDate(problem.datePublished)}
+                            <span>
+                                Published{" "}
+                                {formatPublishedDate(problem.datePublished)}
+                            </span>
                         </span>
                         <Button
                             href="/problems"
@@ -142,9 +125,16 @@ export default async function ProblemPostPage({
                     <div className="mt-4 pb-3">
                         <div className="grid gap-6 md:grid-cols-[3fr_1fr]">
                             <div>
-                                <h1 className="font-heading inline-block text-xl font-extrabold tracking-tight text-white md:text-2xl">
-                                    {problem.title}
-                                </h1>
+                                <div className="inline-flex items-center gap-3">
+                                    <h1 className="font-heading inline-block text-xl font-extrabold tracking-tight text-white md:text-2xl">
+                                        {problem.title}
+                                    </h1>
+                                    <Badge
+                                        text={problem.difficulty}
+                                        variant={difficultyVariant}
+                                        size="sm"
+                                    />
+                                </div>
                                 <div className="mt-3 space-y-4">
                                     {problemParagraphs.map((paragraph) => (
                                         <p
@@ -158,7 +148,7 @@ export default async function ProblemPostPage({
                             </div>
                             <div className="border-t border-surface-outline/60 pt-4 md:flex md:flex-col md:justify-center md:border-t-0 md:border-l md:pl-5 md:pt-0">
                                 <div>
-                                    <p className="text-content-subtle text-xs uppercase tracking-wide">
+                                    <p className="text-content-subtle text-xs uppercase tracking-wide opacity-75">
                                         Time Complexity
                                     </p>
                                     <p className="text-content mt-2 text-xl font-bold">
@@ -166,7 +156,7 @@ export default async function ProblemPostPage({
                                     </p>
                                 </div>
                                 <div className="mt-5 border-t border-surface-outline/60 pt-5">
-                                    <p className="text-content-subtle text-xs uppercase tracking-wide">
+                                    <p className="text-content-subtle text-xs uppercase tracking-wide opacity-75">
                                         Space Complexity
                                     </p>
                                     <p className="text-content mt-2 text-xl font-bold">

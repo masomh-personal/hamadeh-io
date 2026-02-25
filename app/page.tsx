@@ -24,7 +24,7 @@ export default function Home(): React.ReactElement {
                     </h1>
                     <p className="text-content mt-4 max-w-2xl md:text-lg">
                         This is my portfolio and engineering workspace. I use it
-                        to showcase real projects, break down LeetCode problems,
+                        to showcase real projects, break down coding problems,
                         share what I&apos;m learning through blog posts, and
                         build a component library from scratch. Everything here
                         reflects how I think about software: start with a clear
@@ -43,8 +43,8 @@ export default function Home(): React.ReactElement {
                                 View Resume
                             </Button>
                         )}
-                        <Button href="/leetcode" size="md">
-                            View LeetCode Solutions
+                        <Button href="/problems" size="md">
+                            View Code Problems
                         </Button>
                     </div>
                 </div>
@@ -119,12 +119,12 @@ export default function Home(): React.ReactElement {
                 </h2>
                 <div className="mt-5 grid gap-4 md:grid-cols-3">
                     <Card
-                        title="LeetCode Solutions"
+                        title="Code Problems"
                         subtitle="Problem breakdowns, patterns, and complexity insights."
                         icon={<HiCode className="h-4 w-4 text-primary" />}
                         className="min-h-56"
                         actions={[
-                            { label: "Explore solutions", href: "/leetcode" },
+                            { label: "Explore problems", href: "/problems" },
                         ]}
                     >
                         <p>

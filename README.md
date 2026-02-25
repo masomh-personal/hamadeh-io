@@ -1,6 +1,6 @@
 # hamadeh.io
 
-A modern, performance-focused portfolio website showcasing software engineering skills, LeetCode solutions, algorithms, data structures, and technical writing.
+A modern, performance-focused portfolio website showcasing software engineering skills, code problems, algorithms, data structures, and technical writing.
 
 **Core Philosophy:** Clarity over cleverness. Every decision demonstrates maintainable, thoughtful code that future engineers can easily understand and extend.
 
@@ -84,8 +84,8 @@ bun start
 | `bun run doctor` | Run React Doctor only (verbose; security, performance, correctness, Next.js rules) |
 | `bun run doctor:score` | Run React Doctor and output only the 0–100 score |
 | `bun run clean` | Remove node_modules and lock files, reinstall |
-| `bun run new:solution <url-or-slug>` | Scaffold new LeetCode solution from URL |
-| `bun run publish:solution <slug>` | Generate MDX from completed solution |
+| `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug |
+| `bun run publish:problem <slug>` | Generate markdown post from completed local solution |
 
 ---
 
@@ -171,7 +171,7 @@ hamadeh-io/
 ├── components/          # Reusable UI and layout components
 │   ├── ui/              # Project-owned design-system wrappers
 │   └── layout/          # Header/Footer/navigation
-├── content/             # MDX content (leetcode, blog)
+├── content/             # Markdown content (problems, blog)
 ├── docs/                # Architecture and styling docs
 ├── lib/                 # Shared utilities and MDX parsers
 ├── public/              # Static assets
@@ -215,21 +215,18 @@ For detailed styling conventions, Tailwind CSS patterns, and design guidelines, 
 
 ## Content Structure
 
-### MDX Frontmatter (LeetCode Solutions)
+### Markdown Frontmatter (Code Problems)
 
 ```yaml
 ---
-title: "LeetCode #1: Two Sum"
+title: "Two Sum"
 slug: "two-sum"
+source: "leetcode"
 difficulty: "easy"
-topics: ["arrays", "hash-table"]
 datePublished: "2026-01-15"
 timeComplexity: "O(n)"
 spaceComplexity: "O(n)"
 excerpt: "Solving Two Sum with a hash map approach for optimal time complexity"
-relatedProblems: ["two-sum-ii", "three-sum"]  # Build knowledge graph
-companies: ["google", "amazon"]  # Real-world context
-hints: ["think about hash maps", "consider trade-offs"]  # Learning aid
 ---
 ```
 
@@ -418,16 +415,16 @@ chmod +x .husky/pre-push
 
 ### Adding New Content
 
-#### LeetCode Solution Workflow
+#### Code Problem Workflow
 
-**Step 1: Scaffold a New Solution**
+**Step 1: Scaffold a New Problem**
 
 ```bash
 # From LeetCode URL
-bun run new:solution https://leetcode.com/problems/two-sum/
+bun run new:problem https://leetcode.com/problems/two-sum/
 
 # Or just the slug
-bun run new:solution two-sum
+bun run new:problem two-sum
 ```
 
 This creates:
@@ -435,7 +432,7 @@ This creates:
 solutions/two-sum/
 ├── solution.ts         # Starter code with problem description
 ├── solution.test.ts    # Test template
-└── metadata.json       # Frontmatter data (auto-filled from LeetCode API)
+└── metadata.json       # Frontmatter data (auto-filled from source)
 ```
 
 **Step 2: Code Your Solution**
@@ -452,20 +449,20 @@ Edit `solutions/two-sum/metadata.json`:
 - Update `spaceComplexity` (change from `O(?)`)
 - Optionally add `companies`, `hints`, `relatedProblems`
 
-**Step 4: Publish to MDX**
+**Step 4: Publish to Markdown**
 
 ```bash
-bun run publish:solution two-sum
+bun run publish:problem two-sum
 ```
 
-This generates `content/leetcode/two-sum.mdx` with:
+This generates `content/problems/two-sum.md` with:
 - Frontmatter from metadata.json
 - Your solution code
 - Template sections for explanation
 
 **Step 5: Add Explanations**
 
-Edit `content/leetcode/two-sum.mdx` to add:
+Edit `content/problems/two-sum.md` to add:
 - Problem description
 - Examples
 - Approach explanation
@@ -475,7 +472,7 @@ Edit `content/leetcode/two-sum.mdx` to add:
 **Step 6: Preview & Commit**
 
 ```bash
-# Preview at http://localhost:3000/leetcode/two-sum
+# Preview at http://localhost:3000/problems/two-sum
 bun run dev
 
 # When ready, commit

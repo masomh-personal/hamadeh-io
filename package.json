@@ -22,8 +22,8 @@
         "healthcheck": "bun run format && bun run type-check && bun run check && bun run doctor",
         "doctor": "react-doctor . --verbose",
         "doctor:score": "react-doctor . --score",
-        "new:solution": "bun scripts/new-solution.ts",
-        "publish:solution": "bun scripts/publish-solution.ts",
+        "new:problem": "bun scripts/new-problem.ts",
+        "publish:problem": "bun scripts/publish-problem.ts",
         "prepare": "husky"
     },
     "dependencies": {

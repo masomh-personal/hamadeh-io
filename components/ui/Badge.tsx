@@ -78,9 +78,9 @@ const colorClassesByTone = {
 } as const satisfies Record<BadgeTone, Record<BadgeStyle, string>>;
 
 const sizeClasses = {
-    sm: "px-2.5 py-1 text-[0.6875rem] leading-[1.1]",
-    md: "px-3 py-1.5 text-xs leading-[1.1]",
-    lg: "px-3.5 py-2 text-sm leading-[1.1]",
+    sm: "px-2.5 py-[0.3rem] text-[0.6875rem] leading-none",
+    md: "px-3 py-[0.4rem] text-xs leading-none",
+    lg: "px-3.5 py-[0.55rem] text-sm leading-none",
 } as const;
 
 const iconSizeClasses = {
@@ -201,11 +201,7 @@ export function Badge({
         >
             {tagPrefix}
             {iconElement && iconPosition === "left" ? iconElement : null}
-            <span
-                className={cn(
-                    isTagVariant ? "leading-[1.05]" : "leading-[1.1]"
-                )}
-            >
+            <span className="inline-flex items-center leading-none">
                 {text}
             </span>
             {iconElement && iconPosition === "right" ? iconElement : null}

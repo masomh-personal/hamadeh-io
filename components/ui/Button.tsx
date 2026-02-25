@@ -32,14 +32,14 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-    xs: "text-[0.625rem] min-h-7 gap-[0.1875rem] px-2 py-1 tracking-[0.025em]",
+    xs: "text-[0.65625rem] min-h-8 gap-[0.25rem] px-2.5 py-1.25 tracking-[0.028em]",
     sm: "text-[0.6875rem] min-h-9 gap-1 px-3 py-1.5 tracking-[0.03em]",
     md: "text-[0.8125rem] min-h-10 gap-[0.3125rem] px-4 py-2 tracking-[0.045em]",
     lg: "text-[0.9375rem] min-h-11 gap-[0.375rem] px-5 py-2.5 tracking-[0.05em]",
 };
 
 const minWidthClasses: Record<ButtonSize, string> = {
-    xs: "min-w-20",
+    xs: "min-w-22",
     sm: "min-w-24",
     md: "min-w-32",
     lg: "min-w-36",
@@ -83,7 +83,7 @@ hover:scale-[1.015] active:scale-[0.99] motion-reduce:transform-none data-[disab
 [&_svg]:block [&_svg]:shrink-0
 after:pointer-events-none after:absolute after:inset-[-1px] after:rounded-[inherit] after:opacity-0 after:transition-[opacity,box-shadow] after:duration-200 after:content-[''] hover:after:opacity-100 hover:after:shadow-[0_0_0_1px_rgba(125,211,252,0.55),0_0_14px_rgba(56,189,248,0.24)] data-[disabled]:hover:after:opacity-0
 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
-focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900`;
+focus:outline-none focus:ring-1 focus:ring-sky-400 focus:ring-offset-1 focus:ring-offset-slate-900`;
 
 function getButtonClasses({
     variant,
@@ -105,7 +105,7 @@ function getButtonClasses({
     className?: string;
 }): string {
     const iconOnlySizeClasses: Record<ButtonSize, string> = {
-        xs: "size-7 p-0 gap-0",
+        xs: "size-8 p-0 gap-0",
         sm: "size-9 p-0 gap-0",
         md: "size-10 p-0 gap-0",
         lg: "size-11 p-0 gap-0",

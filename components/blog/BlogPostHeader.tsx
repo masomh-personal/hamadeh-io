@@ -45,15 +45,17 @@ export function BlogPostHeader({
             {tags.length > 0 ? (
                 <div className="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) => {
-                        const tagPresentation = getBlogTagPresentation(tag);
+                        const { text, color, bgColor } =
+                            getBlogTagPresentation(tag);
 
                         return (
                             <Badge
                                 key={tag}
-                                text={tagPresentation.text}
+                                text={text}
                                 size="sm"
-                                tone={tagPresentation.tone}
-                                variant={tagPresentation.variant}
+                                isBlogTag
+                                tagColor={color}
+                                tagBackgroundColor={bgColor}
                                 className="font-baloo font-normal"
                             />
                         );

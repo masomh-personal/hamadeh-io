@@ -1,7 +1,16 @@
 import { HiArrowRight, HiCheckCircle, HiHome } from "react-icons/hi";
+import { getBlogTagPresentation } from "@/components/blog/blog-tags";
 import { Badge } from "@/components/ui";
 
 export function BadgeShowcase(): React.ReactElement {
+    const blogTagExamples = [
+        "engineering",
+        "nextjs",
+        "markdown",
+        "methodology",
+        "async",
+    ] as const;
+
     return (
         <section>
             <h2 className="font-bold text-white">Badge</h2>
@@ -81,26 +90,24 @@ export function BadgeShowcase(): React.ReactElement {
                 </div>
                 <div>
                     <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
-                        Tag variants (Blog filters)
+                        Blog tags (mapped colors)
                     </h3>
                     <p className="text-content flex flex-wrap items-center gap-2">
-                        <Badge
-                            size="sm"
-                            variant="tag-primary"
-                            text="Engineering"
-                        />
-                        <Badge size="sm" variant="tag-brand" text="Nextjs" />
-                        <Badge
-                            size="sm"
-                            variant="tag-secondary"
-                            text="Markdown"
-                        />
-                        <Badge
-                            size="sm"
-                            variant="tag-tertiary"
-                            text="Methodology"
-                        />
-                        <Badge size="sm" variant="tag-error" text="Async" />
+                        {blogTagExamples.map((tag) => {
+                            const { text, color, bgColor } =
+                                getBlogTagPresentation(tag);
+
+                            return (
+                                <Badge
+                                    key={tag}
+                                    size="sm"
+                                    text={text}
+                                    isBlogTag
+                                    tagColor={color}
+                                    tagBackgroundColor={bgColor}
+                                />
+                            );
+                        })}
                     </p>
                 </div>
                 <div>

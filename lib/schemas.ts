@@ -6,10 +6,10 @@
 import * as v from "valibot";
 
 /**
- * LeetCode Solution Frontmatter Schema
- * Validates all required and optional fields for LeetCode solution MDX files
+ * Problem Frontmatter Schema
+ * Validates required fields for code problem markdown files
  */
-export const LeetCodeFrontmatterSchema = v.object({
+export const ProblemFrontmatterSchema = v.object({
     title: v.pipe(v.string(), v.minLength(1, "Title is required")),
     slug: v.pipe(
         v.string(),
@@ -19,13 +19,13 @@ export const LeetCodeFrontmatterSchema = v.object({
             "Slug must be lowercase alphanumeric with hyphens"
         )
     ),
+    source: v.picklist(
+        ["leetcode", "dsa", "custom"],
+        "Source must be leetcode, dsa, or custom"
+    ),
     difficulty: v.picklist(
         ["easy", "medium", "hard"],
         "Difficulty must be easy, medium, or hard"
-    ),
-    topics: v.array(
-        v.pipe(v.string(), v.minLength(1)),
-        "Topics must be a non-empty array"
     ),
     datePublished: v.pipe(
         v.string(),
@@ -50,9 +50,6 @@ export const LeetCodeFrontmatterSchema = v.object({
         v.minLength(1, "Excerpt is required"),
         v.maxLength(200, "Excerpt must be 200 characters or less")
     ),
-    relatedProblems: v.optional(v.array(v.string())),
-    companies: v.optional(v.array(v.string())),
-    hints: v.optional(v.array(v.string())),
 });
 
 /**
@@ -95,20 +92,16 @@ export const BlogFrontmatterSchema = v.object({
  * TypeScript types inferred from schemas
  * These provide full type safety when working with frontmatter
  */
-export type LeetCodeFrontmatter = v.InferOutput<
-    typeof LeetCodeFrontmatterSchema
->;
+export type ProblemFrontmatter = v.InferOutput<typeof ProblemFrontmatterSchema>;
 export type BlogFrontmatter = v.InferOutput<typeof BlogFrontmatterSchema>;
 
 /**
- * Validate LeetCode frontmatter with helpful error messages
+ * Validate problem frontmatter with helpful error messages
  * @param data - Unknown data to validate
  * @returns Validated frontmatter or throws descriptive error
  */
-export function validateLeetCodeFrontmatter(
-    data: unknown
-): LeetCodeFrontmatter {
-    return v.parse(LeetCodeFrontmatterSchema, data);
+export function validateProblemFrontmatter(data: unknown): ProblemFrontmatter {
+    return v.parse(ProblemFrontmatterSchema, data);
 }
 
 /**

@@ -43,7 +43,7 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                 {tags.length > 0 ? (
                     <div className="flex flex-wrap gap-x-2 gap-y-2.5 pb-4">
                         {tags.map((tag) => {
-                            const { text, tone, variant } =
+                            const { text, color, bgColor } =
                                 getBlogTagPresentation(tag);
 
                             return (
@@ -51,8 +51,9 @@ export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
                                     key={tag}
                                     text={text}
                                     size="sm"
-                                    tone={tone}
-                                    variant={variant}
+                                    isBlogTag
+                                    tagColor={color}
+                                    tagBackgroundColor={bgColor}
                                     className="font-baloo font-normal"
                                 />
                             );

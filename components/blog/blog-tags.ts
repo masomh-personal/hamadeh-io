@@ -1,71 +1,46 @@
-import type { BadgeProps } from "@/components/ui";
-
-type BlogTagVariant = Extract<
-    BadgeProps["variant"],
-    "tag-primary" | "tag-secondary" | "tag-tertiary" | "tag-brand" | "tag-error"
->;
-type BlogTagTone = NonNullable<BadgeProps["tone"]>;
-
-interface BlogTagDefinition {
-    text: string;
-    tone: BlogTagTone;
-    variant: BlogTagVariant;
-}
-
-const TAG_TONE: BlogTagTone = "soft";
-const TAG_VARIANT: BlogTagVariant = "tag-brand";
-
-function defineTag(
-    text: string,
-    variant: BlogTagVariant,
-    overrides?: Partial<Pick<BlogTagDefinition, "tone">>
-): BlogTagDefinition {
-    return {
-        text,
-        variant,
-        tone: overrides?.tone ?? TAG_TONE,
-    };
-}
-
-/**
- * Central tag style registry for blog UI.
- * If tags later come from a database, we can map DB values to this registry.
- */
-const BLOG_TAGS: Record<string, BlogTagDefinition> = {
-    engineering: defineTag("engineering", "tag-primary"),
-    nextjs: defineTag("nextjs", "tag-brand"),
-    markdown: defineTag("markdown", "tag-secondary"),
-    shiki: defineTag("shiki", "tag-tertiary"),
-    typescript: defineTag("typescript", "tag-primary"),
-    backend: defineTag("backend", "tag-secondary"),
-    async: defineTag("async", "tag-error"),
-    ai: defineTag("ai", "tag-brand"),
-    react: defineTag("react", "tag-error"),
-    dsa: defineTag("dsa", "tag-brand"),
-    methodology: defineTag("methodology", "tag-tertiary"),
-};
-
 interface BlogTagPresentation {
     text: string;
-    tone: BlogTagTone;
-    variant: BlogTagVariant;
+    color: string;
+    bgColor: string;
 }
+
+interface BlogTagColorDefinition {
+    color: string;
+    bgColor: string;
+}
+
+const DEFAULT_TAG_COLOR: BlogTagColorDefinition = {
+    color: "#94A3B8",
+    bgColor: "#94A3B814",
+};
+
+/**
+ * Central tag color map for blog UI.
+ * Add new tags here as content grows.
+ */
+const BLOG_TAG_COLOR_MAP: Record<string, BlogTagColorDefinition> = {
+    engineering: { color: "#FACC15", bgColor: "#FACC1514" },
+    nextjs: { color: "#60A5FA", bgColor: "#60A5FA14" },
+    markdown: { color: "#F472B6", bgColor: "#F472B614" },
+    shiki: { color: "#A78BFA", bgColor: "#A78BFA14" },
+    typescript: { color: "#38BDF8", bgColor: "#38BDF814" },
+    backend: { color: "#34D399", bgColor: "#34D39914" },
+    async: { color: "#FB7185", bgColor: "#FB718514" },
+    ai: { color: "#22D3EE", bgColor: "#22D3EE14" },
+    react: { color: "#67E8F9", bgColor: "#67E8F914" },
+    dsa: { color: "#93C5FD", bgColor: "#93C5FD14" },
+    methodology: { color: "#C4B5FD", bgColor: "#C4B5FD14" },
+    fundamentals: { color: "#6EE7B7", bgColor: "#6EE7B714" },
+};
 
 export function getBlogTagPresentation(tag: string): BlogTagPresentation {
     const normalizedTag = tag.trim().toLowerCase();
-    const configuredTag = BLOG_TAGS[normalizedTag];
-
-    if (configuredTag) {
-        return {
-            text: configuredTag.text.toUpperCase(),
-            variant: configuredTag.variant,
-            tone: configuredTag.tone,
-        };
-    }
+    const { color, bgColor } =
+        BLOG_TAG_COLOR_MAP[normalizedTag] ?? DEFAULT_TAG_COLOR;
 
     return {
         text: normalizedTag.toUpperCase(),
-        variant: TAG_VARIANT,
-        tone: TAG_TONE,
+        color,
+        bgColor,
     };
 }

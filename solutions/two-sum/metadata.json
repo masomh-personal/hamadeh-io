@@ -1,13 +1,10 @@
 {
     "title": "Two Sum",
     "slug": "two-sum",
+    "source": "leetcode",
     "difficulty": "easy",
-    "topics": ["array", "hash-table"],
-    "datePublished": "2026-01-19",
-    "timeComplexity": "O(?)",
-    "spaceComplexity": "O(?)",
-    "excerpt": "Given an array of integers nums and an integer target , return indices of the two numbers such that they add up to target . You may assume that each input would have exactly one solution , and you may",
-    "relatedProblems": [],
-    "companies": [],
-    "hints": []
+    "datePublished": "2026-02-25",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Given an array of integers and a target, return the indices of two numbers that add up to the target."
 }

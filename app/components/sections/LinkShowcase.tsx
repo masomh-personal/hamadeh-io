@@ -70,7 +70,7 @@ export function LinkShowcase(): React.ReactElement {
                         In context
                     </h3>
                     <p className="text-content">
-                        Navigate to <Link href="/leetcode">Problems</Link>,{" "}
+                        Navigate to <Link href="/problems">Code Problems</Link>,{" "}
                         <Link href="/blog">Blog</Link>, or{" "}
                         <Link href="/about">About</Link>.
                     </p>

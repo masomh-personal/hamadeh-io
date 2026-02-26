@@ -123,8 +123,8 @@ ${solutionCode}
 
 ## Complexity
 
-- Time: ${metadata.timeComplexity}
-- Space: ${metadata.spaceComplexity}
+- **Time ${metadata.timeComplexity}:** [add a one-line explanation]
+- **Space ${metadata.spaceComplexity}:** [add a one-line explanation]
 `;
 }
 

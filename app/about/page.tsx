@@ -61,7 +61,8 @@ export default function AboutPage(): React.ReactElement {
                     <p className="text-content">
                         I specialize in RESTful APIs, backend systems, and
                         modern web applications using TypeScript, Node.js, and
-                        React. I serve as a Senior Software Engineer at Converse
+                        React, with Bun in my workflow for runtime and tooling.
+                        I serve as a Senior Software Engineer at Converse
                         (Nike), where I recently stepped into an early technical
                         lead role with a team of 4, supporting sprint planning,
                         backlog refinement, and technical specification across
@@ -77,10 +78,13 @@ export default function AboutPage(): React.ReactElement {
                     <div className={SECTION_DIVIDER} />
                     <p className="text-content">
                         I&apos;m focused on building systems that scale in both
-                        performance and maintainability: component libraries and
-                        Storybook-driven design, clear API contracts, practical
-                        CI/CD discipline, and technical specifications that help
-                        teams move faster with less ambiguity.
+                        performance and maintainability. Lately that has meant
+                        working on component libraries with Storybook-driven
+                        design, tightening API contracts, and improving CI/CD
+                        habits so delivery feels more predictable. I also spend
+                        a lot of time on clearer technical specifications and
+                        requirements, because better alignment early usually
+                        means teams move faster with less ambiguity later.
                     </p>
                 </article>
             </PageSection>

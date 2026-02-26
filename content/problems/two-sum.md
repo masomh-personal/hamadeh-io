@@ -56,10 +56,8 @@ export function twoSum(nums: number[], target: number): number[] {
 
 ## Complexity
 
-- **Time:** `O(n)`  
-  Single pass over `nums`, with average `O(1)` map lookups/inserts.
-- **Space:** `O(n)`  
-  In the worst case, the map stores almost all numbers before the match is found.
+- **Time O(n):** single pass over `nums`, with average `O(1)` map lookups/inserts.
+- **Space O(n):** in the worst case, the map stores almost all numbers before the match is found.
 
 ## Test Coverage
 

@@ -169,7 +169,9 @@ export default async function ProblemPostPage({
                 </header>
 
                 {remainingContent.length > 0 ? (
-                    <RichMarkdownContent content={remainingContent} />
+                    <div className="problem-post-content">
+                        <RichMarkdownContent content={remainingContent} />
+                    </div>
                 ) : null}
             </article>
         </PageContainer>

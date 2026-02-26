@@ -482,6 +482,11 @@
     margin-bottom: 1.6rem;
 }
 
+/* Problem detail pages have a custom header above markdown content. */
+.problem-post-content .prose.prose-content > :first-child {
+    margin-top: 0;
+}
+
 /* ============================================
    Code Block Styles
    ============================================ */

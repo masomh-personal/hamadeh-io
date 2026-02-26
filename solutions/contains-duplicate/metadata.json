@@ -1,0 +1,10 @@
+{
+    "title": "Contains Duplicate",
+    "slug": "contains-duplicate",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-02-26",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Given an integer array nums, return true if any value appears at least twice, and false if all elements are distinct."
+}

@@ -1,0 +1,10 @@
+{
+    "title": "Valid Anagram",
+    "slug": "valid-anagram",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-02-26",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Given two strings s and t, return true if t is an anagram of s, and false otherwise."
+}

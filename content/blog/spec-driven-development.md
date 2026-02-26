@@ -8,7 +8,7 @@ tags: ["engineering", "ai", "methodology"]
 
 We have been writing software for decades, and in that time we have tried a lot of methodologies. Waterfall. Agile. TDD. BDD. Each one tried to solve the same fundamental problem: how do you make sure the thing you build is the thing someone actually wanted?
 
-I think we finally have an answer that sticks. And it is not a new testing framework or a project management ceremony.
+I think we may have a practical answer that works for many teams. And it is not a new testing framework or a project management ceremony.
 
 It is Spec-Driven Development.
 
@@ -123,7 +123,7 @@ This feels slower at the start. It is. But the total time from start to correct,
 
 ## The Future Is Spec-First
 
-I believe Spec-Driven Development is the future of software engineering. Not because it is trendy, but because the economics of software development are changing.
+I believe Spec-Driven Development will be increasingly important in software engineering. Not because it is trendy, but because the economics of software development are changing.
 
 AI makes writing code cheaper. It does not make knowing *what to build* cheaper. That is still a human problem, and it always will be.
 
@@ -133,6 +133,6 @@ TDD is not dead. Agile is not dead. But they are not enough anymore.
 
 We need a methodology that starts with shared understanding, creates a durable contract, and generates the structured context that both humans and AI need to do their best work.
 
-That methodology is Spec-Driven Development.
+For me, that methodology is Spec-Driven Development.
 
-And honestly, I think we have needed it for a long time. The AI era just made the need impossible to ignore.
+And honestly, I think we have needed it for a long time. The AI era just made that need much harder to ignore.

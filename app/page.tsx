@@ -24,11 +24,13 @@ export default function Home(): React.ReactElement {
                     </h1>
                     <p className="text-content mt-4 max-w-2xl md:text-lg">
                         This is my portfolio and engineering workspace. I use it
-                        to showcase real projects, break down coding problems,
-                        share what I&apos;m learning through blog posts, and
-                        build a component library from scratch. Everything here
-                        reflects how I think about software: start with a clear
-                        spec, keep it well-structured, and build it to last.
+                        to share real projects, break down coding problems,
+                        document what I&apos;m learning through blog posts, and
+                        build a component library from scratch. It&apos;s where
+                        I practice writing clearer requirements, turning them
+                        into explicit specs, and making system design decisions
+                        that help teams build software on strong foundations
+                        that lasts over time.
                     </p>
                     <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
                         {showResumeButton && (
@@ -67,12 +69,11 @@ export default function Home(): React.ReactElement {
                 <h2 className="font-bold text-white">About Me</h2>
                 <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
-                        I&apos;m a full-stack engineer who&apos;s had the chance
-                        to lead teams, mentor developers, and sit at the
-                        intersection of business and code. I have a background
-                        in Computer Science, a Master&apos;s in Information
-                        Systems, and I&apos;m currently pursuing a second
-                        Master&apos;s in Software Engineering because I
+                        I&apos;m a full-stack engineer who enjoys building with
+                        others at the intersection of business and code. My
+                        background includes Computer Science, a Master&apos;s in
+                        Information Systems, and I&apos;m currently pursuing a
+                        second Master&apos;s in Software Engineering because I
                         genuinely never want to stop learning.
                     </p>
                     <p className="text-content mt-3">
@@ -86,11 +87,11 @@ export default function Home(): React.ReactElement {
                     <p className="text-content-muted mt-3">
                         AI is changing how we write code, and I think that makes
                         the human side even more important: strategy, context,
-                        knowing what to build and why. I&apos;m working toward a
-                        lead engineering role where I can stay hands-on with
-                        architecture while bringing real business understanding
-                        to technical decisions. This site is where I practice
-                        all of it in the open.
+                        and knowing what to build and why. I care about helping
+                        teams make thoughtful technical decisions. I&apos;m
+                        still early in my architecture and tech lead journey,
+                        and this site is where I practice that growth in the
+                        open.
                     </p>
                     <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
                         <Button

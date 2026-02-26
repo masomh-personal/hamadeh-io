@@ -105,6 +105,6 @@ If you combine:
 - sharp engineering fundamentals
 - and a learning mindset
 
-You become very hard to replace.
+You become a dependable teammate people trust with meaningful work.
 
-Coding skill still matters. But in today's environment, the unstoppable engineer is the one who can think clearly, work well with others, and continuously level up while guiding AI toward the right outcomes.
+Coding skill still matters. But in today's environment, the engineers who create the most long-term value are the ones who think clearly, work well with others, and keep leveling up while guiding AI toward the right outcomes.

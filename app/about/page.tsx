@@ -32,7 +32,7 @@ export default function AboutPage(): React.ReactElement {
                     />
                 }
                 title="About Me"
-                description="I'm a full-stack software engineer based in Atlanta. I build maintainable systems, translate business requirements into technical plans, and ship production features end-to-end. Committed to spec-driven development with AI as a copilot, not an autopilot—maintaining engineering fundamentals and human oversight throughout."
+                description="I'm a full-stack software engineer based in Atlanta. I enjoy helping teams build maintainable systems, turn business requirements into practical technical plans, and ship useful production features. I'm still early in my architecture and technical leadership journey, and I use this site to keep learning in public. I use a spec-driven approach with AI as a copilot, not an autopilot, while keeping engineering fundamentals and human judgment at the center."
                 descriptionClassName="max-w-4xl"
                 showDivider
                 actions={
@@ -62,9 +62,9 @@ export default function AboutPage(): React.ReactElement {
                         I specialize in RESTful APIs, backend systems, and
                         modern web applications using TypeScript, Node.js, and
                         React. I serve as a Senior Software Engineer at Converse
-                        (Nike), where I recently stepped into a technical lead
-                        role for a team of 4, driving sprint planning, backlog
-                        refinement, and technical specification across
+                        (Nike), where I recently stepped into an early technical
+                        lead role with a team of 4, supporting sprint planning,
+                        backlog refinement, and technical specification across
                         customer-facing commerce features.
                     </p>
                 </article>
@@ -100,15 +100,15 @@ export default function AboutPage(): React.ReactElement {
                             May 2025 - Present
                         </p>
                         <p className="text-content mt-2">
-                            Technical lead for a team of 4 engineers, driving
-                            sprint planning, backlog refinement, and code
-                            reviews while remaining hands-on. Leads development
-                            of the DDS component library (30+ components in
-                            Storybook). Translates functional specs into
-                            technical specifications, data models, and API
-                            contracts. Builds customer-facing commerce features
-                            with React, TypeScript, and Salesforce Commerce
-                            Cloud (PWA Kit). Authors content schemas in
+                            In an early-stage technical lead capacity, I work
+                            with a team of 4 engineers on sprint planning,
+                            backlog refinement, and code reviews while remaining
+                            hands-on. Helped build the DDS component library
+                            (30+ components in Storybook). Translates functional
+                            specs into technical specifications, data models,
+                            and API contracts. Builds customer-facing commerce
+                            features with React, TypeScript, and Salesforce
+                            Commerce Cloud (PWA Kit). Authors content schemas in
                             Amplience CMS, integrates RESTful APIs for commerce
                             workflows, and supports CI/CD with GitHub Actions
                             and Jenkins.

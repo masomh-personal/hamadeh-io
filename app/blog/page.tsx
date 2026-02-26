@@ -18,7 +18,7 @@ export default async function BlogPage(): Promise<React.ReactElement> {
         <PageContainer>
             <PageHeader
                 title="Blog"
-                description="Writing about engineering decisions, problem solving, and lessons learned while building software. I also share thoughts on data structures, algorithms, computer science fundamentals, modern front-end work, and new technology I'm actively exploring."
+                description="Practical notes from projects I&apos;ve built, decisions I&apos;ve had to make, and lessons learned along the way. I write about engineering fundamentals, modern front-end work, and new tools I&apos;m exploring with a hands-on mindset."
                 showDivider
             />
 

@@ -97,51 +97,38 @@ export default function AboutPage(): React.ReactElement {
                 <div className={SECTION_DIVIDER} />
                 <div className="mt-4 space-y-5">
                     <article>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
                             Senior Software Engineer, Converse (Nike)
                         </h3>
                         <p className="text-content-muted text-sm italic">
                             May 2025 - Present
                         </p>
                         <p className="text-content mt-2">
-                            In an early-stage technical lead capacity, I work
-                            with a team of 4 engineers on sprint planning,
-                            backlog refinement, and code reviews while remaining
-                            hands-on. Helped build the DDS component library
-                            (30+ components in Storybook). Translates functional
-                            specs into technical specifications, data models,
-                            and API contracts. Builds customer-facing commerce
+                            I recently transitioned into a technical lead role
+                            for a team of 4 engineers, supporting sprint
+                            planning, backlog refinement, and code reviews while
+                            staying hands-on. I contribute to the DDS component
+                            library (30+ components in Storybook), translate
+                            functional specs into technical specifications and
+                            API contracts, and build customer-facing commerce
                             features with React, TypeScript, and Salesforce
-                            Commerce Cloud (PWA Kit). Authors content schemas in
-                            Amplience CMS, integrates RESTful APIs for commerce
-                            workflows, and supports CI/CD with GitHub Actions
-                            and Jenkins.
+                            Commerce Cloud (PWA Kit). I also author content
+                            schemas in Amplience CMS, integrate RESTful APIs for
+                            commerce workflows, and support CI/CD with GitHub
+                            Actions and Jenkins.
                         </p>
                     </article>
 
                     <article>
-                        <h3 className="font-semibold text-white">
-                            Software Engineer I, Uber Technologies (via
-                            Routematch acquisition)
-                        </h3>
-                        <p className="text-content-muted text-sm italic">
-                            October 2020 - February 2022
-                        </p>
-                        <p className="text-content mt-2">
-                            Retained through Uber&apos;s acquisition of
-                            Routematch. Migrated 3 legacy monoliths to
-                            service-oriented architecture using Node.js and
-                            JavaScript. Built RESTful APIs and internal tools
-                            for transit routing and scheduling. Maintained web
-                            apps in Angular and Vue. Increased unit and API test
-                            coverage by 15% with Mocha, Chai, and Postman.
-                            Participated in on-call incident response for 24/7
-                            transit operations.
-                        </p>
-                    </article>
-
-                    <article>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
                             Freelance Software Engineer, MHDesigns
                         </h3>
                         <p className="text-content-muted text-sm italic">
@@ -150,16 +137,48 @@ export default function AboutPage(): React.ReactElement {
                         <p className="text-content mt-2">
                             Built full-stack applications with TypeScript,
                             React, Next.js, Supabase, Appwrite, and Tailwind
-                            CSS. Adopted Bun as primary runtime and test runner.
-                            Reduced technical debt for early-stage companies via
-                            Agile workflows and modularized legacy codebases.
-                            Refactored CPaaS API integrations with database
-                            indexing and endpoint optimization.
+                            CSS. Adopted Bun as the primary runtime and test
+                            runner on personal projects. Helped early-stage
+                            teams reduce technical debt through Agile workflows
+                            and modularized legacy codebases. Refactored CPaaS
+                            API integrations with database indexing and endpoint
+                            optimization.
                         </p>
                     </article>
 
                     <article>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
+                            Software Engineer I, Uber Technologies (via
+                            Routematch acquisition)
+                        </h3>
+                        <p className="text-content-muted text-sm italic">
+                            October 2020 - February 2022
+                        </p>
+                        <p className="text-content mt-2">
+                            Retained through Uber&apos;s acquisition of
+                            Routematch and supported integration efforts across
+                            teams serving transit agencies. Contributed to the
+                            migration of 3 legacy monoliths to service-oriented
+                            architecture using Node.js and JavaScript. Built
+                            RESTful APIs and internal tools for transit routing
+                            and scheduling, maintained Angular and Vue
+                            applications, increased unit and API test coverage
+                            by 15% with Mocha, Chai, and Postman, and
+                            participated in on-call response for 24/7 transit
+                            operations.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
                             Software Engineer, Routematch (Acquired by Uber)
                         </h3>
                         <p className="text-content-muted text-sm italic">
@@ -176,7 +195,11 @@ export default function AboutPage(): React.ReactElement {
                     </article>
 
                     <article>
-                        <h3 className="font-semibold text-white">
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
                             Associate Software Engineer, Connecture/DRX
                         </h3>
                         <p className="text-content-muted text-sm italic">
@@ -199,20 +222,40 @@ export default function AboutPage(): React.ReactElement {
                     </h2>
                     <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
-                        <li>
-                            <strong>M.S. Software Engineering</strong> (in
-                            progress, expected December 2027), Kennesaw State
-                            University
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-sky-300/70"
+                            />
+                            <span>
+                                <strong>M.S. Software Engineering</strong> (in
+                                progress, expected December 2027), Kennesaw
+                                State University
+                            </span>
                         </li>
-                        <li>
-                            <strong>M.S. Management Information Systems</strong>
-                            , Kennesaw State University (May 2024, GPA 4.0),
-                            including Graduate Certificate in Information
-                            Security and Assurance
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-sky-300/70"
+                            />
+                            <span>
+                                <strong>
+                                    M.S. Management Information Systems
+                                </strong>
+                                , Kennesaw State University (May 2024, GPA 4.0),
+                                including Graduate Certificate in Information
+                                Security and Assurance
+                            </span>
                         </li>
-                        <li>
-                            <strong>B.S. Computer Science</strong>, Kennesaw
-                            State University (May 2010)
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-sky-300/70"
+                            />
+                            <span>
+                                <strong>B.S. Computer Science</strong>, Kennesaw
+                                State University (May 2010)
+                            </span>
                         </li>
                     </ul>
                 </article>
@@ -224,27 +267,58 @@ export default function AboutPage(): React.ReactElement {
                     </h2>
                     <div className={SECTION_DIVIDER} />
                     <ul className="text-content mt-3 space-y-2">
-                        <li>
-                            <strong>Languages:</strong> TypeScript, JavaScript,
-                            SQL, Python, Lua
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-300/70"
+                            />
+                            <span>
+                                <strong>Languages:</strong> TypeScript,
+                                JavaScript, SQL, Python, Lua
+                            </span>
                         </li>
-                        <li>
-                            <strong>Runtimes & Frameworks:</strong> Node.js,
-                            Bun, React, Next.js, Express, Vue
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-300/70"
+                            />
+                            <span>
+                                <strong>Runtimes & Frameworks:</strong> Node.js,
+                                Bun, React, Next.js, Express, Vue
+                            </span>
                         </li>
-                        <li>
-                            <strong>Systems:</strong> REST API design,
-                            PostgreSQL, Supabase, Appwrite, Amplience CMS,
-                            Docker, GitHub Actions, Jenkins
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-300/70"
+                            />
+                            <span>
+                                <strong>Systems:</strong> REST API design,
+                                PostgreSQL, Supabase, Appwrite, Amplience CMS,
+                                Docker, GitHub Actions, Jenkins
+                            </span>
                         </li>
-                        <li>
-                            <strong>Testing:</strong> Vitest, bun:test, Jest,
-                            Mocha, Chai
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-300/70"
+                            />
+                            <span>
+                                <strong>Testing:</strong> Vitest, bun:test,
+                                Jest, Mocha, Chai
+                            </span>
                         </li>
-                        <li>
-                            <strong>Workflow:</strong> spec-driven development,
-                            AI-assisted engineering (Cursor, Copilot, Claude) as
-                            copilot, Jira, Confluence, Agile/Scrum
+                        <li className="flex items-start gap-2">
+                            <span
+                                aria-hidden="true"
+                                className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-300/70"
+                            />
+                            <span>
+                                <strong>Workflow:</strong> spec-driven
+                                development, AI-assisted engineering (Cursor,
+                                Copilot, Claude) as copilot, Jira, Confluence,
+                                Agile/Scrum
+                            </span>
                         </li>
                     </ul>
                 </article>

@@ -1,0 +1,10 @@
+{
+    "title": "First Unique Character in a String",
+    "slug": "first-unique-character-in-a-string",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-02-28",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Given a string s, return the index of the first non-repeating character, or -1 if none exists."
+}

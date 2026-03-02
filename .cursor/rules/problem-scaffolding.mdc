@@ -1,0 +1,44 @@
+---
+description: Standard scaffold workflow for coding challenge requests with URL
+alwaysApply: true
+---
+
+# Coding Challenge Scaffolding Rule
+
+Apply this rule **only** when the user explicitly asks to scaffold or set up a coding challenge/problem and provides a URL (not limited to LeetCode).
+
+- Do not solve unless explicitly asked to solve.
+- Always mirror existing repo conventions and naming patterns.
+- Keep scaffolds deterministic, minimal, and ready for implementation.
+
+## Required Output Structure
+
+For a problem slug `<slug>`, create/update all of:
+
+- `content/problems/<slug>.md`
+- `solutions/<slug>/metadata.json`
+- `solutions/<slug>/solution.ts`
+- `solutions/<slug>/solution.test.ts`
+
+## Scaffold Expectations
+
+- In `content/problems/<slug>.md`:
+  - frontmatter (`title`, `slug`, `source`, `difficulty`, `datePublished`, `timeComplexity`, `spaceComplexity`, `excerpt`)
+  - problem statement, constraints, examples, edge-case checklist, test coverage plan
+  - implementation section as a stub only (TODO / not implemented)
+- In `metadata.json`:
+  - same canonical metadata fields used by existing `solutions/*/metadata.json`
+- In `solution.ts`:
+  - exported function signature only, with TODO + defensive placeholder (no algorithm)
+- In `solution.test.ts`:
+  - scaffolded `bun:test` suite with real assertions and expected outputs (no `test.todo(...)`)
+  - include baseline examples, happy-path coverage, edge cases, and deterministic larger-case checks
+  - include at least one defensive contract test (for example, input non-mutation when relevant)
+
+## Review Checklist Before Finalizing
+
+- Slug is consistent across `content/problems` and `solutions`.
+- Function name and export match test imports.
+- No accidental solution logic included.
+- Test file is comprehensive enough to guide implementation and catch regressions.
+- Lints pass for created/edited files.

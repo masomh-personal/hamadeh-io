@@ -104,8 +104,13 @@ describe("strStr", () => {
             const result = strStr(haystack, needle);
             expect(result).toBe(expected);
 
-            expect(haystack).toBe(originalHaystack);
-            expect(needle).toBe(originalNeedle);
+            const expectedHaystack = originalHaystack;
+            const resultHaystack = haystack;
+            expect(resultHaystack).toBe(expectedHaystack);
+
+            const expectedNeedle = originalNeedle;
+            const resultNeedle = needle;
+            expect(resultNeedle).toBe(expectedNeedle);
         });
     });
 });

@@ -60,13 +60,44 @@ The scaffolded tests should validate:
 - Deterministic larger inputs
 - Defensive contract behavior (string input immutability)
 
+## Approach
+
+Use a fixed-length window scan with character-by-character comparison:
+
+1. Compute the last valid start index (`haystack.length - needle.length`).
+2. For each start index, compare `needle` against the aligned window in `haystack`.
+3. On the first full match, return that start index.
+4. If no windows match, return `-1`.
+
+Why this works:
+- Each candidate start position is validated exactly against `needle`.
+- Returning on the first full match guarantees the first occurrence index.
+
 ## Implementation
 
 ```typescript
-// TODO: Implement strStr(haystack, needle)
-// Suggested strategy:
-// 1) Guard impossible matches (needle longer than haystack).
-// 2) Scan candidate start positions in haystack.
-// 3) Compare characters in needle against each candidate window.
-// 4) Return the first matching index, else -1.
+export function strStr(haystack: string, needle: string): number {
+    const maxAnchor = haystack.length - needle.length;
+    if (maxAnchor < 0) return -1;
+
+    for (let anchor = 0; anchor <= maxAnchor; anchor++) {
+        let matches = true;
+
+        for (let offset = 0; offset < needle.length; offset++) {
+            if (haystack[anchor + offset] !== needle[offset]) {
+                matches = false;
+                break;
+            }
+        }
+
+        if (matches) return anchor;
+    }
+
+    return -1;
+}
 ```
+
+## Complexity
+
+- **Time O((n - m + 1) * m):** up to `n - m + 1` windows, each comparing up to `m` characters.
+- **Space O(1):** only constant extra variables are used.

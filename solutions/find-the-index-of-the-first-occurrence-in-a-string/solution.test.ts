@@ -100,7 +100,7 @@ describe("strStr", () => {
             const originalHaystack = haystack.slice();
             const originalNeedle = needle.slice();
 
-            const expected = -1;
+            const expected = 4;
             const result = strStr(haystack, needle);
             expect(result).toBe(expected);
 

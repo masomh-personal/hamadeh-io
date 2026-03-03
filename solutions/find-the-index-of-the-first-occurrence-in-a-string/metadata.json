@@ -1,0 +1,10 @@
+{
+    "title": "Find the Index of the First Occurrence in a String",
+    "slug": "find-the-index-of-the-first-occurrence-in-a-string",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-03-03",
+    "timeComplexity": "O(n * m)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 when needle is not part of haystack."
+}

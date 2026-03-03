@@ -8,53 +8,73 @@ import { longestCommonPrefix } from "./solution";
 describe("longestCommonPrefix", () => {
     test("solves leetcode example 1", () => {
         const strs = ["flower", "flow", "flight"];
-        expect(longestCommonPrefix(strs)).toBe("fl");
+        const expected = "fl";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("solves leetcode example 2", () => {
         const strs = ["dog", "racecar", "car"];
-        expect(longestCommonPrefix(strs)).toBe("");
+        const expected = "";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("returns the only string for single-element input", () => {
         const strs = ["alone"];
-        expect(longestCommonPrefix(strs)).toBe("alone");
+        const expected = "alone";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("returns empty when input contains an empty string", () => {
         const strs = ["prefix", "", "pre"];
-        expect(longestCommonPrefix(strs)).toBe("");
+        const expected = "";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("returns empty when first characters do not match", () => {
         const strs = ["abc", "xbc", "ybc"];
-        expect(longestCommonPrefix(strs)).toBe("");
+        const expected = "";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("returns shortest string when it is a full prefix of others", () => {
         const strs = ["ab", "abc", "abcd", "abxyz"];
-        expect(longestCommonPrefix(strs)).toBe("ab");
+        const expected = "ab";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("returns full string when all strings are identical", () => {
         const strs = ["same", "same", "same"];
-        expect(longestCommonPrefix(strs)).toBe("same");
+        const expected = "same";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("handles repeated-character strings", () => {
         const strs = ["aaaaa", "aaa", "aaaa", "aa"];
-        expect(longestCommonPrefix(strs)).toBe("aa");
+        const expected = "aa";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("stops exactly at first mismatch after long shared prefix", () => {
         const shared = "a".repeat(100);
         const strs = [`${shared}x-tail`, `${shared}y-tail`, `${shared}z-tail`];
-        expect(longestCommonPrefix(strs)).toBe(shared);
+        const expected = shared;
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("handles punctuation-like lower alpha boundaries as plain chars", () => {
         const strs = ["leetcode", "leet", "leets"];
-        expect(longestCommonPrefix(strs)).toBe("leet");
+        const expected = "leet";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("handles many strings with deterministic overlap", () => {
@@ -62,21 +82,29 @@ describe("longestCommonPrefix", () => {
             { length: 200 },
             (_, i) => `prefix-common-${i.toString().padStart(3, "0")}`
         );
-        expect(longestCommonPrefix(strs)).toBe("prefix-common-");
+        const expected = "prefix-common-";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("handles max-length string patterns within constraints", () => {
         const common = "b".repeat(199);
         const strs = [`${common}x`, `${common}y`, `${common}z`, `${common}w`];
-        expect(longestCommonPrefix(strs)).toBe(common);
+        const expected = common;
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
     });
 
     test("does not mutate input array", () => {
         const strs = ["interview", "internal", "internet"];
         const before = [...strs];
 
-        longestCommonPrefix(strs);
+        const expected = "inter";
+        const result = longestCommonPrefix(strs);
+        expect(result).toBe(expected);
 
-        expect(strs).toEqual(before);
+        const resultInput = strs;
+        const expectedInput = before;
+        expect(resultInput).toEqual(expectedInput);
     });
 });

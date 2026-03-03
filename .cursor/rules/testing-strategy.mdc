@@ -11,3 +11,8 @@ alwaysApply: true
 - Keep tests deterministic; mock only external boundaries.
 - Prefer minimal, targeted test additions over broad speculative suites.
 - Re-enable strict test gates only after core feature stabilization.
+- Use a consistent per-test assertion hierarchy for readability:
+  1) define `expected`
+  2) compute `result`
+  3) compare with `expect(result)...`
+- Avoid one-line inline assertions like `expect(fn(input)).toBe(value)` unless there is a strong reason not to introduce `expected` and `result` variables.

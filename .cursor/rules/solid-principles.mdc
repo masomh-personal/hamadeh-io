@@ -1,0 +1,38 @@
+---
+description: Pragmatic SOLID principles for module and boundary design
+alwaysApply: true
+---
+
+# SOLID Principles (Pragmatic Defaults)
+
+- Apply SOLID to reduce change risk and keep systems easy to evolve; avoid abstraction for its own sake.
+
+## SRP: Single Responsibility Principle
+
+- Give each module/function/service one primary reason to change.
+- Split mixed concerns (validation, orchestration, persistence, formatting) into focused units.
+
+## OCP: Open/Closed Principle
+
+- Keep trusted core flows stable; add variation through explicit extension seams.
+- Introduce extension patterns (strategies/handlers/adapters) only when change is recurring and real.
+
+## LSP: Liskov Substitution Principle
+
+- Treat contracts as behavioral promises, not just type signatures.
+- Substitutable implementations must preserve expected inputs, outputs, errors, side effects, and performance envelope.
+
+## ISP: Interface Segregation Principle
+
+- Prefer small, capability-focused interfaces/contracts.
+- Do not force clients to depend on methods/fields they do not use.
+
+## DIP: Dependency Inversion Principle
+
+- Keep high-level policy dependent on abstractions (ports/contracts), not concrete infra/framework code.
+- Inject concrete adapters at boundaries so core logic remains replaceable and testable.
+
+## Practical Guardrails
+
+- Start simple; add abstraction only with clear change pressure or testability benefit.
+- If callers need implementation-specific conditionals, revisit contract boundaries.

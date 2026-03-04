@@ -15,3 +15,12 @@ alwaysApply: false
 - Minimize `useEffect` and unnecessary client state.
 - Follow Next.js App Router patterns for routing, loading, and error states.
 - Use semantic HTML by default.
+
+# SOLID in TS/React Practice
+
+- Model features as small, cohesive modules (SRP), not large utility buckets.
+- Keep extension points explicit (OCP): strategy maps, handler registries, or focused adapters where variation is real.
+- Ensure interchangeable implementations keep the same behavior contract (LSP), not just the same type signature.
+- Split broad contracts into focused interfaces/function contracts (ISP) so consumers import only what they need.
+- Keep app/business logic dependent on ports/contracts, with concrete clients in adapter modules (DIP).
+- In React/Next, keep UI components thin and delegate policy/business decisions to domain/application modules.

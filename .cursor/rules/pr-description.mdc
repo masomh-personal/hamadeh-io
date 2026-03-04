@@ -12,6 +12,7 @@ When the user asks to "create PR title and description" (or similar), do the fol
 1. Run `git fetch origin develop main` to ensure refs are current.
 2. Run `git log origin/main..origin/develop --oneline` to get all commits.
 3. Run `git diff origin/main...origin/develop --stat` to understand the scope of changes.
+4. Check whether this PR is `develop -> main`. If yes, ensure `package.json` version is incremented before finalizing PR output.
 
 ## Output format
 
@@ -52,3 +53,9 @@ Produce exactly this — nothing before or after:
 - Omit the Notes section if there's nothing meaningful to capture.
 - No marketing language, no "this PR", no "I", no filler.
 - Do NOT include a File Changes / diff stat block.
+- For `develop -> main` PRs, increment `package.json` version as part of release hygiene.
+- Use a SemVer-appropriate bump (`patch` by default; `minor`/`major` only when clearly justified by shipped changes).
+- Never include attribution text such as "co-authored", "co-authored-by", "generated with Cursor", or references to AI tooling in PR descriptions.
+- Never include "co-authored", "co-authored-by", "Cursor", or AI-tool attribution in commit messages.
+- Explicitly forbid the exact strings `Made with Cursor`, `Made with [Cursor](https://cursor.com)`, and `Generated with Cursor` in PR titles/bodies.
+- Before running `gh pr create`, perform a final content check and remove any tooling attribution/footer lines if present.

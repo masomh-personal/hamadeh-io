@@ -16,3 +16,10 @@ alwaysApply: true
   2) compute `result`
   3) compare with `expect(result)...`
 - Avoid one-line inline assertions like `expect(fn(input)).toBe(value)` unless there is a strong reason not to introduce `expected` and `result` variables.
+
+# SOLID Verification Heuristics
+
+- Add contract tests for interchangeable implementations to preserve substitutability (LSP).
+- Prefer boundary-focused tests around small interfaces/ports instead of large integrated contracts (ISP + DIP).
+- When extension points exist, add tests for existing behavior plus the new extension path (OCP).
+- Keep tests aligned to single module responsibilities; avoid tests that require unrelated subsystem setup (SRP).

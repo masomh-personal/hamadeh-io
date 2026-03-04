@@ -55,3 +55,5 @@ Produce exactly this — nothing before or after:
 - Do NOT include a File Changes / diff stat block.
 - For `develop -> main` PRs, increment `package.json` version as part of release hygiene.
 - Use a SemVer-appropriate bump (`patch` by default; `minor`/`major` only when clearly justified by shipped changes).
+- Never include attribution text such as "co-authored", "co-authored-by", "generated with Cursor", or references to AI tooling in PR descriptions.
+- Never include "co-authored", "co-authored-by", "Cursor", or AI-tool attribution in commit messages.

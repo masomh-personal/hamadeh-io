@@ -57,3 +57,5 @@ Produce exactly this — nothing before or after:
 - Use a SemVer-appropriate bump (`patch` by default; `minor`/`major` only when clearly justified by shipped changes).
 - Never include attribution text such as "co-authored", "co-authored-by", "generated with Cursor", or references to AI tooling in PR descriptions.
 - Never include "co-authored", "co-authored-by", "Cursor", or AI-tool attribution in commit messages.
+- Explicitly forbid the exact strings `Made with Cursor`, `Made with [Cursor](https://cursor.com)`, and `Generated with Cursor` in PR titles/bodies.
+- Before running `gh pr create`, perform a final content check and remove any tooling attribution/footer lines if present.

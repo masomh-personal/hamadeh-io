@@ -1,0 +1,18 @@
+---
+description: Blog writing structure and tone consistency for content/blog posts
+globs: content/blog/**/*.md
+alwaysApply: false
+---
+
+# Blog Writing Consistency
+
+- Match existing `content/blog` voice: direct, practical, personable, low-fluff.
+- Keep intros short and contextual (reference prior parts/posts when relevant).
+- Use clear section headings with pragmatic guidance over theory.
+- Prefer concise paragraphs and focused bullet lists for readability.
+- End with a strong "Wrap Up" section with actionable takeaways.
+- Keep frontmatter consistent: `title`, `slug`, `datePublished`, `excerpt`, `tags`.
+- Keep excerpts specific and outcome-oriented, not generic marketing language.
+- Avoid overengineering advice; favor simple, maintainable, real-world decisions.
+- For technical principles, include practical checklists and common misunderstandings.
+- Default target length is concise (roughly 700-1000 words) unless explicitly requested otherwise.

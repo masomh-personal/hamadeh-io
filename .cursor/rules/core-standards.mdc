@@ -11,3 +11,11 @@ alwaysApply: true
 - Prefer composition and pure functions over classes.
 - Keep functions small, single-purpose, and predictable.
 - Use comments to explain why, not what.
+
+# Architecture and Boundary Rules
+
+- Keep domain logic independent from transport, framework, and vendor SDK concerns.
+- Validate untrusted input at edges; pass trusted, normalized data inward.
+- Avoid "god modules" that validate, orchestrate, persist, and format in one place.
+- If adding abstraction, justify it with current change pressure or clear testability gains.
+- Apply SOLID guidance from `solid-principles.mdc` when designing modules and boundaries.

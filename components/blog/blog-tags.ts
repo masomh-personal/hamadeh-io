@@ -31,7 +31,38 @@ const BLOG_TAG_COLOR_MAP: Record<string, BlogTagColorDefinition> = {
     dsa: { color: "#93C5FD", bgColor: "#93C5FD14" },
     methodology: { color: "#C4B5FD", bgColor: "#C4B5FD14" },
     fundamentals: { color: "#6EE7B7", bgColor: "#6EE7B714" },
+    solid: { color: "#F59E0B", bgColor: "#F59E0B14" },
+    career: { color: "#A3E635", bgColor: "#A3E63514" },
+    leadership: { color: "#F97316", bgColor: "#F9731614" },
 };
+
+function assertUniqueBlogTagColors(
+    tagColors: Record<string, BlogTagColorDefinition>
+): void {
+    const colorToTags = new Map<string, string[]>();
+
+    for (const [tag, { color }] of Object.entries(tagColors)) {
+        const existingTags = colorToTags.get(color) ?? [];
+        existingTags.push(tag);
+        colorToTags.set(color, existingTags);
+    }
+
+    const duplicateColorEntries = Array.from(colorToTags.entries()).filter(
+        ([, tags]) => tags.length > 1
+    );
+
+    if (duplicateColorEntries.length > 0) {
+        const duplicateColorSummary = duplicateColorEntries
+            .map(([color, tags]) => `${color}: ${tags.join(", ")}`)
+            .join("; ");
+
+        throw new Error(
+            `Blog tags must use unique colors. Duplicate assignments found for ${duplicateColorSummary}.`
+        );
+    }
+}
+
+assertUniqueBlogTagColors(BLOG_TAG_COLOR_MAP);
 
 export function getBlogTagPresentation(tag: string): BlogTagPresentation {
     const normalizedTag = tag.trim().toLowerCase();

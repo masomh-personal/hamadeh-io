@@ -1,0 +1,10 @@
+{
+    "title": "Valid Parentheses",
+    "slug": "valid-parentheses",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-03-07",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Use a stack of opening brackets and match each closing bracket against the most recent unmatched opener."
+}

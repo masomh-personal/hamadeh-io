@@ -11,9 +11,9 @@ excerpt: "Use a stack of opening brackets and match each closing bracket against
 
 # Problem
 
-Given a string `s` containing only the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, and `']'`, determine whether the input string is valid.
+Given a string `s` containing only the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, and `']'`, determine whether it is valid.
 
-A string is valid when:
+An input string is valid if:
 
 1. Every closing bracket has a matching opening bracket of the same type.
 2. Brackets close in the correct order.

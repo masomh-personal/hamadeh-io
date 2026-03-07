@@ -487,6 +487,33 @@
     margin-top: 0;
 }
 
+.problem-post-intro .prose.prose-content {
+    --tw-prose-body: var(--color-slate-300);
+    --tw-prose-invert-body: var(--color-slate-300);
+    --tw-prose-headings: white;
+    --tw-prose-invert-headings: white;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.problem-post-intro
+    .prose.prose-content
+    :where(p, ol, ul):not(:where([class~="not-prose"] *)) {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.problem-post-intro
+    .prose.prose-content
+    :where(li):not(:where([class~="not-prose"] *)) {
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+}
+
+.problem-post-intro .prose.prose-content > :first-child {
+    margin-top: 0;
+}
+
 /* ============================================
    Code Block Styles
    ============================================ */

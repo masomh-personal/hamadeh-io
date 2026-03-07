@@ -15,7 +15,7 @@ interface PageProps {
 }
 
 interface ProblemSectionContent {
-    problemParagraphs: string[];
+    problemContent: string;
     remainingContent: string;
 }
 
@@ -25,7 +25,7 @@ function getProblemSectionContent(content: string): ProblemSectionContent {
 
     if (!headerMatch || headerMatch.index === undefined) {
         return {
-            problemParagraphs: [],
+            problemContent: "",
             remainingContent: content,
         };
     }
@@ -42,15 +42,9 @@ function getProblemSectionContent(content: string): ProblemSectionContent {
 
     const problemSectionRaw = content.slice(sectionStart, sectionEnd).trim();
     const remainingContent = content.slice(sectionEnd).trim();
-    const problemParagraphs = problemSectionRaw
-        .split(/\n\s*\n/)
-        .map((paragraph) =>
-            paragraph.replaceAll("`", "").replace(/\s+/g, " ").trim()
-        )
-        .filter((paragraph) => paragraph.length > 0);
 
     return {
-        problemParagraphs,
+        problemContent: problemSectionRaw,
         remainingContent,
     };
 }
@@ -90,7 +84,7 @@ export default async function ProblemPostPage({
         notFound();
     }
     const difficultyVariant = `leetcode-${problem.difficulty}` as const;
-    const { problemParagraphs, remainingContent } = getProblemSectionContent(
+    const { problemContent, remainingContent } = getProblemSectionContent(
         problem.content
     );
 
@@ -135,16 +129,13 @@ export default async function ProblemPostPage({
                                         size="sm"
                                     />
                                 </div>
-                                <div className="mt-3 space-y-4">
-                                    {problemParagraphs.map((paragraph) => (
-                                        <p
-                                            key={paragraph}
-                                            className="text-content-subtle text-base leading-7"
-                                        >
-                                            {paragraph}
-                                        </p>
-                                    ))}
-                                </div>
+                                {problemContent.length > 0 ? (
+                                    <div className="problem-post-intro mt-3">
+                                        <RichMarkdownContent
+                                            content={problemContent}
+                                        />
+                                    </div>
+                                ) : null}
                             </div>
                             <div className="border-t border-surface-outline/60 pt-4 md:flex md:flex-col md:justify-center md:border-t-0 md:border-l md:pl-5 md:pt-0">
                                 <div>

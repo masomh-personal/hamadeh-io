@@ -1,6 +1,6 @@
 ---
-description: Blog writing structure and tone consistency for content/blog posts
-globs: content/blog/**/*.md
+description: Blog writing structure and tone consistency for content/blog and content/problems posts
+globs: content/**/*.md
 alwaysApply: false
 ---
 
@@ -16,3 +16,12 @@ alwaysApply: false
 - Avoid overengineering advice; favor simple, maintainable, real-world decisions.
 - For technical principles, include practical checklists and common misunderstandings.
 - Default target length is concise (roughly 700-1000 words) unless explicitly requested otherwise.
+
+## Tone and Punctuation Rules (apply to all content posts)
+
+- Never use em dashes (`-`). Use a period, comma, or rewrite the sentence instead.
+- Write like a person, not a language model. Avoid hollow filler phrases like "Why this works:", "This ensures that", "It is worth noting that", "This approach leverages".
+- No bullet points that restate what the code already shows. Explain the why, not the what.
+- Prefer short declarative sentences over long compound ones.
+- Use plain English. Avoid words like "delve", "utilize", "leverage", "ensure", "facilitate".
+- Do not use "strictly correct" or similar hedging superlatives. Just say what is true.

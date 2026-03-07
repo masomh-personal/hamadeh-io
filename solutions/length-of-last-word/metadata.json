@@ -1,0 +1,10 @@
+{
+    "title": "Length of Last Word",
+    "slug": "length-of-last-word",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-03-07",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Given a string of words and spaces, return the length of the last word."
+}

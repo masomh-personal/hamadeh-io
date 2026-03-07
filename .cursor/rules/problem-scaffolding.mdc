@@ -35,10 +35,18 @@ For a problem slug `<slug>`, create/update all of:
   - include baseline examples, happy-path coverage, edge cases, and deterministic larger-case checks
   - include at least one defensive contract test (for example, input non-mutation when relevant)
 
+## Writing Style for content/problems posts
+
+- Follow all tone and punctuation rules in `blog-writing-consistency.mdc`.
+- No em dashes. Rewrite or split the sentence.
+- Write naturally. Avoid AI-sounding filler phrases.
+- Explain decisions and trade-offs in plain language.
+
 ## Review Checklist Before Finalizing
 
 - Slug is consistent across `content/problems` and `solutions`.
 - Function name and export match test imports.
 - No accidental solution logic included.
 - Test file is comprehensive enough to guide implementation and catch regressions.
+- No em dashes in the problem post.
 - Lints pass for created/edited files.

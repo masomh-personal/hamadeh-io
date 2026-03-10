@@ -1,0 +1,10 @@
+{
+    "title": "Add Binary",
+    "slug": "add-binary",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-03-10",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Given two binary strings, return their sum as a binary string. We use BigInt for correct arbitrary-precision arithmetic instead of a manual carry simulation."
+}

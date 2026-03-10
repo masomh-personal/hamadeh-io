@@ -87,7 +87,7 @@ describe("addBinary", () => {
         // 30-bit all-ones + 1 = 1 followed by 30 zeros
         const a = "1".repeat(30);
         const b = "1";
-        const expected = "1" + "0".repeat(30);
+        const expected = `1${"0".repeat(30)}`;
         const result = addBinary(a, b);
 
         expect(result).toBe(expected);

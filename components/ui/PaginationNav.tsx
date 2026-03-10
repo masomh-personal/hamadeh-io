@@ -131,7 +131,7 @@ export function PaginationNav({
                 <li className="ml-1.5">
                     <Button
                         href={getPageHref(currentPage + 1)}
-                        variant={hasNext ? "primary" : "outline"}
+                        variant={hasNext ? "tertiary" : "outline"}
                         size="xs"
                         disabled={!hasNext}
                         icon={hasNext ? <HiArrowRight /> : <HiBan />}

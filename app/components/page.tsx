@@ -11,6 +11,7 @@ import {
     CardShowcase,
     LinkShowcase,
     LoadingShowcase,
+    PaginationShowcase,
 } from "./sections";
 
 const triggerBaseClasses =
@@ -23,6 +24,7 @@ const showcaseSections = [
     { value: "badge", label: "Badge", subtitle: "Labels and status" },
     { value: "blog", label: "Blog", subtitle: "Cards and post meta" },
     { value: "loading", label: "Loading", subtitle: "Overlays and shimmer" },
+    { value: "pagination", label: "Pagination", subtitle: "Page navigation" },
     { value: "qa", label: "A11y QA", subtitle: "Keyboard and focus" },
 ] as const;
 
@@ -90,6 +92,13 @@ export default function ComponentsPage(): React.ReactElement {
 
                     <TabsContent value="loading" className={tabContentClasses}>
                         <LoadingShowcase />
+                    </TabsContent>
+
+                    <TabsContent
+                        value="pagination"
+                        className={tabContentClasses}
+                    >
+                        <PaginationShowcase />
                     </TabsContent>
 
                     <TabsContent value="qa" className={tabContentClasses}>

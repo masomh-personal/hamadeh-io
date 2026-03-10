@@ -25,7 +25,7 @@ const secondaryBlogPost: ShowcaseBlogPost = {
     filePath: "content/blog/async-patterns-modern-typescript-services.md",
 };
 
-export function BlogShowcase(): React.ReactElement {
+export function BlogShowcase() {
     return (
         <section>
             <h2 className="font-bold text-white">Blog</h2>

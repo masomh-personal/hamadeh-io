@@ -6,7 +6,7 @@ function mockHref(_page: number): string {
     return "#";
 }
 
-export function PaginationShowcase(): React.ReactElement {
+export function PaginationShowcase() {
     return (
         <section>
             <h2 className="font-bold text-white">Pagination</h2>

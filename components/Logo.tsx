@@ -21,7 +21,7 @@ export function Logo({
 }: {
     size?: "small" | "default" | "large";
     clickable?: boolean;
-}): React.ReactElement {
+}) {
     const sizes = {
         small: {
             container: "text-base",

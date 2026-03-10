@@ -10,7 +10,7 @@ interface BlogPostCardProps {
     post: BlogPost;
 }
 
-export function BlogPostCard({ post }: BlogPostCardProps): React.ReactElement {
+export function BlogPostCard({ post }: BlogPostCardProps) {
     const tags = post.tags ?? [];
 
     return (

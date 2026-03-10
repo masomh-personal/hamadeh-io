@@ -9,14 +9,11 @@ type TabsListProps = ComponentProps<typeof TabsPrimitive.List>;
 type TabsTriggerProps = ComponentProps<typeof TabsPrimitive.Trigger>;
 type TabsContentProps = ComponentProps<typeof TabsPrimitive.Content>;
 
-export function Tabs(props: TabsRootProps): React.ReactElement {
+export function Tabs(props: TabsRootProps) {
     return <TabsPrimitive.Root data-slot="tabs" {...props} />;
 }
 
-export function TabsList({
-    className,
-    ...props
-}: TabsListProps): React.ReactElement {
+export function TabsList({ className, ...props }: TabsListProps) {
     return (
         <TabsPrimitive.List
             className={cn(
@@ -29,10 +26,7 @@ export function TabsList({
     );
 }
 
-export function TabsTrigger({
-    className,
-    ...props
-}: TabsTriggerProps): React.ReactElement {
+export function TabsTrigger({ className, ...props }: TabsTriggerProps) {
     return (
         <TabsPrimitive.Trigger
             className={cn(
@@ -48,10 +42,7 @@ export function TabsTrigger({
     );
 }
 
-export function TabsContent({
-    className,
-    ...props
-}: TabsContentProps): React.ReactElement {
+export function TabsContent({ className, ...props }: TabsContentProps) {
     return (
         <TabsPrimitive.Content
             className={cn(

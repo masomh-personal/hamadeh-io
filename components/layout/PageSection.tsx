@@ -10,7 +10,7 @@ export function PageSection({
     children,
     className,
     ...props
-}: PageSectionProps): React.ReactElement {
+}: PageSectionProps) {
     return (
         <section className={cn(PAGE_SECTION_BASE_CLASS, className)} {...props}>
             {children}

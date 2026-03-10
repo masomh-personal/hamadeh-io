@@ -24,7 +24,7 @@ export function LoadingIndicator({
     icon,
     showSkeletonBackground = false,
     className,
-}: LoadingIndicatorProps): React.ReactElement {
+}: LoadingIndicatorProps) {
     return (
         <div
             className={cn(

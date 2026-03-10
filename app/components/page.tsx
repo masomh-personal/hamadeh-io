@@ -35,7 +35,7 @@ const tabContentClasses =
  * Component showcase page for testing and iterating on UI components.
  * Visit /components to see all components and their variants.
  */
-export default function ComponentsPage(): React.ReactElement {
+export default function ComponentsPage() {
     return (
         <PageContainer>
             <PageHeader

@@ -11,7 +11,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { Button, Card } from "@/components/ui";
 import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
-export default function Home(): React.ReactElement {
+export default function Home() {
     const showResumeButton = hasResumePdf();
 
     return (

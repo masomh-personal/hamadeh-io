@@ -1,6 +1,6 @@
 import { HiCheckCircle } from "react-icons/hi";
 
-export function AccessibilityShowcase(): React.ReactElement {
+export function AccessibilityShowcase() {
     return (
         <section>
             <h2 className="font-bold text-white">Accessibility QA Checklist</h2>

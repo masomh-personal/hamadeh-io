@@ -16,7 +16,7 @@ import { SiLinkedin } from "react-icons/si";
 import { Logo } from "@/components/Logo";
 import { Link } from "@/components/ui";
 
-export function Header(): React.ReactElement {
+export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 

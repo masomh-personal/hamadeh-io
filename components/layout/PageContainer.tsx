@@ -7,10 +7,7 @@ interface PageContainerProps {
 
 const PAGE_CONTAINER_BASE_CLASS = "mx-auto w-full max-w-6xl px-6 py-4 md:py-6";
 
-export function PageContainer({
-    children,
-    className,
-}: PageContainerProps): React.ReactElement {
+export function PageContainer({ children, className }: PageContainerProps) {
     return (
         <div className={cn(PAGE_CONTAINER_BASE_CLASS, className)}>
             {children}

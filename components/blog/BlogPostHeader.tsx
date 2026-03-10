@@ -8,9 +8,7 @@ interface BlogPostHeaderProps {
     post: BlogPost;
 }
 
-export function BlogPostHeader({
-    post,
-}: BlogPostHeaderProps): React.ReactElement {
+export function BlogPostHeader({ post }: BlogPostHeaderProps) {
     const { datePublished, title, excerpt, tags = [] } = post;
 
     return (

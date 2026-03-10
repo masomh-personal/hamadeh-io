@@ -9,9 +9,7 @@ interface ProblemPostCardProps {
     problem: ProblemPost;
 }
 
-export function ProblemPostCard({
-    problem,
-}: ProblemPostCardProps): React.ReactElement {
+export function ProblemPostCard({ problem }: ProblemPostCardProps) {
     const title =
         problem.source === "leetcode"
             ? `${problem.title} (LeetCode)`

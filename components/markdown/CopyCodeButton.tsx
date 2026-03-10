@@ -8,10 +8,7 @@ interface CopyCodeButtonProps {
     language?: string;
 }
 
-export function CopyCodeButton({
-    code,
-    language,
-}: CopyCodeButtonProps): React.ReactElement {
+export function CopyCodeButton({ code, language }: CopyCodeButtonProps) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = useCallback(async () => {

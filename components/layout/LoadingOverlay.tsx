@@ -15,7 +15,7 @@ export function LoadingOverlay({
     showSkeleton = true,
     topContent,
     className,
-}: LoadingOverlayProps): React.ReactElement {
+}: LoadingOverlayProps) {
     return (
         <div
             className={cn(

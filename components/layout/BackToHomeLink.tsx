@@ -6,9 +6,7 @@ interface BackToHomeLinkProps {
     className?: string;
 }
 
-export function BackToHomeLink({
-    className,
-}: BackToHomeLinkProps): React.ReactElement {
+export function BackToHomeLink({ className }: BackToHomeLinkProps) {
     return (
         <Link
             href="/"

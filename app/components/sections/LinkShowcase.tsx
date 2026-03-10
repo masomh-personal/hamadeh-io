@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 import { Link } from "@/components/ui";
 
-export function LinkShowcase(): React.ReactElement {
+export function LinkShowcase() {
     return (
         <section>
             <h2 className="font-bold text-white">Link</h2>

@@ -38,7 +38,7 @@ export function PageHeader({
     showBackLink = true,
     actions,
     showDivider = false,
-}: PageHeaderProps): React.ReactElement {
+}: PageHeaderProps) {
     const content = (
         <>
             <h1

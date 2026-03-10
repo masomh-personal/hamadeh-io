@@ -32,7 +32,9 @@ const BLOG_TAG_COLOR_MAP: Record<string, BlogTagColorDefinition> = {
     methodology: { color: "#C4B5FD", bgColor: "#C4B5FD14" },
     fundamentals: { color: "#6EE7B7", bgColor: "#6EE7B714" },
     solid: { color: "#F59E0B", bgColor: "#F59E0B14" },
+    "system-design": { color: "#F87171", bgColor: "#F8717114" },
     career: { color: "#A3E635", bgColor: "#A3E63514" },
+    learning: { color: "#D8B4FE", bgColor: "#D8B4FE14" },
     leadership: { color: "#F97316", bgColor: "#F9731614" },
 };
 

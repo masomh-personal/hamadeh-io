@@ -151,7 +151,7 @@ export function Badge({
     className,
     style,
     ...props
-}: BadgeProps): React.ReactElement {
+}: BadgeProps) {
     const hasCustomBlogTagColor = isBlogTag && Boolean(tagColor);
     const resolvedToneClasses = hasCustomBlogTagColor
         ? ""

@@ -49,7 +49,7 @@ const VARIANT_ORDER: Array<"primary" | "secondary" | "tertiary" | "danger"> = [
     "danger",
 ];
 
-export function LoadingShowcase(): React.ReactElement {
+export function LoadingShowcase() {
     const [active, setActive] = useState<number | null>(null);
     const [secondsRemaining, setSecondsRemaining] = useState<number | null>(
         null

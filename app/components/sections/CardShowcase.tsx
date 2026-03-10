@@ -1,7 +1,7 @@
 import { HiCheckCircle, HiLightningBolt, HiTemplate } from "react-icons/hi";
 import { Card } from "@/components/ui";
 
-export function CardShowcase(): React.ReactElement {
+export function CardShowcase() {
     return (
         <section>
             <h2 className="font-bold text-white">Card</h2>

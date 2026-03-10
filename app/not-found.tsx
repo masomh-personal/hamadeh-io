@@ -8,7 +8,7 @@ import { Button, Link } from "@/components/ui";
  * Custom 404 Not Found page
  * Displays a developer-friendly error message with navigation options
  */
-export default function NotFound(): React.ReactElement {
+export default function NotFound() {
     return (
         <PageContainer className="py-10 md:py-12">
             <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">

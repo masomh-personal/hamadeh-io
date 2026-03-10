@@ -50,9 +50,7 @@ function getLanguageLabel(language: string): string {
     return LANGUAGE_LABELS[language] ?? language;
 }
 
-export function CodeBlock(
-    props: ComponentPropsWithoutRef<"pre">
-): React.ReactElement {
+export function CodeBlock(props: ComponentPropsWithoutRef<"pre">) {
     const code = extractTextContent(props.children).trimEnd();
     const language = extractLanguage(props.children);
 

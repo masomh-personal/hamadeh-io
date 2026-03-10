@@ -3,7 +3,7 @@ import packageJson from "@/package.json";
 
 const GITHUB_REPO = "masomh-personal/hamadeh-io";
 
-export function Footer(): React.ReactElement {
+export function Footer() {
     const currentYear = new Date().getFullYear();
     const version = packageJson.version ?? "?.?.?";
     const gitBranch = process.env.NEXT_PUBLIC_GIT_BRANCH;

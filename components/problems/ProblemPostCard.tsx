@@ -9,9 +9,7 @@ interface ProblemPostCardProps {
     problem: ProblemPost;
 }
 
-export function ProblemPostCard({
-    problem,
-}: ProblemPostCardProps): React.ReactElement {
+export function ProblemPostCard({ problem }: ProblemPostCardProps) {
     const title =
         problem.source === "leetcode"
             ? `${problem.title} (LeetCode)`
@@ -41,7 +39,7 @@ export function ProblemPostCard({
                 />
             </div>
 
-            <h2 className="font-heading mt-2 text-xl font-semibold text-white">
+            <h2 className="font-heading mt-2 min-h-[3.5rem] text-xl font-semibold text-white">
                 {title}
             </h2>
 

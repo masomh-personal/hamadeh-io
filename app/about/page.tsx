@@ -15,7 +15,7 @@ import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
 
-export default function AboutPage(): React.ReactElement {
+export default function AboutPage() {
     const showResumeButton = hasResumePdf();
 
     return (

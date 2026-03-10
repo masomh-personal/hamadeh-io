@@ -1,5 +1,5 @@
 import { LoadingOverlay } from "@/components/layout/LoadingOverlay";
 
-export default function BlogPostLoading(): React.ReactElement {
+export default function BlogPostLoading() {
     return <LoadingOverlay message="Loading post..." />;
 }

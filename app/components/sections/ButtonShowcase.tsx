@@ -5,7 +5,7 @@ import { useState } from "react";
 import { HiArrowRight, HiCode, HiCog, HiHome, HiRefresh } from "react-icons/hi";
 import { Button } from "@/components/ui";
 
-export function ButtonShowcase(): React.ReactElement {
+export function ButtonShowcase() {
     const [isSubmittingDemo, setIsSubmittingDemo] = useState(false);
 
     const handleSubmitDemo = (): void => {

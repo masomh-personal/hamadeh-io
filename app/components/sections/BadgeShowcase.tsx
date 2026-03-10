@@ -2,7 +2,7 @@ import { HiArrowRight, HiCheckCircle, HiHome } from "react-icons/hi";
 import { getBlogTagPresentation } from "@/components/blog/blog-tags";
 import { Badge } from "@/components/ui";
 
-export function BadgeShowcase(): React.ReactElement {
+export function BadgeShowcase() {
     const blogTagExamples = [
         "engineering",
         "nextjs",

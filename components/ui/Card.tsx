@@ -48,7 +48,7 @@ export function Card({
     className,
     children,
     ...props
-}: ThoughtfulCardProps): React.ReactElement {
+}: ThoughtfulCardProps) {
     const visibleActions = actions ?? [];
     const hasActions = visibleActions.length;
     const hasTwoActions = visibleActions.length === 2;

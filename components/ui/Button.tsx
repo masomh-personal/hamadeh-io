@@ -232,7 +232,7 @@ export function Button({
     target,
     rel,
     ...props
-}: ThoughtfulButtonProps): React.ReactElement {
+}: ThoughtfulButtonProps) {
     const isDisabled = Boolean(disabled || isLoading);
     const resolvedIconSize: IconSize =
         iconSize ?? (size === "xs" ? "xs" : "md");

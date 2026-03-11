@@ -1,0 +1,10 @@
+{
+    "title": "Roman to Integer",
+    "slug": "roman-to-integer",
+    "source": "leetcode",
+    "difficulty": "easy",
+    "datePublished": "2026-03-11",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Scan the Roman numeral string and subtract a symbol's value when it precedes a larger one, otherwise add it."
+}

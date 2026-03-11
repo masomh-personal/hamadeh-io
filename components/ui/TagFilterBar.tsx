@@ -46,11 +46,10 @@ export function TagFilterBar({
                     <button
                         type="button"
                         onClick={onClearAll}
-                        aria-hidden={!hasActiveTags}
-                        tabIndex={hasActiveTags ? 0 : -1}
+                        inert={hasActiveTags ? undefined : true}
                         className={cn(
                             "text-content-subtle hover:text-content inline-flex cursor-pointer items-center gap-1 rounded border border-surface-outline/50 bg-surface-outline/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide transition-all duration-150 hover:border-surface-outline hover:bg-surface-outline/20",
-                            !hasActiveTags && "invisible pointer-events-none"
+                            !hasActiveTags && "invisible"
                         )}
                     >
                         <HiX aria-hidden="true" className="h-2.5 w-2.5" />

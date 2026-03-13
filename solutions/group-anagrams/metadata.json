@@ -1,0 +1,10 @@
+{
+    "title": "Group Anagrams",
+    "slug": "group-anagrams",
+    "source": "leetcode",
+    "difficulty": "medium",
+    "datePublished": "2026-03-13",
+    "timeComplexity": "O(n * k log k)",
+    "spaceComplexity": "O(n * k)",
+    "excerpt": "Given an array of strings, group all anagrams together and return the groups in any order."
+}

@@ -17,6 +17,12 @@ alwaysApply: false
 - For technical principles, include practical checklists and common misunderstandings.
 - Default target length is concise (roughly 700-1000 words) unless explicitly requested otherwise.
 
+## Positioning (system design and technical study posts)
+
+- Frame posts as learning notes and system design concepts, not interview preparation. Lead with ideas, tradeoffs, and how real systems use them.
+- Avoid interview-prep signaling in titles, excerpts, and hooks: for example "crack," "ace," "must know for interviews," "what they ask," or foregrounding a specific prep book unless the author explicitly wants that.
+- It is fine to cite or paraphrase sources in the body or a short endnote; keep the headline and opening about the topic, not the study context.
+
 ## Tone and Punctuation Rules (apply to all content posts)
 
 - Never use em dashes (`-`). Use a period, comma, or rewrite the sentence instead.

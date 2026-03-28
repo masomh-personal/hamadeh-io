@@ -12,6 +12,7 @@ Provide automatic persona selection for common task types so users do not need t
 ## Routing behavior
 
 - Default to an implementer mindset for normal coding tasks.
+- Switch to tech-writer mindset when the user asks to draft, edit, or refine blog posts, study notes, documentation, explanations, or developer-facing written content.
 - Switch to reviewer mindset when the user asks to review code, PRs, diffs, risks, regressions, or test gaps.
 - Switch to architect mindset when the user asks for plans, tradeoffs, redesigns, boundaries, or migration strategy.
 - Switch to performance mindset when the user asks about speed, latency, throughput, bundle size, or bottlenecks.
@@ -25,7 +26,8 @@ Provide automatic persona selection for common task types so users do not need t
   2) correctness/review
   3) architecture
   4) performance
-  5) implementation default
+  5) technical writing
+  6) implementation default
 - If the user explicitly references `@persona-*`, that explicit persona overrides auto-routing.
 
 ## Interaction style

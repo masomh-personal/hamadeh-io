@@ -3,21 +3,16 @@ import {
     HiAcademicCap,
     HiChip,
     HiCode,
-    HiExternalLink,
     HiLightningBolt,
     HiUser,
 } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { PageSection } from "@/components/layout/PageSection";
-import { Button } from "@/components/ui";
-import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
 
 export default function AboutPage() {
-    const showResumeButton = hasResumePdf();
-
     return (
         <PageContainer>
             <PageHeader
@@ -32,23 +27,9 @@ export default function AboutPage() {
                     />
                 }
                 title="About Me"
-                description="I'm a full-stack software engineer based in Atlanta. I enjoy helping teams build maintainable systems, turn business requirements into practical technical plans, and ship useful production features. I'm still early in my architecture and technical leadership journey, and I use this site to keep learning in public. I use a spec-driven approach with AI as a copilot, not an autopilot, while keeping engineering fundamentals and human judgment at the center."
+                description="I'm a full-stack software engineer based in Atlanta. I build production software for a living, write about engineering decisions and system design, and use this site to practice the craft in public. I care about maintainable systems, clear technical communication, and shipping things that hold up over time."
                 descriptionClassName="max-w-4xl"
                 showDivider
-                actions={
-                    showResumeButton ? (
-                        <Button
-                            href={RESUME_PUBLIC_PATH}
-                            variant="secondary"
-                            icon={<HiExternalLink />}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex shrink-0 items-center whitespace-nowrap"
-                        >
-                            View Full Resume
-                        </Button>
-                    ) : undefined
-                }
             />
 
             <PageSection className="grid gap-4 md:grid-cols-2">
@@ -59,14 +40,13 @@ export default function AboutPage() {
                     </h2>
                     <div className={SECTION_DIVIDER} />
                     <p className="text-content">
-                        I specialize in RESTful APIs, backend systems, and
-                        modern web applications using TypeScript, Node.js, and
-                        React, with Bun in my workflow for runtime and tooling.
-                        I serve as a Senior Software Engineer at Converse
-                        (Nike), where I recently stepped into an early technical
-                        lead role with a team of 4, supporting sprint planning,
-                        backlog refinement, and technical specification across
-                        customer-facing commerce features.
+                        I specialize in full-stack web applications, RESTful API
+                        design, and modern frontend systems using TypeScript,
+                        React, Node.js, and Tailwind CSS, with Bun in my
+                        workflow for runtime and tooling. I currently work as a
+                        Senior Software Engineer at Stord on the Engage team,
+                        building applications that power shipping, fulfillment,
+                        and commerce workflows.
                     </p>
                 </article>
 
@@ -77,14 +57,12 @@ export default function AboutPage() {
                     </h2>
                     <div className={SECTION_DIVIDER} />
                     <p className="text-content">
-                        I&apos;m focused on building systems that scale in both
-                        performance and maintainability. Lately that has meant
-                        working on component libraries with Storybook-driven
-                        design, tightening API contracts, and improving CI/CD
-                        habits so delivery feels more predictable. I also spend
-                        a lot of time on clearer technical specifications and
-                        requirements, because better alignment early usually
-                        means teams move faster with less ambiguity later.
+                        Building maintainable full-stack systems at Stord while
+                        writing about software engineering, system design, and
+                        the decisions that shape how good software gets made.
+                        I&apos;m also working toward my M.S. in Software
+                        Engineering and use this site to document what I learn
+                        as I go.
                     </p>
                 </article>
             </PageSection>
@@ -102,23 +80,42 @@ export default function AboutPage() {
                                 aria-hidden="true"
                                 className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
                             />
+                            Senior Software Engineer, Stord
+                        </h3>
+                        <p className="text-content-muted text-sm italic">
+                            March 2026 - Present
+                        </p>
+                        <p className="text-content mt-2">
+                            On the Engage team, building full-stack applications
+                            with TypeScript, React, and Tailwind CSS that power
+                            shipping, fulfillment, and upselling workflows
+                            across the Stord product ecosystem.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3 className="flex items-center gap-2 font-semibold text-white">
+                            <span
+                                aria-hidden="true"
+                                className="inline-block h-2 w-2 rounded-full bg-sky-300/70"
+                            />
                             Senior Software Engineer, Converse (Nike)
                         </h3>
                         <p className="text-content-muted text-sm italic">
-                            May 2025 - Present
+                            May 2025 - February 2026
                         </p>
                         <p className="text-content mt-2">
-                            I recently transitioned into a technical lead role
-                            for a team of 4 engineers, supporting sprint
-                            planning, backlog refinement, and code reviews while
-                            staying hands-on. I contribute to the DDS component
-                            library (30+ components in Storybook), translate
-                            functional specs into technical specifications and
-                            API contracts, and build customer-facing commerce
+                            Transitioned into a technical lead role for a team
+                            of 4 engineers, supporting sprint planning, backlog
+                            refinement, and code reviews while staying hands-on.
+                            Contributed to the DDS component library (30+
+                            components in Storybook), translated functional
+                            specs into technical specifications and API
+                            contracts, and built customer-facing commerce
                             features with React, TypeScript, and Salesforce
-                            Commerce Cloud (PWA Kit). I also author content
-                            schemas in Amplience CMS, integrate RESTful APIs for
-                            commerce workflows, and support CI/CD with GitHub
+                            Commerce Cloud (PWA Kit). Authored content schemas
+                            in Amplience CMS, integrated RESTful APIs for
+                            commerce workflows, and supported CI/CD with GitHub
                             Actions and Jenkins.
                         </p>
                     </article>
@@ -294,8 +291,8 @@ export default function AboutPage() {
                             />
                             <span>
                                 <strong>Systems:</strong> REST API design,
-                                PostgreSQL, Supabase, Appwrite, Amplience CMS,
-                                Docker, GitHub Actions, Jenkins
+                                PostgreSQL, Supabase, Appwrite, Docker, GitHub
+                                Actions, Jenkins
                             </span>
                         </li>
                         <li className="flex items-start gap-2">

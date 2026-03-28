@@ -153,7 +153,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
     title: "hamadeh.io | Masom Hamadeh",
     description:
-        "Full-stack portfolio showcasing software engineering skills, LeetCode solutions, and technical writing",
+        "Personal portfolio of Masom Hamadeh — software engineer, technical writer, and builder. System design, engineering craft, and code.",
     icons: {
         icon: "/branding/favicon.svg",
         shortcut: "/branding/favicon.svg",

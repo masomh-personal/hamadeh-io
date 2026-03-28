@@ -1,19 +1,10 @@
 import Image from "next/image";
-import {
-    HiCode,
-    HiCollection,
-    HiDocumentText,
-    HiExternalLink,
-    HiUser,
-} from "react-icons/hi";
+import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageSection } from "@/components/layout/PageSection";
 import { Button, Card } from "@/components/ui";
-import { hasResumePdf, RESUME_PUBLIC_PATH } from "@/lib/resume";
 
 export default function Home() {
-    const showResumeButton = hasResumePdf();
-
     return (
         <PageContainer>
             <PageSection className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
@@ -23,29 +14,21 @@ export default function Home() {
                         <br />I love building thoughtful software.
                     </h1>
                     <p className="text-content mt-4 max-w-2xl md:text-lg">
-                        This is my portfolio and engineering workspace. I use it
-                        to share real projects, break down coding problems,
-                        document what I&apos;m learning through blog posts, and
-                        build a component library from scratch. It&apos;s where
-                        I practice writing clearer requirements, turning them
-                        into explicit specs, and making system design decisions
-                        that help teams build software on strong foundations
-                        that lasts over time.
+                        This is my personal portfolio and engineering site. I
+                        use it to write about software design, share technical
+                        decisions, document what I&apos;m building and learning,
+                        and work through coding problems with depth and honesty.
+                        It&apos;s where I practice the craft in the open.
                     </p>
                     <div className="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-                        {showResumeButton && (
-                            <Button
-                                href={RESUME_PUBLIC_PATH}
-                                variant="secondary"
-                                size="md"
-                                icon={<HiExternalLink />}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                View Resume
-                            </Button>
-                        )}
-                        <Button href="/problems" size="md">
+                        <Button
+                            href="/blog"
+                            size="md"
+                            icon={<HiDocumentText />}
+                        >
+                            Read the blog
+                        </Button>
+                        <Button href="/problems" size="md" variant="secondary">
                             View Code Problems
                         </Button>
                     </div>
@@ -69,29 +52,27 @@ export default function Home() {
                 <h2 className="font-bold text-white">About Me</h2>
                 <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
-                        I&apos;m a full-stack engineer who enjoys building with
-                        others at the intersection of business and code. My
-                        background includes Computer Science, a Master&apos;s in
-                        Information Systems, and I&apos;m currently pursuing a
-                        second Master&apos;s in Software Engineering because I
-                        genuinely never want to stop learning.
+                        I&apos;m a full-stack software engineer at Stord,
+                        working on the Engage team to build applications that
+                        power shipping, fulfillment, and commerce workflows. My
+                        background spans Computer Science, a Master&apos;s in
+                        Information Systems, and I&apos;m currently working
+                        toward a second Master&apos;s in Software Engineering.
                     </p>
                     <p className="text-content mt-3">
-                        I love the craft of building software, but I&apos;ve
-                        learned that great products come from more than just
-                        great code. They come from clear communication, good
-                        judgment on tradeoffs, and teams that trust each other.
-                        Those are the skills I invest in just as much as the
-                        technical ones.
+                        I care deeply about the craft of building software:
+                        clear system design, honest technical communication, and
+                        shipping things that hold up. Great products come from
+                        more than just good code. They come from good judgment
+                        on tradeoffs, clear requirements, and teams that
+                        communicate well.
                     </p>
                     <p className="text-content-muted mt-3">
                         AI is changing how we write code, and I think that makes
-                        the human side even more important: strategy, context,
-                        and knowing what to build and why. I care about helping
-                        teams make thoughtful technical decisions. I&apos;m
-                        still early in my architecture and tech lead journey,
-                        and this site is where I practice that growth in the
-                        open.
+                        the human side more important: knowing what to build,
+                        why it matters, and how to make the right call at the
+                        right time. I use AI as a copilot, not an autopilot, and
+                        this site is where I document that work in public.
                     </p>
                     <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
                         <Button
@@ -129,8 +110,8 @@ export default function Home() {
                         ]}
                     >
                         <p>
-                            Practice-focused writeups with clear tradeoffs and
-                            complexity analysis.
+                            Deep dives into algorithms, patterns, and complexity
+                            with honest tradeoff analysis.
                         </p>
                     </Card>
 

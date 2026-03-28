@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import type { IconType } from "react-icons";
+import { FaLinkedin } from "react-icons/fa";
 import {
     HiCode,
     HiCollection,
@@ -12,7 +13,6 @@ import {
     HiUser,
     HiX,
 } from "react-icons/hi";
-import { SiLinkedin } from "react-icons/si";
 import { Logo } from "@/components/Logo";
 import { Link } from "@/components/ui";
 
@@ -37,7 +37,7 @@ export function Header() {
         {
             name: "LinkedIn",
             href: "https://www.linkedin.com/in/masomh/",
-            icon: SiLinkedin,
+            icon: FaLinkedin,
             external: true,
             iconOnlyOnDesktop: true,
         },

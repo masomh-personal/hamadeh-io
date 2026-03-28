@@ -87,7 +87,7 @@ export function LoadingShowcase() {
         };
     }, []);
 
-    const example = active !== null ? examples[active] : null;
+    const example = active === null ? null : examples[active];
 
     return (
         <section>
@@ -132,9 +132,9 @@ export function LoadingShowcase() {
                             className="mt-2 min-h-7 min-w-0 px-2 py-1 text-[0.6rem] tracking-[0.02em] whitespace-nowrap leading-tight text-center"
                         >
                             Dismiss test overlay
-                            {secondsRemaining != null
-                                ? ` (${secondsRemaining})`
-                                : ""}
+                            {secondsRemaining == null
+                                ? ""
+                                : ` (${secondsRemaining})`}
                         </Button>
                     }
                 />

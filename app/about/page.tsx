@@ -291,8 +291,8 @@ export default function AboutPage() {
                             />
                             <span>
                                 <strong>Systems:</strong> REST API design,
-                                PostgreSQL, Supabase, Appwrite, Amplience CMS,
-                                Docker, GitHub Actions, Jenkins
+                                PostgreSQL, Supabase, Appwrite, Docker, GitHub
+                                Actions, Jenkins
                             </span>
                         </li>
                         <li className="flex items-start gap-2">

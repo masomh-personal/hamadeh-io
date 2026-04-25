@@ -8,7 +8,7 @@ tags: ["system-design", "career", "learning"]
 
 In [part one](/blog/grokking-system-design-interview-part-1-what-it-tests), I covered what the system design interview is really testing: judgment, communication, and reasoning under ambiguity.
 
-This post is about the next section in *Grokking the System Design Interview*: Key Characteristics of Distributed Systems. Before you can design a system well, you need to know what properties to evaluate it against.
+This post is about the next section in _Grokking the System Design Interview_: Key Characteristics of Distributed Systems. Before you can design a system well, you need to know what properties to evaluate it against.
 
 There are five: scalability, reliability, availability, efficiency, and manageability. These map closely to what other books call non-functional requirements or architectural characteristics. The label changes depending on the source, but the underlying concerns are the same.
 

@@ -1,27 +1,23 @@
 {
     "name": "hamadeh-io",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "private": true,
-    "engines": {
-        "node": ">=24.0.0",
-        "bun": ">=1.3.0"
-    },
     "scripts": {
         "dev": "next dev",
         "dev:fresh": "bun run clean:next && bun run dev",
         "build": "next build",
         "start": "next start",
-        "check": "biome check .",
-        "check:fix": "biome check --write .",
-        "format": "biome format --write .",
+        "check": "oxlint --react-plugin --jsx-a11y-plugin --nextjs-plugin .",
+        "check:fix": "oxlint --fix --react-plugin --jsx-a11y-plugin --nextjs-plugin . && oxfmt --write .",
+        "check:staged": "bun scripts/check-staged.ts",
+        "format": "oxfmt --write .",
+        "format:check": "oxfmt --check .",
         "type-check": "tsc --noEmit",
         "test": "bun test",
         "test:coverage": "bun test --coverage",
         "clean": "bun scripts/clean.ts",
         "clean:next": "bun scripts/clean-next.ts",
-        "healthcheck": "bun run format && bun run type-check && bun run check && bun run doctor",
-        "doctor": "react-doctor . --verbose",
-        "doctor:score": "react-doctor . --score",
+        "healthcheck": "bun run format:check && bun run type-check && bun run check && bun test",
         "new:problem": "bun scripts/new-problem.ts",
         "publish:problem": "bun scripts/publish-problem.ts",
         "prepare": "husky"
@@ -33,40 +29,35 @@
         "clsx": "^2.1.1",
         "date-fns": "^4.1.0",
         "gray-matter": "^4.0.3",
-        "next": "^16.2.1",
-        "react": "^19.2.4",
-        "react-dom": "^19.2.4",
+        "next": "^16.2.4",
+        "react": "^19.2.5",
+        "react-dom": "^19.2.5",
         "react-icons": "^5.6.0",
         "react-markdown": "^10.1.0",
         "rehype-pretty-code": "^0.14.3",
-        "rehype-raw": "^7.0.0",
         "remark-gfm": "^4.0.1",
         "shiki": "^4.0.2",
         "tailwind-merge": "^3.5.0",
         "valibot": "^1.3.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "^2.4.9",
-        "@happy-dom/global-registrator": "^20.8.9",
-        "@tailwindcss/postcss": "^4.2.2",
-        "@testing-library/jest-dom": "^6.9.1",
-        "@testing-library/react": "^16.3.2",
-        "@testing-library/user-event": "^14.6.1",
-        "@types/bun": "^1.3.11",
-        "@types/node": "^25.5.0",
+        "@tailwindcss/postcss": "^4.2.4",
+        "@types/bun": "^1.3.13",
+        "@types/node": "^25.6.0",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
-        "happy-dom": "^20.8.9",
         "husky": "^9.1.7",
-        "lint-staged": "^16.4.0",
-        "postcss": "^8.5.8",
-        "react-doctor": "^0.0.30",
-        "tailwindcss": "^4.2.2",
-        "typescript": "^5.9.3"
+        "oxfmt": "^0.46.0",
+        "oxlint": "^1.61.0",
+        "postcss": "^8.5.10",
+        "tailwindcss": "^4.2.4",
+        "typescript": "^6.0.3"
     },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,json,css,mjs}": [
-            "biome check --write"
-        ]
+    "overrides": {
+        "postcss": "8.5.10"
+    },
+    "engines": {
+        "bun": ">=1.3.0",
+        "node": ">=24.0.0"
     }
 }

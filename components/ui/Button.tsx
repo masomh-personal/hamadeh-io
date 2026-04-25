@@ -55,11 +55,10 @@ const iconSizeClasses: Record<IconSize, string> = {
 type ButtonClickEvent = MouseEvent<HTMLButtonElement | HTMLAnchorElement>;
 type IconPosition = "left" | "right";
 
-export interface ThoughtfulButtonProps
-    extends Omit<
-        ComponentProps<"button">,
-        "children" | "onClick" | "target" | "rel"
-    > {
+export interface ThoughtfulButtonProps extends Omit<
+    ComponentProps<"button">,
+    "children" | "onClick" | "target" | "rel"
+> {
     variant?: ButtonVariant;
     size?: ButtonSize;
     href?: string;

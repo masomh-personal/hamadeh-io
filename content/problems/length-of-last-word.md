@@ -39,17 +39,19 @@ Scan from the right with an index pointer:
 
 1. Start `i` at the last character and `result` at `0`.
 2. For each character from right to left:
-   - If it is a space and `result > 0`, the last word has been counted. Break.
-   - If it is a space and `result === 0`, it is trailing whitespace. Skip it.
-   - If it is not a space, increment `result`.
+    - If it is a space and `result > 0`, the last word has been counted. Break.
+    - If it is a space and `result === 0`, it is trailing whitespace. Skip it.
+    - If it is not a space, increment `result`.
 3. Return `result`.
 
 Why it works:
+
 - Scanning from the right hits the last word before anything else.
 - The `result > 0` guard is what separates trailing spaces (skip) from the word boundary (stop).
 - No extra strings or arrays are allocated. Only a counter and an index.
 
 Complexity:
+
 - Time: `O(n)` - worst case scans the full string (no trailing spaces, one long word)
 - Space: `O(1)` - two integer variables regardless of input size
 
@@ -67,7 +69,7 @@ export function lengthOfLastWord(s: string): number {
 
     for (let i = s.length - 1; i >= 0; i--) {
         const currChar = s[i];
-        if (currChar === ' ') {
+        if (currChar === " ") {
             if (result > 0) break;
         } else {
             result++;

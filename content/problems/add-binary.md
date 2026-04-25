@@ -70,6 +70,7 @@ The principle is simple: prefer correct built-ins over hand-rolled reimplementat
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples (`"11" + "1"` and `"1010" + "1011"`)
 - Both operands zero
 - One operand zero (identity)

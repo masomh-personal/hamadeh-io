@@ -58,9 +58,9 @@ This project uses optional persona rules in `.cursor/rules/` to shape how the ag
 1. Run the same prompt with one baseline persona (usually implementer).
 2. Re-run with a specialized persona (architect/performance/security/reviewer).
 3. Compare:
-   - Plan quality (clarity, feasibility, risk coverage)
-   - Diff quality (scope, readability, maintainability)
-   - Validation quality (tests/checks/metrics)
+    - Plan quality (clarity, feasibility, risk coverage)
+    - Diff quality (scope, readability, maintainability)
+    - Validation quality (tests/checks/metrics)
 4. Keep the better outcome and capture prompt patterns that worked.
 
 ## Team Usage Tips

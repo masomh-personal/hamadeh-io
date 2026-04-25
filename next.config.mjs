@@ -38,8 +38,8 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: false,
     },
-    // ESLint config removed - Next.js 16 no longer supports it
-    // Using Biome for linting/formatting instead
+    // Next.js 16 no longer supports built-in ESLint config.
+    // Oxfmt and Oxlint handle formatting and linting through package scripts.
     turbopack: {
         root: process.cwd(),
     },

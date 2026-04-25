@@ -1,9 +1,9 @@
 ---
-title: 'Soft Skills + Fundamentals: The New Engineering Edge in the AI Era'
-slug: 'soft-skills-engineering-fundamentals-ai-era'
-datePublished: '2026-02-25'
-excerpt: 'Why communication, collaboration, and strong engineering fundamentals now matter more than raw coding speed in an AI-assisted world.'
-tags: ['engineering', 'ai', 'fundamentals']
+title: "Soft Skills + Fundamentals: The New Engineering Edge in the AI Era"
+slug: "soft-skills-engineering-fundamentals-ai-era"
+datePublished: "2026-02-25"
+excerpt: "Why communication, collaboration, and strong engineering fundamentals now matter more than raw coding speed in an AI-assisted world."
+tags: ["engineering", "ai", "fundamentals"]
 ---
 
 There was a time when being "the best coder in the room" was enough to stand out.

@@ -12,7 +12,7 @@ Markdown allows you to write content in a familiar format while keeping content 
 
 We write content in `.md` files with frontmatter (metadata) at the top:
 
-```md
+````md
 ---
 title: "Two Sum"
 slug: "two-sum"
@@ -32,7 +32,9 @@ function twoSum(nums: number[], target: number): number[] {
     // Solution code
 }
 ```
-```
+````
+
+````
 
 ### 2. **Frontmatter Validation** (`lib/schemas.ts`)
 
@@ -45,9 +47,10 @@ export const ProblemFrontmatterSchema = v.object({
     difficulty: v.picklist(["easy", "medium", "hard"]),
     // ... more fields
 });
-```
+````
 
 **Why Valibot?**
+
 - **Lightweight:** ~1KB vs Zod's ~14KB (critical for 200KB bundle target)
 - **Fast:** 2-10x faster runtime validation
 - **Type-safe:** Full TypeScript inference
@@ -66,6 +69,7 @@ const solution = await getProblemBySlug("two-sum");
 ```
 
 **What happens:**
+
 1. Read MDX file from filesystem
 2. Parse frontmatter with `gray-matter`
 3. Validate frontmatter with Valibot (throws if invalid)
@@ -79,7 +83,7 @@ Next.js processes MDX files with syntax highlighting:
 const withMDX = createMDX({
     options: {
         rehypePlugins: [
-            [rehypeHighlight, { languages: ["typescript", "javascript"] }]
+            [rehypeHighlight, { languages: ["typescript", "javascript"] }],
         ],
     },
 });
@@ -109,12 +113,14 @@ export default async function SolutionPage({ params }) {
 ### ✅ **Version Control Everything**
 
 All content is in Git:
+
 - Track changes over time
 - Collaborate easily
 - Revert mistakes
 - See full history
 
 **vs. Database/CMS:**
+
 - Content locked in database
 - Harder to track changes
 - Requires UI or API to edit
@@ -122,6 +128,7 @@ All content is in Git:
 ### ✅ **Type Safety**
 
 Valibot schemas ensure:
+
 - Required fields exist
 - Data types are correct
 - Invalid content fails at build time (not runtime)
@@ -131,11 +138,13 @@ Valibot schemas ensure:
 ### ✅ **Zero Infrastructure**
 
 No database, no CMS, no API calls:
+
 - Content is just files
 - Build-time processing
 - Static generation = instant page loads
 
 **vs. Headless CMS:**
+
 - Requires API calls
 - Slower page loads
 - More complex setup
@@ -144,12 +153,14 @@ No database, no CMS, no API calls:
 ### ✅ **Performance**
 
 Static generation at build time:
+
 - All pages pre-rendered
 - Zero runtime data fetching
 - Instant page loads
 - Perfect for SEO
 
 **vs. Dynamic Content:**
+
 - Runtime database queries
 - Slower page loads
 - More server resources needed
@@ -157,6 +168,7 @@ Static generation at build time:
 ### ✅ **Developer-Friendly**
 
 Write in Markdown (simple, familiar):
+
 - No special syntax to learn
 - Works in any editor
 - Easy to read and write
@@ -167,14 +179,13 @@ Write in Markdown (simple, familiar):
 ```mdx
 # Solution
 
-<CodeEditor language="typescript">
-{code}
-</CodeEditor>
+<CodeEditor language="typescript">{code}</CodeEditor>
 ```
 
 ### ✅ **Portable**
 
 Markdown is universal:
+
 - Easy to migrate if needed
 - Works with any static site generator
 - Can export to other formats (PDF, etc.)
@@ -182,44 +193,48 @@ Markdown is universal:
 ### ✅ **Bundle Size**
 
 Valibot is tiny (~1KB):
+
 - Critical for our 200KB bundle target
 - Tree-shakeable (only bundle what you use)
 - No heavy validation library
 
 **vs. Zod:**
+
 - ~14KB (7% of our bundle budget!)
 - Harder to tree-shake
 
 ## Example: Complete Flow
 
 1. **Write Content:**
-   ```mdx
-   ---
-   title: "Two Sum"
-   slug: "two-sum"
-   difficulty: "easy"
-   ---
-   
-   # Problem
-   ...
-   ```
+
+    ```mdx
+    ---
+    title: "Two Sum"
+    slug: "two-sum"
+    difficulty: "easy"
+    ---
+
+    # Problem
+
+    ...
+    ```
 
 2. **Build Time:**
-   - Next.js reads `content/problems/two-sum.md`
-   - `getAllProblems()` parses and validates
-   - Valibot ensures frontmatter is correct
-   - If invalid → build fails with clear error
+    - Next.js reads `content/problems/two-sum.md`
+    - `getAllProblems()` parses and validates
+    - Valibot ensures frontmatter is correct
+    - If invalid → build fails with clear error
 
 3. **Static Generation:**
-   - Next.js generates `/problems/two-sum` page
-   - MDX content rendered as React components
-   - Code blocks highlighted with syntax highlighting
-   - Page is fully static (no runtime processing)
+    - Next.js generates `/problems/two-sum` page
+    - MDX content rendered as React components
+    - Code blocks highlighted with syntax highlighting
+    - Page is fully static (no runtime processing)
 
 4. **User Visits:**
-   - Instant page load (pre-rendered)
-   - No API calls
-   - Perfect SEO (fully static HTML)
+    - Instant page load (pre-rendered)
+    - No API calls
+    - Perfect SEO (fully static HTML)
 
 ## Error Handling
 

@@ -1,9 +1,9 @@
 ---
-title: 'SOLID in the AI Era (Part 4): ISP and DIP for Cleaner Boundaries'
-slug: 'solid-isp-dip-ai-era-part-4'
-datePublished: '2026-03-04'
-excerpt: 'Part 4 of a SOLID series: why Interface Segregation and Dependency Inversion work together to reduce coupling, improve testability, and keep systems easy to evolve.'
-tags: ['engineering', 'ai', 'solid']
+title: "SOLID in the AI Era (Part 4): ISP and DIP for Cleaner Boundaries"
+slug: "solid-isp-dip-ai-era-part-4"
+datePublished: "2026-03-04"
+excerpt: "Part 4 of a SOLID series: why Interface Segregation and Dependency Inversion work together to reduce coupling, improve testability, and keep systems easy to evolve."
+tags: ["engineering", "ai", "solid"]
 ---
 
 In Part 1, I covered SRP. Part 2 covered OCP. Part 3 covered LSP.
@@ -94,9 +94,9 @@ A single broad prompt can produce feature code that directly imports SDK clients
 
 ISP and DIP act like guardrails:
 
-- Prompting gets clearer ("implement this interface")  
-- Reviews get simpler (boundary adherence is obvious)  
-- Tests get faster (mock small contracts, not whole stacks)  
+- Prompting gets clearer ("implement this interface")
+- Reviews get simpler (boundary adherence is obvious)
+- Tests get faster (mock small contracts, not whole stacks)
 - Refactors get safer (replace adapters without rewriting policy logic)
 
 In other words, they turn generation speed into maintainable delivery speed.

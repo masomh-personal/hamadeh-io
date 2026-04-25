@@ -21,14 +21,15 @@ The returned index order does not matter.
 Use a one-pass hash map:
 
 1. Keep a `Map<number, number>` named `seen` where:
-   - key = number value
-   - value = index where that number was first seen in the current scan
+    - key = number value
+    - value = index where that number was first seen in the current scan
 2. Iterate the array once from left to right.
 3. For each number, compute its complement: `target - current`.
 4. If the complement already exists in `seen`, return `[seenIndex, currentIndex]`.
 5. Otherwise, store the current number and index in `seen`.
 
 Why this works:
+
 - At each index, you ask: "Have I already seen the number that completes this pair?"
 - This naturally handles duplicates (for example, `[3, 3]`) because the first `3` is stored before the second `3` is checked.
 
@@ -62,6 +63,7 @@ export function twoSum(nums: number[], target: number): number[] {
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples
 - Duplicate-number case (`[3, 3]`)
 - Negative and mixed values

@@ -24,8 +24,10 @@ type CardAction = CardActionWithTextLabel | CardActionWithCustomLabel;
 
 type CardActions = [] | [CardAction] | [CardAction, CardAction];
 
-export interface ThoughtfulCardProps
-    extends Omit<ComponentProps<"article">, "children" | "title"> {
+export interface ThoughtfulCardProps extends Omit<
+    ComponentProps<"article">,
+    "children" | "title"
+> {
     title: ReactNode;
     subtitle?: string;
     icon?: ReactNode;

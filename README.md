@@ -317,6 +317,7 @@ tags: ["typescript", "web-development"]
 
 - On every push and pull request, the CI workflow runs `bun run healthcheck` (format check, type-check, Oxlint, tests) and `bun run build`.
 - Merge to `main` only after CI passes, then Vercel promotes that commit to production.
+- For the full PR checklist and release flow, see [`docs/release.md`](docs/release.md).
 
 ---
 
@@ -516,8 +517,8 @@ bun run healthcheck  # Format check, type-check, Oxlint, tests
 
 **Before Pushing:**
 
-- Pre-push hook automatically runs type-check and format check
-- Ensure all tests pass: `bun test`
+- Pre-push hook automatically runs `bun run healthcheck` and `bun run build`
+- Run `bun audit` before opening a PR to `main`
 
 **Adding a New Dependency:**
 
@@ -542,6 +543,13 @@ bun update <package-name>     # Update specific package
 - [ ] Track Oxfmt Tailwind class sorting and CSS formatting behavior as the formatter matures
 - [ ] Consider an Oxlint config file if CLI flags stop being enough for project rules
 - **Current approach**: Keep Tailwind v4 config CSS-first in `app/globals.css`, with Oxfmt, Oxlint, type-checking, and tests as guardrails
+
+### Content QA Script
+
+- [ ] Add `bun run content:check` when content volume grows enough to justify a dedicated gate
+- [ ] Validate frontmatter schema, duplicate slugs, invalid publish dates, missing excerpts, and empty sections
+- [ ] Check internal links, referenced problem solution paths, and generated routes for blog/problem posts
+- [ ] Keep the first version dependency-free by reusing existing `gray-matter`, `valibot`, and Node/Bun filesystem APIs
 
 ---
 

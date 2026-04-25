@@ -8,6 +8,8 @@ alwaysApply: true
 - Keep changes scoped; avoid unrelated refactors in the same pass.
 - Never revert unrelated user changes without explicit request.
 - Avoid destructive git operations unless explicitly approved.
-- Run local checks after meaningful edits (`type-check` and `check`).
+- Run local checks after meaningful edits (`bun run healthcheck`).
+- Before PRs to `main`, verify `bun audit` and `bun run build`.
 - Keep docs/config in sync when tooling, conventions, or major decisions change.
 - Prefer small, verifiable steps and clear change summaries.
+- Never add Cursor attribution trailers or "Made with Cursor" text to commits, PRs, docs, or generated content.

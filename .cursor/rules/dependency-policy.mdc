@@ -6,7 +6,7 @@ alwaysApply: true
 # Dependency and Tooling Policy
 
 - Use Bun/Bunx for scripts and package operations in this repo.
-- Keep lint/format on Biome; do not add ESLint/Prettier unless explicitly requested.
+- Keep lint/format on Oxfmt and Oxlint; do not add ESLint/Prettier unless explicitly requested.
 - Prefer per-repo dependencies over global installs.
 - Do not add a new dependency without clear user benefit and justification.
 - Prefer existing repo tooling and conventions before introducing alternatives.

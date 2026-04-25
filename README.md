@@ -8,22 +8,22 @@ A modern, performance-focused portfolio website showcasing software engineering 
 
 ## Tech Stack
 
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **Framework** | Next.js 16 (App Router) | Production-ready, excellent docs, perfect for SSG + SEO, React 19 support |
-| **React** | React 19 | Server Components, enhanced performance, required for Next.js 16 |
-| **Language** | TypeScript | Type safety, best practice, portfolio showcase |
-| **Styling** | Tailwind CSS | Utility-first, fast development, great with Next.js |
-| **Content** | MDX (@next/mdx) | Markdown + React components, version controlled |
-| **Syntax Highlighting** | rehype-pretty-code + Shiki | Editor-grade code blocks for technical content |
-| **Frontmatter Parsing** | gray-matter | Extract metadata from MDX files |
-| **Frontmatter Validation** | Valibot | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance |
-| **Linting & Formatting** | Biome | All-in-one tool (replaces ESLint + Prettier), 25x faster, zero config |
-| **Runtime** | Bun v1.3.x | Fast installs, built-in test runner, instant TypeScript, production-ready |
-| **BaaS (Future, optional)** | Supabase / Appwrite | Add only when write-path/auth requirements appear |
-| **Deployment** | Vercel | Git-native deploys, previews for PRs, simple static-first workflow |
-| **UI Approach** | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies |
-| **Icons** | react-icons | Broad icon coverage with tree-shakeable imports |
+| Layer                       | Technology                                  | Rationale                                                                         |
+| --------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Framework**               | Next.js 16 (App Router)                     | Production-ready, excellent docs, perfect for SSG + SEO, React 19 support         |
+| **React**                   | React 19                                    | Server Components, enhanced performance, required for Next.js 16                  |
+| **Language**                | TypeScript                                  | Type safety, best practice, portfolio showcase                                    |
+| **Styling**                 | Tailwind CSS                                | Utility-first, fast development, great with Next.js                               |
+| **Content**                 | MDX (@next/mdx)                             | Markdown + React components, version controlled                                   |
+| **Syntax Highlighting**     | rehype-pretty-code + Shiki                  | Editor-grade code blocks for technical content                                    |
+| **Frontmatter Parsing**     | gray-matter                                 | Extract metadata from MDX files                                                   |
+| **Frontmatter Validation**  | Valibot                                     | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance           |
+| **Linting & Formatting**    | Oxfmt + Oxlint                              | Oxc-powered formatter and linter with fast JS/TS, React, a11y, and Next.js checks |
+| **Runtime**                 | Bun v1.3.x                                  | Fast installs, built-in test runner, instant TypeScript, production-ready         |
+| **BaaS (Future, optional)** | Supabase / Appwrite                         | Add only when write-path/auth requirements appear                                 |
+| **Deployment**              | Vercel                                      | Git-native deploys, previews for PRs, simple static-first workflow                |
+| **UI Approach**             | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies                               |
+| **Icons**                   | react-icons                                 | Broad icon coverage with tree-shakeable imports                                   |
 
 ---
 
@@ -69,23 +69,23 @@ bun start
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `bun run dev` | Start development server with hot reload |
-| `bun run build` | Build production bundle |
-| `bun run start` | Start production server |
-| `bun run check` | Check both linting and formatting |
-| `bun run check:fix` | Fix linting and formatting issues |
-| `bun run format` | Format code with Biome |
-| `bun run type-check` | Run TypeScript type checking |
-| `bun run test` | Run tests with Bun test runner |
-| `bun run test:coverage` | Run tests with coverage report |
-| `bun run healthcheck` | Run format, type-check, lint (Biome), and React Doctor (React/Next health) |
-| `bun run doctor` | Run React Doctor only (verbose; security, performance, correctness, Next.js rules) |
-| `bun run doctor:score` | Run React Doctor and output only the 0–100 score |
-| `bun run clean` | Remove node_modules and lock files, reinstall |
-| `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug |
-| `bun run publish:problem <slug>` | Generate markdown post from completed local solution |
+| Script                              | Description                                          |
+| ----------------------------------- | ---------------------------------------------------- |
+| `bun run dev`                       | Start development server with hot reload             |
+| `bun run build`                     | Build production bundle                              |
+| `bun run start`                     | Start production server                              |
+| `bun run check`                     | Run Oxlint checks                                    |
+| `bun run check:fix`                 | Fix linting issues, then format with Oxfmt           |
+| `bun run check:staged`              | Format and lint supported staged files before commit |
+| `bun run format`                    | Format code with Oxfmt                               |
+| `bun run format:check`              | Check formatting without writing changes             |
+| `bun run type-check`                | Run TypeScript type checking                         |
+| `bun run test`                      | Run tests with Bun test runner                       |
+| `bun run test:coverage`             | Run tests with coverage report                       |
+| `bun run healthcheck`               | Run format check, type-check, Oxlint, and tests      |
+| `bun run clean`                     | Remove node_modules and lock files, reinstall        |
+| `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug         |
+| `bun run publish:problem <slug>`    | Generate markdown post from completed local solution |
 
 ---
 
@@ -98,25 +98,25 @@ Uses **Bun's built-in test runner** with global test methods (no imports needed)
 ```typescript
 // No imports needed - test, describe, expect are globally available
 
-describe('Feature Name', () => {
-    describe('Basics', () => {
-        test('should handle normal case', () => {
-            const input = 'test';
-            const expected = 'result';
+describe("Feature Name", () => {
+    describe("Basics", () => {
+        test("should handle normal case", () => {
+            const input = "test";
+            const expected = "result";
             const result = myFunction(input);
-            
+
             expect(result).toBe(expected);
         });
     });
-    
-    describe('Edge Cases', () => {
-        test('should handle empty input', () => {
+
+    describe("Edge Cases", () => {
+        test("should handle empty input", () => {
             // Edge case tests
         });
     });
-    
-    describe('Stress Tests', () => {
-        test('should handle large input', () => {
+
+    describe("Stress Tests", () => {
+        test("should handle large input", () => {
             // Stress tests
         });
     });
@@ -137,14 +137,12 @@ describe('Feature Name', () => {
 
 ### Linting & Formatting
 
-**Biome** handles both linting and formatting:
+**Oxfmt** handles formatting and **Oxlint** handles linting:
 
-- **Linting:** TypeScript, React, and best practices rules
-- **Formatting:** Prettier-compatible, 4-space indentation
-- **Import Organization:** Auto-sorts imports
-- **Format on Save:** Configured in `.vscode/settings.json`
-
-**React Doctor** (run via `healthcheck` and in CI) scans for React/Next.js health: security, performance, correctness, architecture, dead code, and framework-specific rules. Outputs a 0–100 score; 75+ is "Great".
+- **Linting:** TypeScript, React, accessibility, and Next.js rules through Oxlint
+- **Formatting:** Oxfmt with 4-space indentation and project config in `.oxfmtrc.json`
+- **Staged files:** `scripts/check-staged.ts` formats and lints supported staged files before commit
+- **Quality gates:** `healthcheck` combines format checking, type-checking, linting, and tests
 
 ### TypeScript
 
@@ -156,10 +154,12 @@ describe('Feature Name', () => {
 ### Git Hooks
 
 **Pre-commit (Husky):**
-- Type check and lint-staged (Biome on staged files)
+
+- Type check, then Oxfmt/Oxlint on supported staged files
 
 **Pre-push (Husky):**
-- Full healthcheck (format, type-check, Biome, React Doctor) then build. Push only succeeds if both pass, so `main` stays green.
+
+- Full healthcheck (format check, type-check, Oxlint, tests) then build. Push only succeeds if both pass, so `main` stays green.
 
 ---
 
@@ -178,7 +178,7 @@ hamadeh-io/
 ├── scripts/             # Bun scripts (clean, solution tooling)
 ├── tests/               # App/component tests + mocks
 ├── types/               # Global TypeScript test types
-├── biome.json           # Biome config
+├── .oxfmtrc.json        # Oxfmt config
 ├── bunfig.toml          # Bun test config
 ├── next.config.mjs      # Next.js config
 ├── postcss.config.mjs   # PostCSS + Tailwind v4 plugin wiring
@@ -194,9 +194,10 @@ For detailed architecture decisions, patterns, and conventions, see [`docs/archi
 For TypeScript style conventions and examples, see [`docs/typescript-conventions.md`](docs/typescript-conventions.md).
 
 **Quick Summary:**
+
 - **Next.js 16:** Production-ready, SSG for fast loads, React 19 support
 - **Bun:** 25x faster installs, built-in tooling, production-ready
-- **Biome:** All-in-one linting/formatting, 25x faster than ESLint
+- **Oxc tooling:** Oxfmt for formatting and Oxlint for JS/TS, React, a11y, and Next.js linting
 - **Valibot:** Lightweight validation (~1KB vs Zod's ~14KB)
 - **MDX:** Version-controlled content, type-safe, zero infrastructure
 
@@ -205,6 +206,7 @@ For TypeScript style conventions and examples, see [`docs/typescript-conventions
 For detailed styling conventions, Tailwind CSS patterns, and design guidelines, see [`docs/styling.md`](docs/styling.md).
 
 **Quick Summary:**
+
 - **Utility-First:** Use Tailwind utilities over custom CSS
 - **Semantic HTML:** Proper HTML elements before styling
 - **Accessibility:** WCAG 2.1 AA compliance, keyboard navigation, screen reader support
@@ -237,7 +239,7 @@ excerpt: "Solving Two Sum with a hash map approach for optimal time complexity"
 title: "Why I Love TypeScript"
 slug: "why-i-love-typescript"
 datePublished: "2026-01-18"
-updatedAt: "2026-01-18"  # Track revisions
+updatedAt: "2026-01-18" # Track revisions
 excerpt: "Exploring the benefits of TypeScript for modern web development"
 tags: ["typescript", "web-development"]
 ---
@@ -247,15 +249,16 @@ tags: ["typescript", "web-development"]
 
 ## Performance Targets
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| **First Contentful Paint** | < 1.5s | Lighthouse |
-| **Largest Contentful Paint** | < 2.5s | Lighthouse |
-| **Time to Interactive** | < 3.0s | Lighthouse |
-| **Cumulative Layout Shift** | < 0.1 | Lighthouse |
-| **Bundle Size (Initial)** | < 200KB | `@next/bundle-analyzer` |
+| Metric                       | Target  | Measurement             |
+| ---------------------------- | ------- | ----------------------- |
+| **First Contentful Paint**   | < 1.5s  | Lighthouse              |
+| **Largest Contentful Paint** | < 2.5s  | Lighthouse              |
+| **Time to Interactive**      | < 3.0s  | Lighthouse              |
+| **Cumulative Layout Shift**  | < 0.1   | Lighthouse              |
+| **Bundle Size (Initial)**    | < 200KB | `@next/bundle-analyzer` |
 
 **Optimization Strategies:**
+
 - Next.js Image optimization (`next/image`)
 - Static generation for all content pages (SSG)
 - Dynamic imports for syntax highlighting (load only when viewing code)
@@ -269,6 +272,7 @@ tags: ["typescript", "web-development"]
 ## Accessibility
 
 **WCAG 2.1 AA Compliance:**
+
 - Semantic HTML
 - Proper heading hierarchy (h1 → h6)
 - Alt text for all images
@@ -278,6 +282,7 @@ tags: ["typescript", "web-development"]
 - ARIA labels where needed
 
 **Enhanced Features:**
+
 - Skip to main content link
 - Reduced motion support (`prefers-reduced-motion`)
 - Focus trap for modals (Phase 2)
@@ -302,13 +307,15 @@ tags: ["typescript", "web-development"]
 ## Deployment
 
 **Vercel (Node runtime, static-first):**
+
 - Connect GitHub repository in Vercel.
 - Set **Production Branch** to `main`.
 - Keep preview deployments enabled for pull requests and non-production branches.
 - Add required environment variables in **Vercel → Project Settings → Environment Variables**.
 
 **CI (GitHub Actions):**
-- On every push and pull request, the CI workflow runs `bun run healthcheck` (format, type-check, Biome, React Doctor) and `bun run build`.
+
+- On every push and pull request, the CI workflow runs `bun run healthcheck` (format check, type-check, Oxlint, tests) and `bun run build`.
 - Merge to `main` only after CI passes, then Vercel promotes that commit to production.
 
 ---
@@ -343,17 +350,17 @@ copy .env.local.example .env.local
 
 Use the same variables in **Vercel → Project Settings → Environment Variables** for deployment.
 
-| Variable | Required | Notes |
-|----------|----------|-------|
-| `NEXT_PUBLIC_SITE_URL` | Yes | Canonical site URL (e.g. https://hamadeh.io) |
-| `NEXT_PUBLIC_SITE_NAME` | Yes | Site/brand name |
-| `NEXT_PUBLIC_AUTHOR_NAME` | Yes | Author name |
-| `NEXT_PUBLIC_AUTHOR_EMAIL` | Yes | Contact email |
-| `NEXT_PUBLIC_GIT_BRANCH` | No | Branch name for footer badge (format: `branch-sha`); empty shows `---` |
-| `NEXT_PUBLIC_GIT_SHA` | No | Commit hash; footer shows last 5 chars; empty shows `---` |
-| `NEXT_PUBLIC_GIT_FULL_SHA` | No | Full 40-char SHA; enables badge link to specific commit |
-| `BACKEND_API_URL` | Phase 2 | Optional backend endpoint (server use unless intentionally public) |
-| `BACKEND_API_KEY` | Phase 2 | Server-only; never expose to client |
+| Variable                   | Required | Notes                                                                  |
+| -------------------------- | -------- | ---------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`     | Yes      | Canonical site URL (e.g. https://hamadeh.io)                           |
+| `NEXT_PUBLIC_SITE_NAME`    | Yes      | Site/brand name                                                        |
+| `NEXT_PUBLIC_AUTHOR_NAME`  | Yes      | Author name                                                            |
+| `NEXT_PUBLIC_AUTHOR_EMAIL` | Yes      | Contact email                                                          |
+| `NEXT_PUBLIC_GIT_BRANCH`   | No       | Branch name for footer badge (format: `branch-sha`); empty shows `---` |
+| `NEXT_PUBLIC_GIT_SHA`      | No       | Commit hash; footer shows last 5 chars; empty shows `---`              |
+| `NEXT_PUBLIC_GIT_FULL_SHA` | No       | Full 40-char SHA; enables badge link to specific commit                |
+| `BACKEND_API_URL`          | Phase 2  | Optional backend endpoint (server use unless intentionally public)     |
+| `BACKEND_API_KEY`          | Phase 2  | Server-only; never expose to client                                    |
 
 ---
 
@@ -382,10 +389,10 @@ bun run clean
 bun install
 ```
 
-### Biome Format on Save Not Working
+### Oxfmt Format on Save Not Working
 
-1. Install the **Biome** extension in VS Code/Cursor
-2. Ensure `.vscode/settings.json` is committed (it should be)
+1. Install an Oxc/Oxfmt-compatible extension in VS Code/Cursor
+2. Ensure your editor uses `oxfmt` as the formatter for supported file types
 3. Reload the editor window
 
 ### Next.js Build Warnings
@@ -428,6 +435,7 @@ bun run new:problem two-sum
 ```
 
 This creates:
+
 ```
 solutions/two-sum/
 ├── solution.ts         # Starter code with problem description
@@ -445,6 +453,7 @@ solutions/two-sum/
 **Step 3: Update Metadata**
 
 Edit `solutions/two-sum/metadata.json`:
+
 - Update `timeComplexity` (change from `O(?)`)
 - Update `spaceComplexity` (change from `O(?)`)
 - Optionally add `companies`, `hints`, `relatedProblems`
@@ -456,6 +465,7 @@ bun run publish:problem two-sum
 ```
 
 This generates `content/problems/two-sum.md` with:
+
 - Frontmatter from metadata.json
 - Your solution code
 - Template sections for explanation
@@ -463,6 +473,7 @@ This generates `content/problems/two-sum.md` with:
 **Step 5: Add Explanations**
 
 Edit `content/problems/two-sum.md` to add:
+
 - Problem description
 - Examples
 - Approach explanation
@@ -498,21 +509,25 @@ git commit -m "feat: add two-sum solution"
 ### Common Workflows
 
 **Before Committing:**
+
 ```bash
-bun run healthcheck  # Format, type-check, Biome check, React Doctor
+bun run healthcheck  # Format check, type-check, Oxlint, tests
 ```
 
 **Before Pushing:**
+
 - Pre-push hook automatically runs type-check and format check
 - Ensure all tests pass: `bun test`
 
 **Adding a New Dependency:**
+
 ```bash
 bun add <package-name>        # Production dependency
 bun add -d <package-name>     # Dev dependency
 ```
 
 **Updating Dependencies:**
+
 ```bash
 bun update                    # Update all dependencies
 bun update <package-name>     # Update specific package
@@ -522,11 +537,11 @@ bun update <package-name>     # Update specific package
 
 ## Future Improvements
 
-### CSS Linting for Tailwind v4
-- [ ] Evaluate Stylelint with `stylelint-config-standard` for proper `@theme` syntax support
-- [ ] Consider Prettier with `prettier-plugin-tailwindcss` as alternative formatter
-- [ ] Monitor Biome GitHub for native Tailwind v4 `@theme` syntax support
-- **Current approach**: Keep Tailwind v4 config CSS-first in `app/globals.css`, with Biome + tests as guardrails
+### Oxc Tooling
+
+- [ ] Track Oxfmt Tailwind class sorting and CSS formatting behavior as the formatter matures
+- [ ] Consider an Oxlint config file if CLI flags stop being enough for project rules
+- **Current approach**: Keep Tailwind v4 config CSS-first in `app/globals.css`, with Oxfmt, Oxlint, type-checking, and tests as guardrails
 
 ---
 
@@ -535,7 +550,8 @@ bun update <package-name>     # Update specific package
 - **Next.js Documentation:** https://nextjs.org/docs
 - **MDX Documentation:** https://mdxjs.com/
 - **Tailwind CSS:** https://tailwindcss.com/docs
-- **Biome Documentation:** https://biomejs.dev/
+- **Oxfmt Documentation:** https://oxc.rs/docs/guide/usage/formatter.html
+- **Oxlint Documentation:** https://oxc.rs/docs/guide/usage/linter.html
 - **Valibot Documentation:** https://valibot.dev/
 - **Bun Documentation:** https://bun.sh/docs
 - **Bun Testing:** https://bun.sh/docs/test

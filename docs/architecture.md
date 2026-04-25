@@ -19,6 +19,7 @@ This document outlines the architectural decisions, patterns, and conventions us
 ### Next.js 16 (App Router)
 
 **Why:**
+
 - Production-ready with 10+ years of battle-testing
 - Excellent documentation and community support
 - Perfect for SSG (Static Site Generation) - fast loads, excellent SEO
@@ -27,6 +28,7 @@ This document outlines the architectural decisions, patterns, and conventions us
 - Zero-config Vercel deployment
 
 **Patterns:**
+
 - Use App Router for all routes (`app/` directory)
 - Leverage Server Components by default
 - Use Client Components (`'use client'`) only when needed (interactivity, hooks, browser APIs)
@@ -35,12 +37,14 @@ This document outlines the architectural decisions, patterns, and conventions us
 ### React 19
 
 **Why:**
+
 - Required for Next.js 16
 - Server Components for better performance
 - Enhanced performance optimizations
 - Better developer experience
 
 **Patterns:**
+
 - Prefer Server Components
 - Use Client Components sparingly
 - Leverage React 19 features (use hook, Server Actions)
@@ -48,12 +52,14 @@ This document outlines the architectural decisions, patterns, and conventions us
 ### TypeScript
 
 **Why:**
+
 - Type safety catches errors at compile time
 - Better IDE support and autocomplete
 - Self-documenting code
 - Portfolio showcase of best practices
 
 **Patterns:**
+
 - Strict mode enabled (`strict: true` in `tsconfig.json`)
 - Explicit return types for all exported functions
 - No `any` types (use `unknown` when needed)
@@ -85,32 +91,37 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 ### Bun v1.3.x
 
 **Why:**
+
 - 25x faster package installation
 - Built-in test runner, bundler, package manager
 - Instant TypeScript execution
 - Production-ready (Vercel supports Bun)
 
 **Fallback:**
+
 - All scripts work with both Bun and Node.js
 - Easy switch to `npm` commands if needed
 - Node.js 24.x LTS as production fallback
 
-### Biome
+### Oxfmt and Oxlint
 
 **Why:**
-- All-in-one tool (replaces ESLint + Prettier)
-- 25x faster than ESLint (written in Rust)
-- Zero config with sensible defaults
-- Better developer experience
+
+- Oxc-powered formatter and linter for fast local and CI feedback
+- Oxfmt keeps formatting deterministic across JS, TS, CSS, Markdown, and config files
+- Oxlint covers TypeScript, React, accessibility, and Next.js checks without the ESLint dependency tree
+- Smaller audit surface than the previous combined formatter, linter, and health-check setup
 
 **Patterns:**
-- Single configuration file (`biome.json`)
-- Format on save enabled in VS Code/Cursor
-- Pre-commit hooks for automatic formatting
+
+- Formatter configuration lives in `.oxfmtrc.json`
+- Package scripts wrap Oxfmt/Oxlint so hooks and CI use the same commands
+- Pre-commit hooks format and lint supported staged files through `scripts/check-staged.ts`
 
 ### Valibot
 
 **Why:**
+
 - Lightweight (~1KB vs Zod's ~14KB)
 - Critical for 200KB bundle size target
 - 2-10x faster runtime validation
@@ -118,6 +129,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 - Better TypeScript inference
 
 **Usage:**
+
 - Validate MDX frontmatter schemas
 - Type-safe content parsing
 - Runtime validation at build time
@@ -125,6 +137,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 ### MDX for Content
 
 **Why:**
+
 - Version control everything in Git
 - Type safety with Valibot schemas
 - Zero infrastructure (no database, no CMS)
@@ -132,6 +145,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 - Developer-friendly (Markdown + React components)
 
 **Patterns:**
+
 - All content in `content/` directory
 - Frontmatter validated with Valibot schemas
 - Static generation for all content pages
@@ -177,17 +191,19 @@ hamadeh-io/
 ### Server Components (Default)
 
 **When to use:**
+
 - Fetching data
 - Accessing backend resources
 - Keeping sensitive information on server
 - Large dependencies that should reduce client bundle
 
 **Example:**
+
 ```typescript
 // app/problems/[slug]/page.tsx
 export default async function ProblemPage({ params }: Props) {
     const solution = await getProblemBySlug(params.slug);
-    
+
     return <SolutionView solution={solution} />;
 }
 ```
@@ -195,12 +211,14 @@ export default async function ProblemPage({ params }: Props) {
 ### Client Components
 
 **When to use:**
+
 - Interactivity (onClick, onChange, etc.)
 - Browser APIs (localStorage, window, etc.)
 - React hooks (useState, useEffect, etc.)
 - Third-party libraries that require client-side execution
 
 **Example:**
+
 ```typescript
 'use client';
 
@@ -208,7 +226,7 @@ import { useState } from 'react';
 
 export function ThemeToggle() {
     const [theme, setTheme] = useState('light');
-    
+
     return (
         <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
             Toggle theme
@@ -232,11 +250,13 @@ export function ThemeToggle() {
 ### Static Generation (SSG)
 
 **All content pages use SSG:**
+
 - Code problems
 - Blog posts
 - About page
 
 **Pattern:**
+
 ```typescript
 // app/problems/[slug]/page.tsx
 export async function generateStaticParams() {
@@ -255,6 +275,7 @@ export default async function ProblemPage({ params }: Props) {
 ### MDX Processing
 
 **Pattern:**
+
 1. Read MDX files from `content/` directory
 2. Parse frontmatter with `gray-matter`
 3. Validate frontmatter with Valibot schemas
@@ -262,20 +283,26 @@ export default async function ProblemPage({ params }: Props) {
 5. Generate static pages at build time
 
 **Example:**
+
 ```typescript
 // lib/mdx.ts
-import matter from 'gray-matter';
-import { parse } from 'valibot';
-import { problemFrontmatterSchema } from './schemas';
+import matter from "gray-matter";
+import { parse } from "valibot";
+import { problemFrontmatterSchema } from "./schemas";
 
 export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
-    const filePath = path.join(process.cwd(), 'content', 'problems', `${slug}.md`);
-    const fileContents = await fs.readFile(filePath, 'utf8');
+    const filePath = path.join(
+        process.cwd(),
+        "content",
+        "problems",
+        `${slug}.md`
+    );
+    const fileContents = await fs.readFile(filePath, "utf8");
     const { data, content } = matter(fileContents);
-    
+
     // Validate frontmatter
     const frontmatter = parse(problemFrontmatterSchema, data);
-    
+
     return {
         ...frontmatter,
         content,
@@ -290,22 +317,23 @@ export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
 ### Type-Safe Errors
 
 **Pattern:**
+
 ```typescript
-type Result<T, E = Error> = 
+type Result<T, E = Error> =
     | { success: true; data: T }
     | { success: false; error: E };
 
 export async function getProblemBySlug(
     slug: string
-): Promise<Result<ProblemPost, 'NOT_FOUND' | 'INVALID_FORMAT'>> {
+): Promise<Result<ProblemPost, "NOT_FOUND" | "INVALID_FORMAT">> {
     try {
         const solution = await readSolutionFile(slug);
         return { success: true, data: solution };
     } catch (error) {
-        if (error.code === 'ENOENT') {
-            return { success: false, error: 'NOT_FOUND' };
+        if (error.code === "ENOENT") {
+            return { success: false, error: "NOT_FOUND" };
         }
-        return { success: false, error: 'INVALID_FORMAT' };
+        return { success: false, error: "INVALID_FORMAT" };
     }
 }
 ```
@@ -335,41 +363,43 @@ tests/
 ### Test Structure
 
 **Global Test Types:**
+
 - Test methods (`test`, `describe`, `expect`, etc.) are globally available
 - No need to import from `'bun:test'` in test files
 - Type definitions in `types/bun-test.d.ts` provide IntelliSense
 
 **Pattern:**
+
 ```typescript
 // No imports needed - test methods are globally available
 
-describe('Feature Name', () => {
-    describe('Basics', () => {
-        test('should handle normal case', () => {
-            const input = 'test';
-            const expected = 'result';
+describe("Feature Name", () => {
+    describe("Basics", () => {
+        test("should handle normal case", () => {
+            const input = "test";
+            const expected = "result";
             const result = myFunction(input);
-            
+
             expect(result).toBe(expected);
         });
     });
-    
-    describe('Edge Cases', () => {
-        test('should handle empty input', () => {
-            const input = '';
-            const expected = '';
+
+    describe("Edge Cases", () => {
+        test("should handle empty input", () => {
+            const input = "";
+            const expected = "";
             const result = myFunction(input);
-            
+
             expect(result).toBe(expected);
         });
     });
-    
-    describe('Stress Tests', () => {
-        test('should handle large input', () => {
-            const input = 'a'.repeat(10000);
-            const expected = 'result';
+
+    describe("Stress Tests", () => {
+        test("should handle large input", () => {
+            const input = "a".repeat(10000);
+            const expected = "result";
             const result = myFunction(input);
-            
+
             expect(result).toBe(expected);
         });
     });
@@ -377,6 +407,7 @@ describe('Feature Name', () => {
 ```
 
 **Important:**
+
 - Always use `test()` instead of `it()` for consistency
 - `it()` is not available as a global (enforced by project preference)
 - Use `test.skip()`, `test.only()`, `test.todo()` for test modifiers
@@ -397,6 +428,7 @@ describe('Feature Name', () => {
 **Target:** < 200KB initial bundle
 
 **Strategies:**
+
 - Dynamic imports for syntax highlighting (load only when viewing code)
 - Tree-shake syntax highlighting (import specific languages only)
 - Code splitting (automatic with Next.js)

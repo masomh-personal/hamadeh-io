@@ -17,11 +17,19 @@ This document explains hamadeh.io's color system and how to maintain consistency
 ```css
 @theme {
     /* Custom Semantic Colors - Use these in Tailwind classes! */
-    --color-primary: var(--color-sky-500);       /* Primary accent (links, active states) */
+    --color-primary: var(
+        --color-sky-500
+    ); /* Primary accent (links, active states) */
     --color-primary-hover: var(--color-sky-400); /* Primary hover state */
-    --color-secondary: var(--color-emerald-500); /* Secondary accent (success, positive) */
-    --color-tertiary: var(--color-amber-400);    /* Tertiary accent (highlights, badges) */
-    --color-muted: var(--color-slate-400);       /* Muted text (inactive, secondary) */
+    --color-secondary: var(
+        --color-emerald-500
+    ); /* Secondary accent (success, positive) */
+    --color-tertiary: var(
+        --color-amber-400
+    ); /* Tertiary accent (highlights, badges) */
+    --color-muted: var(
+        --color-slate-400
+    ); /* Muted text (inactive, secondary) */
 }
 ```
 
@@ -42,17 +50,17 @@ This document explains hamadeh.io's color system and how to maintain consistency
 
 ## 📖 Available Semantic Colors
 
-| Tailwind Class | Use Case | Example |
-|----------------|----------|---------|
-| `text-primary` | Active links, primary actions | Navigation active state |
-| `hover:text-primary` | Hover states for links/buttons | Logo, nav links |
-| `bg-primary` | Primary buttons, highlights | CTA buttons |
-| `border-primary` | Primary borders | Active input fields |
-| `text-secondary` | Success states, positive feedback | Success messages |
-| `bg-secondary` | Secondary actions | Secondary buttons |
-| `text-tertiary` | Highlights, special emphasis | Badges, labels |
-| `text-muted` | Inactive/secondary text | Unselected nav links, captions |
-| `hover:text-muted` | Subtle hover effects | Footer icons |
+| Tailwind Class       | Use Case                          | Example                        |
+| -------------------- | --------------------------------- | ------------------------------ |
+| `text-primary`       | Active links, primary actions     | Navigation active state        |
+| `hover:text-primary` | Hover states for links/buttons    | Logo, nav links                |
+| `bg-primary`         | Primary buttons, highlights       | CTA buttons                    |
+| `border-primary`     | Primary borders                   | Active input fields            |
+| `text-secondary`     | Success states, positive feedback | Success messages               |
+| `bg-secondary`       | Secondary actions                 | Secondary buttons              |
+| `text-tertiary`      | Highlights, special emphasis      | Badges, labels                 |
+| `text-muted`         | Inactive/secondary text           | Unselected nav links, captions |
+| `hover:text-muted`   | Subtle hover effects              | Footer icons                   |
 
 ---
 
@@ -61,11 +69,13 @@ This document explains hamadeh.io's color system and how to maintain consistency
 Want to change from Sky Blue to Purple? Just update **ONE line**:
 
 **Before:**
+
 ```css
 --color-primary: var(--color-sky-500);
 ```
 
 **After:**
+
 ```css
 --color-primary: var(--color-indigo-500);
 ```
@@ -77,12 +87,14 @@ Want to change from Sky Blue to Purple? Just update **ONE line**:
 ## ✅ Best Practices
 
 ### DO:
+
 - ✅ Use semantic color names: `text-primary`, `bg-secondary`, `text-muted`
 - ✅ Use all Tailwind variants: `hover:`, `focus:`, `active:`, `disabled:`
 - ✅ Use opacity modifiers: `bg-primary/90`, `text-muted/50`
 - ✅ Change colors in `@theme` section only
 
 ### DON'T:
+
 - ❌ Hardcode specific colors: `text-sky-500`, `bg-indigo-400`
 - ❌ Use hex values in components: `text-[#0ea5e9]`
 - ❌ Create custom CSS classes for colors (use Tailwind)
@@ -94,13 +106,13 @@ Want to change from Sky Blue to Purple? Just update **ONE line**:
 
 Your pre-configured color palettes (defined in `@theme`):
 
-| Palette | Variants | Primary Use |
-|---------|----------|-------------|
-| **Sky** | 400, 500, 600, 950 | Current primary accent |
-| **Emerald** | 400, 500, 600 | Success states, positive |
-| **Amber** | 400, 500, 600 | Highlights, warnings |
-| **Indigo** | 300-900 | Alternative primary |
-| **Slate** | 50-950 | Neutrals, backgrounds |
+| Palette     | Variants           | Primary Use              |
+| ----------- | ------------------ | ------------------------ |
+| **Sky**     | 400, 500, 600, 950 | Current primary accent   |
+| **Emerald** | 400, 500, 600      | Success states, positive |
+| **Amber**   | 400, 500, 600      | Highlights, warnings     |
+| **Indigo**  | 300-900            | Alternative primary      |
+| **Slate**   | 50-950             | Neutrals, backgrounds    |
 
 **To use a different palette:** Change the semantic color mapping in `@theme`.
 
@@ -124,6 +136,7 @@ Your pre-configured color palettes (defined in `@theme`):
 ```
 
 **Result:**
+
 - Active link: Uses primary color
 - Inactive link: Uses muted color, changes to primary on hover
 - **Change primary color once** → All links update automatically
@@ -174,6 +187,7 @@ When creating new components, follow this workflow:
 ### Step 1: Identify Color Needs
 
 Ask yourself:
+
 - Is this a primary action? → Use `primary`
 - Is this secondary/success? → Use `secondary`
 - Is this muted/inactive? → Use `muted`
@@ -231,6 +245,7 @@ If you want to add multiple color schemes:
 ```
 
 **Toggle themes:**
+
 ```tsx
 <html className="theme-ocean">
 ```
@@ -279,16 +294,19 @@ All `text-primary`, `bg-primary`, etc. update automatically! 🌈
 If you find hardcoded colors in existing components, migrate them:
 
 **Before:**
+
 ```tsx
 <Link className="text-sky-500 hover:text-sky-400">
 ```
 
 **After:**
+
 ```tsx
 <Link className="text-primary hover:text-primary-hover">
 ```
 
 **Benefits:**
+
 - ✅ Easier to change colors site-wide
 - ✅ Better IntelliSense
 - ✅ Cleaner, more semantic code
@@ -297,15 +315,15 @@ If you find hardcoded colors in existing components, migrate them:
 
 ## 📚 Summary: Quick Reference
 
-| Instead of... | Use... |
-|---------------|--------|
-| `text-sky-500` | `text-primary` |
-| `text-sky-400` | `text-primary-hover` |
-| `bg-emerald-500` | `bg-secondary` |
-| `text-amber-400` | `text-tertiary` |
-| `text-slate-400` | `text-muted` |
-| `hover:text-sky-400` | `hover:text-primary` |
-| `bg-indigo-500` | `bg-primary` (after changing theme) |
+| Instead of...        | Use...                              |
+| -------------------- | ----------------------------------- |
+| `text-sky-500`       | `text-primary`                      |
+| `text-sky-400`       | `text-primary-hover`                |
+| `bg-emerald-500`     | `bg-secondary`                      |
+| `text-amber-400`     | `text-tertiary`                     |
+| `text-slate-400`     | `text-muted`                        |
+| `hover:text-sky-400` | `hover:text-primary`                |
+| `bg-indigo-500`      | `bg-primary` (after changing theme) |
 
 ---
 
@@ -322,8 +340,8 @@ If you find hardcoded colors in existing components, migrate them:
 ## 🔧 Tools
 
 - **VS Code Extension:** [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
-  - Provides autocomplete for `text-primary`, `bg-secondary`, etc.
-  - Shows color previews in editor
+    - Provides autocomplete for `text-primary`, `bg-secondary`, etc.
+    - Shows color previews in editor
 
 - **Check your colors:** Open `app/globals.css` → `@theme` section
 

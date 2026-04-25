@@ -24,6 +24,7 @@ Use a frequency map with two passes:
 5. If all characters decrement cleanly, return `true`.
 
 Why this works:
+
 - Anagrams must have identical character frequencies.
 - Counting from `s` and consuming with `t` verifies both presence and exact counts.
 
@@ -59,6 +60,7 @@ export function isAnagram(s: string, t: string): boolean {
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples
 - Empty, identical, and length-mismatch cases
 - Repeated-character frequency matches and mismatches

@@ -1,6 +1,7 @@
 # Layout System
 
 ## Overview
+
 hamadeh.io uses a consistent layout system with a fixed max-width content container and edge-to-edge backgrounds.
 
 ## Layout Structure
@@ -27,11 +28,13 @@ hamadeh.io uses a consistent layout system with a fixed max-width content contai
 ## Content Container
 
 ### Standard Max Width
+
 - **Desktop**: `max-w-6xl` (1152px)
 - **Padding**: `px-6` (24px horizontal padding)
 - **Centering**: `mx-auto` (auto horizontal margins)
 
 ### Usage Pattern
+
 All page content should follow this pattern:
 
 ```tsx
@@ -47,18 +50,21 @@ export default function MyPage() {
 ## Layout Components
 
 ### Header
+
 - **Layout**: Sticky, full-width, with theme border and background
 - **Classes**: `sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)`
 - **Content**: Constrained to `max-w-6xl px-6`
 - **Height**: Fixed at `h-16` (64px)
 
 ### Footer
+
 - **Layout**: Full-width with theme border and background
 - **Classes**: `w-full border-t border-(--border) bg-(--background)`
 - **Content**: Constrained to `max-w-6xl px-6`
 - **Padding**: `py-6` (24px vertical)
 
 ### Main Content
+
 - **Container**: Applied at page level, not in layout
 - **Pattern**: `mx-auto max-w-6xl px-6 py-16`
 - **Vertical Padding**: `py-16` for standard pages, adjust as needed
@@ -66,15 +72,18 @@ export default function MyPage() {
 ## Responsive Behavior
 
 ### Mobile (< 640px)
+
 - Content uses full width minus `px-6` padding
 - Stack elements vertically
 - Reduce font sizes and spacing
 
 ### Tablet (640px - 1024px)
+
 - Content still constrained to `max-w-6xl`
 - Adjust grid layouts (e.g., 2 columns instead of 3)
 
 ### Desktop (> 1024px)
+
 - Full layout with `max-w-6xl` centered
 - Multi-column layouts
 - Optimal line lengths for readability
@@ -90,6 +99,7 @@ export default function MyPage() {
 ## Examples
 
 ### Standard Page
+
 ```tsx
 export default function AboutPage() {
     return (
@@ -102,6 +112,7 @@ export default function AboutPage() {
 ```
 
 ### Full-Width Section with Constrained Content
+
 ```tsx
 export default function HomePage() {
     return (
@@ -112,7 +123,7 @@ export default function HomePage() {
                     <h1>Welcome</h1>
                 </div>
             </section>
-            
+
             {/* Regular content */}
             <div className="mx-auto max-w-6xl px-6 py-16">
                 <p>More content...</p>
@@ -123,6 +134,7 @@ export default function HomePage() {
 ```
 
 ## Related Files
+
 - `app/layout.tsx` - Root layout with Header/Footer
 - `components/layout/Header.tsx` - Header component (layout styles colocated)
 - `components/layout/Footer.tsx` - Footer component (layout styles colocated)

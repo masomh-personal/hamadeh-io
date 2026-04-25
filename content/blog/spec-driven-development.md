@@ -24,7 +24,7 @@ This is the "he said, she said" problem. And no amount of Jira tickets or standu
 
 ### Test-Driven Development (TDD)
 
-TDD says: write a failing test, make it pass, refactor. It works well for unit-level correctness and has real value for catching regressions. But TDD operates at the implementation level. It tells you *how* something should behave in code, not *what* the system should do for the user. You can have 100% test coverage and still build the wrong product.
+TDD says: write a failing test, make it pass, refactor. It works well for unit-level correctness and has real value for catching regressions. But TDD operates at the implementation level. It tells you _how_ something should behave in code, not _what_ the system should do for the user. You can have 100% test coverage and still build the wrong product.
 
 ### Behavior-Driven Development (BDD)
 
@@ -50,7 +50,7 @@ A spec is not a user story. It is not a test file. It is a document, a contract,
 - **The acceptance criteria** — how we objectively know the work is complete
 - **The technical approach** — high-level design decisions and tradeoffs
 
-The key difference from other methodologies: the spec is written in plain language that both engineers and non-engineers can read, review, and agree on *before* work begins.
+The key difference from other methodologies: the spec is written in plain language that both engineers and non-engineers can read, review, and agree on _before_ work begins.
 
 There is no "he said, she said" because the spec is the single source of truth. If it is not in the spec, it is not in scope. If someone wants to change scope, the spec gets updated and re-reviewed. The contract stays explicit.
 
@@ -93,7 +93,7 @@ A spec constrains the solution space. When the spec says "out of scope: real-tim
 
 ### Specs Enable Verification
 
-One of the hardest parts of AI-assisted development is knowing whether the generated code is correct. Not syntactically correct, but *correct for the problem*.
+One of the hardest parts of AI-assisted development is knowing whether the generated code is correct. Not syntactically correct, but _correct for the problem_.
 
 Acceptance criteria in a spec give you a checklist. Did the AI-generated code satisfy every criterion? If yes, ship it. If not, iterate on the specific gap. This is dramatically more efficient than eyeballing generated code and hoping it matches some unwritten expectation.
 
@@ -125,7 +125,7 @@ This feels slower at the start. It is. But the total time from start to correct,
 
 I believe Spec-Driven Development will be increasingly important in software engineering. Not because it is trendy, but because the economics of software development are changing.
 
-AI makes writing code cheaper. It does not make knowing *what to build* cheaper. That is still a human problem, and it always will be.
+AI makes writing code cheaper. It does not make knowing _what to build_ cheaper. That is still a human problem, and it always will be.
 
 The teams that will thrive are the ones that invest in clarity before velocity. The ones that write specs, align on intent, and then move fast with AI-assisted implementation.
 

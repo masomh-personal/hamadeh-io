@@ -24,6 +24,7 @@ Use a two-pass frequency counting strategy:
 4. If no such character is found, return `-1`.
 
 Why this works:
+
 - A character is unique exactly when its total count is `1`.
 - The second pass preserves left-to-right order, so the first match is the required answer.
 
@@ -54,6 +55,7 @@ export function firstUniqChar(s: string): number {
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples
 - Empty and single-character inputs
 - Unique character at start, middle, and end

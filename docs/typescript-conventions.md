@@ -49,8 +49,10 @@ interface ButtonProps extends React.ComponentProps<"button"> {
 When you need to reshape props:
 
 ```ts
-interface LinkButtonProps
-    extends Omit<React.ComponentProps<"button">, "children"> {
+interface LinkButtonProps extends Omit<
+    React.ComponentProps<"button">,
+    "children"
+> {
     href?: string;
     children?: React.ReactNode;
 }
@@ -121,4 +123,3 @@ Before committing:
 - Are DOM wrappers using `ComponentProps<"...">` or a clear equivalent?
 - Are helper types named clearly and scoped to actual need?
 - Is the code easier to read with these types than without them?
-

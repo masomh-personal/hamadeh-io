@@ -70,6 +70,7 @@ Use a fixed-length window scan with character-by-character comparison:
 4. If no windows match, return `-1`.
 
 Why this works:
+
 - Each candidate start position is validated exactly against `needle`.
 - Returning on the first full match guarantees the first occurrence index.
 
@@ -99,5 +100,5 @@ export function strStr(haystack: string, needle: string): number {
 
 ## Complexity
 
-- **Time O((n - m + 1) * m):** up to `n - m + 1` windows, each comparing up to `m` characters.
+- **Time O((n - m + 1) \* m):** up to `n - m + 1` windows, each comparing up to `m` characters.
 - **Space O(1):** only constant extra variables are used.

@@ -1,9 +1,9 @@
 ---
-title: 'SOLID in the AI Era (Part 3): Liskov Substitution Without Fragile Hierarchies'
-slug: 'solid-lsp-ai-era-part-3'
-datePublished: '2026-03-03'
-excerpt: 'Part 3 of a SOLID series: how to apply Liskov Substitution Principle with behavioral contracts, safe polymorphism, and composition over inheritance.'
-tags: ['engineering', 'ai', 'solid']
+title: "SOLID in the AI Era (Part 3): Liskov Substitution Without Fragile Hierarchies"
+slug: "solid-lsp-ai-era-part-3"
+datePublished: "2026-03-03"
+excerpt: "Part 3 of a SOLID series: how to apply Liskov Substitution Principle with behavioral contracts, safe polymorphism, and composition over inheritance."
+tags: ["engineering", "ai", "solid"]
 ---
 
 In Part 1, I covered SRP. In Part 2, I covered OCP. Part 3 is **L: Liskov Substitution Principle (LSP)**: **if code works with a base type, it should also work with any of its subtypes without surprise behavior**. This is a behavior rule, not a syntax rule. You can compile perfectly and still violate LSP if a subtype breaks expectations at runtime.

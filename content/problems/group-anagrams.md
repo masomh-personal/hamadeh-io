@@ -24,18 +24,21 @@ An anagram is a word formed by rearranging all letters of another word, using ea
 ## Examples
 
 **Example 1:**
+
 ```
 Input:  strs = ["eat","tea","tan","ate","nat","bat"]
 Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 ```
 
 **Example 2:**
+
 ```
 Input:  strs = [""]
 Output: [[""]]
 ```
 
 **Example 3:**
+
 ```
 Input:  strs = ["a"]
 Output: [["a"]]
@@ -89,18 +92,19 @@ export function groupAnagrams(strs: string[]): string[][] {
 }
 ```
 
-This runs in O(n * k) since counting is linear and avoids the sort entirely. The tradeoff: the key is a 26-element comma-separated string like `"1,0,0,...,1,0"`, which is harder to read and debug than a sorted word like `"aet"`. The fixed 26-slot array only works because the constraints guarantee lowercase English letters.
+This runs in O(n \* k) since counting is linear and avoids the sort entirely. The tradeoff: the key is a 26-element comma-separated string like `"1,0,0,...,1,0"`, which is harder to read and debug than a sorted word like `"aet"`. The fixed 26-slot array only works because the constraints guarantee lowercase English letters.
 
-For most interviews, the sort approach is the right call. It reads clearly, the intent is obvious, and the k <= 100 constraint makes the log k cost irrelevant. Reach for the frequency array if an interviewer specifically pushes you toward O(n * k), or if the character set were unrestricted.
+For most interviews, the sort approach is the right call. It reads clearly, the intent is obvious, and the k <= 100 constraint makes the log k cost irrelevant. Reach for the frequency array if an interviewer specifically pushes you toward O(n \* k), or if the character set were unrestricted.
 
 ## Complexity
 
-- **Time O(n * k log k):** for each of the `n` strings, we sort its characters in O(k log k).
-- **Space O(n * k):** the map stores every original string across all groups, totaling O(n * k) characters.
+- **Time O(n \* k log k):** for each of the `n` strings, we sort its characters in O(k log k).
+- **Space O(n \* k):** the map stores every original string across all groups, totaling O(n \* k) characters.
 
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples
 - All strings in a single anagram group
 - All strings as singletons (no shared anagrams)

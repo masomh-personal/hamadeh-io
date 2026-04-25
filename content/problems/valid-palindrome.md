@@ -18,14 +18,14 @@ Return `true` if the normalized string is a palindrome; otherwise return `false`
 ## Approach
 
 1. Normalize the string:
-   - convert to lowercase
-   - remove non-alphanumeric characters
+    - convert to lowercase
+    - remove non-alphanumeric characters
 2. Initialize two pointers:
-   - `l` at the start
-   - `r` at the end
+    - `l` at the start
+    - `r` at the end
 3. Compare mirrored characters while `l < r`:
-   - if they differ, return `false`
-   - if they match, move inward (`l++`, `r--`)
+    - if they differ, return `false`
+    - if they match, move inward (`l++`, `r--`)
 4. If the loop completes, return `true`.
 
 ## Implementation

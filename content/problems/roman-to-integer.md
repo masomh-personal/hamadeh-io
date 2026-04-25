@@ -16,7 +16,7 @@ Given a Roman numeral string `s`, convert it to an integer.
 Roman numerals use seven symbols:
 
 | Symbol | Value |
-|--------|-------|
+| ------ | ----- |
 | I      | 1     |
 | V      | 5     |
 | X      | 10    |
@@ -40,12 +40,14 @@ Numerals are normally written largest to smallest from left to right. Six subtra
 ## Examples
 
 **Example 1**
+
 ```
 Input:  s = "III"
 Output: 3
 ```
 
 **Example 2**
+
 ```
 Input:  s = "LVIII"
 Output: 58
@@ -53,6 +55,7 @@ Explanation: L = 50, V = 5, III = 3
 ```
 
 **Example 3**
+
 ```
 Input:  s = "MCMXCIV"
 Output: 1994
@@ -93,13 +96,13 @@ One boundary detail: when `i` is the last index, `s[i + 1]` is `undefined`. The 
 ```typescript
 export function romanToInt(s: string): number {
     const romanMap = new Map<string, number>([
-        ['I', 1],
-        ['V', 5],
-        ['X', 10],
-        ['L', 50],
-        ['C', 100],
-        ['D', 500],
-        ['M', 1000],
+        ["I", 1],
+        ["V", 5],
+        ["X", 10],
+        ["L", 50],
+        ["C", 100],
+        ["D", 500],
+        ["M", 1000],
     ]);
 
     let result = 0;

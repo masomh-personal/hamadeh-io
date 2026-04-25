@@ -41,10 +41,10 @@ import { nanoid } from "nanoid";
  * @returns Array with a random `id` field added to each object
  */
 function attachRandomIds<T extends object>(items: T[]): (T & { id: string })[] {
-  return items.map((item) => ({
-    ...item,
-    id: nanoid(),
-  }));
+    return items.map((item) => ({
+        ...item,
+        id: nanoid(),
+    }));
 }
 ```
 
@@ -85,16 +85,16 @@ import { hash } from "hash-it";
  * @returns Array where every object is guaranteed to have a stable `id`
  */
 function ensureDeterministicIds<T extends Record<string, unknown>>(
-  items: T[]
+    items: T[]
 ): (T & { id: string })[] {
-  return items.map((item) => {
-    if (item.id && typeof item.id === "string" && item.id.length > 0) {
-      return item as T & { id: string };
-    }
+    return items.map((item) => {
+        if (item.id && typeof item.id === "string" && item.id.length > 0) {
+            return item as T & { id: string };
+        }
 
-    const derivedId = String(hash(item));
-    return { ...item, id: derivedId };
-  });
+        const derivedId = String(hash(item));
+        return { ...item, id: derivedId };
+    });
 }
 ```
 

@@ -49,11 +49,13 @@ How a load balancer picks which server to send a request to is determined by its
 Requests are distributed in order, one by one, across all available servers. Server A gets the first request, Server B gets the second, Server C gets the third, then back to Server A.
 
 **Pros:**
+
 - Simple to implement
 - Equal distribution over time
 - No state needed
 
 **Cons:**
+
 - No awareness of actual server load
 - No session affinity. A user's next request may land on a different server.
 - Works poorly when servers have different capacity or when requests have very different processing costs
@@ -69,10 +71,12 @@ Routes each new request to the server currently handling the fewest active conne
 Unlike Round Robin, this is load-aware. If one server has ten open connections and another has two, the next request goes to the one with two.
 
 **Pros:**
+
 - Adapts to real-time load
 - Handles long-lived connections better than Round Robin
 
 **Cons:**
+
 - Requires the load balancer to maintain connection state for every server
 - More overhead than Round Robin
 
@@ -87,10 +91,12 @@ Unlike Round Robin, this is load-aware. If one server has ten open connections a
 Round Robin with a weight assigned to each server based on its capacity. A server with weight 3 gets three requests for every one that a server with weight 1 gets.
 
 **Pros:**
+
 - Simple extension of Round Robin
 - Handles heterogeneous server pools where hardware specs differ
 
 **Cons:**
+
 - Weights are static and must be assigned manually
 - Still no awareness of real-time load
 - Getting the weights right requires good knowledge of each server's actual capacity
@@ -106,10 +112,12 @@ Combines Weighted Round Robin and Least Connections. The load balancer considers
 A server with more capacity and fewer connections wins.
 
 **Pros:**
+
 - Adapts to both real-time load and server capacity differences
 - Better fit for heterogeneous fleets than either parent algorithm alone
 
 **Cons:**
+
 - Requires both state tracking (active connections) and manual weight configuration
 - Most operationally complex of the connection-based algorithms
 
@@ -124,10 +132,12 @@ The client's IP address is hashed to produce a value, which maps to a specific s
 Example: client IP `192.168.1.10` hashes to value 2. With 3 servers, `2 % 3 = 2`, so it routes to Server C every time.
 
 **Pros:**
+
 - Provides session persistence without storing session state in the load balancer
 - Useful when the application layer does not have a shared session store
 
 **Cons:**
+
 - Distribution is only as even as the IP address spread. If clients come from a narrow range of IPs (for example, all behind a corporate NAT), most traffic hits the same server.
 - Adding or removing a server changes the hash mapping, potentially disrupting existing sessions
 
@@ -142,10 +152,12 @@ Routes each request to the server with the lowest current average response time.
 This goes one step further than Least Connections. Rather than using active connections as a proxy for load, it directly monitors how fast each server is responding and uses that as the routing signal.
 
 **Pros:**
+
 - Best real-time picture of server performance
 - Good for latency-sensitive applications
 
 **Cons:**
+
 - Requires continuous response time monitoring for all servers
 - More infrastructure and measurement overhead than any of the previous algorithms
 
@@ -158,11 +170,13 @@ This goes one step further than Least Connections. Rather than using active conn
 The load balancer picks a server at random for each request.
 
 **Pros:**
+
 - Extremely simple
 - No state required
 - Statistically even distribution over a large number of requests
 
 **Cons:**
+
 - No load awareness
 - No session affinity
 - Can produce uneven distribution in the short run
@@ -176,10 +190,12 @@ The load balancer picks a server at random for each request.
 Routes each request to the server currently consuming the least bandwidth, measured in megabits per second.
 
 **Pros:**
+
 - Appropriate when bandwidth consumption varies significantly between requests
 - Keeps high-bandwidth servers from getting overloaded
 
 **Cons:**
+
 - Requires continuous bandwidth monitoring for every server
 - Adds measurement infrastructure overhead
 
@@ -194,10 +210,12 @@ The load balancer is configured with custom routing logic based on application-s
 Custom signals might include CPU utilization, memory pressure, disk I/O, queue depth, or any application-level metric you can expose.
 
 **Pros:**
+
 - Most flexible of all the algorithms
 - Can optimize for exactly the resource that matters for your workload
 
 **Cons:**
+
 - Most complex to configure and maintain
 - Risk of misconfiguration if the chosen metrics do not actually reflect server load accurately
 - Requires metric collection infrastructure and ongoing tuning

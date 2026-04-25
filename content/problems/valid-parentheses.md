@@ -116,7 +116,10 @@ export function isValid(s: string): boolean {
             stack.push(currBracket);
         } else {
             const openingBracket = stack.pop();
-            if (openingBracket === undefined || OPEN_TO_CLOSE[openingBracket] !== currBracket) {
+            if (
+                openingBracket === undefined ||
+                OPEN_TO_CLOSE[openingBracket] !== currBracket
+            ) {
                 return false;
             }
         }

@@ -6,7 +6,7 @@ excerpt: "My first takeaway from Grokking the System Design Interview: this inte
 tags: ["system-design", "career", "learning"]
 ---
 
-I am starting a short series where I read through *Grokking the System Design Interview* and write down what I want to retain from each section.
+I am starting a short series where I read through _Grokking the System Design Interview_ and write down what I want to retain from each section.
 
 For this first post, I am focusing on the course page: "What is a System Design Interview?"
 
@@ -102,7 +102,7 @@ That is very close to what good design reviews look like on actual teams.
 
 For me, this first page is less about architecture details and more about the mindset I want for the rest of the course.
 
-As I keep going through *Grokking the System Design Interview*, I want to evaluate each section with a few questions:
+As I keep going through _Grokking the System Design Interview_, I want to evaluate each section with a few questions:
 
 - What is the real decision being discussed?
 - What tradeoff is this component helping manage?

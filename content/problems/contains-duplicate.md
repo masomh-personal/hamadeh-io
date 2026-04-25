@@ -24,6 +24,7 @@ Use a hash set with a single pass:
 5. If the loop finishes without finding a repeat, return `false`.
 
 Why this works:
+
 - `seen` stores every unique number encountered so far.
 - The first time a value repeats, `seen.has(value)` detects it in constant average time.
 
@@ -51,6 +52,7 @@ export function containsDuplicate(nums: number[]): boolean {
 ## Test Coverage
 
 The test suite validates:
+
 - LeetCode baseline examples
 - Empty and single-element inputs
 - Negative values and zeros

@@ -18,8 +18,8 @@ Return nothing (`void`) since the mutation happens on `s` itself.
 ## Approach
 
 1. Initialize two pointers:
-   - `l` at the start of the array
-   - `r` at the end of the array
+    - `l` at the start of the array
+    - `r` at the end of the array
 2. While `l < r`, swap `s[l]` and `s[r]`.
 3. Move both pointers inward (`l++`, `r--`) and continue.
 4. Stop when pointers meet or cross; at that point the array is fully reversed.

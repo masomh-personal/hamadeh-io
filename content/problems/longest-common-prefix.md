@@ -43,11 +43,13 @@ Use **horizontal scanning**:
 5. After processing all words, return `prefix`.
 
 Why this works:
+
 - The answer must be a prefix of every word.
 - Shrinking only when mismatch happens preserves the longest possible valid prefix.
 - Early return avoids unnecessary work once no prefix is possible.
 
 Complexity:
+
 - Time: `O(S)` where `S` is the total number of characters examined across all comparisons
 - Space: `O(1)` extra space
 - Note: `S` is not the number of strings; with `n` strings of average length `m`, this is commonly expressed as `O(n * m)`.

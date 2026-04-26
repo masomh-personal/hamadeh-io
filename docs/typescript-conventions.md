@@ -13,6 +13,15 @@ This gives us readable component APIs plus flexible type composition.
 
 ---
 
+## Tooling
+
+- `bun run type-check` runs TypeScript 7 beta through `tsgo --noEmit`.
+- `bun run type-check:tsc` keeps the TypeScript 6 `tsc --noEmit` path available for fallback and comparison.
+- Keep the `typescript` package installed while TS7 beta uses `@typescript/native-preview`, because framework and editor tooling can still depend on the standard package name and API.
+- For editor testing in Cursor or VS Code, install the TypeScript Native Preview extension and enable `typescript.experimental.useTsgo`.
+
+---
+
 ## Quick Decision Guide
 
 - **Component props object?** -> `interface`

@@ -1,8 +1,13 @@
-import { format, parseISO } from "date-fns";
+const publishedDateFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+});
 
 /**
  * Format ISO date strings for UI display.
  */
 export function formatPublishedDate(isoDate: string): string {
-    return format(parseISO(isoDate), "MMMM d, yyyy");
+    return publishedDateFormatter.format(new Date(`${isoDate}T00:00:00Z`));
 }

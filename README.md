@@ -157,11 +157,11 @@ describe("Feature Name", () => {
 
 **Pre-commit (Husky):**
 
-- Type check, then Oxfmt/Oxlint on supported staged files
+- Type check only, so local commits do not depend on machine-specific native formatter bindings
 
 **Pre-push (Husky):**
 
-- Full healthcheck (format check, type-check, Oxlint, tests) then build. Push only succeeds if both pass, so `main` stays green.
+- Type check, Oxlint, tests, then build. Formatting remains enforced by CI through `bun run healthcheck`, so the project gate stays consistent across machines.
 
 ---
 

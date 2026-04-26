@@ -37,17 +37,24 @@ Even short examples are easier to scan when syntax contrast is clear.
 
 ## Date Formatting Decisions
 
-I chose `date-fns` for date formatting because it is small, modern, and ergonomic in TypeScript-heavy codebases.
+I started with `date-fns` for date formatting because it is small, modern, and ergonomic in TypeScript-heavy codebases. For this site, the need is even simpler: turn an ISO publish date into a label like "May 2, 2026".
+
+That is enough for the built-in `Intl.DateTimeFormat` API.
 
 ```ts
-import { format, parseISO } from "date-fns";
+const publishedDateFormatter = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+});
 
 export function formatPublishedDate(isoDate: string): string {
-    return format(parseISO(isoDate), "MMMM d, yyyy");
+    return publishedDateFormatter.format(new Date(`${isoDate}T00:00:00Z`));
 }
 ```
 
-This keeps date display logic explicit and consistent across blog pages.
+This keeps date display logic explicit and consistent across blog pages without carrying a dependency for one formatting call.
 
 ## Designing for Future Migration
 

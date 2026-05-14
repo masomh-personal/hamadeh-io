@@ -121,20 +121,22 @@ export function LoadingShowcase() {
                     message={example.message}
                     icon={example.icon}
                     showSkeleton={example.skeleton}
-                    topContent={
+                    action={
                         <Button
                             variant="danger-soft"
-                            size="sm"
+                            size="xs"
                             iconSize="sm"
                             icon={<HiXCircle />}
                             enforceMinWidth={false}
+                            aria-label={`Dismiss test overlay${
+                                secondsRemaining == null
+                                    ? ""
+                                    : ` (${secondsRemaining} seconds remaining)`
+                            }`}
                             onClick={dismiss}
-                            className="mt-2 min-h-7 min-w-0 px-2 py-1 text-[0.6rem] tracking-[0.02em] whitespace-nowrap leading-tight text-center"
+                            className="min-h-0 min-w-0 gap-1 px-1.5 py-0.5 text-[0.55rem] leading-none"
                         >
-                            Dismiss test overlay
-                            {secondsRemaining == null
-                                ? ""
-                                : ` (${secondsRemaining})`}
+                            Dismiss
                         </Button>
                     }
                 />

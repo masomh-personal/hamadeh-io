@@ -1,0 +1,10 @@
+{
+    "title": "3Sum",
+    "slug": "three-integer-sum",
+    "source": "leetcode",
+    "difficulty": "medium",
+    "datePublished": "2026-05-14",
+    "timeComplexity": "O(n^2)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Given an integer array, return all unique triplets where the three values sum to zero."
+}

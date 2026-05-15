@@ -5,6 +5,7 @@ interface LoadingIndicatorProps {
     message?: string;
     icon?: React.ReactNode;
     showSkeletonBackground?: boolean;
+    action?: React.ReactNode;
     className?: string;
 }
 
@@ -23,16 +24,20 @@ export function LoadingIndicator({
     message = "Loading...",
     icon,
     showSkeletonBackground = false,
+    action,
     className,
 }: LoadingIndicatorProps) {
     return (
         <div
             className={cn(
-                "surface-card radius-card mx-auto w-fit px-10 py-8 text-center",
-                showSkeletonBackground && "relative overflow-hidden",
+                "surface-card radius-card relative mx-auto w-fit px-10 py-8 text-center",
+                showSkeletonBackground && "overflow-hidden",
                 className
             )}
         >
+            {action ? (
+                <div className="absolute top-2 right-2 z-20">{action}</div>
+            ) : null}
             {showSkeletonBackground ? (
                 <div
                     aria-hidden="true"

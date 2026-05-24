@@ -1,4 +1,2 @@
-bun run type-check
-bun run check
-bun test
+bun run healthcheck
 bun run build

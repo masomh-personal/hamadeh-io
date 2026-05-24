@@ -1,0 +1,10 @@
+{
+    "title": "String Builder",
+    "slug": "string-builder",
+    "source": "custom",
+    "difficulty": "medium",
+    "datePublished": "2026-05-23",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "A class that builds strings efficiently by accumulating chunks in an array and joining once. Avoids the O(n²) cost of repeated string concatenation in a loop."
+}

@@ -56,14 +56,14 @@ You don't need to be writing a game engine or a database kernel to encounter thi
 
 ```typescript
 // Iterating a flat array: sequential, cache-friendly
-const prices = [1.99, 2.49, 3.00, 0.99]; // contiguous in memory
+const prices = [1.99, 2.49, 3.0, 0.99]; // contiguous in memory
 const total = prices.reduce((sum, p) => sum + p, 0);
 
 // Iterating objects: each object is a separate heap allocation
 const items = [
     { name: "apple", price: 1.99 },
     { name: "banana", price: 2.49 },
-    { name: "cherry", price: 3.00 },
+    { name: "cherry", price: 3.0 },
     { name: "date", price: 0.99 },
 ];
 const totalFromObjects = items.reduce((sum, item) => sum + item.price, 0);

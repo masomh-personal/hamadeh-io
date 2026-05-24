@@ -43,15 +43,15 @@ A `StringBuilder` avoids this by keeping chunks in a mutable array buffer. Each 
 const sb = new StringBuilder();
 sb.append("Hello").append(", ").append("world");
 sb.toString(); // "Hello, world"
-sb.length;     // 12
+sb.length; // 12
 
 sb.prepend(">> ");
 sb.toString(); // ">> Hello, world"
-sb.length;     // 15
+sb.length; // 15
 
 sb.clear();
 sb.toString(); // ""
-sb.length;     // 0
+sb.length; // 0
 ```
 
 ## Edge Cases Checklist

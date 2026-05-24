@@ -228,7 +228,9 @@ describe("StringBuilder", () => {
                     ? (naiveElapsed / sbElapsed).toFixed(2)
                     : (sbElapsed / naiveElapsed).toFixed(2);
             console.log(`\n  [perf] StringBuilder : ${sbElapsed.toFixed(3)}ms`);
-            console.log(`  [perf] Naive concat  : ${naiveElapsed.toFixed(3)}ms`);
+            console.log(
+                `  [perf] Naive concat  : ${naiveElapsed.toFixed(3)}ms`
+            );
             console.log(`  [perf] Winner        : ${faster} (${ratio}x)`);
             console.log(
                 `  [perf] Note: V8/Bun uses rope strings internally, so naive += is\n` +

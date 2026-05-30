@@ -1,0 +1,10 @@
+{
+    "title": "Trapping Rain Water",
+    "slug": "trapping-rain-water",
+    "source": "leetcode",
+    "difficulty": "hard",
+    "datePublished": "2026-05-29",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Given an elevation map of unit-width bars, compute how much rain water is trapped between them."
+}

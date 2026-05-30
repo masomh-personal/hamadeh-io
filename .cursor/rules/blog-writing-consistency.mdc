@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Blog Writing Consistency
 
-- Match existing `content/blog` voice: direct, practical, personable, low-fluff.
+- Match existing `content/blog` voice: direct, practical, personable, and a little fun. Write like a working engineer talking to a friend who also writes code, not like a textbook or a press release.
 - Keep intros short and contextual (reference prior parts/posts when relevant).
 - Use clear section headings with pragmatic guidance over theory.
 - Prefer concise paragraphs and focused bullet lists for readability.
@@ -23,11 +23,21 @@ alwaysApply: false
 - Avoid interview-prep signaling in titles, excerpts, and hooks: for example "crack," "ace," "must know for interviews," "what they ask," or foregrounding a specific prep book unless the author explicitly wants that.
 - It is fine to cite or paraphrase sources in the body or a short endnote; keep the headline and opening about the topic, not the study context.
 
+## Voice and Personality (the part that makes it sound like me)
+
+- Sound like a real engineer with opinions, not a neutral narrator. It is fine to say "I think," "honestly," "here is the thing," or admit when something bit you in production.
+- Use contractions. "It's," "you're," "doesn't," and "won't" read warmer than the expanded forms.
+- Vary the rhythm. Mix short punchy lines with longer ones. A wall of identical short sentences sounds robotic, and so does a wall of long ones. Let it breathe.
+- A little humor and personality is welcome: a dry aside, a relatable dev gripe, a light analogy. Keep it natural, never forced or meme-y.
+- Talk to the reader. Use "you" and "we," ask the occasional rhetorical question, and bring in real moments ("the first time I shipped this, I...").
+- Show some stakes and feeling. It is okay to call something annoying, satisfying, scary, or a relief. Engineers feel these things; the writing can too.
+- Stay professional underneath the friendliness. Personable does not mean sloppy, hype-y, or padded. Every paragraph still earns its place.
+
 ## Tone and Punctuation Rules (apply to all content posts)
 
-- Never use em dashes (`-`). Use a period, comma, or rewrite the sentence instead.
+- Never use em dashes (`-`). Use a period, comma, parentheses, or rewrite the sentence instead.
 - Write like a person, not a language model. Avoid hollow filler phrases like "Why this works:", "This ensures that", "It is worth noting that", "This approach leverages".
 - No bullet points that restate what the code already shows. Explain the why, not the what.
-- Prefer short declarative sentences over long compound ones.
-- Use plain English. Avoid words like "delve", "utilize", "leverage", "ensure", "facilitate".
+- Plain English wins. Avoid stiff words like "delve", "utilize", "leverage", "ensure", and "facilitate" when a simpler word works.
 - Do not use "strictly correct" or similar hedging superlatives. Just say what is true.
+- Avoid the rigid, editorial cadence where every sentence is the same length and tone. If a draft reads like a polished essay nobody would say out loud, loosen it up.

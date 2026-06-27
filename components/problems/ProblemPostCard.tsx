@@ -2,11 +2,11 @@ import Link from "next/link";
 import { HiCode, HiEye } from "react-icons/hi";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
 import { Badge } from "@/components/ui";
+import type { ProblemSummary } from "@/lib/content/problems";
 import { formatPublishedDate } from "@/lib/date";
-import type { ProblemPost } from "@/lib/mdx";
 
 interface ProblemPostCardProps {
-    problem: ProblemPost;
+    problem: ProblemSummary;
 }
 
 export function ProblemPostCard({ problem }: ProblemPostCardProps) {

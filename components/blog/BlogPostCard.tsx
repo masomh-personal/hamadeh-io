@@ -2,12 +2,12 @@ import Link from "next/link";
 import { HiArrowRight, HiDocumentText } from "react-icons/hi";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
 import { Badge } from "@/components/ui";
+import type { BlogPostSummary } from "@/lib/content/blog";
 import { formatPublishedDate } from "@/lib/date";
-import type { BlogPost } from "@/lib/mdx";
 import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostCardProps {
-    post: BlogPost;
+    post: BlogPostSummary;
 }
 
 export function BlogPostCard({ post }: BlogPostCardProps) {

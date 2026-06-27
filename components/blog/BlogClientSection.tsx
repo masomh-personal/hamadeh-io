@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TagFilterBar, type TagFilterOption } from "@/components/ui";
-import type { BlogPost } from "@/lib/mdx";
+import type { BlogPostSummary } from "@/lib/content/blog";
 import { cn } from "@/lib/utils";
 import { BlogPostCard } from "./BlogPostCard";
 import { getBlogTagPresentation } from "./blog-tags";
@@ -11,7 +11,7 @@ const EXIT_MS = 150;
 const ENTER_MS = 220;
 
 interface BlogClientSectionProps {
-    posts: BlogPost[];
+    posts: BlogPostSummary[];
     allTags: string[];
 }
 

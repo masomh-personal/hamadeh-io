@@ -3,9 +3,10 @@
  * Reads, parses, and validates content files with frontmatter.
  */
 
+import { cache } from "react";
 import { readdir, readFile } from "node:fs/promises";
 import { extname, join } from "node:path";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import {
     type BlogFrontmatter,
     type ProblemFrontmatter,
@@ -22,7 +23,7 @@ export interface BlogPost extends BlogFrontmatter {
     filePath: string;
 }
 
-export async function getAllProblems(): Promise<ProblemPost[]> {
+async function readAllProblems(): Promise<ProblemPost[]> {
     const contentDir = join(process.cwd(), "content", "problems");
     const posts: ProblemPost[] = [];
 
@@ -51,6 +52,13 @@ export async function getAllProblems(): Promise<ProblemPost[]> {
     }
 }
 
+/**
+ * Returns all parsed problem posts, sorted by date descending.
+ * Deduped per request via React cache() so multiple callers within one
+ * render pass (e.g. generateMetadata + page component) share a single parse.
+ */
+export const getAllProblems = cache(readAllProblems);
+
 export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
     const posts = await getAllProblems();
     const post = posts.find((entry) => entry.slug === slug);
@@ -74,7 +82,7 @@ async function getProblemByPath(filePath: string): Promise<ProblemPost> {
     };
 }
 
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
+async function readAllBlogPosts(): Promise<BlogPost[]> {
     const contentDir = join(process.cwd(), "content", "blog");
     const posts: BlogPost[] = [];
 
@@ -102,6 +110,13 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
         throw error;
     }
 }
+
+/**
+ * Returns all parsed blog posts, sorted by date descending.
+ * Deduped per request via React cache() so multiple callers within one
+ * render pass (e.g. generateMetadata + page component) share a single parse.
+ */
+export const getAllBlogPosts = cache(readAllBlogPosts);
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
     const posts = await getAllBlogPosts();

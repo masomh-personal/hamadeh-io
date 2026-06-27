@@ -1,7 +1,8 @@
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
+import type { BlogPost } from "@/lib/mdx";
 
-type ShowcaseBlogPost = Parameters<typeof BlogPostCard>[0]["post"];
+type ShowcaseBlogPost = BlogPost;
 
 const publishedBlogPost: ShowcaseBlogPost = {
     title: "Building the Blog Foundation (Markdown + Shiki)",

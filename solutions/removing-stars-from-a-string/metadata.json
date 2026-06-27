@@ -1,0 +1,10 @@
+{
+    "title": "Removing Stars From a String",
+    "slug": "removing-stars-from-a-string",
+    "source": "leetcode",
+    "difficulty": "medium",
+    "datePublished": "2026-06-27",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Use a stack to collect characters; each star pops the most recent one. Join the stack at the end to get the result."
+}

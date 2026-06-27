@@ -16,7 +16,7 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Styling**                 | Tailwind CSS                                | Utility-first, fast development, great with Next.js                               |
 | **Content**                 | MDX (@next/mdx)                             | Markdown + React components, version controlled                                   |
 | **Syntax Highlighting**     | rehype-pretty-code + Shiki                  | Editor-grade code blocks for technical content                                    |
-| **Frontmatter Parsing**     | gray-matter                                 | Extract metadata from MDX files                                                   |
+| **Frontmatter Parsing**     | @11ty/gray-matter                           | Extract metadata from MDX files                                                   |
 | **Frontmatter Validation**  | Valibot                                     | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance           |
 | **Linting & Formatting**    | Oxfmt + Oxlint                              | Oxc-powered formatter and linter with fast JS/TS, React, a11y, and Next.js checks |
 | **Runtime**                 | Bun v1.3.x                                  | Fast installs, built-in test runner, instant TypeScript, production-ready         |
@@ -398,15 +398,14 @@ bun install
 2. Ensure your editor uses `oxfmt` as the formatter for supported file types
 3. Reload the editor window
 
-### Next.js Build Warnings
+### Next.js Shiki / Turbopack Error
 
-If you see Turbopack root warnings, ensure `next.config.mjs` has:
-
-```javascript
-turbopack: {
-    root: process.cwd(),
-}
-```
+With Next.js 16, Bun, and Turbopack, Shiki can fail at runtime with an error
+like `Cannot find package 'shiki-<hash>'`. Turbopack externalizes Shiki using a
+content-hashed module alias that Bun cannot resolve. The fix is in
+`next.config.mjs`: listing `shiki` and its core packages under
+`serverExternalPackages` tells Next to skip bundling them and let Node require
+them directly.
 
 ### Git Hooks Not Running
 
@@ -551,7 +550,7 @@ bun update <package-name>     # Update specific package
 - [ ] Add `bun run content:check` when content volume grows enough to justify a dedicated gate
 - [ ] Validate frontmatter schema, duplicate slugs, invalid publish dates, missing excerpts, and empty sections
 - [ ] Check internal links, referenced problem solution paths, and generated routes for blog/problem posts
-- [ ] Keep the first version dependency-free by reusing existing `gray-matter`, `valibot`, and Node/Bun filesystem APIs
+- [ ] Keep the first version dependency-free by reusing existing `@11ty/gray-matter`, `valibot`, and Node/Bun filesystem APIs
 
 ---
 

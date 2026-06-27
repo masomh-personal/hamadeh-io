@@ -277,7 +277,7 @@ export default async function ProblemPage({ params }: Props) {
 **Pattern:**
 
 1. Read MDX files from `content/` directory
-2. Parse frontmatter with `gray-matter`
+2. Parse frontmatter with `@11ty/gray-matter`
 3. Validate frontmatter with Valibot schemas
 4. Process MDX content with `@next/mdx`
 5. Generate static pages at build time
@@ -286,7 +286,7 @@ export default async function ProblemPage({ params }: Props) {
 
 ```typescript
 // lib/mdx.ts
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import { parse } from "valibot";
 import { problemFrontmatterSchema } from "./schemas";
 

@@ -71,7 +71,7 @@ const solution = await getProblemBySlug("two-sum");
 **What happens:**
 
 1. Read MDX file from filesystem
-2. Parse frontmatter with `gray-matter`
+2. Parse frontmatter with `@11ty/gray-matter`
 3. Validate frontmatter with Valibot (throws if invalid)
 4. Return typed, validated data + content
 

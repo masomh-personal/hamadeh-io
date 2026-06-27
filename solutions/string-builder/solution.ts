@@ -1,6 +1,11 @@
 export class StringBuilder {
-    private _buffer: string[] = [];
-    private _length: number = 0;
+    private _buffer: string[];
+    private _length: number;
+
+    constructor() {
+        this._buffer = [];
+        this._length = 0;
+    }
 
     /**
      * Appends a string to the end of the buffer. O(1) amortized.

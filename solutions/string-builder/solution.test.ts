@@ -181,6 +181,24 @@ describe("StringBuilder", () => {
             const result = sb.clear();
             expect(result).toBe(sb);
         });
+
+        test("clear on a fresh builder is a no-op", () => {
+            const sb = new StringBuilder();
+            sb.clear();
+            const expected = "";
+            const result = sb.toString();
+            expect(result).toBe(expected);
+            expect(sb.length).toBe(0);
+        });
+
+        test("clear is idempotent when called twice", () => {
+            const sb = new StringBuilder();
+            sb.append("hello").clear().clear();
+            const expected = "";
+            const result = sb.toString();
+            expect(result).toBe(expected);
+            expect(sb.length).toBe(0);
+        });
     });
 
     describe("chaining", () => {

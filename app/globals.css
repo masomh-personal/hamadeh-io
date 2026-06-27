@@ -517,12 +517,8 @@
 /* ============================================
    Code Block Styles
    ============================================ */
-.prose [data-rehype-pretty-code-figure] {
-    margin: 1.5rem 0;
-}
-
 .prose pre {
-    margin: 0;
+    margin: 1.5rem 0;
     padding: 1.1rem 1.3rem;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -545,15 +541,6 @@
     font-weight: 500;
 }
 
-.prose pre code [data-line] {
-    padding: 0 0.15rem;
-}
-
-.prose pre code [data-highlighted-line] {
-    background: color-mix(in srgb, var(--color-sky-500) 22%, transparent);
-    border-left: 2px solid var(--color-sky-400);
-}
-
 /* Inline code styling */
 .prose code:not(pre code) {
     border: 1px solid color-mix(in srgb, var(--color-tertiary) 55%, transparent);
@@ -570,6 +557,109 @@
 .prose code:not(pre code)::before,
 .prose code:not(pre code)::after {
     content: none;
+}
+
+/* ============================================
+   Highlight.js Syntax Theme
+   Colors adapted from GitHub Dark Default.
+   ============================================ */
+
+/* Base token color — overrides any hljs theme default */
+.hljs {
+    color: var(--color-slate-100);
+    background: transparent;
+}
+
+/* Keywords: const, let, var, function, class, if, return, import, export */
+.hljs-keyword,
+.hljs-selector-tag {
+    color: #ff7b72;
+}
+
+/* Strings and template literals */
+.hljs-string,
+.hljs-char,
+.hljs-regexp {
+    color: #a5d6ff;
+}
+
+/* Numbers */
+.hljs-number {
+    color: #79c0ff;
+}
+
+/* Booleans, null, undefined */
+.hljs-literal {
+    color: #79c0ff;
+}
+
+/* Comments */
+.hljs-comment {
+    color: #8b949e;
+    font-style: italic;
+}
+
+/* Function and class names at definition sites */
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_ {
+    color: #d2a8ff;
+}
+
+/* Built-in globals and TypeScript types */
+.hljs-built_in,
+.hljs-type {
+    color: #ffa657;
+}
+
+/* Object keys, HTML/JSX attributes */
+.hljs-attr,
+.hljs-property {
+    color: #79c0ff;
+}
+
+/* Operators (=, +, =>, etc.) */
+.hljs-operator {
+    color: #ff7b72;
+}
+
+/* Decorators and meta annotations */
+.hljs-meta {
+    color: #e3b341;
+}
+
+/* HTML/JSX tag names */
+.hljs-name,
+.hljs-tag {
+    color: #7ee787;
+}
+
+/* Punctuation: brackets, braces, semicolons */
+.hljs-punctuation {
+    color: var(--color-slate-300);
+}
+
+/* Variables (language builtins like `this`, `self`) */
+.hljs-variable.language_ {
+    color: #ffa657;
+}
+
+/* Deleted/added diff lines */
+.hljs-deletion {
+    color: #ff7b72;
+}
+
+.hljs-addition {
+    color: #7ee787;
+}
+
+/* Emphasis and strong inside comments/docs */
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: 700;
 }
 
 /* Make all monospace fonts bolder for better readability */

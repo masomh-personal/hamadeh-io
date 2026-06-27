@@ -21,7 +21,7 @@ function extractTextContent(node: React.ReactNode): string {
 }
 
 interface CodeChildProps {
-    "data-language"?: string;
+    className?: string;
     children?: React.ReactNode;
 }
 
@@ -38,12 +38,15 @@ const LANGUAGE_LABELS: Record<string, string> = {
     md: "markdown",
 };
 
+// rehype-highlight sets className="hljs language-<lang>" on the <code> element.
 function extractLanguage(children: React.ReactNode): string | undefined {
     if (!children || typeof children !== "object" || !("props" in children)) {
         return undefined;
     }
     const props = (children as React.ReactElement<CodeChildProps>).props;
-    return props["data-language"] ?? undefined;
+    const className = props.className ?? "";
+    const match = /\blanguage-(\w+)\b/.exec(className);
+    return match?.[1] ?? undefined;
 }
 
 function getLanguageLabel(language: string): string {

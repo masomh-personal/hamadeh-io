@@ -320,8 +320,7 @@ export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
 
 ```typescript
 type Result<T, E = Error> =
-    | { success: true; data: T }
-    | { success: false; error: E };
+    { success: true; data: T } | { success: false; error: E };
 
 export async function getProblemBySlug(
     slug: string

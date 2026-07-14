@@ -1,12 +1,12 @@
 # Release Workflow
 
-Use this checklist when moving work from `develop` to `main`.
+Use this checklist when moving a release branch to `main`.
 
 ## Branch Flow
 
-1. Do feature and cleanup work on `develop` or a short-lived branch based on `develop`.
-2. Push changes to `develop`.
-3. Open a pull request from `develop` to `main`.
+1. Create a short-lived feature or release branch from `main`.
+2. Push the release branch after local verification.
+3. Open a pull request from the release branch to `main`.
 4. Merge only after local checks and GitHub Actions are green.
 5. Let Vercel promote the merged `main` commit to production.
 
@@ -23,7 +23,7 @@ bun run build
 The checks cover:
 
 - `bun audit`: verifies the lockfile has no known dependency advisories.
-- `bun run healthcheck`: runs Oxfmt format checking, TypeScript, Oxlint, and tests.
+- `bun run healthcheck`: runs Oxfmt, application and test type checks, Oxlint, content validation, and tests.
 - `bun run build`: verifies the production Next.js build and static generation.
 
 ## PR Checklist

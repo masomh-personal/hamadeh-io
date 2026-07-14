@@ -17,10 +17,10 @@
         "type-check:tests": "tsc --noEmit -p tsconfig.tests.json",
         "test": "bun test",
         "test:coverage": "bun test --coverage",
-        "content:check": "bun scripts/check-content.ts",
+        "content:check": "\"$npm_execpath\" scripts/check-content.ts",
         "clean": "bun scripts/clean.ts",
         "clean:next": "bun scripts/clean-next.ts",
-        "healthcheck": "bun run format:check && bun run type-check && bun run type-check:tests && bun run check && bun run content:check && bun test",
+        "healthcheck": "\"$npm_execpath\" run format:check && \"$npm_execpath\" run type-check && \"$npm_execpath\" run type-check:tests && \"$npm_execpath\" run check && \"$npm_execpath\" run content:check && \"$npm_execpath\" test",
         "new:problem": "bun scripts/new-problem.ts",
         "publish:problem": "bun scripts/publish-problem.ts",
         "prepare": "husky"

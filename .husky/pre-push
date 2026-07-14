@@ -1,2 +1,2 @@
-env -u npm_execpath bun run healthcheck
-env -u npm_execpath bun run build
+bun run healthcheck
+bun run build

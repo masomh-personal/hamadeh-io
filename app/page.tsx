@@ -42,7 +42,8 @@ export default function Home() {
                             width={480}
                             height={480}
                             className="h-auto w-full rounded-xl object-cover"
-                            priority
+                            sizes="(max-width: 768px) 240px, 240px"
+                            preload
                         />
                     </div>
                 </div>

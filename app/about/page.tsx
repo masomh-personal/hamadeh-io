@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
     HiAcademicCap,
@@ -11,6 +12,15 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { PageSection } from "@/components/layout/PageSection";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
+
+export const metadata: Metadata = {
+    title: "About",
+    description:
+        "About Masom Hamadeh, a senior full-stack software engineer focused on maintainable systems, clear technical communication, and thoughtful delivery.",
+    alternates: {
+        canonical: "/about",
+    },
+};
 
 export default function AboutPage() {
     return (

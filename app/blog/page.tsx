@@ -6,9 +6,12 @@ import { Link } from "@/components/ui";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
 
 export const metadata: Metadata = {
-    title: "Blog | hamadeh.io",
+    title: "Blog",
     description:
         "Engineering notes on software development, CS fundamentals, and practical coding lessons.",
+    alternates: {
+        canonical: "/blog",
+    },
 };
 
 export default async function BlogPage(): Promise<React.ReactElement> {

@@ -71,7 +71,7 @@ export function LoadingIndicator({
                 >
                     {icon ?? (
                         <HiTerminal
-                            className="h-8 w-8 animate-[spin_1.2s_linear_infinite] text-sky-300"
+                            className="h-8 w-8 animate-[spin_1.2s_linear_infinite] text-sky-300 motion-reduce:animate-none"
                             aria-hidden="true"
                         />
                     )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { IconType } from "react-icons";
 import { FaLinkedin } from "react-icons/fa";
 import {
@@ -19,6 +19,26 @@ import { Link } from "@/components/ui";
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        if (!mobileMenuOpen) {
+            return;
+        }
+
+        function handleKeyDown(event: KeyboardEvent): void {
+            if (event.key === "Escape") {
+                setMobileMenuOpen(false);
+                menuButtonRef.current?.focus();
+            }
+        }
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [mobileMenuOpen]);
 
     type NavItem = {
         name: string;
@@ -86,6 +106,7 @@ export function Header() {
                                             ? "text-primary"
                                             : "text-muted hover:text-primary"
                                     }`}
+                                    aria-current={isActive ? "page" : undefined}
                                 >
                                     {item.name}
                                 </Link>
@@ -96,11 +117,17 @@ export function Header() {
                     {/* Mobile Menu Button */}
                     <div className="flex items-center gap-2 md:hidden">
                         <button
+                            ref={menuButtonRef}
                             type="button"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="rounded-md p-2 text-muted transition-colors hover:bg-slate-800 hover:text-primary"
-                            aria-label="Toggle menu"
+                            aria-label={
+                                mobileMenuOpen
+                                    ? "Close navigation menu"
+                                    : "Open navigation menu"
+                            }
                             aria-expanded={mobileMenuOpen}
+                            aria-controls="mobile-navigation"
                         >
                             {mobileMenuOpen ? (
                                 <HiX className="h-5 w-5" />
@@ -113,7 +140,10 @@ export function Header() {
 
                 {/* Mobile Navigation */}
                 {mobileMenuOpen && (
-                    <div className="border-t border-surface-card py-4 md:hidden">
+                    <div
+                        id="mobile-navigation"
+                        className="border-t border-surface-card py-4 md:hidden"
+                    >
                         <div className="flex flex-col gap-3">
                             {navigation.map((item) => {
                                 const isActive =
@@ -146,6 +176,9 @@ export function Header() {
                                                 ? "text-primary"
                                                 : "text-muted hover:text-primary"
                                         }`}
+                                        aria-current={
+                                            isActive ? "page" : undefined
+                                        }
                                     >
                                         {item.name}
                                     </Link>

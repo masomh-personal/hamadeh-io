@@ -117,7 +117,7 @@ export function BlogClientSection({ posts, allTags }: BlogClientSectionProps) {
                             <div
                                 key={post.slug}
                                 className={cn(
-                                    "transition-all ease-out",
+                                    "transition-all ease-out motion-reduce:transform-none motion-reduce:transition-none",
                                     isVisible
                                         ? isEntering
                                             ? "opacity-0 translate-y-2.5"
@@ -130,6 +130,7 @@ export function BlogClientSection({ posts, allTags }: BlogClientSectionProps) {
                                         : `${EXIT_MS}ms`,
                                 }}
                                 aria-hidden={!isVisible}
+                                inert={!isVisible}
                             >
                                 <BlogPostCard post={post} />
                             </div>

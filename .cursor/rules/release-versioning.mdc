@@ -1,0 +1,15 @@
+---
+description: Require every release reaching main to increase the package version
+alwaysApply: true
+---
+
+# Release Versioning
+
+- Every pull request targeting `main` must increase the SemVer version in `package.json`.
+- Every direct commit to `main` must increase the SemVer version in `package.json`.
+- Before merging into `main`, verify the proposed version is greater than the version currently on `main`.
+- Increment once per release. If a pull request already includes its version increase, do not increment it again during the merge.
+- Choose the SemVer level intentionally:
+  - Patch for backward-compatible fixes.
+  - Minor for backward-compatible features.
+  - Major for breaking changes or an explicitly declared major release.

@@ -12,7 +12,7 @@
 
 export function reverseString(s: string[]): void {
     function swap(arr: string[], idx1: number, idx2: number): void {
-        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+        [arr[idx1], arr[idx2]] = [arr[idx2]!, arr[idx1]!];
     }
 
     let l = 0;

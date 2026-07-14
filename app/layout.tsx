@@ -1,62 +1,9 @@
-import type { Metadata } from "next";
-import {
-    Anonymous_Pro,
-    Baloo_2,
-    Fira_Code,
-    IBM_Plex_Mono,
-    Inconsolata,
-    Inter,
-    JetBrains_Mono,
-    Lexend,
-    M_PLUS_Rounded_1c,
-    Manrope,
-    Open_Sans,
-    Plus_Jakarta_Sans,
-    PT_Mono,
-    Quicksand,
-    Roboto_Mono,
-    Source_Code_Pro,
-    Source_Sans_3,
-    Space_Mono,
-} from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Baloo_2, Fira_Code, Lexend, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-    subsets: ["latin"],
-    variable: "--font-plus-jakarta-gf",
-    display: "swap",
-    weight: ["400", "500", "600"],
-});
-
-const inter = Inter({
-    subsets: ["latin"],
-    variable: "--font-inter-gf",
-    display: "swap",
-    weight: ["400", "500", "600"],
-});
-
-const manrope = Manrope({
-    subsets: ["latin"],
-    variable: "--font-manrope-gf",
-    display: "swap",
-    weight: ["400", "500", "600"],
-});
-
-const openSans = Open_Sans({
-    subsets: ["latin"],
-    variable: "--font-open-sans-gf",
-    display: "swap",
-    weight: ["400", "500", "600"],
-});
-
-const sourceSans3 = Source_Sans_3({
-    subsets: ["latin"],
-    variable: "--font-source-sans-gf",
-    display: "swap",
-    weight: ["400", "500", "600"],
-});
+import { AUTHOR_EMAIL, AUTHOR_NAME, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const quicksand = Quicksand({
     subsets: ["latin"],
@@ -79,28 +26,6 @@ const baloo2 = Baloo_2({
     weight: ["400", "500", "600", "700", "800"],
 });
 
-const mPlusRounded1c = M_PLUS_Rounded_1c({
-    subsets: ["latin"],
-    variable: "--font-rounded",
-    display: "swap",
-    weight: ["400", "500", "700", "800", "900"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono-ibm",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
-// Additional monospace fonts for comparison
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono-jetbrains",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
 const firaCode = Fira_Code({
     subsets: ["latin"],
     variable: "--font-mono-fira",
@@ -108,57 +33,50 @@ const firaCode = Fira_Code({
     weight: ["400", "500", "600", "700"],
 });
 
-const sourceCodePro = Source_Code_Pro({
-    subsets: ["latin"],
-    variable: "--font-mono-source",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
-const inconsolata = Inconsolata({
-    subsets: ["latin"],
-    variable: "--font-mono-inconsolata",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
-const anonymousPro = Anonymous_Pro({
-    subsets: ["latin"],
-    variable: "--font-mono-anonymous",
-    display: "swap",
-    weight: ["400", "700"],
-});
-
-const ptMono = PT_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono-pt",
-    display: "swap",
-    weight: ["400"],
-});
-
-const spaceMono = Space_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono-space",
-    display: "swap",
-    weight: ["400", "700"],
-});
-
-const robotoMono = Roboto_Mono({
-    subsets: ["latin"],
-    variable: "--font-mono-roboto",
-    display: "swap",
-    weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
-    title: "hamadeh.io | Masom Hamadeh",
+    metadataBase: SITE_URL,
+    title: {
+        default: `${SITE_NAME} | ${AUTHOR_NAME}`,
+        template: `%s | ${SITE_NAME}`,
+    },
     description:
         "Personal portfolio of Masom Hamadeh — software engineer, technical writer, and builder. System design, engineering craft, and code.",
+    applicationName: SITE_NAME,
+    authors: [{ name: AUTHOR_NAME, url: SITE_URL }],
+    creator: AUTHOR_NAME,
+    alternates: {
+        canonical: "/",
+        types: {
+            "application/rss+xml": "/blog/rss.xml",
+        },
+    },
+    openGraph: {
+        type: "website",
+        url: "/",
+        siteName: SITE_NAME,
+        title: `${SITE_NAME} | ${AUTHOR_NAME}`,
+        description:
+            "Software engineering notes, system design, and tested code problems from Masom Hamadeh.",
+    },
+    twitter: {
+        card: "summary",
+        title: `${SITE_NAME} | ${AUTHOR_NAME}`,
+        description:
+            "Software engineering notes, system design, and tested code problems from Masom Hamadeh.",
+    },
+    other: {
+        "contact:email": AUTHOR_EMAIL,
+    },
     icons: {
         icon: "/branding/favicon.svg",
         shortcut: "/branding/favicon.svg",
         apple: "/branding/favicon.svg",
     },
+};
+
+export const viewport: Viewport = {
+    colorScheme: "dark",
+    themeColor: "#0f172a",
 };
 
 export default function RootLayout({
@@ -169,7 +87,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${quicksand.variable} ${lexend.variable} ${baloo2.variable} ${plusJakartaSans.variable} ${inter.variable} ${manrope.variable} ${openSans.variable} ${sourceSans3.variable} ${mPlusRounded1c.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable} ${firaCode.variable} ${sourceCodePro.variable} ${inconsolata.variable} ${anonymousPro.variable} ${ptMono.variable} ${spaceMono.variable} ${robotoMono.variable}`}
+            className={`${quicksand.variable} ${lexend.variable} ${baloo2.variable} ${firaCode.variable}`}
             suppressHydrationWarning
         >
             <body
@@ -177,6 +95,12 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <div className="flex min-h-screen flex-col">
+                    <a
+                        href="#main-content"
+                        className="fixed top-3 left-3 z-[100] -translate-y-20 rounded-md bg-sky-500 px-4 py-2 font-bold text-slate-950 transition-transform focus:translate-y-0 focus:outline-none focus:ring-2 focus:ring-white"
+                    >
+                        Skip to main content
+                    </a>
                     <Header />
                     <main id="main-content" className="relative flex-1">
                         {children}

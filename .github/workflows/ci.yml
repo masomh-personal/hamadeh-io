@@ -2,9 +2,9 @@ name: CI
 
 on:
     push:
-        branches: [develop, main]
+        branches: [main, next-version]
     pull_request:
-        branches: [develop, main]
+        branches: [main, next-version]
 
 permissions:
     contents: read
@@ -41,6 +41,9 @@ jobs:
 
             - name: Healthcheck
               run: bun run healthcheck
+
+            - name: Audit dependencies
+              run: bun audit
 
     build:
         name: Build

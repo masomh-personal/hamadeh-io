@@ -44,7 +44,7 @@ export function NavigationOverlay({
             message={message}
             icon={icon}
             showSkeleton={showSkeleton}
-            className="opacity-0 animate-[fadeIn_300ms_200ms_forwards]"
+            className="opacity-0 animate-[fadeIn_300ms_200ms_forwards] motion-reduce:animate-none motion-reduce:opacity-100"
         />,
         mainEl
     );

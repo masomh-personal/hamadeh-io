@@ -1,12 +1,11 @@
-# MDX Setup: How It Works & Why It's the Best Approach
+# Markdown Setup: How It Works
 
-## What is MDX?
+## Why Plain Markdown
 
-**MDX = Markdown + JSX**
+Markdown keeps content version-controlled, portable, and easy to review. This
+site does not embed JSX in posts, so plain `.md` files are the simpler fit.
 
-Markdown allows you to write content in a familiar format while keeping content version-controlled and easy to render. It's perfect for technical content like code problem writeups and blog posts.
-
-## How Our MDX Setup Works
+## How Our Markdown Setup Works
 
 ### 1. **Content Files** (`content/` directory)
 
@@ -56,9 +55,9 @@ export const ProblemFrontmatterSchema = v.object({
 - **Type-safe:** Full TypeScript inference
 - **Tree-shakeable:** Only bundle what you use
 
-### 3. **MDX Processing** (`lib/mdx.ts`)
+### 3. **Markdown Processing** (`lib/mdx.ts`)
 
-Our utilities read, parse, and validate MDX files:
+Our utilities read, parse, and validate Markdown files:
 
 ```typescript
 // Get all problem posts
@@ -70,26 +69,23 @@ const solution = await getProblemBySlug("two-sum");
 
 **What happens:**
 
-1. Read MDX file from filesystem
+1. Read a Markdown file from the filesystem
 2. Parse frontmatter with `@11ty/gray-matter`
 3. Validate frontmatter with Valibot (throws if invalid)
 4. Return typed, validated data + content
 
-### 4. **Next.js Configuration** (`next.config.mjs`)
+### 4. **Server Rendering** (`components/markdown/RichMarkdownContent.tsx`)
 
-Next.js processes MDX files with syntax highlighting:
+The server component renders Markdown with GFM and syntax highlighting:
 
-```javascript
-const withMDX = createMDX({
-    options: {
-        rehypePlugins: [
-            [rehypeHighlight, { languages: ["typescript", "javascript"] }],
-        ],
-    },
-});
+```tsx
+<MarkdownAsync remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+    {content}
+</MarkdownAsync>
 ```
 
-**Result:** Code blocks are automatically highlighted with Shiki via `rehype-pretty-code`.
+**Result:** Code blocks are highlighted on the server without shipping a
+client-side syntax highlighter.
 
 ### 5. **Usage in Pages**
 
@@ -227,7 +223,7 @@ Valibot is tiny (~1KB):
 
 3. **Static Generation:**
     - Next.js generates `/problems/two-sum` page
-    - MDX content rendered as React components
+    - Markdown content rendered by a Server Component
     - Code blocks highlighted with syntax highlighting
     - Page is fully static (no runtime processing)
 
@@ -253,7 +249,7 @@ getProblemBySlug("non-existent"); // Throws: "Problem not found"
 
 ## Summary
 
-**MDX + Valibot + Static Generation = Perfect for Technical Content**
+**Markdown + Valibot + Static Generation is a simple fit for technical content.**
 
 - ✅ Version controlled
 - ✅ Type-safe

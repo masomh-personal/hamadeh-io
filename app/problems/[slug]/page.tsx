@@ -9,6 +9,7 @@ import {
     listPublishedProblems,
 } from "@/lib/content/problems";
 import { formatPublishedDate } from "@/lib/date";
+import { AUTHOR_NAME, SITE_NAME } from "@/lib/site";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -61,13 +62,36 @@ export async function generateMetadata({
 
     try {
         const problem = await getPublishedProblemBySlug(slug);
+        const canonicalPath = `/problems/${problem.slug}`;
+
         return {
-            title: `${problem.title} | hamadeh.io`,
+            title: problem.title,
             description: problem.excerpt,
+            alternates: {
+                canonical: canonicalPath,
+            },
+            openGraph: {
+                type: "article",
+                url: canonicalPath,
+                siteName: SITE_NAME,
+                title: problem.title,
+                description: problem.excerpt,
+                publishedTime: problem.datePublished,
+                authors: [AUTHOR_NAME],
+            },
+            twitter: {
+                card: "summary",
+                title: problem.title,
+                description: problem.excerpt,
+            },
         };
     } catch {
         return {
-            title: "Problem Not Found | hamadeh.io",
+            title: "Problem Not Found",
+            robots: {
+                index: false,
+                follow: false,
+            },
         };
     }
 }

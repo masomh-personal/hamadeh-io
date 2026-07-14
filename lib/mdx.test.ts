@@ -152,14 +152,26 @@ describe("getAllBlogPosts", () => {
         expect(result.map((p) => p.slug)).toEqual(expected);
     });
 
-    test("skips files with invalid frontmatter without throwing", async () => {
+    test("rejects invalid frontmatter so builds cannot omit posts silently", async () => {
         mockDirents = [file("alpha-post.md"), file("invalid.md")];
         mockFileMap.set("alpha-post.md", BLOG_ALPHA);
         mockFileMap.set("invalid.md", BLOG_INVALID);
 
-        const [first] = await getAllBlogPosts();
+        const expected = "Title is required";
+        const result = getAllBlogPosts();
 
-        expect(first?.slug).toBe("alpha-post");
+        expect(result).rejects.toThrow(expected);
+    });
+
+    test("rejects duplicate slugs", async () => {
+        mockDirents = [file("alpha-post.md"), file("duplicate-alpha.md")];
+        mockFileMap.set("alpha-post.md", BLOG_ALPHA);
+        mockFileMap.set("duplicate-alpha.md", BLOG_ALPHA);
+
+        const expected = 'Duplicate blog slug "alpha-post"';
+        const result = getAllBlogPosts();
+
+        expect(result).rejects.toThrow(expected);
     });
 
     test("returns empty array when content directory does not exist", async () => {

@@ -5,14 +5,14 @@ import type { BlogPost } from "@/lib/mdx";
 type ShowcaseBlogPost = BlogPost;
 
 const publishedBlogPost: ShowcaseBlogPost = {
-    title: "Building the Blog Foundation (Markdown + Shiki)",
+    title: "Building the Blog Foundation (Markdown + Syntax Highlighting)",
     slug: "building-blog-foundation-markdown-shiki",
     datePublished: "2026-02-18",
     excerpt:
-        "How I designed a clean blog architecture with Markdown-first content, premium syntax highlighting, and room to scale.",
+        "How I designed a clean blog architecture with Markdown-first content, server-side syntax highlighting, and room to scale.",
     tags: ["engineering", "nextjs", "markdown"],
     content: "Sample markdown content for component showcase.",
-    filePath: "content/blog/building-blog-foundation-markdown-shiki.md",
+    filePath: "content/blog/building-this-blog.md",
 };
 
 const secondaryBlogPost: ShowcaseBlogPost = {

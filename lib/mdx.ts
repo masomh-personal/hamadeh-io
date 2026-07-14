@@ -31,14 +31,11 @@ async function readAllProblems(): Promise<ProblemPost[]> {
         const files = await findContentFiles(contentDir, [".md"]);
 
         for (const filePath of files) {
-            try {
-                const post = await getProblemByPath(filePath);
-                posts.push(post);
-            } catch (error) {
-                console.error(`Error processing ${filePath}:`, error);
-            }
+            const post = await getProblemByPath(filePath);
+            posts.push(post);
         }
 
+        assertUniqueSlugs(posts, "problem");
         return posts.sort((a, b) => {
             const dateA = new Date(a.datePublished).getTime();
             const dateB = new Date(b.datePublished).getTime();
@@ -90,14 +87,11 @@ async function readAllBlogPosts(): Promise<BlogPost[]> {
         const files = await findContentFiles(contentDir, [".md"]);
 
         for (const filePath of files) {
-            try {
-                const post = await getBlogPostByPath(filePath);
-                posts.push(post);
-            } catch (error) {
-                console.error(`Error processing ${filePath}:`, error);
-            }
+            const post = await getBlogPostByPath(filePath);
+            posts.push(post);
         }
 
+        assertUniqueSlugs(posts, "blog");
         return posts.sort((a, b) => {
             const dateA = new Date(a.datePublished).getTime();
             const dateB = new Date(b.datePublished).getTime();
@@ -160,4 +154,23 @@ async function findContentFiles(
     }
 
     return files;
+}
+
+function assertUniqueSlugs(
+    posts: Array<{ slug: string; filePath: string }>,
+    contentType: "blog" | "problem"
+): void {
+    const fileBySlug = new Map<string, string>();
+
+    for (const post of posts) {
+        const existingFile = fileBySlug.get(post.slug);
+
+        if (existingFile) {
+            throw new Error(
+                `Duplicate ${contentType} slug "${post.slug}" in ${existingFile} and ${post.filePath}`
+            );
+        }
+
+        fileBySlug.set(post.slug, post.filePath);
+    }
 }

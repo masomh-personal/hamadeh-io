@@ -11,7 +11,7 @@ import { groupAnagrams } from "./solution";
 function normalize(groups: string[][]): string[][] {
     return groups
         .map((group) => [...group].sort())
-        .sort((a, b) => a[0].localeCompare(b[0]));
+        .sort((a, b) => (a[0] ?? "").localeCompare(b[0] ?? ""));
 }
 
 describe("groupAnagrams", () => {

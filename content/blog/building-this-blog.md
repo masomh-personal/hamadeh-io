@@ -1,8 +1,8 @@
 ---
-title: "Building the Blog Foundation (Markdown + Shiki)"
+title: "Building the Blog Foundation (Markdown + Syntax Highlighting)"
 slug: "building-blog-foundation-markdown-shiki"
 datePublished: "2026-02-18"
-excerpt: "How I designed a clean blog architecture with Markdown-first content, premium syntax highlighting, and room to scale."
+excerpt: "How I designed a clean blog architecture with Markdown-first content, server-side syntax highlighting, and room to scale."
 tags: ["engineering", "nextjs", "markdown"]
 ---
 
@@ -24,7 +24,7 @@ I am intentionally **not** using embedded React inside content yet. This keeps a
 
 ## A Better Code Reading Experience
 
-Code readability matters in technical writing. I switched to Shiki-powered highlighting for better token coloring and a more editor-like look.
+Code readability matters in technical writing. I use `rehype-highlight` during server rendering, which gives code blocks useful token contrast without sending a syntax highlighter to the browser.
 
 ```ts
 function getPostReadingTime(words: number): string {

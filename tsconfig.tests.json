@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "incremental": false,
+        "lib": ["dom", "dom.iterable", "es2023"],
+        "types": ["bun"]
+    },
+    "include": ["lib/**/*.test.ts", "lib/**/*.ts", "solutions/**/*.ts"],
+    "exclude": ["node_modules", ".next"]
+}

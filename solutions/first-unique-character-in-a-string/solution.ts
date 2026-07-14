@@ -14,7 +14,7 @@ export function firstUniqChar(s: string): number {
     }
 
     for (let i = 0; i < s.length; i++) {
-        const char = s[i];
+        const char = s.charAt(i);
         if (frequency.get(char) === 1) return i;
     }
 

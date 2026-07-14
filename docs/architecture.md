@@ -116,7 +116,9 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 
 - Formatter configuration lives in `.oxfmtrc.json`
 - Package scripts wrap Oxfmt/Oxlint so hooks and CI use the same commands
-- Pre-commit hooks format and lint supported staged files through `scripts/check-staged.ts`
+- Pre-commit runs the fast TypeScript check.
+- `scripts/check-staged.ts` remains available as an explicit staged format/lint command.
+- Pre-push and CI run the complete healthcheck and production build.
 
 ### Valibot
 
@@ -130,11 +132,11 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 
 **Usage:**
 
-- Validate MDX frontmatter schemas
+- Validate Markdown frontmatter schemas
 - Type-safe content parsing
 - Runtime validation at build time
 
-### MDX for Content
+### Markdown for Content
 
 **Why:**
 
@@ -142,14 +144,14 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 - Type safety with Valibot schemas
 - Zero infrastructure (no database, no CMS)
 - Performance (static generation at build time)
-- Developer-friendly (Markdown + React components)
+- Developer-friendly Markdown authored in Git
 
 **Patterns:**
 
 - All content in `content/` directory
 - Frontmatter validated with Valibot schemas
 - Static generation for all content pages
-- React components embedded when needed
+- Rendered with `react-markdown`, `remark-gfm`, and `rehype-highlight`
 
 ---
 
@@ -163,24 +165,21 @@ hamadeh-io/
 │   ├── problems/         # Code problems (dynamic routes)
 │   ├── blog/              # Blog posts (dynamic routes)
 │   ├── about/             # Resume/about page
-│   └── api/               # API routes (Phase 2)
 ├── components/            # React components
 │   ├── ui/                # Project-owned UI wrappers/components
 │   ├── layout/            # Header, Footer, Navigation
 │   ├── problems/          # Problem-specific components
 │   └── blog/              # Blog-specific components
 ├── lib/                   # Utilities and helpers
-│   ├── mdx.ts            # MDX processing utilities
+│   ├── mdx.ts            # Markdown processing utilities
 │   ├── schemas.ts        # Valibot schemas for frontmatter
 │   ├── utils.ts          # General utilities
 │   └── constants.ts      # App constants
-├── content/              # MDX content files
+├── content/              # Markdown content files
 │   ├── problems/        # Code problems
 │   ├── blog/            # Blog posts
-│   └── about/           # Resume/about content
 ├── public/              # Static assets
 ├── scripts/             # Automation scripts
-├── tests/               # Test files
 └── docs/                # Documentation (this folder)
 ```
 
@@ -241,7 +240,7 @@ export function ThemeToggle() {
 - **One component per file:** Clear file naming (`ComponentName.tsx`)
 - **Barrel exports:** Use `index.ts` files sparingly, only for public API
 - **Shared components:** Place in `components/ui/` or `components/layout/`
-- **Feature-specific:** Place in feature folders (`components/leetcode/`, `components/blog/`)
+- **Feature-specific:** Place in feature folders (`components/problems/`, `components/blog/`)
 
 ---
 
@@ -249,7 +248,7 @@ export function ThemeToggle() {
 
 ### Static Generation (SSG)
 
-**All content pages use SSG:**
+**All page routes are statically rendered:**
 
 - Code problems
 - Blog posts
@@ -272,15 +271,16 @@ export default async function ProblemPage({ params }: Props) {
 }
 ```
 
-### MDX Processing
+### Markdown Processing
 
 **Pattern:**
 
-1. Read MDX files from `content/` directory
+1. Read Markdown files from `content/` directory
 2. Parse frontmatter with `@11ty/gray-matter`
 3. Validate frontmatter with Valibot schemas
-4. Process MDX content with `@next/mdx`
-5. Generate static pages at build time
+4. Render Markdown with `react-markdown`
+5. Apply GFM and server-side syntax highlighting
+6. Generate static pages at build time
 
 **Example:**
 
@@ -320,8 +320,7 @@ export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
 
 ```typescript
 type Result<T, E = Error> =
-    | { success: true; data: T }
-    | { success: false; error: E };
+    { success: true; data: T } | { success: false; error: E };
 
 export async function getProblemBySlug(
     slug: string
@@ -350,28 +349,22 @@ export async function getProblemBySlug(
 
 ### Test Organization
 
-```
-tests/
-├── unit/              # Pure function tests
-│   ├── lib/
-│   └── utils/
-└── integration/       # Component and page tests
-    ├── components/
-    └── app/
-```
+- Keep solution tests beside each `solutions/<slug>/solution.ts`.
+- Keep app and library tests beside the module whose behavior they verify.
+- Prefer boundary-focused behavior tests over a separate mirrored test tree.
 
 ### Test Structure
 
 **Global Test Types:**
 
-- Test methods (`test`, `describe`, `expect`, etc.) are globally available
-- No need to import from `'bun:test'` in test files
-- Type definitions in `types/bun-test.d.ts` provide IntelliSense
+- Solution tests use Bun's global test methods.
+- App and library tests import explicitly from `bun:test`.
+- Always use `test()` instead of `it()` for consistency.
 
 **Pattern:**
 
 ```typescript
-// No imports needed - test methods are globally available
+import { describe, expect, test } from "bun:test";
 
 describe("Feature Name", () => {
     describe("Basics", () => {
@@ -409,15 +402,13 @@ describe("Feature Name", () => {
 **Important:**
 
 - Always use `test()` instead of `it()` for consistency
-- `it()` is not available as a global (enforced by project preference)
 - Use `test.skip()`, `test.only()`, `test.todo()` for test modifiers
 
-### Coverage Targets
+### Coverage Policy
 
-- **Lines:** 85%+
-- **Functions:** 85%+
-- **Statements:** 85%+
-- Configured in `bunfig.toml`
+- Coverage is reported on every test run through `bunfig.toml`.
+- Strict thresholds stay disabled until app and component behavior coverage is broad enough to make the gate meaningful.
+- Re-enable thresholds incrementally rather than allowing solution tests to hide app-level gaps.
 
 ---
 
@@ -432,7 +423,7 @@ describe("Feature Name", () => {
 - Dynamic imports for syntax highlighting (load only when viewing code)
 - Tree-shake syntax highlighting (import specific languages only)
 - Code splitting (automatic with Next.js)
-- Monitor with `@next/bundle-analyzer`
+- Measure with Lighthouse and browser network tooling before and after performance changes
 
 ### Image Optimization
 
@@ -448,7 +439,7 @@ describe("Feature Name", () => {
 
 ### Static Generation
 
-- All content pages use SSG (no runtime data fetching)
+- All page routes use static rendering or `generateStaticParams`
 - Generate all pages at build time
 - Pre-render for instant page loads
 
@@ -471,8 +462,8 @@ describe("Feature Name", () => {
 ### Content Security
 
 - No eval() or Function() constructors
-- Sanitize MDX content if allowing user input (Phase 2)
-- Use Content Security Policy headers (Vercel handles this)
+- Sanitize Markdown content before allowing untrusted author input
+- Add a Content Security Policy before introducing untrusted or interactive content
 
 ---
 
@@ -499,4 +490,4 @@ describe("Feature Name", () => {
 - [Next.js App Router Documentation](https://nextjs.org/docs/app)
 - [React Server Components](https://react.dev/reference/rsc/server-components)
 - [TypeScript Best Practices](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
-- [MDX Documentation](https://mdxjs.com/)
+- [react-markdown Documentation](https://github.com/remarkjs/react-markdown)

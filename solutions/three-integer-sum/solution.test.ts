@@ -14,7 +14,7 @@ function normalize(triplets: number[][]): number[][] {
         .sort((a, b) => {
             for (let i = 0; i < a.length; i++) {
                 if (a[i] !== b[i]) {
-                    return a[i] - b[i];
+                    return (a[i] ?? 0) - (b[i] ?? 0);
                 }
             }
 

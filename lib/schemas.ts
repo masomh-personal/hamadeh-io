@@ -1,5 +1,5 @@
 /**
- * Valibot schemas for MDX frontmatter validation
+ * Valibot schemas for Markdown frontmatter validation
  * Lightweight (~1KB vs Zod's ~14KB) with excellent TypeScript inference
  */
 
@@ -54,7 +54,7 @@ export const ProblemFrontmatterSchema = v.object({
 
 /**
  * Blog Post Frontmatter Schema
- * Validates all required and optional fields for blog post MDX files
+ * Validates all required and optional fields for blog post Markdown files
  */
 export const BlogFrontmatterSchema = v.object({
     title: v.pipe(v.string(), v.minLength(1, "Title is required")),

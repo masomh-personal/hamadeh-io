@@ -12,20 +12,13 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-
-interface ProblemMetadata {
-    title: string;
-    slug: string;
-    source: "leetcode" | "dsa" | "custom";
-    difficulty: "easy" | "medium" | "hard";
-    datePublished: string;
-    timeComplexity: string;
-    spaceComplexity: string;
-    excerpt: string;
-}
+import {
+    type ProblemFrontmatter,
+    validateProblemFrontmatter,
+} from "@/lib/schemas";
 
 async function readSolutionFiles(slug: string): Promise<{
-    metadata: ProblemMetadata;
+    metadata: ProblemFrontmatter;
     solution: string;
 }> {
     const solutionDir = join(process.cwd(), "solutions", slug);
@@ -47,16 +40,25 @@ async function readSolutionFiles(slug: string): Promise<{
         throw new Error(`solution.ts not found in solutions/${slug}/`);
     }
 
-    const metadata: ProblemMetadata = JSON.parse(
-        await readFile(metadataPath, "utf-8")
+    const metadata = validateProblemFrontmatter(
+        JSON.parse(await readFile(metadataPath, "utf-8"))
     );
     const solution = await readFile(solutionPath, "utf-8");
 
     return { metadata, solution };
 }
 
-function validateMetadata(metadata: ProblemMetadata): void {
+function validateMetadata(
+    metadata: ProblemFrontmatter,
+    expectedSlug: string
+): void {
     const errors: string[] = [];
+
+    if (metadata.slug !== expectedSlug) {
+        errors.push(
+            `metadata slug "${metadata.slug}" does not match folder slug "${expectedSlug}"`
+        );
+    }
 
     if (metadata.timeComplexity === "O(?)") {
         errors.push("timeComplexity is not filled in (still O(?))");
@@ -91,16 +93,19 @@ function extractSolutionCode(solution: string): string {
     return lines.slice(startIndex).join("\n").trim();
 }
 
-function generateMarkdown(metadata: ProblemMetadata, solution: string): string {
+function generateMarkdown(
+    metadata: ProblemFrontmatter,
+    solution: string
+): string {
     const frontmatter = `---
-title: "${metadata.title}"
-slug: "${metadata.slug}"
-source: "${metadata.source}"
-difficulty: "${metadata.difficulty}"
-datePublished: "${metadata.datePublished}"
-timeComplexity: "${metadata.timeComplexity}"
-spaceComplexity: "${metadata.spaceComplexity}"
-excerpt: "${metadata.excerpt}"
+title: ${JSON.stringify(metadata.title)}
+slug: ${JSON.stringify(metadata.slug)}
+source: ${JSON.stringify(metadata.source)}
+difficulty: ${JSON.stringify(metadata.difficulty)}
+datePublished: ${JSON.stringify(metadata.datePublished)}
+timeComplexity: ${JSON.stringify(metadata.timeComplexity)}
+spaceComplexity: ${JSON.stringify(metadata.spaceComplexity)}
+excerpt: ${JSON.stringify(metadata.excerpt)}
 ---`;
 
     const solutionCode = extractSolutionCode(solution);
@@ -133,7 +138,7 @@ async function publish(slug: string): Promise<void> {
 
     try {
         const { metadata, solution } = await readSolutionFiles(slug);
-        validateMetadata(metadata);
+        validateMetadata(metadata, slug);
 
         const markdownContent = generateMarkdown(metadata, solution);
         const contentDir = join(process.cwd(), "content", "problems");

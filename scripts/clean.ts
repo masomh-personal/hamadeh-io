@@ -1,13 +1,12 @@
 #!/usr/bin/env bun
 
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { rm } from "node:fs/promises";
 
 const filesToRemove = [
     "node_modules",
     ".next",
-    "bun.lockb",
     "package-lock.json",
     "yarn.lock",
     "pnpm-lock.yaml",
@@ -32,7 +31,7 @@ for (const file of filesToRemove) {
 
 console.log("\n📦 Reinstalling packages...\n");
 try {
-    execSync("bun install", { stdio: "inherit" });
+    execFileSync(process.execPath, ["install"], { stdio: "inherit" });
     console.log("\n✅ Clean install complete!");
 } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

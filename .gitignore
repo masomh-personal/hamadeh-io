@@ -11,7 +11,6 @@ node_modules/
 
 # Package manager artifacts
 .bun/
-bun.lockb
 # Note: bun.lock (text lockfile) should be committed.
 
 # Build output and caches

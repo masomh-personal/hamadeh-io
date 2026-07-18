@@ -19,7 +19,7 @@ A modern, performance-focused portfolio website showcasing software engineering 
 | **Frontmatter Parsing**     | @11ty/gray-matter                           | Extract metadata from Markdown files                                              |
 | **Frontmatter Validation**  | Valibot                                     | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance           |
 | **Linting & Formatting**    | Oxfmt + Oxlint                              | Oxc-powered formatter and linter with fast JS/TS, React, a11y, and Next.js checks |
-| **Runtime**                 | Bun v1.3.x                                  | Fast installs, built-in test runner, instant TypeScript, production-ready         |
+| **Runtime**                 | Bun v1.3.14                                 | Fast installs, built-in test runner, instant TypeScript, production-ready         |
 | **BaaS (Future, optional)** | Supabase / Appwrite                         | Add only when write-path/auth requirements appear                                 |
 | **Deployment**              | Vercel                                      | Git-native deploys, previews for PRs, simple static-first workflow                |
 | **UI Approach**             | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies                               |
@@ -31,9 +31,11 @@ A modern, performance-focused portfolio website showcasing software engineering 
 
 ### Prerequisites
 
-- **Bun** v1.3.x or later ([Install Bun](https://bun.sh/docs/installation))
+- **Bun** v1.3.14 ([Install Bun](https://bun.sh/docs/installation))
 - **Git** for version control
-- **Node.js** 24.x LTS (fallback option if needed)
+
+Node.js is not required. Package installation, local development, builds, tests,
+and repository automation run through Bun.
 
 ### Installation
 
@@ -69,26 +71,29 @@ bun start
 
 ## Scripts
 
-| Script                              | Description                                          |
-| ----------------------------------- | ---------------------------------------------------- |
-| `bun run dev`                       | Start development server with hot reload             |
-| `bun run build`                     | Build production bundle                              |
-| `bun run start`                     | Start production server                              |
-| `bun run check`                     | Run Oxlint checks                                    |
-| `bun run check:fix`                 | Fix linting issues, then format with Oxfmt           |
-| `bun run check:staged`              | Format and lint supported staged files before commit |
-| `bun run format`                    | Format code with Oxfmt                               |
-| `bun run format:check`              | Check formatting without writing changes             |
-| `bun run type-check`                | Run TypeScript 7 beta type checking with `tsgo`      |
-| `bun run type-check:tsc`            | Run TypeScript 6 fallback type checking with `tsc`   |
-| `bun run type-check:tests`          | Type-check library and solution tests                |
-| `bun run test`                      | Run tests with Bun test runner                       |
-| `bun run test:coverage`             | Run tests with coverage report                       |
-| `bun run content:check`             | Validate all content and reject duplicate slugs      |
-| `bun run healthcheck`               | Run format check, type-check, Oxlint, and tests      |
-| `bun run clean`                     | Remove node_modules and lock files, reinstall        |
-| `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug         |
-| `bun run publish:problem <slug>`    | Generate markdown post from completed local solution |
+| Script                              | Description                                           |
+| ----------------------------------- | ----------------------------------------------------- |
+| `bun run dev`                       | Start development server with hot reload              |
+| `bun run dev:fresh`                 | Clear the Next.js cache, then start development       |
+| `bun run build`                     | Build production bundle                               |
+| `bun run start`                     | Start production server                               |
+| `bun run typegen`                   | Generate Next.js route and environment types          |
+| `bun run check`                     | Run Oxlint checks                                     |
+| `bun run check:fix`                 | Fix linting issues, then format with Oxfmt            |
+| `bun run check:staged`              | Format and lint supported staged files before commit  |
+| `bun run format`                    | Format code with Oxfmt                                |
+| `bun run format:check`              | Check formatting without writing changes              |
+| `bun run type-check`                | Run TypeScript 7 beta type checking with `tsgo`       |
+| `bun run type-check:tsc`            | Run TypeScript 6 fallback type checking with `tsc`    |
+| `bun run type-check:tests`          | Type-check library and solution tests                 |
+| `bun run test`                      | Run tests with Bun test runner                        |
+| `bun run test:coverage`             | Run tests with coverage report                        |
+| `bun run content:check`             | Validate all content and reject duplicate slugs       |
+| `bun run healthcheck`               | Run formatting, type checks, lint, content, and tests |
+| `bun run clean`                     | Remove generated files and alternate locks, reinstall |
+| `bun run clean:next`                | Remove the Next.js build cache                        |
+| `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug          |
+| `bun run publish:problem <slug>`    | Generate markdown post from completed local solution  |
 
 ---
 
@@ -96,8 +101,8 @@ bun start
 
 ### Test Runner
 
-Uses **Bun's built-in test runner**. Solution tests use Bun's global test
-methods, while app and library tests import explicitly from `bun:test`.
+Uses **Bun's built-in test runner**. Tests import their helpers explicitly from
+`bun:test`.
 
 ```typescript
 describe("Feature Name", () => {
@@ -163,7 +168,7 @@ describe("Feature Name", () => {
 
 **Pre-push (Husky):**
 
-- Type check, Oxlint, tests, then build. Formatting remains enforced by CI through `bun run healthcheck`, so the project gate stays consistent across machines.
+- Run the complete healthcheck, including formatting, type checks, content validation, Oxlint, and tests, then build the production bundle.
 
 ---
 
@@ -309,12 +314,14 @@ tags: ["typescript", "web-development"]
 
 ## Deployment
 
-**Vercel (Node runtime, static-first):**
+**Vercel (managed Next.js runtime, static-first):**
 
 - Connect GitHub repository in Vercel.
 - Set **Production Branch** to `main`.
 - Keep preview deployments enabled for pull requests and non-production branches.
 - Add required environment variables in **Vercel → Project Settings → Environment Variables**.
+- The repository toolchain is Bun-only. Vercel controls its managed production
+  runtime separately, so it is not a local Node.js requirement.
 
 Optional public metadata variables default to the production site values:
 `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SITE_NAME`, `NEXT_PUBLIC_AUTHOR_NAME`, and
@@ -381,10 +388,7 @@ Use the same variables in **Vercel → Project Settings → Environment Variable
 If `bun` command is not recognized:
 
 ```bash
-# Install Bun globally via npm
-npm install -g bun
-
-# Or use the official installer
+# Use the official installer
 curl -fsSL https://bun.sh/install | bash  # macOS/Linux
 powershell -c "irm bun.sh/install.ps1 | iex"  # Windows
 ```
@@ -517,7 +521,7 @@ git commit -m "feat: add two-sum solution"
 **Before Committing:**
 
 ```bash
-bun run healthcheck  # Format check, type-check, Oxlint, tests
+bun run healthcheck  # Formatting, type checks, content, Oxlint, tests
 ```
 
 **Before Pushing:**

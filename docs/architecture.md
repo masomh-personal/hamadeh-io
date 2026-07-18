@@ -88,7 +88,7 @@ interface BadgeProps extends React.ComponentProps<"span"> {
 
 For additional examples and a quick decision guide, see [`docs/typescript-conventions.md`](./typescript-conventions.md).
 
-### Bun v1.3.x
+### Bun v1.3.14
 
 **Why:**
 
@@ -97,11 +97,13 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 - Instant TypeScript execution
 - Production-ready (Vercel supports Bun)
 
-**Fallback:**
+**Runtime policy:**
 
-- All scripts work with both Bun and Node.js
-- Easy switch to `npm` commands if needed
-- Node.js 24.x LTS as production fallback
+- Bun is the only supported package manager and local JavaScript runtime.
+- Package scripts resolve the Bun executable explicitly instead of relying on
+  Node-compatible CLI shebangs.
+- Vercel owns the managed Next.js production runtime independently from the
+  repository's local toolchain.
 
 ### Oxfmt and Oxlint
 
@@ -355,10 +357,10 @@ export async function getProblemBySlug(
 
 ### Test Structure
 
-**Global Test Types:**
+**Test imports:**
 
-- Solution tests use Bun's global test methods.
-- App and library tests import explicitly from `bun:test`.
+- Tests import `describe`, `expect`, `test`, and other helpers explicitly from
+  `bun:test`.
 - Always use `test()` instead of `it()` for consistency.
 
 **Pattern:**

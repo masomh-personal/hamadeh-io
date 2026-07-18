@@ -1,9 +1,11 @@
+#!/usr/bin/env bun
+
 import { execFileSync, spawnSync } from "node:child_process";
 
 const FORMAT_EXTENSIONS =
     /\.(cjs|css|cts|html|js|json|jsonc|jsx|less|md|mdx|mjs|mts|scss|ts|tsx|ya?ml)$/i;
 const LINT_EXTENSIONS = /\.(cjs|cts|js|jsx|mjs|mts|ts|tsx)$/i;
-const bunx = "bunx";
+const bun = process.execPath;
 
 function getStagedFiles() {
     const output = execFileSync(
@@ -40,10 +42,11 @@ if (stagedFiles.length === 0) {
 
 const lintFiles = stagedFiles.filter((file) => LINT_EXTENSIONS.test(file));
 
-run(bunx, ["oxfmt", "--write", ...stagedFiles]);
+run(bun, ["--bun", "oxfmt", "--write", ...stagedFiles]);
 
 if (lintFiles.length > 0) {
-    run(bunx, [
+    run(bun, [
+        "--bun",
         "oxlint",
         "--fix",
         "--react-plugin",

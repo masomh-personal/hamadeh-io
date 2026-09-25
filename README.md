@@ -95,7 +95,7 @@ bun start
 | `bun run clean`                     | Remove generated files and alternate locks, reinstall |
 | `bun run clean:next`                | Remove the Next.js build cache                        |
 | `bun run new:problem <url-or-slug>` | Scaffold new problem workspace from URL/slug          |
-| `bun run publish:problem <slug>`    | Generate markdown post from completed local solution  |
+| `bun run publish:problem <slug>`    | Publish or refresh the post for a completed solution  |
 
 ---
 
@@ -490,11 +490,18 @@ This generates `content/problems/two-sum.md` with:
 
 - Frontmatter from metadata.json
 - Your solution code
-- Template sections for explanation
+- Your draft sections from `solutions/two-sum/problem.md` if it exists (delete
+  the draft afterward), otherwise template sections for explanation
 
-Publishing is one-way. Once the file exists the markdown is the source of
-truth, so a second run refuses to overwrite the analysis you wrote by hand.
-Pass `--force` if you really do want the template back.
+Draft the statement and approach in `solutions/two-sum/problem.md` rather than
+`content/problems/`. Everything in `content/problems/` is published and must
+contain the tested code, so an early stub would fail `content:check`.
+
+Once the post exists it is the source of truth for everything you wrote. Running
+the command again only refreshes the frontmatter from `metadata.json` and the
+implementation code block from `solution.ts`, leaving your analysis untouched.
+Pass `--force` if you really do want to rebuild the post from the draft or
+template.
 
 **Step 5: Add Explanations**
 

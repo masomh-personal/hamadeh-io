@@ -1,13 +1,15 @@
 ---
 description: Tailwind and design-system styling guardrails
-globs: **/*.{tsx,ts,css}
+globs: app/**/*.tsx,components/**/*.tsx,app/**/*.css
 alwaysApply: false
 ---
 
 # Styling and Tailwind Rules
 
+Token names, color roles, and layout primitives are documented in `docs/styling.md`, `docs/color-system.md`, and `docs/layout-system.md`. Check them before adding a color or spacing value.
+
 - Use Tailwind utilities first; avoid custom CSS unless necessary.
-- Use semantic design tokens/variables instead of hardcoded color values.
+- Use semantic design tokens and variables instead of hardcoded color values.
 - Prefer `cn` for conditional class composition.
 - Avoid arbitrary values unless reusable and documented.
 - Keep responsive behavior mobile-first.

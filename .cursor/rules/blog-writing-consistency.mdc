@@ -22,6 +22,8 @@ alwaysApply: false
 - Frame posts as learning notes and system design concepts, not interview preparation. Lead with ideas, tradeoffs, and how real systems use them.
 - Avoid interview-prep signaling in titles, excerpts, and hooks: for example "crack," "ace," "must know for interviews," "what they ask," or foregrounding a specific prep book unless the author explicitly wants that.
 - It is fine to cite or paraphrase sources in the body or a short endnote; keep the headline and opening about the topic, not the study context.
+- Prefer clear structure, strong headings, and practical examples over hype or generic thought-leadership language.
+- Use bullets only when they improve scanning; otherwise write paragraphs.
 
 ## Voice and Personality (the part that makes it sound like me)
 
@@ -35,7 +37,7 @@ alwaysApply: false
 
 ## Tone and Punctuation Rules (apply to all content posts)
 
-- Never use em dashes (`-`). Use a period, comma, parentheses, or rewrite the sentence instead.
+- Never use em dashes (`—`). Use a period, comma, parentheses, or rewrite the sentence instead.
 - Write like a person, not a language model. Avoid hollow filler phrases like "Why this works:", "This ensures that", "It is worth noting that", "This approach leverages".
 - No bullet points that restate what the code already shows. Explain the why, not the what.
 - Plain English wins. Avoid stiff words like "delve", "utilize", "leverage", "ensure", and "facilitate" when a simpler word works.

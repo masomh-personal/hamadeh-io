@@ -1,26 +1,22 @@
 ---
 description: TypeScript, React, and Next.js implementation conventions
-globs: **/*.{ts,tsx}
+globs: **/*.ts,**/*.tsx
 alwaysApply: false
 ---
 
 # TypeScript / React / Next.js Conventions
 
-- Use strict TypeScript patterns and explicit boundaries for untrusted data.
-- Exported functions should use explicit return types when practical.
-- Prefer `interface` for public object contracts; use `type` for unions/aliases.
-- Avoid enums; prefer `as const` objects/maps.
+Detailed examples live in `docs/typescript-conventions.md`; component, data, and error-handling patterns live in `docs/architecture.md`. Read them when a decision is not covered here.
+
+- Use strict TypeScript patterns and explicit boundaries for untrusted data. No `any`; use `unknown` and narrow.
+- Exported functions use explicit return types when practical.
+- Use `interface` for object contracts and component props; use `type` for unions and aliases.
+- Prefer `React.ComponentProps<"...">` for DOM wrapper props.
+- Avoid enums; prefer `as const` objects and maps.
 - Narrow types early and use exhaustive switches for unions.
 - Default to React Server Components; keep client islands small.
 - Minimize `useEffect` and unnecessary client state.
-- Follow Next.js App Router patterns for routing, loading, and error states.
+- Follow App Router patterns for routing, loading, and error states. Content pages are statically generated.
 - Use semantic HTML by default.
-
-# SOLID in TS/React Practice
-
-- Model features as small, cohesive modules (SRP), not large utility buckets.
-- Keep extension points explicit (OCP): strategy maps, handler registries, or focused adapters where variation is real.
-- Ensure interchangeable implementations keep the same behavior contract (LSP), not just the same type signature.
-- Split broad contracts into focused interfaces/function contracts (ISP) so consumers import only what they need.
-- Keep app/business logic dependent on ports/contracts, with concrete clients in adapter modules (DIP).
-- In React/Next, keep UI components thin and delegate policy/business decisions to domain/application modules.
+- Keep UI components thin and delegate policy and business decisions to `lib/` modules.
+- Tests import from `bun:test` and use `test()`, never `it()`.

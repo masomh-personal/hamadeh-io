@@ -1,6 +1,7 @@
 ---
-description: Testing strategy aligned with current build-first workflow
-alwaysApply: true
+description: Testing strategy and assertion conventions for bun:test suites
+globs: **/*.test.ts,**/*.test.tsx
+alwaysApply: false
 ---
 
 # Testing Strategy
@@ -10,11 +11,12 @@ alwaysApply: true
 - Cover basics and edge cases first; avoid implementation-detail tests.
 - Keep tests deterministic; mock only external boundaries.
 - Prefer minimal, targeted test additions over broad speculative suites.
-- Re-enable strict test gates only after core feature stabilization.
+- Re-enable strict coverage gates only after core feature stabilization.
+- Group suites as `Basics`, `Edge Cases`, and `Stress Tests` when relevant.
 - Use a consistent per-test assertion hierarchy for readability:
-  1) define `expected`
-  2) compute `result`
-  3) compare with `expect(result)...`
+    1. define `expected`
+    2. compute `result`
+    3. compare with `expect(result)...`
 - Avoid one-line inline assertions like `expect(fn(input)).toBe(value)` unless there is a strong reason not to introduce `expected` and `result` variables.
 
 # SOLID Verification Heuristics

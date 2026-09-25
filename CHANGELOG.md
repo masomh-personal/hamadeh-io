@@ -2,6 +2,34 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.7.1 - 2026-09-24
+
+### Changed
+
+- Reorganized the Cursor agent setup around current Cursor features: two always-on rules, file-scoped rules that point to the detailed docs, on-demand skills for problem, blog, UI component, dependency, and release workflows, and readonly reviewer and security subagents.
+- Replaced the persona playbook with `docs/agent-setup.md`, a map of which rule, skill, subagent, or hook handles each kind of request.
+
+### Added
+
+- Added a Cursor `beforeShellExecution` hook that denies agent commands running bare `bun`, preventing the editor from corrupting Bun's shared shims.
+
+### Fixed
+
+- `publish:problem` now refreshes an existing post's frontmatter and code block in place instead of refusing, and builds new posts from an unpublished `solutions/<slug>/problem.md` draft. Scaffolding no longer creates a stub post that fails `content:check`.
+- Fixed the writing rule that banned hyphens instead of em dashes, and retargeted PR guidance from a nonexistent `develop` branch to release branches merged into `main`.
+
+## 3.7.0 - 2026-09-05
+
+### Added
+
+- Published the final SOLID part on when applying the principles makes code worse and how to tell earned abstraction from abstraction tax.
+- Added a constant-time LRU cache built on a map and a sentinel-bounded doubly linked list, with eviction-order tests and a Medium problem post.
+
+### Changed
+
+- Refreshed Next.js, Oxlint, PostCSS, and type packages, moved Oxfmt to 0.66, and realigned the PostCSS override pin with its dependency range.
+- Updated the CI workflow to `actions/checkout` v7 and `actions/cache` v6.
+
 ## 3.6.0 - 2026-08-30
 
 ### Added

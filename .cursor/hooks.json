@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "hooks": {
+        "beforeShellExecution": [
+            {
+                "command": "env bun scripts/hooks/require-env-bun.ts",
+                "matcher": "\\bbunx?\\b",
+                "timeout": 10
+            }
+        ]
+    }
+}

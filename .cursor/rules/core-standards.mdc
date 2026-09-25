@@ -1,21 +1,34 @@
 ---
-description: Core engineering and workflow standards for this repo
+description: Core engineering, tooling, and repo hygiene standards for hamadeh.io
 alwaysApply: true
 ---
 
 # hamadeh.io Core Standards
 
+Personal site and engineering notebook: Next.js 16 App Router (static generation), React 19, TypeScript 7, Tailwind 4, Valibot, Markdown content in `content/`, algorithm solutions in `solutions/`, Bun for everything.
+
+## Engineering
+
 - Prioritize correctness, readability, and maintainability over cleverness.
-- Keep changes minimal and scoped; avoid speculative features.
-- Apply YAGNI, KISS, and DRY consistently.
-- Prefer composition and pure functions over classes.
-- Keep functions small, single-purpose, and predictable.
-- Use comments to explain why, not what.
-
-# Architecture and Boundary Rules
-
-- Keep domain logic independent from transport, framework, and vendor SDK concerns.
+- Make the smallest correct change; no speculative features or unrelated refactors.
+- Prefer composition and pure functions; use a class only when it is the simplest model for stateful code.
+- Keep domain logic independent from framework and vendor concerns.
 - Validate untrusted input at edges; pass trusted, normalized data inward.
-- Avoid "god modules" that validate, orchestrate, persist, and format in one place.
-- If adding abstraction, justify it with current change pressure or clear testability gains.
-- Apply SOLID guidance from `solid-principles.mdc` when designing modules and boundaries.
+- Reuse existing patterns and utilities before introducing new ones.
+- Comments explain why, not what.
+
+## Tooling
+
+- Use Bun/Bunx for scripts and package operations. Lint and format stay on Oxlint and Oxfmt; do not add ESLint or Prettier.
+- Agents invoking Bun from a terminal must prefix it with `env`, as in `env bun run healthcheck`. Bun writes whatever `argv[0]` it receives into the `bun` and `node` symlinks it shares across the machine, and some editors launch shells that pass their own binary as `argv[0]`. Those scripts then silently run the editor and exit 0, so every check passes without running. `env` re-execs with a correct `argv[0]`. A `beforeShellExecution` hook denies bare `bun` commands. Drop both once Bun resolves the shim target from the executable path rather than `argv[0]`.
+- Do not add a dependency without clear user benefit and justification. Keep `bun.lock` consistent.
+- UI is wrapper-first in `components/ui`. Do not use the shadcn CLI or generated components, even if a shadcn skill is available.
+
+## Repo Hygiene
+
+- Run `env bun run healthcheck` after meaningful edits. Before PRs to `main`, also run `env bun audit` and `env bun run build`.
+- Never revert unrelated user changes. Avoid destructive git operations unless explicitly approved.
+- Do not commit, push, or open PRs without explicit approval.
+- Every change reaching `main` increases the SemVer version in `package.json` exactly once (patch for fixes, minor for features, major for breaking changes). The `release` skill covers the full flow.
+- Keep docs and config in sync when tooling, conventions, or major decisions change.
+- Never add Cursor or AI attribution (trailers, "Made with Cursor", "Generated with Cursor", co-authored-by) to commits, PRs, docs, or content.

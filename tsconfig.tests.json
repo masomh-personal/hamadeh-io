@@ -5,6 +5,11 @@
         "lib": ["dom", "dom.iterable", "es2023"],
         "types": ["bun"]
     },
-    "include": ["lib/**/*.test.ts", "lib/**/*.ts", "solutions/**/*.ts"],
+    "include": [
+        "lib/**/*.test.ts",
+        "lib/**/*.ts",
+        "scripts/hooks/**/*.ts",
+        "solutions/**/*.ts"
+    ],
     "exclude": ["node_modules", ".next"]
 }

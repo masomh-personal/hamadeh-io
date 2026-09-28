@@ -4,15 +4,14 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
+import { staticPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = staticPageMetadata({
     title: "Blog",
     description:
         "Engineering notes on software development, CS fundamentals, and practical coding lessons.",
-    alternates: {
-        canonical: "/blog",
-    },
-};
+    path: "/blog",
+});
 
 export default async function BlogPage(): Promise<React.ReactElement> {
     const posts = await listPublishedBlogPosts();

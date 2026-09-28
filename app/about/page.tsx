@@ -10,17 +10,16 @@ import {
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { PageSection } from "@/components/layout/PageSection";
+import { staticPageMetadata } from "@/lib/site";
 
 const SECTION_DIVIDER = "my-3 border-b border-surface-outline/80";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = staticPageMetadata({
     title: "About",
     description:
         "About Masom Hamadeh, a senior full-stack software engineer focused on maintainable systems, clear technical communication, and thoughtful delivery.",
-    alternates: {
-        canonical: "/about",
-    },
-};
+    path: "/about",
+});
 
 export default function AboutPage() {
     return (

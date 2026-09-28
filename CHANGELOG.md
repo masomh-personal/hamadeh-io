@@ -2,6 +2,31 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.8.0 - 2026-09-28
+
+### Added
+
+- Added Validate Binary Search Tree as a Medium problem solved two ways, a bottom-up recursive range check and a top-down iterative DFS with an explicit stack of bounds, with every test run against both.
+- Published a post on recursion versus iteration on trees and what the call stack is really holding for you.
+
+### Changed
+
+- Refreshed Next.js to 16.3.6, React to 19.3.0, Valibot to 1.5.0, Tailwind Merge to 3.7.0, Oxlint to 1.85, Oxfmt to 0.70, and the type packages, and moved the Bun pin to 1.4.2.
+- Enabled typed routes, so links are checked against real routes during CI type-checking.
+- Brought the architecture, styling, and color docs back in line with the code.
+- Turned off the `AGENTS.md` and `CLAUDE.md` files `next dev` now generates for AI agents, since agent guidance already lives in the Cursor rules and `docs/agent-setup.md`.
+
+### Fixed
+
+- The About, Blog, and Code Problems pages now share their own title, description, and URL on social cards instead of the homepage's.
+- The 404 page renders on the server with its own title and no longer points its canonical tag at the homepage, and unknown post and problem slugs return 404 at routing.
+- Resolved two React warnings raised by the new Oxlint release, including a ref written during render on the blog list.
+
+### Security
+
+- Added a same-origin Content Security Policy header to every response.
+- Removed the PostCSS and Sharp overrides now that upstream ranges resolve versions with no known advisories.
+
 ## 3.7.1 - 2026-09-24
 
 ### Changed

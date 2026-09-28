@@ -1,0 +1,10 @@
+{
+    "title": "Validate Binary Search Tree",
+    "slug": "validate-binary-search-tree",
+    "source": "leetcode",
+    "difficulty": "medium",
+    "datePublished": "2026-09-28",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(h)",
+    "excerpt": "Check whether a binary tree is a valid BST, solved twice: once with recursion and once with an explicit stack."
+}

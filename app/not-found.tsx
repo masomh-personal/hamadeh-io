@@ -1,8 +1,17 @@
-"use client";
-
-import { HiArrowLeft, HiHome } from "react-icons/hi";
+import type { Metadata } from "next";
+import { HiHome } from "react-icons/hi";
+import { GoBackButton } from "@/components/layout/GoBackButton";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { Button, Link } from "@/components/ui";
+
+// Next.js already emits noindex for 404s, but the root layout's homepage
+// canonical would otherwise be inherited.
+export const metadata: Metadata = {
+    title: "Page Not Found",
+    alternates: {
+        canonical: null,
+    },
+};
 
 /**
  * Custom 404 Not Found page
@@ -59,14 +68,7 @@ export default function NotFound() {
                     <Button href="/" icon={<HiHome />} iconSize="lg">
                         Go Home
                     </Button>
-                    <Button
-                        variant="secondary"
-                        icon={<HiArrowLeft />}
-                        iconSize="lg"
-                        onClick={() => window.history.back()}
-                    >
-                        Go Back
-                    </Button>
+                    <GoBackButton />
                 </div>
 
                 {/* Additional Links */}

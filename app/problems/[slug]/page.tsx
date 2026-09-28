@@ -50,6 +50,8 @@ function getProblemSectionContent(content: string): ProblemSectionContent {
     };
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
     const problems = await listPublishedProblems();
     return problems.map((problem) => ({ slug: problem.slug }));

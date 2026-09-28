@@ -13,6 +13,8 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
     const posts = await listPublishedBlogPosts();
     return posts.map((post) => ({

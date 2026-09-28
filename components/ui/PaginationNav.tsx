@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import NextLink from "next/link";
 import { HiArrowLeft, HiArrowRight, HiBan } from "react-icons/hi";
 import { cn } from "@/lib/utils";
@@ -6,7 +7,7 @@ import { Button } from "./Button";
 interface PaginationNavProps {
     currentPage: number;
     totalPages: number;
-    getPageHref: (page: number) => string;
+    getPageHref: (page: number) => Route;
     className?: string;
 }
 

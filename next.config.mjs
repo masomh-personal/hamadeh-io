@@ -60,6 +60,7 @@ const nextConfig = {
         NEXT_PUBLIC_GIT_FULL_SHA: sha,
     },
     reactStrictMode: true,
+    typedRoutes: true,
     typescript: {
         ignoreBuildErrors: false,
     },

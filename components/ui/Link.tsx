@@ -1,4 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
+import type { Route } from "next";
 import NextLink from "next/link";
 import type { ComponentProps } from "react";
 import { FiArrowRight } from "react-icons/fi";
@@ -37,12 +38,12 @@ interface ThoughtfulLinkBaseProps extends Omit<ComponentProps<"a">, "href"> {
  */
 type ThoughtfulLinkAsChildProps = ThoughtfulLinkBaseProps & {
     asChild: true;
-    href?: string;
+    href?: Route;
 };
 
 type ThoughtfulLinkWithHrefProps = ThoughtfulLinkBaseProps & {
     asChild?: false;
-    href: string;
+    href: Route;
 };
 
 export type ThoughtfulLinkProps =

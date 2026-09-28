@@ -33,6 +33,7 @@ This document outlines the architectural decisions, patterns, and conventions us
 - Leverage Server Components by default
 - Use Client Components (`'use client'`) only when needed (interactivity, hooks, browser APIs)
 - Static generation for all content pages (SSG)
+- `typedRoutes` is on, so `href` props are checked against real routes once `bun run typegen` has run (CI runs it before type-checking). Wrapper components type `href` as `Route` from `next`, and dynamic paths built from validated slugs use `` `/blog/${slug}` as Route ``.
 
 ### React 19
 

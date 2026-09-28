@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { IconType } from "react-icons";
@@ -42,7 +43,7 @@ export function Header() {
 
     type NavItem = {
         name: string;
-        href: string;
+        href: Route;
         icon: IconType;
         external?: boolean;
         iconOnlyOnDesktop?: boolean;

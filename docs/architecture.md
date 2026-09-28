@@ -186,8 +186,9 @@ hamadeh-io/
 ├── lib/                   # Utilities and helpers
 │   ├── mdx.ts            # Markdown processing utilities
 │   ├── schemas.ts        # Valibot schemas for frontmatter
-│   ├── utils.ts          # General utilities
-│   └── constants.ts      # App constants
+│   ├── content/          # Published blog and problem loaders
+│   ├── site.ts           # Site URL, author constants, page metadata
+│   └── utils.ts          # General utilities
 ├── content/              # Markdown content files
 │   ├── problems/        # Code problems
 │   ├── blog/            # Blog posts
@@ -213,10 +214,11 @@ hamadeh-io/
 
 ```typescript
 // app/problems/[slug]/page.tsx
-export default async function ProblemPage({ params }: Props) {
-    const solution = await getProblemBySlug(params.slug);
+export default async function ProblemPage({ params }: PageProps) {
+    const { slug } = await params;
+    const problem = await getPublishedProblemBySlug(slug);
 
-    return <SolutionView solution={solution} />;
+    return <RichMarkdownContent content={problem.content} />;
 }
 ```
 
@@ -271,16 +273,24 @@ export function ThemeToggle() {
 
 ```typescript
 // app/problems/[slug]/page.tsx
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
+
+// Unknown slugs 404 at the routing layer instead of rendering on demand.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-    const solutions = await getAllProblems();
-    return solutions.map((solution) => ({
-        slug: solution.slug,
+    const problems = await listPublishedProblems();
+    return problems.map((problem) => ({
+        slug: problem.slug,
     }));
 }
 
-export default async function ProblemPage({ params }: Props) {
-    const solution = await getProblemBySlug(params.slug);
-    return <SolutionView solution={solution} />;
+export default async function ProblemPage({ params }: PageProps) {
+    const { slug } = await params;
+    const problem = await getPublishedProblemBySlug(slug);
+    return <RichMarkdownContent content={problem.content} />;
 }
 ```
 

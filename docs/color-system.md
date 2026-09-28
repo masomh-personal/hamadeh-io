@@ -24,9 +24,13 @@ This document explains hamadeh.io's color system and how to maintain consistency
     --color-secondary: var(
         --color-emerald-500
     ); /* Secondary accent (success, positive) */
+    --color-secondary-hover: var(
+        --color-emerald-400
+    ); /* Secondary hover state */
     --color-tertiary: var(
-        --color-amber-400
+        --color-amber-600
     ); /* Tertiary accent (highlights, badges) */
+    --color-tertiary-hover: var(--color-amber-500); /* Tertiary hover state */
     --color-muted: var(
         --color-slate-400
     ); /* Muted text (inactive, secondary) */
@@ -320,7 +324,7 @@ If you find hardcoded colors in existing components, migrate them:
 | `text-sky-500`       | `text-primary`                      |
 | `text-sky-400`       | `text-primary-hover`                |
 | `bg-emerald-500`     | `bg-secondary`                      |
-| `text-amber-400`     | `text-tertiary`                     |
+| `text-amber-600`     | `text-tertiary`                     |
 | `text-slate-400`     | `text-muted`                        |
 | `hover:text-sky-400` | `hover:text-primary`                |
 | `bg-indigo-500`      | `bg-primary` (after changing theme) |

@@ -315,16 +315,20 @@ Implementation notes:
 
 ```css
 :root {
-    --background: #171717;
-    --foreground: var(--color-slate-50);
+    --background: var(--color-slate-900);
+    --foreground: var(--color-slate-300);
     --muted: var(--color-slate-800);
-    --muted-foreground: var(--color-slate-400);
-    --border: var(--color-slate-700);
+    --muted-foreground: color-mix(
+        in srgb,
+        var(--color-slate-300) 88%,
+        var(--color-slate-400)
+    );
+    --border: color-mix(in srgb, var(--color-slate-500) 88%, transparent);
     --accent: var(--color-sky-500);
     --accent-foreground: white;
     --secondary: var(--color-emerald-500);
     --secondary-foreground: white;
-    --tertiary: var(--color-amber-400);
+    --tertiary: var(--color-tertiary);
     --tertiary-foreground: white;
 }
 ```

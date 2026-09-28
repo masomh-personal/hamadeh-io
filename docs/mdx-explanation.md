@@ -94,13 +94,18 @@ In Next.js pages, we use the utilities:
 ```typescript
 // app/problems/[slug]/page.tsx
 export async function generateStaticParams() {
-    const solutions = await getAllProblems();
-    return solutions.map((s) => ({ slug: s.slug }));
+    const problems = await listPublishedProblems();
+    return problems.map((p) => ({ slug: p.slug }));
 }
 
-export default async function SolutionPage({ params }) {
-    const solution = await getProblemBySlug(params.slug);
-    return <SolutionView solution={solution} />;
+export default async function ProblemPage({
+    params,
+}: {
+    params: Promise<{ slug: string }>;
+}) {
+    const { slug } = await params;
+    const problem = await getPublishedProblemBySlug(slug);
+    return <RichMarkdownContent content={problem.content} />;
 }
 ```
 

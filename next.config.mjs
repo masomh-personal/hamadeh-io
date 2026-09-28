@@ -82,6 +82,9 @@ const nextConfig = {
         NEXT_PUBLIC_GIT_SHA: sha,
         NEXT_PUBLIC_GIT_FULL_SHA: sha,
     },
+    // Agent guidance lives in .cursor/rules and docs/agent-setup.md, so keep
+    // `next dev` from generating a second, overlapping AGENTS.md and CLAUDE.md.
+    agentRules: false,
     reactStrictMode: true,
     typedRoutes: true,
     typescript: {

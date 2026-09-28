@@ -476,7 +476,15 @@ describe("Feature Name", () => {
 
 - No eval() or Function() constructors
 - Sanitize Markdown content before allowing untrusted author input
-- Add a Content Security Policy before introducing untrusted or interactive content
+
+### Response Headers
+
+`next.config.mjs` sends a Content Security Policy with every response, alongside `nosniff`, `Referrer-Policy`, `Permissions-Policy`, and `X-Frame-Options: DENY`.
+
+- Everything loads from `'self'`. There are no third-party scripts, fonts, images, or embeds, so adding one means widening the policy on purpose.
+- `script-src` allows `'unsafe-inline'` because Next.js inlines the RSC payload into every static page. Nonces would force dynamic rendering, and hash-based CSP (`experimental.sri`) is webpack-only, while this site builds with Turbopack.
+- `'unsafe-eval'` is added in development only, for React's dev tooling.
+- The Vercel preview toolbar loads from `vercel.live`, which the policy blocks. Allow it for preview deployments only if the toolbar is needed.
 
 ---
 

@@ -1,6 +1,7 @@
+import type { Route } from "next";
 import { PaginationNav } from "@/components/ui";
 
-function mockHref(_page: number): string {
+function mockHref(_page: number): Route {
     return "#";
 }
 

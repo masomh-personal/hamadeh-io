@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { HiCode, HiEye } from "react-icons/hi";
 import { Badge } from "@/components/ui";
 import { PostCard } from "@/components/ui/PostCard";
@@ -16,7 +17,7 @@ export function ProblemPostCard({ problem }: ProblemPostCardProps) {
 
     return (
         <PostCard
-            href={`/problems/${problem.slug}`}
+            href={`/problems/${problem.slug}` as Route}
             icon={
                 <HiCode
                     aria-hidden="true"

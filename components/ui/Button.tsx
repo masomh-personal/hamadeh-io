@@ -1,6 +1,7 @@
 "use client";
 
 import { Slot } from "@radix-ui/react-slot";
+import type { Route } from "next";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
 import { HiCode } from "react-icons/hi";
@@ -61,7 +62,7 @@ export interface ThoughtfulButtonProps extends Omit<
 > {
     variant?: ButtonVariant;
     size?: ButtonSize;
-    href?: string;
+    href?: Route;
     children?: React.ReactNode;
     icon?: React.ReactNode;
     iconOnly?: boolean;

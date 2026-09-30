@@ -19,7 +19,7 @@ Dependabot opens grouped weekly PRs (`bun-minor-and-patch`, `bun-major`, `github
     - For Next.js, use the `next-upgrade` skill.
     - For TypeScript, check `docs/typescript-conventions.md`, which covers TypeScript 7 compatibility notes.
     - For Oxlint and Oxfmt, run `env bun run check` and `env bun run format:check` and review any new diagnostics rather than blanket-fixing them.
-4. **Review overrides.** `package.json` pins `postcss` and `sharp` as temporary security overrides.
+4. **Review overrides.** `package.json` has no `overrides` as of 3.8.0. If an advisory forces one, treat it as a temporary security pin.
     - For each one, run `env bun why <pkg>` to see whether upstream dependencies now resolve a patched version on their own.
     - Remove any override that is no longer needed. Keep the ones that are, and record why in the changelog.
 5. **Keep the toolchain aligned.** If Bun itself changes, update `packageManager` and `engines.bun` together. CI reads `packageManager`, and `scripts/ensure-bun.ts` enforces both.

@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { HiArrowRight, HiDocumentText } from "react-icons/hi";
 import { Badge } from "@/components/ui";
 import { PostCard } from "@/components/ui/PostCard";
@@ -13,7 +14,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 
     return (
         <PostCard
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.slug}` as Route}
             icon={
                 <HiDocumentText
                     aria-hidden="true"

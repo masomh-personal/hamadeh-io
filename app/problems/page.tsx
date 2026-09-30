@@ -3,15 +3,14 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ProblemPostCard } from "@/components/problems/ProblemPostCard";
 import { listPublishedProblems } from "@/lib/content/problems";
+import { staticPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = staticPageMetadata({
     title: "Code Problems",
     description:
         "Practice problems with concise writeups, tested local solutions, and complexity analysis.",
-    alternates: {
-        canonical: "/problems",
-    },
-};
+    path: "/problems",
+});
 
 export default async function ProblemsPage(): Promise<React.ReactElement> {
     const problems = await listPublishedProblems();

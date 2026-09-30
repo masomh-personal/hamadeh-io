@@ -71,10 +71,10 @@ export function LoadingShowcase() {
         setActive(index);
         setSecondsRemaining(AUTODISMISS_SECONDS);
 
-        const end = Date.now() + AUTODISMISS_SECONDS * 1000;
         intervalRef.current = setInterval(() => {
-            const remaining = Math.max(0, Math.ceil((end - Date.now()) / 1000));
-            setSecondsRemaining(remaining);
+            setSecondsRemaining((seconds) =>
+                seconds === null ? null : Math.max(0, seconds - 1)
+            );
         }, 1000);
 
         timerRef.current = setTimeout(dismiss, AUTODISMISS_SECONDS * 1000);

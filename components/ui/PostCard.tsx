@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
@@ -5,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { formatPublishedDate } from "@/lib/date";
 
 interface PostCardProps {
-    href: string;
+    href: Route;
     /** Small icon shown beside the published date. */
     icon: ReactNode;
     datePublished: string;

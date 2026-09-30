@@ -33,6 +33,7 @@ This document outlines the architectural decisions, patterns, and conventions us
 - Leverage Server Components by default
 - Use Client Components (`'use client'`) only when needed (interactivity, hooks, browser APIs)
 - Static generation for all content pages (SSG)
+- `typedRoutes` is on, so `href` props are checked against real routes once `bun run typegen` has run (CI runs it before type-checking). Wrapper components type `href` as `Route` from `next`, and dynamic paths built from validated slugs use `` `/blog/${slug}` as Route ``.
 
 ### React 19
 
@@ -185,8 +186,9 @@ hamadeh-io/
 ├── lib/                   # Utilities and helpers
 │   ├── mdx.ts            # Markdown processing utilities
 │   ├── schemas.ts        # Valibot schemas for frontmatter
-│   ├── utils.ts          # General utilities
-│   └── constants.ts      # App constants
+│   ├── content/          # Published blog and problem loaders
+│   ├── site.ts           # Site URL, author constants, page metadata
+│   └── utils.ts          # General utilities
 ├── content/              # Markdown content files
 │   ├── problems/        # Code problems
 │   ├── blog/            # Blog posts
@@ -212,10 +214,11 @@ hamadeh-io/
 
 ```typescript
 // app/problems/[slug]/page.tsx
-export default async function ProblemPage({ params }: Props) {
-    const solution = await getProblemBySlug(params.slug);
+export default async function ProblemPage({ params }: PageProps) {
+    const { slug } = await params;
+    const problem = await getPublishedProblemBySlug(slug);
 
-    return <SolutionView solution={solution} />;
+    return <RichMarkdownContent content={problem.content} />;
 }
 ```
 
@@ -270,16 +273,24 @@ export function ThemeToggle() {
 
 ```typescript
 // app/problems/[slug]/page.tsx
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
+
+// Unknown slugs 404 at the routing layer instead of rendering on demand.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-    const solutions = await getAllProblems();
-    return solutions.map((solution) => ({
-        slug: solution.slug,
+    const problems = await listPublishedProblems();
+    return problems.map((problem) => ({
+        slug: problem.slug,
     }));
 }
 
-export default async function ProblemPage({ params }: Props) {
-    const solution = await getProblemBySlug(params.slug);
-    return <SolutionView solution={solution} />;
+export default async function ProblemPage({ params }: PageProps) {
+    const { slug } = await params;
+    const problem = await getPublishedProblemBySlug(slug);
+    return <RichMarkdownContent content={problem.content} />;
 }
 ```
 
@@ -475,7 +486,15 @@ describe("Feature Name", () => {
 
 - No eval() or Function() constructors
 - Sanitize Markdown content before allowing untrusted author input
-- Add a Content Security Policy before introducing untrusted or interactive content
+
+### Response Headers
+
+`next.config.mjs` sends a Content Security Policy with every response, alongside `nosniff`, `Referrer-Policy`, `Permissions-Policy`, and `X-Frame-Options: DENY`.
+
+- Everything loads from `'self'`. There are no third-party scripts, fonts, images, or embeds, so adding one means widening the policy on purpose.
+- `script-src` allows `'unsafe-inline'` because Next.js inlines the RSC payload into every static page. Nonces would force dynamic rendering, and hash-based CSP (`experimental.sri`) is webpack-only, while this site builds with Turbopack.
+- `'unsafe-eval'` is added in development only, for React's dev tooling.
+- The Vercel preview toolbar loads from `vercel.live`, which the policy blocks. Allow it for preview deployments only if the toolbar is needed.
 
 ---
 

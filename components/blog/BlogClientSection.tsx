@@ -52,9 +52,9 @@ export function BlogClientSection({ posts, allTags }: BlogClientSectionProps) {
     const [renderedSlugs, setRenderedSlugs] = useState<Set<string>>(
         () => new Set(posts.map((p) => p.slug))
     );
-    // Stable ref so the effect can read the latest rendered set without it being a dependency.
+    // Mirrors renderedSlugs so the effect can read it without depending on it.
+    // Only written alongside setRenderedSlugs, never during render.
     const renderedSlugsRef = useRef(renderedSlugs);
-    renderedSlugsRef.current = renderedSlugs;
 
     // Slugs that just entered — cleared after ENTER_MS so lift animation is one-shot.
     const [enteringSlugs, setEnteringSlugs] = useState<Set<string>>(
@@ -78,7 +78,9 @@ export function BlogClientSection({ posts, allTags }: BlogClientSectionProps) {
 
         // Let exits play out, then swap rendered set and trigger enters.
         exitTimerRef.current = setTimeout(() => {
-            setRenderedSlugs(new Set(visibleSlugs));
+            const nextRenderedSlugs = new Set(visibleSlugs);
+            renderedSlugsRef.current = nextRenderedSlugs;
+            setRenderedSlugs(nextRenderedSlugs);
 
             // Mark newly added slugs as entering so they get the lift class.
             if (incoming.size > 0) {

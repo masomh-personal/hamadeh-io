@@ -27,6 +27,25 @@ function getGitInfo() {
 
 const { branch, sha } = getGitInfo();
 
+const isDev = process.env.NODE_ENV === "development";
+
+// Nonces would force every page to render dynamically, and hash-based CSP via
+// experimental.sri is webpack-only, so a static site on Turbopack has to allow
+// inline scripts for the RSC payload Next.js inlines into each page.
+const contentSecurityPolicy = [
+    "default-src 'self'",
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob:",
+    "font-src 'self'",
+    "connect-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "upgrade-insecure-requests",
+].join("; ");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async headers() {
@@ -34,6 +53,10 @@ const nextConfig = {
             {
                 source: "/(.*)",
                 headers: [
+                    {
+                        key: "Content-Security-Policy",
+                        value: contentSecurityPolicy,
+                    },
                     {
                         key: "X-Content-Type-Options",
                         value: "nosniff",
@@ -59,7 +82,11 @@ const nextConfig = {
         NEXT_PUBLIC_GIT_SHA: sha,
         NEXT_PUBLIC_GIT_FULL_SHA: sha,
     },
+    // Agent guidance lives in .cursor/rules and docs/agent-setup.md, so keep
+    // `next dev` from generating a second, overlapping AGENTS.md and CLAUDE.md.
+    agentRules: false,
     reactStrictMode: true,
+    typedRoutes: true,
     typescript: {
         ignoreBuildErrors: false,
     },

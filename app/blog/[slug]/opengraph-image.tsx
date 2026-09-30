@@ -7,6 +7,7 @@ import { OG_CONTENT_TYPE, OG_SIZE, renderOgImage } from "@/lib/og";
 export const alt = "Blog post";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
+export const dynamicParams = false;
 
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
     const posts = await listPublishedBlogPosts();

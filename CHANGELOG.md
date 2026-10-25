@@ -2,6 +2,21 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.9.0 - 2026-10-25
+
+### Added
+
+- Posts and problems now show a calculated reading time, estimated from the Markdown body with code blocks weighted separately from prose, so nothing has to be written by hand.
+
+### Changed
+
+- Removed post dates everywhere: the frontmatter fields, the cards and headers, the RSS feed, the sitemap, and the structured data. Blog and problem lists now sort alphabetically by title.
+- Replaced the Markdown reading time regex with a single-pass line scanner that also handles indented and unclosed code fences.
+
+### Fixed
+
+- Open Graph chips on problem cards no longer share a React key when time and space complexity match, and card actions no longer key on their list position.
+
 ## 3.8.0 - 2026-09-28
 
 ### Added

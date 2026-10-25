@@ -3,66 +3,91 @@ import NextLink from "next/link";
 import { FaTag } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 
-export interface TagFilterOption {
-    /** Raw tag value passed back to `getTagHref`. */
+export interface FilterOption {
+    /** Raw value passed back to `getHref`. */
     value: string;
     /** Display label (e.g. uppercased, formatted). */
     label: string;
-    /** Foreground hex color for the icon, border, and active text. */
+    /** Foreground hex color for the marker, border, and active text. */
     color: string;
     /** Background hex color (semi-transparent) used when active. */
     bgColor: string;
-    /** Number of items that carry this tag. */
+    /** Number of items that match this option. */
     count: number;
 }
 
-interface TagFilterListProps {
-    tags: TagFilterOption[];
-    /** The selected tag value, or `null` when showing everything. */
-    activeTag: string | null;
+interface FilterListProps {
+    options: FilterOption[];
+    /** The selected option value, or `null` when showing everything. */
+    activeValue: string | null;
     /** Count shown beside the "All" entry. */
     totalCount: number;
-    /** Resolves the destination for a tag, or for "All" when given `null`. */
-    getTagHref: (tag: string | null) => Route;
+    /** Resolves the destination for an option, or for "All" when given `null`. */
+    getHref: (value: string | null) => Route;
+    /** Accessible name for the navigation landmark. */
+    ariaLabel: string;
+    /**
+     * `responsive` scrolls a row of pills on small screens and stacks a list
+     * with counts from `lg` up. `row` scrolls on the smallest screens and wraps
+     * from `sm` up, for short lists that do not need a sidebar.
+     */
+    orientation?: "responsive" | "row";
+    /** Leading mark on each option: a tag icon or a plain dot. */
+    marker?: "tag" | "dot";
     className?: string;
 }
 
 const itemBase =
-    "inline-flex shrink-0 snap-start items-center gap-2 rounded-full border px-3 py-2 font-baloo text-xs font-semibold uppercase leading-none tracking-[0.03em] whitespace-nowrap transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 lg:flex lg:w-full lg:justify-between lg:rounded-md";
+    "inline-flex shrink-0 snap-start items-center gap-2 rounded-full border px-3 py-2 font-baloo text-xs font-semibold uppercase leading-none tracking-[0.03em] whitespace-nowrap transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 const itemIdle =
-    "border-surface-outline/60 text-content-subtle hover:bg-white/5 hover:text-content lg:border-transparent";
+    "border-surface-outline/60 text-content-subtle hover:bg-white/5 hover:text-content";
 
 /**
- * Single-select tag filter made of real links, so the selection lives in the
- * URL. A horizontally scrolling row of pills on small screens and a vertical
- * list with counts on large ones. Callers resolve label and color first.
+ * Single-select filter made of real links, so the selection lives in the URL.
+ * Callers resolve label and color first.
  */
-export function TagFilterList({
-    tags,
-    activeTag,
+export function FilterList({
+    options,
+    activeValue,
     totalCount,
-    getTagHref,
+    getHref,
+    ariaLabel,
+    orientation = "responsive",
+    marker = "tag",
     className,
-}: TagFilterListProps): React.ReactElement | null {
-    if (tags.length === 0) {
+}: FilterListProps): React.ReactElement | null {
+    if (options.length === 0) {
         return null;
     }
 
-    const isAllActive = activeTag === null;
+    const isStacked = orientation === "responsive";
+    const isAllActive = activeValue === null;
+    const itemLayout = isStacked
+        ? "lg:flex lg:w-full lg:justify-between lg:rounded-md"
+        : undefined;
+    const idleLayout = isStacked ? "lg:border-transparent" : undefined;
 
     return (
-        <nav aria-label="Filter by topic" className={className}>
-            <ul className="flex snap-x gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:flex-col lg:gap-0.5 lg:overflow-visible lg:pb-0">
+        <nav aria-label={ariaLabel} className={className}>
+            <ul
+                className={cn(
+                    "flex gap-2",
+                    isStacked
+                        ? "snap-x overflow-x-auto pb-1 [scrollbar-width:none] lg:flex-col lg:gap-0.5 lg:overflow-visible lg:pb-0"
+                        : "snap-x overflow-x-auto pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:pb-0"
+                )}
+            >
                 <li className="contents">
                     <NextLink
-                        href={getTagHref(null)}
+                        href={getHref(null)}
                         scroll={false}
                         aria-current={isAllActive ? "true" : undefined}
                         className={cn(
                             itemBase,
+                            itemLayout,
                             isAllActive
                                 ? "border-white/30 bg-white/10 text-white"
-                                : itemIdle
+                                : cn(itemIdle, idleLayout)
                         )}
                     >
                         All
@@ -71,16 +96,20 @@ export function TagFilterList({
                         </span>
                     </NextLink>
                 </li>
-                {tags.map(({ value, label, color, bgColor, count }) => {
-                    const isActive = value === activeTag;
+                {options.map(({ value, label, color, bgColor, count }) => {
+                    const isActive = value === activeValue;
 
                     return (
                         <li key={value} className="contents">
                             <NextLink
-                                href={getTagHref(value)}
+                                href={getHref(value)}
                                 scroll={false}
                                 aria-current={isActive ? "true" : undefined}
-                                className={cn(itemBase, !isActive && itemIdle)}
+                                className={cn(
+                                    itemBase,
+                                    itemLayout,
+                                    !isActive && cn(itemIdle, idleLayout)
+                                )}
                                 style={
                                     isActive
                                         ? {
@@ -92,11 +121,19 @@ export function TagFilterList({
                                 }
                             >
                                 <span className="inline-flex items-center gap-1.5">
-                                    <FaTag
-                                        aria-hidden="true"
-                                        className="h-2.75 w-2.75 shrink-0"
-                                        style={{ color }}
-                                    />
+                                    {marker === "tag" ? (
+                                        <FaTag
+                                            aria-hidden="true"
+                                            className="h-2.75 w-2.75 shrink-0"
+                                            style={{ color }}
+                                        />
+                                    ) : (
+                                        <span
+                                            aria-hidden="true"
+                                            className="size-2 shrink-0 rounded-full"
+                                            style={{ backgroundColor: color }}
+                                        />
+                                    )}
                                     {label}
                                 </span>
                                 <span className="font-mono text-[0.65rem] opacity-70">

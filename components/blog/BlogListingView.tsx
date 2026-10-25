@@ -1,9 +1,5 @@
 import type { Route } from "next";
-import {
-    PaginationNav,
-    TagFilterList,
-    type TagFilterOption,
-} from "@/components/ui";
+import { FilterList, type FilterOption, PaginationNav } from "@/components/ui";
 import type { BlogPostSummary } from "@/lib/content/blog";
 import {
     type BlogListingQuery,
@@ -31,7 +27,7 @@ export function BlogListingView({
     query,
 }: BlogListingViewProps): React.ReactElement {
     const listing = getBlogListing(posts, query);
-    const tagOptions = tagCounts.map(({ tag, count }): TagFilterOption => {
+    const tagOptions = tagCounts.map(({ tag, count }): FilterOption => {
         const { text, color, bgColor } = getBlogTagPresentation(tag);
         return { value: tag, label: text, color, bgColor, count };
     });
@@ -42,11 +38,12 @@ export function BlogListingView({
     return (
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-8">
             <aside className="-mx-6 min-w-0 px-6 lg:sticky lg:top-24 lg:mx-0 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:px-0">
-                <TagFilterList
-                    tags={tagOptions}
-                    activeTag={listing.activeTag}
+                <FilterList
+                    ariaLabel="Filter by topic"
+                    options={tagOptions}
+                    activeValue={listing.activeTag}
                     totalCount={posts.length}
-                    getTagHref={(tag) => getBlogListingPath({ tag }) as Route}
+                    getHref={(tag) => getBlogListingPath({ tag }) as Route}
                 />
             </aside>
 

@@ -1,7 +1,7 @@
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
 import { getBlogTagPresentation } from "@/components/blog/blog-tags";
-import { TagFilterList, type TagFilterOption } from "@/components/ui";
+import { FilterList, type FilterOption } from "@/components/ui";
 import type { BlogPost } from "@/lib/mdx";
 
 type ShowcaseBlogPost = BlogPost;
@@ -28,7 +28,7 @@ const secondaryBlogPost: ShowcaseBlogPost = {
     filePath: "content/blog/async-patterns-modern-typescript-services.md",
 };
 
-const showcaseTagOptions: TagFilterOption[] = [
+const showcaseTagOptions: FilterOption[] = [
     ["dsa", 6],
     ["system-design", 6],
     ["typescript", 6],
@@ -43,6 +43,30 @@ const showcaseTagOptions: TagFilterOption[] = [
         count: Number(count),
     };
 });
+
+const showcaseDifficultyOptions: FilterOption[] = [
+    {
+        value: "easy",
+        label: "Easy",
+        color: "#00D3BC",
+        bgColor: "#00D3BC2E",
+        count: 14,
+    },
+    {
+        value: "medium",
+        label: "Medium",
+        color: "#FFD35E",
+        bgColor: "#FFD35E2E",
+        count: 6,
+    },
+    {
+        value: "hard",
+        label: "Hard",
+        color: "#FF6B88",
+        bgColor: "#FF6B882E",
+        count: 2,
+    },
+];
 
 export function BlogShowcase() {
     return (
@@ -66,13 +90,30 @@ export function BlogShowcase() {
 
                 <div>
                     <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
-                        TagFilterList (pills below lg, list with counts at lg)
+                        FilterList, responsive (pills below lg, list with counts
+                        at lg)
                     </h3>
-                    <TagFilterList
-                        tags={showcaseTagOptions}
-                        activeTag="dsa"
+                    <FilterList
+                        ariaLabel="Showcase topic filter"
+                        options={showcaseTagOptions}
+                        activeValue="dsa"
                         totalCount={30}
-                        getTagHref={() => "#"}
+                        getHref={() => "#"}
+                    />
+                </div>
+
+                <div>
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
+                        FilterList, row with dot markers
+                    </h3>
+                    <FilterList
+                        ariaLabel="Showcase difficulty filter"
+                        orientation="row"
+                        marker="dot"
+                        options={showcaseDifficultyOptions}
+                        activeValue="medium"
+                        totalCount={22}
+                        getHref={() => "#"}
                     />
                 </div>
 

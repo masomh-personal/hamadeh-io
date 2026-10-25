@@ -2,6 +2,12 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.9.1 - 2026-10-25
+
+### Changed
+
+- Documented that every merge to `main` ends with a `vX.Y.Z` tag on the merge commit and a GitHub release marked Latest, with the exact commands in the `release` skill and a matching step and checklist item in `docs/release.md`.
+
 ## 3.9.0 - 2026-10-25
 
 ### Added

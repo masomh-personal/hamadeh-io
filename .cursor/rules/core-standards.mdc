@@ -30,5 +30,6 @@ Personal site and engineering notebook: Next.js 16 App Router (static generation
 - Never revert unrelated user changes. Avoid destructive git operations unless explicitly approved.
 - Do not commit, push, or open PRs without explicit approval.
 - Every change reaching `main` increases the SemVer version in `package.json` exactly once (patch for fixes, minor for features, major for breaking changes). The `release` skill covers the full flow.
+- Every merge to `main` ends with a tag and a GitHub release. Tag the merge commit `vX.Y.Z` (matching `package.json`) and publish a release marked Latest, with notes drawn from that version's `CHANGELOG.md` entry. Do this right after the merge without waiting to be asked; the `release` skill has the commands.
 - Keep docs and config in sync when tooling, conventions, or major decisions change.
 - Never add Cursor or AI attribution (trailers, "Made with Cursor", "Generated with Cursor", co-authored-by) to commits, PRs, docs, or content.

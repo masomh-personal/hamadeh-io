@@ -4,6 +4,8 @@
  * the unfiltered first page instead of throwing.
  */
 
+import { buildListingPath, paginate } from "./pagination";
+
 export const BLOG_PAGE_SIZE = 12;
 
 interface Tagged {
@@ -54,20 +56,13 @@ export function getBlogListing<T extends Tagged>(
         ? posts.filter((post) => post.tags?.includes(activeTag))
         : [...posts];
 
-    const totalPages = Math.max(1, Math.ceil(matching.length / pageSize));
-    const requestedPage = Number.parseInt(query.page ?? "", 10);
-    const page = Number.isNaN(requestedPage)
-        ? 1
-        : Math.min(Math.max(requestedPage, 1), totalPages);
-    const start = (page - 1) * pageSize;
+    const { page, totalPages, items } = paginate(
+        matching,
+        query.page,
+        pageSize
+    );
 
-    return {
-        activeTag,
-        page,
-        totalPages,
-        total: matching.length,
-        items: matching.slice(start, start + pageSize),
-    };
+    return { activeTag, page, totalPages, total: matching.length, items };
 }
 
 /** Builds the canonical blog URL; page 1 and no tag collapse to `/blog`. */
@@ -78,15 +73,5 @@ export function getBlogListingPath({
     tag?: string | null;
     page?: number;
 }): string {
-    const params = new URLSearchParams();
-
-    if (tag) {
-        params.set("tag", tag);
-    }
-    if (page !== undefined && page > 1) {
-        params.set("page", String(page));
-    }
-
-    const query = params.toString();
-    return query ? `/blog?${query}` : "/blog";
+    return buildListingPath("/blog", { tag }, page);
 }

@@ -1,8 +1,6 @@
 ---
 title: "TypeScript 7 and the Native Compiler Shift"
 slug: "typescript-7-native-compiler"
-datePublished: "2026-05-02"
-updatedAt: "2026-08-22"
 excerpt: "TypeScript 7 matters because the compiler is moving to a native Go foundation, making type checking faster while keeping the migration path practical."
 tags: ["engineering", "tooling", "typescript"]
 ---

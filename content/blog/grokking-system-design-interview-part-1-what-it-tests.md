@@ -1,7 +1,6 @@
 ---
 title: "Starting Grokking the System Design Interview: What It Is Actually Testing"
 slug: "grokking-system-design-interview-part-1-what-it-tests"
-datePublished: "2026-03-10"
 excerpt: "My first takeaway from Grokking the System Design Interview: this interview is less about a perfect answer and more about how clearly you reason through scale, tradeoffs, and communication."
 tags: ["system-design", "career", "learning"]
 ---

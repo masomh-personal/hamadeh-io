@@ -1,7 +1,6 @@
 ---
 title: "Memory Layout and Cache Locality: Why Your Data Structure Choice Matters More Than You Think"
 slug: "memory-layout-and-cache-locality"
-datePublished: "2026-05-23"
 excerpt: "Memory layout and cache locality explain why two O(n) algorithms can perform completely differently. Here's what's actually happening and how it shows up in everyday engineering work."
 tags: ["dsa", "fundamentals", "engineering"]
 ---

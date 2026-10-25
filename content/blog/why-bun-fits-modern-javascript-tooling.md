@@ -1,7 +1,6 @@
 ---
 title: "Why Bun Fits Modern JavaScript Tooling"
 slug: "why-bun-fits-modern-javascript-tooling"
-datePublished: "2026-04-24"
 excerpt: "Bun is gaining traction because it reduces JavaScript tooling friction: faster installs, built-in TypeScript support, a test runner, audits, and fewer moving parts."
 tags: ["engineering", "tooling", "typescript"]
 ---

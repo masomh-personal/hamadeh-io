@@ -1,7 +1,6 @@
 ---
 title: "Grokking System Design Part 4: Caching and Data Partitioning"
 slug: "grokking-system-design-interview-part-4-caching-data-partitioning"
-datePublished: "2026-03-20"
 excerpt: "How caching improves resource utilization and how data partitioning enables horizontal scaling, plus the tradeoffs and constraints that come with each approach."
 tags: ["system-design", "career", "learning"]
 ---

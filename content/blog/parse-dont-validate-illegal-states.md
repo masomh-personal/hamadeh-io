@@ -1,7 +1,6 @@
 ---
 title: "Parse, Don't Validate: Making Illegal States Unrepresentable"
 slug: "parse-dont-validate-illegal-states"
-datePublished: "2026-07-26"
 excerpt: "Validation checks a value and throws the knowledge away. Parsing turns unknown input into a type the rest of your code can trust."
 tags: ["typescript", "engineering", "ai"]
 ---

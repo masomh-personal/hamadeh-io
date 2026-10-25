@@ -1,7 +1,6 @@
 ---
 title: "SOLID in the AI Era (Part 2): Open/Closed Principle Without Overengineering"
 slug: "solid-ocp-ai-era-part-2"
-datePublished: "2026-03-02"
 excerpt: "Part 2 of a SOLID series: how to apply Open/Closed Principle pragmatically, extend behavior safely, and avoid unnecessary abstraction."
 tags: ["engineering", "ai", "solid"]
 ---

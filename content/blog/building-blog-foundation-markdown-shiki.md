@@ -1,7 +1,6 @@
 ---
 title: "Building the Blog Foundation (Markdown + Syntax Highlighting)"
 slug: "building-blog-foundation-markdown-shiki"
-datePublished: "2026-02-18"
 excerpt: "How I designed a clean blog architecture with Markdown-first content, server-side syntax highlighting, and room to scale."
 tags: ["engineering", "nextjs", "markdown"]
 ---

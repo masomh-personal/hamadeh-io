@@ -1,7 +1,6 @@
 ---
 title: "Idempotency: The API Contract That Makes Retries Safe"
 slug: "idempotency-makes-api-retries-safe"
-datePublished: "2026-07-18"
 excerpt: "Retries are unavoidable in distributed systems. Idempotent API design keeps those retries from creating duplicate payments, orders, and jobs."
 tags: ["api", "backend", "system-design"]
 ---

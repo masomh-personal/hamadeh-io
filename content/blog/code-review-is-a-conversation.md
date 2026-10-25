@@ -1,7 +1,6 @@
 ---
 title: "Code Review Is a Conversation, Not a Checkpoint"
 slug: "code-review-is-a-conversation"
-datePublished: "2026-05-29"
 excerpt: "AI can read a diff all day. It still can't talk to your team. Code review is where engineers actually learn from each other, and that part doesn't survive full automation."
 tags: ["engineering", "ai", "collaboration"]
 ---

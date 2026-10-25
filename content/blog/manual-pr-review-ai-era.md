@@ -1,7 +1,6 @@
 ---
 title: "Manual PR Review Still Matters in the AI Era"
 slug: "manual-pr-review-ai-era"
-datePublished: "2026-05-14"
 excerpt: "Why manually reviewing pull requests keeps engineering fundamentals sharp, even when AI can generate code and summarize diffs quickly."
 tags: ["engineering", "ai", "fundamentals"]
 ---

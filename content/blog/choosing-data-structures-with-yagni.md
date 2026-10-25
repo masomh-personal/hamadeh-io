@@ -1,7 +1,6 @@
 ---
 title: "Choosing Data Structures Without Overengineering"
 slug: "choosing-data-structures-with-yagni"
-datePublished: "2026-06-27"
 excerpt: "Data structures are design choices, not collectibles. Arrays, Sets, Maps, and Heaps each answer a different question, and YAGNI helps you stop at the simplest one that fits."
 tags: ["dsa", "fundamentals", "engineering"]
 ---

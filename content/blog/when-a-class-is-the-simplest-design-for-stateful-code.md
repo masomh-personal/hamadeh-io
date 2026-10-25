@@ -1,7 +1,6 @@
 ---
 title: "When a Class Is the Simplest Design for Stateful Code"
 slug: "when-a-class-is-the-simplest-design-for-stateful-code"
-datePublished: "2026-08-30"
 excerpt: "Functions are a great default, but objects with identity, evolving state, and protected invariants sometimes become clearer when a class owns the whole lifecycle."
 tags: ["typescript", "engineering", "methodology"]
 ---

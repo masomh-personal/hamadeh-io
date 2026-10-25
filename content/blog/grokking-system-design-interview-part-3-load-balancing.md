@@ -1,7 +1,6 @@
 ---
 title: "Grokking System Design Part 3: Load Balancing"
 slug: "grokking-system-design-interview-part-3-load-balancing"
-datePublished: "2026-03-18"
 excerpt: "How load balancers work, where they sit in a distributed system, and the nine algorithms that determine how traffic gets distributed."
 tags: ["system-design", "career", "learning"]
 ---

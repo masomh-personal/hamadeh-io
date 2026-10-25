@@ -1,7 +1,6 @@
 ---
 title: "Engineers Are Problem Solvers, Not Just Coders"
 slug: "engineers-are-problem-solvers-not-just-coders"
-datePublished: "2026-03-06"
 excerpt: "Why strong engineers think beyond tickets and pixel-perfect output to focus on business value, collaboration, and solving the right problem."
 tags: ["engineering", "career", "leadership"]
 ---

@@ -1,7 +1,6 @@
 ---
 title: "Formatters, Linters, and Why Oxc Feels Like the Right Direction"
 slug: "formatters-linters-and-oxc-tooling"
-datePublished: "2026-04-17"
 excerpt: "Formatters and linters reduce code review noise, catch real mistakes, and make teams faster. Oxfmt and Oxlint push that workflow toward simpler, faster defaults."
 tags: ["engineering", "tooling", "typescript"]
 ---

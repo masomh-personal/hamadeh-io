@@ -26,7 +26,7 @@ export function ProblemPostCard({ problem }: ProblemPostCardProps) {
             }
             readingTimeMinutes={problem.readingTimeMinutes}
             title={title}
-            titleClassName="min-h-[3.5rem]"
+            titleClassName="md:min-h-[3.5rem]"
             excerpt={problem.excerpt}
             overlayMessage="Loading solution..."
             headerTrailing={

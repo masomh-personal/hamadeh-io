@@ -13,6 +13,7 @@ Notable changes to hamadeh.io are documented here by release.
 - Removed post dates everywhere: the frontmatter fields, the cards and headers, the RSS feed, the sitemap, and the structured data. Blog and problem lists now sort alphabetically by title.
 - Redesigned the blog list with a sticky topic sidebar that shows a count per tag, collapsing into a scrolling row of pills on small screens, and paginated it 12 posts per page with the existing pagination component. The selected topic and page live in the URL, so filtered views are shareable and `/blog` stays statically generated.
 - Refreshed React to 19.3.1, the Radix slot and tabs primitives, Oxlint to 1.89, PostCSS to 8.5.31, and the Bun and Node type packages.
+- Gave Code Problems the same treatment: difficulty pills tinted with the LeetCode colors and a count per level, 12 problems per page with the existing pagination component, and the selection kept in the URL so `/problems` stays statically generated.
 - Simplified the post and problem cards by dropping the divider lines and call-to-action row and clamping excerpts to three lines.
 - Replaced the Markdown reading time regex with a single-pass line scanner that also handles indented and unclosed code fences.
 

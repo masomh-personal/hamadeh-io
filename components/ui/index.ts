@@ -5,5 +5,5 @@ export { Link } from "./Link";
 export { PaginationNav } from "./PaginationNav";
 export { PostCard } from "./PostCard";
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
-export type { TagFilterOption } from "./TagFilterBar";
-export { TagFilterBar } from "./TagFilterBar";
+export type { TagFilterOption } from "./TagFilterList";
+export { TagFilterList } from "./TagFilterList";

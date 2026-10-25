@@ -1,5 +1,7 @@
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
+import { getBlogTagPresentation } from "@/components/blog/blog-tags";
+import { TagFilterList, type TagFilterOption } from "@/components/ui";
 import type { BlogPost } from "@/lib/mdx";
 
 type ShowcaseBlogPost = BlogPost;
@@ -26,6 +28,22 @@ const secondaryBlogPost: ShowcaseBlogPost = {
     filePath: "content/blog/async-patterns-modern-typescript-services.md",
 };
 
+const showcaseTagOptions: TagFilterOption[] = [
+    ["dsa", 6],
+    ["system-design", 6],
+    ["typescript", 6],
+    ["solid", 5],
+].map(([tag, count]) => {
+    const { text, color, bgColor } = getBlogTagPresentation(String(tag));
+    return {
+        value: String(tag),
+        label: text,
+        color,
+        bgColor,
+        count: Number(count),
+    };
+});
+
 export function BlogShowcase() {
     return (
         <section>
@@ -44,6 +62,18 @@ export function BlogShowcase() {
                         <BlogPostCard post={publishedBlogPost} />
                         <BlogPostCard post={secondaryBlogPost} />
                     </div>
+                </div>
+
+                <div>
+                    <h3 className="text-content-subtle mb-3 border-t border-surface-outline/40 pt-4 font-mono text-sm">
+                        TagFilterList (pills below lg, list with counts at lg)
+                    </h3>
+                    <TagFilterList
+                        tags={showcaseTagOptions}
+                        activeTag="dsa"
+                        totalCount={30}
+                        getTagHref={() => "#"}
+                    />
                 </div>
 
                 <div>

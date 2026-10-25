@@ -28,11 +28,15 @@ export default async function OpengraphImage({
         eyebrow: "Code Problem",
         title: problem.title,
         meta: [
-            // Difficulty is stored lowercase for the badge variants.
-            problem.difficulty.charAt(0).toUpperCase() +
-                problem.difficulty.slice(1),
-            problem.timeComplexity,
-            problem.spaceComplexity,
+            {
+                id: "difficulty",
+                // Difficulty is stored lowercase for the badge variants.
+                text:
+                    problem.difficulty.charAt(0).toUpperCase() +
+                    problem.difficulty.slice(1),
+            },
+            { id: "time-complexity", text: problem.timeComplexity },
+            { id: "space-complexity", text: problem.spaceComplexity },
         ],
     });
 }

@@ -16,10 +16,16 @@ export const OG_SIZE = {
 
 export const OG_CONTENT_TYPE = "image/png";
 
+/** A chip in the image footer. `id` is a stable identity, since `text` can repeat. */
+export interface OgMetaItem {
+    id: string;
+    text: string;
+}
+
 interface OgImageOptions {
     title: string;
     eyebrow: string;
-    meta?: string[];
+    meta?: OgMetaItem[];
 }
 
 export function renderOgImage({
@@ -81,7 +87,7 @@ export function renderOgImage({
                 <div style={{ display: "flex", gap: "20px" }}>
                     {meta.map((entry) => (
                         <div
-                            key={entry}
+                            key={entry.id}
                             style={{
                                 display: "flex",
                                 padding: "10px 22px",
@@ -91,7 +97,7 @@ export function renderOgImage({
                                 color: "#cbd5e1",
                             }}
                         >
-                            {entry}
+                            {entry.text}
                         </div>
                     ))}
                 </div>

@@ -17,7 +17,6 @@ title: "Two Sum"
 slug: "two-sum"
 source: "leetcode"
 difficulty: "easy"
-datePublished: "2026-01-15"
 ---
 
 # Problem
@@ -134,7 +133,7 @@ Valibot schemas ensure:
 - Data types are correct
 - Invalid content fails at build time (not runtime)
 
-**Example:** If you forget `datePublished` in frontmatter, the build fails with a clear error message.
+**Example:** If you forget `title` in frontmatter, the build fails with a clear error message.
 
 ### ✅ **Zero Infrastructure**
 

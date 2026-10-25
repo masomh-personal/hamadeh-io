@@ -237,7 +237,6 @@ title: "Two Sum"
 slug: "two-sum"
 source: "leetcode"
 difficulty: "easy"
-datePublished: "2026-01-15"
 timeComplexity: "O(n)"
 spaceComplexity: "O(n)"
 excerpt: "Solving Two Sum with a hash map approach for optimal time complexity"
@@ -250,8 +249,6 @@ excerpt: "Solving Two Sum with a hash map approach for optimal time complexity"
 ---
 title: "Why I Love TypeScript"
 slug: "why-i-love-typescript"
-datePublished: "2026-01-18"
-updatedAt: "2026-01-18" # Track revisions
 excerpt: "Exploring the benefits of TypeScript for modern web development"
 tags: ["typescript", "web-development"]
 ---
@@ -529,7 +526,7 @@ git commit -m "feat: add two-sum solution"
 #### Blog Post Workflow
 
 1. Create Markdown file in `content/blog/[slug].md`
-2. Add frontmatter with title, slug, datePublished, tags
+2. Add frontmatter with title, slug, excerpt, tags
 3. Write content in Markdown
 
 #### Page Layout Convention

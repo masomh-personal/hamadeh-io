@@ -14,13 +14,12 @@ description: Drafts or adds a blog post in content/blog with valid frontmatter, 
 ---
 title: "Human Title"
 slug: "kebab-case-slug"
-datePublished: "YYYY-MM-DD"
 excerpt: "Specific, outcome-oriented summary under 200 characters."
 tags: ["engineering", "typescript"]
 ---
 ```
 
-`slug` matches the filename and uses only lowercase letters, digits, and hyphens. `updatedAt` (`YYYY-MM-DD`) is optional and only for real revisions. At most 3 tags.
+`slug` matches the filename and uses only lowercase letters, digits, and hyphens. Posts carry no dates; lists sort alphabetically and reading time is calculated. At most 3 tags.
 
 3. **Register tags.** Every tag should exist in `BLOG_TAG_COLOR_MAP` in `components/blog/blog-tags.ts`. Prefer existing tags. For a genuinely new tag, add an entry with a hex color not already in the map, because a runtime check rejects duplicate colors.
 4. **Write the post** following `.cursor/rules/blog-writing-consistency.mdc`: short intro, practical headings, roughly 700 to 1000 words unless asked otherwise, a "Wrap Up" section, and no em dashes. Frame it as learning notes, not interview prep.

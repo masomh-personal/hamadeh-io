@@ -11,7 +11,7 @@ alwaysApply: false
 - Use clear section headings with pragmatic guidance over theory.
 - Prefer concise paragraphs and focused bullet lists for readability.
 - End with a strong "Wrap Up" section with actionable takeaways.
-- Keep frontmatter consistent: `title`, `slug`, `datePublished`, `excerpt`, `tags`.
+- Keep frontmatter consistent: `title`, `slug`, `excerpt`, `tags`.
 - Keep excerpts specific and outcome-oriented, not generic marketing language.
 - Avoid overengineering advice; favor simple, maintainable, real-world decisions.
 - For technical principles, include practical checklists and common misunderstandings.

@@ -53,7 +53,7 @@ export default function AboutPage() {
                         design, and modern frontend systems using TypeScript,
                         React, Node.js, and Tailwind CSS, with Bun in my
                         workflow for runtime and tooling. I currently work as a
-                        Senior Software Engineer at Stord on the Engage team,
+                        Senior Software Engineer at Stord on the Commerce team,
                         building applications that power shipping, fulfillment,
                         and commerce workflows.
                     </p>
@@ -95,10 +95,10 @@ export default function AboutPage() {
                             March 2026 - Present
                         </p>
                         <p className="text-content mt-2">
-                            On the Engage team, building full-stack applications
-                            with TypeScript, React, and Tailwind CSS that power
-                            shipping, fulfillment, and upselling workflows
-                            across the Stord product ecosystem.
+                            On the Commerce team, building full-stack
+                            applications with TypeScript, React, and Tailwind
+                            CSS that power shipping, fulfillment, and upselling
+                            workflows across the Stord product ecosystem.
                         </p>
                     </article>
 

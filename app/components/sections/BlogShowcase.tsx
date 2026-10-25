@@ -7,7 +7,7 @@ type ShowcaseBlogPost = BlogPost;
 const publishedBlogPost: ShowcaseBlogPost = {
     title: "Building the Blog Foundation (Markdown + Syntax Highlighting)",
     slug: "building-blog-foundation-markdown-shiki",
-    datePublished: "2026-02-18",
+    readingTimeMinutes: 5,
     excerpt:
         "How I designed a clean blog architecture with Markdown-first content, server-side syntax highlighting, and room to scale.",
     tags: ["engineering", "nextjs", "markdown"],
@@ -18,7 +18,7 @@ const publishedBlogPost: ShowcaseBlogPost = {
 const secondaryBlogPost: ShowcaseBlogPost = {
     title: "Async Patterns in Modern TypeScript Services",
     slug: "async-patterns-modern-typescript-services",
-    datePublished: "2026-02-20",
+    readingTimeMinutes: 4,
     excerpt:
         "Article exploring cancellation, timeouts, and error boundaries in async workflows.",
     tags: ["typescript", "backend", "async"],

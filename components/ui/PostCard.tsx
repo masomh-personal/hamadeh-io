@@ -3,13 +3,13 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
 import { cn } from "@/lib/utils";
-import { formatPublishedDate } from "@/lib/date";
+import { formatReadingTime } from "@/lib/reading-time";
 
 interface PostCardProps {
     href: Route;
-    /** Small icon shown beside the published date. */
+    /** Small icon shown beside the reading time. */
     icon: ReactNode;
-    datePublished: string;
+    readingTimeMinutes: number;
     title: string;
     excerpt: string;
     /** Shown when a click starts navigating, from inside the link. */
@@ -34,7 +34,7 @@ interface PostCardProps {
 export function PostCard({
     href,
     icon,
-    datePublished,
+    readingTimeMinutes,
     title,
     excerpt,
     overlayMessage,
@@ -53,7 +53,7 @@ export function PostCard({
                 <div className="flex items-center gap-1.5">
                     {icon}
                     <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
-                        {formatPublishedDate(datePublished)}
+                        {formatReadingTime(readingTimeMinutes)}
                     </p>
                 </div>
                 {headerTrailing}

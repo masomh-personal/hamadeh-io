@@ -12,7 +12,6 @@ const metadata: ProblemFrontmatter = {
     slug: "two-sum",
     source: "leetcode",
     difficulty: "easy",
-    datePublished: "2026-09-24",
     timeComplexity: "O(n)",
     spaceComplexity: "O(n)",
     excerpt: "Find two indices whose values add up to a target.",
@@ -37,7 +36,6 @@ title: "Two Sum"
 slug: "two-sum"
 source: "leetcode"
 difficulty: "easy"
-datePublished: "2026-09-24"
 timeComplexity: "O(n)"
 spaceComplexity: "O(n)"
 excerpt: "Find two indices whose values add up to a target."
@@ -150,7 +148,6 @@ title: "Old Title"
 slug: "two-sum"
 source: "leetcode"
 difficulty: "easy"
-datePublished: "2026-01-01"
 timeComplexity: "O(n^2)"
 spaceComplexity: "O(1)"
 excerpt: "Old excerpt."

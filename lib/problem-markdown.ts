@@ -21,7 +21,6 @@ title: ${JSON.stringify(metadata.title)}
 slug: ${JSON.stringify(metadata.slug)}
 source: ${JSON.stringify(metadata.source)}
 difficulty: ${JSON.stringify(metadata.difficulty)}
-datePublished: ${JSON.stringify(metadata.datePublished)}
 timeComplexity: ${JSON.stringify(metadata.timeComplexity)}
 spaceComplexity: ${JSON.stringify(metadata.spaceComplexity)}
 excerpt: ${JSON.stringify(metadata.excerpt)}

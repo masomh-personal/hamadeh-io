@@ -23,7 +23,6 @@ export async function GET(): Promise<Response> {
     <link>${url}</link>
     <guid isPermaLink="true">${url}</guid>
     <description>${escapeXml(post.excerpt)}</description>
-    <pubDate>${new Date(post.datePublished).toUTCString()}</pubDate>
 </item>`;
         })
         .join("\n");

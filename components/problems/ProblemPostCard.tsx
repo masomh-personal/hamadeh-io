@@ -24,7 +24,7 @@ export function ProblemPostCard({ problem }: ProblemPostCardProps) {
                     className="h-4 w-4 shrink-0 text-sky-300"
                 />
             }
-            datePublished={problem.datePublished}
+            readingTimeMinutes={problem.readingTimeMinutes}
             title={title}
             titleClassName="min-h-[3.5rem]"
             excerpt={problem.excerpt}

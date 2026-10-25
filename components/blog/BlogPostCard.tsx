@@ -21,7 +21,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                     className="h-4 w-4 shrink-0 text-sky-300"
                 />
             }
-            datePublished={post.datePublished}
+            readingTimeMinutes={post.readingTimeMinutes}
             title={post.title}
             excerpt={post.excerpt}
             overlayMessage="Loading post..."

@@ -1,7 +1,7 @@
 import { HiArrowLeft, HiDocumentText } from "react-icons/hi";
 import { Badge, Button } from "@/components/ui";
-import { formatPublishedDate } from "@/lib/date";
 import type { BlogPost } from "@/lib/mdx";
+import { formatReadingTime } from "@/lib/reading-time";
 import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostHeaderProps {
@@ -9,7 +9,7 @@ interface BlogPostHeaderProps {
 }
 
 export function BlogPostHeader({ post }: BlogPostHeaderProps) {
-    const { datePublished, title, excerpt, tags = [] } = post;
+    const { readingTimeMinutes, title, excerpt, tags = [] } = post;
 
     return (
         <header className="mb-8">
@@ -18,7 +18,7 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                     aria-hidden="true"
                     className="h-4 w-4 shrink-0 text-sky-300"
                 />
-                <span>Published {formatPublishedDate(datePublished)}</span>
+                <span>{formatReadingTime(readingTimeMinutes)}</span>
                 <Button
                     href="/blog"
                     variant="secondary"

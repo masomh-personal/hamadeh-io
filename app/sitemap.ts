@@ -33,13 +33,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
     const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
         url: absoluteUrl(`/blog/${post.slug}`),
-        lastModified: new Date(post.updatedAt ?? post.datePublished),
         changeFrequency: "monthly",
         priority: 0.8,
     }));
     const problemRoutes: MetadataRoute.Sitemap = problems.map((problem) => ({
         url: absoluteUrl(`/problems/${problem.slug}`),
-        lastModified: new Date(problem.datePublished),
         changeFrequency: "monthly",
         priority: 0.7,
     }));

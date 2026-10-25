@@ -27,10 +27,6 @@ export const ProblemFrontmatterSchema = v.object({
         ["easy", "medium", "hard"],
         "Difficulty must be easy, medium, or hard"
     ),
-    datePublished: v.pipe(
-        v.string(),
-        v.isoDate("Date must be in ISO format (YYYY-MM-DD)")
-    ),
     timeComplexity: v.pipe(
         v.string(),
         v.regex(
@@ -65,13 +61,6 @@ export const BlogFrontmatterSchema = v.object({
             /^[a-z0-9-]+$/,
             "Slug must be lowercase alphanumeric with hyphens"
         )
-    ),
-    datePublished: v.pipe(
-        v.string(),
-        v.isoDate("Date must be in ISO format (YYYY-MM-DD)")
-    ),
-    updatedAt: v.optional(
-        v.pipe(v.string(), v.isoDate("Updated date must be in ISO format"))
     ),
     excerpt: v.pipe(
         v.string(),

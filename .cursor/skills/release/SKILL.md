@@ -30,4 +30,11 @@ The full checklist lives in `docs/release.md`. This skill is the agent workflow 
 
 ## After merge
 
-Vercel promotes the merged `main` commit to production. Remind the user to confirm the production deployment if the release changed pages or content.
+Do these straight after every merge to `main`. The tag and release are part of the release, so they do not need a separate approval.
+
+1. **Tag and release.**
+    - `git fetch origin main --tags`, then confirm `git show origin/main:package.json` has the version you just merged and note the merge commit SHA from `git log origin/main --oneline -1`.
+    - Write the notes to a temp file in the shape of the previous release (`gh release view vPREVIOUS`): a `## Summary` in prose, then grouped `## Features`, `## Changes`, `## Fixes`, and `## Security` sections drawn from the `CHANGELOG.md` entry, ending with a compare link `https://github.com/masomh-personal/hamadeh-io/compare/vPREVIOUS...vX.Y.Z`. Omit empty groups. Never include attribution lines.
+    - `gh release create vX.Y.Z --target <merge commit sha> --title vX.Y.Z --notes-file <file> --latest`. This creates the tag on the merge commit and the release in one step, matching `v3.7.0` and `v3.8.0`.
+    - Verify: `git fetch origin --tags`, `git rev-list -n1 vX.Y.Z` equals the merge commit, and `gh release list` shows it as Latest.
+2. **Deployment.** Vercel promotes the merged `main` commit to production. Check `gh api repos/masomh-personal/hamadeh-io/commits/<sha>/status` and, if the release changed pages or content, spot-check the live site.

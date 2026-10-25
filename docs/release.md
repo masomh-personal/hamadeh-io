@@ -9,6 +9,9 @@ Use this checklist when moving a release branch to `main`.
 3. Open a pull request from the release branch to `main`.
 4. Merge only after local checks and GitHub Actions are green.
 5. Let Vercel promote the merged `main` commit to production.
+6. Tag the merge commit `vX.Y.Z` and publish a GitHub release marked Latest, with notes drawn from that
+   version's `CHANGELOG.md` entry. `gh release create vX.Y.Z --target <merge commit sha> --title vX.Y.Z --notes-file <file> --latest`
+   does both in one step. Every merge to `main` gets one.
 
 ## Local Pre-PR Checklist
 
@@ -39,6 +42,7 @@ Use this as the pull request checklist:
 - [ ] Content changes were previewed in the browser when they affect pages, blog posts, or problem posts.
 - [ ] Dependency overrides are explained and treated as temporary security pins.
 - [ ] No generated build artifacts are committed.
+- [ ] After merge: the `vX.Y.Z` tag and GitHub release are published and marked Latest.
 
 ## Dependency Notes
 

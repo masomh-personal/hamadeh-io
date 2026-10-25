@@ -1,5 +1,5 @@
 import type { Route } from "next";
-import { HiCode, HiEye } from "react-icons/hi";
+import { HiCode } from "react-icons/hi";
 import { Badge } from "@/components/ui";
 import { PostCard } from "@/components/ui/PostCard";
 import type { ProblemSummary } from "@/lib/content/problems";
@@ -35,12 +35,6 @@ export function ProblemPostCard({ problem }: ProblemPostCardProps) {
                     variant={difficultyVariant}
                     size="sm"
                 />
-            }
-            action={
-                <>
-                    <HiEye className="h-4 w-4" aria-hidden="true" />
-                    See Solution
-                </>
             }
         />
     );

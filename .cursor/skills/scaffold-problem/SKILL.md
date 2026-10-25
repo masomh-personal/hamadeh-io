@@ -23,7 +23,7 @@ Do not create `content/problems/<slug>.md`. Everything in that folder is publish
 1. **Generate the workspace.**
     - LeetCode URL or slug: run `env bun run new:problem <url>`. It fetches the problem and writes `metadata.json`, `solution.ts`, and `solution.test.ts`.
     - Any other source, or if the fetch fails: create those files by hand, mirroring an existing folder such as `solutions/product-of-array-except-self/`.
-2. **Fix `metadata.json`.** Fields must satisfy `ProblemFrontmatterSchema` in `lib/schemas.ts`: `title`, `slug`, `source` (`leetcode` | `dsa` | `custom`), `difficulty` (`easy` | `medium` | `hard`), `datePublished` (`YYYY-MM-DD`), `timeComplexity`, `spaceComplexity`, `excerpt` (200 chars max). The generated excerpt is truncated problem text; rewrite it as one clear sentence. Leave complexity as `O(?)` until solved.
+2. **Fix `metadata.json`.** Fields must satisfy `ProblemFrontmatterSchema` in `lib/schemas.ts`: `title`, `slug`, `source` (`leetcode` | `dsa` | `custom`), `difficulty` (`easy` | `medium` | `hard`), `timeComplexity`, `spaceComplexity`, `excerpt` (200 chars max). The generated excerpt is truncated problem text; rewrite it as one clear sentence. Leave complexity as `O(?)` until solved.
 3. **Stub `solution.ts`.** Keep the header comment (title, difficulty, topics). Export the function or class with its final name and signature, a `// TODO` and a defensive placeholder such as `throw new Error("Not implemented")`. No algorithm.
 4. **Write `solution.test.ts`.** The generator's test file uses a placeholder import name and `expect(true)`. Replace all of it:
     - Import the real export name.

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { ProblemPostCard } from "@/components/problems/ProblemPostCard";
+import { ProblemListing } from "@/components/problems/ProblemListing";
+import { ProblemListingView } from "@/components/problems/ProblemListingView";
 import { listPublishedProblems } from "@/lib/content/problems";
+import { getDifficultyCounts } from "@/lib/problem-listing";
 import { staticPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = staticPageMetadata({
@@ -14,6 +17,7 @@ export const metadata: Metadata = staticPageMetadata({
 
 export default async function ProblemsPage(): Promise<React.ReactElement> {
     const problems = await listPublishedProblems();
+    const difficultyCounts = getDifficultyCounts(problems);
 
     return (
         <PageContainer>
@@ -30,11 +34,20 @@ export default async function ProblemsPage(): Promise<React.ReactElement> {
                     </p>
                 </div>
             ) : (
-                <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-                    {problems.map((problem) => (
-                        <ProblemPostCard key={problem.slug} problem={problem} />
-                    ))}
-                </div>
+                <Suspense
+                    fallback={
+                        <ProblemListingView
+                            problems={problems}
+                            difficultyCounts={difficultyCounts}
+                            query={{}}
+                        />
+                    }
+                >
+                    <ProblemListing
+                        problems={problems}
+                        difficultyCounts={difficultyCounts}
+                    />
+                </Suspense>
             )}
         </PageContainer>
     );

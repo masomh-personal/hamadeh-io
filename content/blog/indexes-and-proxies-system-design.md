@@ -1,7 +1,6 @@
 ---
 title: "Indexes and Proxies: Two Quiet Building Blocks in System Design"
 slug: "indexes-and-proxies-system-design"
-datePublished: "2026-03-28"
 excerpt: "Indexes speed up data access. Proxies shape how requests reach services. Together they show a common system design tradeoff: add a layer, reduce a more expensive cost."
 tags: ["system-design", "learning", "backend"]
 ---

@@ -8,7 +8,7 @@ import {
     getPublishedProblemBySlug,
     listPublishedProblems,
 } from "@/lib/content/problems";
-import { formatPublishedDate } from "@/lib/date";
+import { formatReadingTime } from "@/lib/reading-time";
 import { absoluteUrl, AUTHOR_NAME, SITE_NAME } from "@/lib/site";
 
 interface PageProps {
@@ -78,7 +78,6 @@ export async function generateMetadata({
                 siteName: SITE_NAME,
                 title: problem.title,
                 description: problem.excerpt,
-                publishedTime: problem.datePublished,
                 authors: [AUTHOR_NAME],
             },
             twitter: {
@@ -118,7 +117,6 @@ export default async function ProblemPostPage({
         "@type": "TechArticle",
         headline: problem.title,
         description: problem.excerpt,
-        datePublished: problem.datePublished,
         proficiencyLevel: problem.difficulty,
         author: {
             "@type": "Person",
@@ -149,8 +147,7 @@ export default async function ProblemPostPage({
                                 className="h-4 w-4 shrink-0 text-sky-300"
                             />
                             <span>
-                                Published{" "}
-                                {formatPublishedDate(problem.datePublished)}
+                                {formatReadingTime(problem.readingTimeMinutes)}
                             </span>
                         </span>
                         <Button

@@ -1,5 +1,5 @@
 import type { Route } from "next";
-import { HiArrowRight, HiDocumentText } from "react-icons/hi";
+import { HiDocumentText } from "react-icons/hi";
 import { Badge } from "@/components/ui";
 import { PostCard } from "@/components/ui/PostCard";
 import type { BlogPostSummary } from "@/lib/content/blog";
@@ -21,13 +21,13 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                     className="h-4 w-4 shrink-0 text-sky-300"
                 />
             }
-            datePublished={post.datePublished}
+            readingTimeMinutes={post.readingTimeMinutes}
             title={post.title}
             excerpt={post.excerpt}
             overlayMessage="Loading post..."
             footer={
                 tags.length > 0 ? (
-                    <div className="flex flex-wrap gap-x-2 gap-y-2.5 pb-4">
+                    <div className="flex flex-wrap gap-x-2 gap-y-2.5">
                         {tags.map((tag) => {
                             const { text, color, bgColor } =
                                 getBlogTagPresentation(tag);
@@ -46,12 +46,6 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                         })}
                     </div>
                 ) : null
-            }
-            action={
-                <>
-                    Read Post
-                    <HiArrowRight className="h-4 w-4" aria-hidden="true" />
-                </>
             }
         />
     );

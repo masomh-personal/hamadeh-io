@@ -1,7 +1,6 @@
 ---
 title: "SOLID in the AI Era (Part 4): ISP and DIP for Cleaner Boundaries"
 slug: "solid-isp-dip-ai-era-part-4"
-datePublished: "2026-03-04"
 excerpt: "Part 4 of a SOLID series: why Interface Segregation and Dependency Inversion work together to reduce coupling, improve testability, and keep systems easy to evolve."
 tags: ["engineering", "ai", "solid"]
 ---

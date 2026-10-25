@@ -1,7 +1,6 @@
 ---
 title: "SOLID in the AI Era (Part 3): Liskov Substitution Without Fragile Hierarchies"
 slug: "solid-lsp-ai-era-part-3"
-datePublished: "2026-03-03"
 excerpt: "Part 3 of a SOLID series: how to apply Liskov Substitution Principle with behavioral contracts, safe polymorphism, and composition over inheritance."
 tags: ["engineering", "ai", "solid"]
 ---

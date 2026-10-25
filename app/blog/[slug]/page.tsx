@@ -43,8 +43,6 @@ export async function generateMetadata({
                 siteName: SITE_NAME,
                 title: post.title,
                 description: post.excerpt,
-                publishedTime: post.datePublished,
-                modifiedTime: post.updatedAt,
                 authors: [AUTHOR_NAME],
                 tags: post.tags,
             },
@@ -81,8 +79,6 @@ export default async function BlogPostPage({
         "@type": "BlogPosting",
         headline: post.title,
         description: post.excerpt,
-        datePublished: post.datePublished,
-        dateModified: post.updatedAt ?? post.datePublished,
         author: {
             "@type": "Person",
             name: AUTHOR_NAME,

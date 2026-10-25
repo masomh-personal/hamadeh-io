@@ -1,7 +1,6 @@
 ---
 title: "Recursion vs. Iteration on Trees: The Call Stack Is Just a Stack"
 slug: "recursion-vs-iteration-on-trees"
-datePublished: "2026-09-28"
 excerpt: "Every recursive tree walk already uses a stack. Knowing what the call stack is holding for you tells you when a loop is a mechanical rewrite and when it needs a different idea."
 tags: ["dsa", "fundamentals", "typescript"]
 ---

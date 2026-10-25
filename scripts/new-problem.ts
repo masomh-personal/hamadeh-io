@@ -27,7 +27,6 @@ interface ProblemMetadata {
     slug: string;
     source: "leetcode" | "dsa" | "custom";
     difficulty: "easy" | "medium" | "hard";
-    datePublished: string;
     timeComplexity: string;
     spaceComplexity: string;
     excerpt: string;
@@ -111,7 +110,6 @@ function createMetadata(
             | "easy"
             | "medium"
             | "hard",
-        datePublished: new Date().toISOString().split("T")[0] ?? "",
         timeComplexity: "O(?)",
         spaceComplexity: "O(?)",
         excerpt,

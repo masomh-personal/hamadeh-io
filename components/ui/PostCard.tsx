@@ -2,24 +2,22 @@ import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
+import { formatReadingTime } from "@/lib/reading-time";
 import { cn } from "@/lib/utils";
-import { formatPublishedDate } from "@/lib/date";
 
 interface PostCardProps {
     href: Route;
-    /** Small icon shown beside the published date. */
+    /** Small icon shown beside the reading time. */
     icon: ReactNode;
-    datePublished: string;
+    readingTimeMinutes: number;
     title: string;
     excerpt: string;
     /** Shown when a click starts navigating, from inside the link. */
     overlayMessage: string;
     /** Optional right-aligned slot in the meta row, such as a difficulty badge. */
     headerTrailing?: ReactNode;
-    /** Optional block above the call to action, such as tag badges. */
+    /** Optional block pinned to the bottom of the card, such as tag badges. */
     footer?: ReactNode;
-    /** Call-to-action content, for example "Read Post" with an arrow. */
-    action: ReactNode;
     /**
      * Problem titles reserve two lines so cards line up across the grid. Blog
      * titles do not, because their length varies far more.
@@ -29,18 +27,17 @@ interface PostCardProps {
 
 /**
  * Shared shell for the blog and problem list cards: an entire card that is one
- * link, with a meta row, title, excerpt, and a footer call to action.
+ * link, with a meta row, title, clamped excerpt, and an optional footer.
  */
 export function PostCard({
     href,
     icon,
-    datePublished,
+    readingTimeMinutes,
     title,
     excerpt,
     overlayMessage,
     headerTrailing,
     footer,
-    action,
     titleClassName,
 }: PostCardProps): React.ReactElement {
     return (
@@ -53,7 +50,7 @@ export function PostCard({
                 <div className="flex items-center gap-1.5">
                     {icon}
                     <p className="text-content-subtle font-mono text-xs uppercase tracking-wide">
-                        {formatPublishedDate(datePublished)}
+                        {formatReadingTime(readingTimeMinutes)}
                     </p>
                 </div>
                 {headerTrailing}
@@ -68,20 +65,11 @@ export function PostCard({
                 {title}
             </h2>
 
-            <div className="my-3 border-b border-surface-outline/80" />
-
-            <p className="text-content-subtle text-sm leading-relaxed">
+            <p className="text-content-subtle mt-2 line-clamp-3 text-sm leading-relaxed">
                 {excerpt}
             </p>
 
-            <div className="mt-auto pt-5">
-                {footer}
-                <div className="flex justify-center border-t border-surface-outline/70 pt-4">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-sky-200">
-                        {action}
-                    </span>
-                </div>
-            </div>
+            {footer ? <div className="mt-auto pt-4">{footer}</div> : null}
             <NavigationOverlay message={overlayMessage} />
         </Link>
     );

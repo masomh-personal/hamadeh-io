@@ -1,7 +1,6 @@
 ---
 title: "The Sliding Window Technique: How an Invariant Turns O(n²) into O(n)"
 slug: "sliding-window-technique"
-datePublished: "2026-06-06"
 excerpt: "Sliding window is not just two pointers moving together. It's a window that holds an invariant, and understanding that invariant is what makes the O(n) bound make sense."
 tags: ["dsa", "fundamentals", "engineering"]
 ---

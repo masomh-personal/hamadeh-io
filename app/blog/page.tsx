@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { BlogClientSection } from "@/components/blog/BlogClientSection";
+import { Suspense } from "react";
+import { BlogListing } from "@/components/blog/BlogListing";
+import { BlogListingView } from "@/components/blog/BlogListingView";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
+import { getTagCounts } from "@/lib/blog-listing";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
 import { staticPageMetadata } from "@/lib/site";
 
@@ -15,7 +18,7 @@ export const metadata: Metadata = staticPageMetadata({
 
 export default async function BlogPage(): Promise<React.ReactElement> {
     const posts = await listPublishedBlogPosts();
-    const allTags = [...new Set(posts.flatMap((p) => p.tags ?? []))].sort();
+    const tagCounts = getTagCounts(posts);
 
     return (
         <PageContainer>
@@ -40,7 +43,17 @@ export default async function BlogPage(): Promise<React.ReactElement> {
                     </Link>
                 </div>
             ) : (
-                <BlogClientSection posts={posts} allTags={allTags} />
+                <Suspense
+                    fallback={
+                        <BlogListingView
+                            posts={posts}
+                            tagCounts={tagCounts}
+                            query={{}}
+                        />
+                    }
+                >
+                    <BlogListing posts={posts} tagCounts={tagCounts} />
+                </Suspense>
             )}
         </PageContainer>
     );

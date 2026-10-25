@@ -1,7 +1,6 @@
 ---
 title: "Spec-Driven Development: The Missing Methodology for the AI Era"
 slug: "spec-driven-development-ai-era"
-datePublished: "2026-02-19"
 excerpt: "Why writing specs before code creates better software, eliminates ambiguity, and is the natural companion to AI-assisted development."
 tags: ["engineering", "ai", "methodology"]
 ---

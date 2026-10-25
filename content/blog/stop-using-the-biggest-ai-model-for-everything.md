@@ -1,7 +1,6 @@
 ---
 title: "Stop Using the Biggest AI Model for Everything"
 slug: "stop-using-the-biggest-ai-model-for-everything"
-datePublished: "2026-07-13"
 excerpt: "AI cost control starts with matching the model and reasoning effort to the task, then spending more only when complexity earns it."
 tags: ["ai", "engineering", "cost"]
 ---

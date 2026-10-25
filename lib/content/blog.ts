@@ -10,16 +10,13 @@ export type BlogPostSummary = Omit<BlogPost, "content" | "filePath">;
 export async function listPublishedBlogPosts(): Promise<BlogPostSummary[]> {
     const posts = await getAllBlogPosts();
 
-    return posts.map(
-        ({ datePublished, excerpt, slug, tags, title, updatedAt }) => ({
-            datePublished,
-            excerpt,
-            slug,
-            tags,
-            title,
-            updatedAt,
-        })
-    );
+    return posts.map(({ excerpt, readingTimeMinutes, slug, tags, title }) => ({
+        excerpt,
+        readingTimeMinutes,
+        slug,
+        tags,
+        title,
+    }));
 }
 
 export async function getPublishedBlogPostBySlug(

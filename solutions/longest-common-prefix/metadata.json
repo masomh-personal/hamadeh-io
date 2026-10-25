@@ -3,7 +3,6 @@
     "slug": "longest-common-prefix",
     "source": "leetcode",
     "difficulty": "easy",
-    "datePublished": "2026-03-02",
     "timeComplexity": "O(S)",
     "spaceComplexity": "O(1)",
     "excerpt": "Given an array of strings, return the longest common prefix shared by all strings."

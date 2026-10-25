@@ -54,7 +54,7 @@ export default function Home() {
                 <div className="surface-card radius-card mt-4 p-5">
                     <p className="text-content">
                         I&apos;m a full-stack software engineer at Stord,
-                        working on the Engage team to build applications that
+                        working on the Commerce team to build applications that
                         power shipping, fulfillment, and commerce workflows. My
                         background spans Computer Science, a Master&apos;s in
                         Information Systems, and I&apos;m currently working

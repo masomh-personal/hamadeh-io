@@ -60,7 +60,6 @@ beforeEach(() => {
 const BLOG_ALPHA = `---
 title: "Alpha Post"
 slug: "alpha-post"
-datePublished: "2026-06-01"
 excerpt: "Alpha excerpt."
 tags: ["engineering"]
 ---
@@ -69,24 +68,13 @@ Alpha body.`;
 const BLOG_BETA = `---
 title: "Beta Post"
 slug: "beta-post"
-datePublished: "2026-05-01"
 excerpt: "Beta excerpt."
 ---
 Beta body.`;
 
-const BLOG_WITH_UPDATED_AT = `---
-title: "Updated Post"
-slug: "updated-post"
-datePublished: "2026-06-01"
-updatedAt: "2026-06-15"
-excerpt: "An updated excerpt."
----
-Updated body.`;
-
 const BLOG_INVALID = `---
 title: ""
 slug: "bad"
-datePublished: "not-a-date"
 excerpt: ""
 ---
 Ignored.`;
@@ -96,7 +84,6 @@ title: "Two Sum"
 slug: "two-sum"
 source: "leetcode"
 difficulty: "easy"
-datePublished: "2026-04-01"
 timeComplexity: "O(n)"
 spaceComplexity: "O(n)"
 excerpt: "Return indices of the two numbers that add up to the target."
@@ -121,13 +108,11 @@ describe("getAllBlogPosts", () => {
         const expected = {
             slug: "alpha-post",
             title: "Alpha Post",
-            datePublished: "2026-06-01",
             excerpt: "Alpha excerpt.",
             tags: ["engineering"],
         };
         expect(first?.slug).toBe(expected.slug);
         expect(first?.title).toBe(expected.title);
-        expect(first?.datePublished).toBe(expected.datePublished);
         expect(first?.excerpt).toBe(expected.excerpt);
         expect(first?.tags).toEqual(expected.tags);
     });
@@ -141,7 +126,7 @@ describe("getAllBlogPosts", () => {
         expect(first?.content.trim()).toBe("Alpha body.");
     });
 
-    test("sorts posts by datePublished descending", async () => {
+    test("sorts posts alphabetically by title", async () => {
         mockDirents = [file("beta-post.md"), file("alpha-post.md")];
         mockFileMap.set("alpha-post.md", BLOG_ALPHA);
         mockFileMap.set("beta-post.md", BLOG_BETA);
@@ -182,22 +167,13 @@ describe("getAllBlogPosts", () => {
         expect(result).toEqual([]);
     });
 
-    test("preserves optional updatedAt when present", async () => {
-        mockDirents = [file("updated-post.md")];
-        mockFileMap.set("updated-post.md", BLOG_WITH_UPDATED_AT);
-
-        const [first] = await getAllBlogPosts();
-
-        expect(first?.updatedAt).toBe("2026-06-15");
-    });
-
-    test("leaves updatedAt undefined when absent", async () => {
+    test("calculates reading time from the body", async () => {
         mockDirents = [file("alpha-post.md")];
         mockFileMap.set("alpha-post.md", BLOG_ALPHA);
 
         const [first] = await getAllBlogPosts();
 
-        expect(first?.updatedAt).toBeUndefined();
+        expect(first?.readingTimeMinutes).toBe(1);
     });
 });
 

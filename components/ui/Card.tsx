@@ -107,8 +107,8 @@ export function Card({
                                 <Button
                                     key={
                                         typeof label === "string"
-                                            ? `${label}-${index}`
-                                            : `${actionProps["aria-label"]}-${index}`
+                                            ? label
+                                            : actionProps["aria-label"]
                                     }
                                     {...actionProps}
                                     size="sm"

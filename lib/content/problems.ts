@@ -12,18 +12,18 @@ export async function listPublishedProblems(): Promise<ProblemSummary[]> {
 
     return problems.map(
         ({
-            datePublished,
             difficulty,
             excerpt,
+            readingTimeMinutes,
             slug,
             source,
             spaceComplexity,
             timeComplexity,
             title,
         }) => ({
-            datePublished,
             difficulty,
             excerpt,
+            readingTimeMinutes,
             slug,
             source,
             spaceComplexity,

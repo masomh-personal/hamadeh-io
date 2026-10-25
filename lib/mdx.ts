@@ -7,6 +7,7 @@ import { cache } from "react";
 import { readdir, readFile } from "node:fs/promises";
 import { extname, join } from "node:path";
 import matter from "@11ty/gray-matter";
+import { getReadingTimeMinutes } from "./reading-time";
 import {
     type BlogFrontmatter,
     type ProblemFrontmatter,
@@ -16,10 +17,12 @@ import {
 
 export interface ProblemPost extends ProblemFrontmatter {
     content: string;
+    readingTimeMinutes: number;
     filePath: string;
 }
 export interface BlogPost extends BlogFrontmatter {
     content: string;
+    readingTimeMinutes: number;
     filePath: string;
 }
 
@@ -53,11 +56,7 @@ async function readAllProblems(): Promise<ProblemPost[]> {
         }
 
         assertUniqueSlugs(posts, "problem");
-        return posts.sort((a, b) => {
-            const dateA = new Date(a.datePublished).getTime();
-            const dateB = new Date(b.datePublished).getTime();
-            return dateB - dateA;
-        });
+        return posts.sort((a, b) => a.title.localeCompare(b.title));
     } catch (error) {
         if ((error as NodeJS.ErrnoException).code === "ENOENT") {
             return [];
@@ -67,7 +66,7 @@ async function readAllProblems(): Promise<ProblemPost[]> {
 }
 
 /**
- * Returns all parsed problem posts, sorted by date descending.
+ * Returns all parsed problem posts, sorted alphabetically by title.
  * Deduped per request via React cache() so multiple callers within one
  * render pass (e.g. generateMetadata + page component) share a single parse.
  */
@@ -92,6 +91,7 @@ async function getProblemByPath(filePath: string): Promise<ProblemPost> {
     return {
         ...frontmatter,
         content,
+        readingTimeMinutes: getReadingTimeMinutes(content),
         filePath,
     };
 }
@@ -109,11 +109,7 @@ async function readAllBlogPosts(): Promise<BlogPost[]> {
         }
 
         assertUniqueSlugs(posts, "blog");
-        return posts.sort((a, b) => {
-            const dateA = new Date(a.datePublished).getTime();
-            const dateB = new Date(b.datePublished).getTime();
-            return dateB - dateA;
-        });
+        return posts.sort((a, b) => a.title.localeCompare(b.title));
     } catch (error) {
         if ((error as NodeJS.ErrnoException).code === "ENOENT") {
             return [];
@@ -123,7 +119,7 @@ async function readAllBlogPosts(): Promise<BlogPost[]> {
 }
 
 /**
- * Returns all parsed blog posts, sorted by date descending.
+ * Returns all parsed blog posts, sorted alphabetically by title.
  * Deduped per request via React cache() so multiple callers within one
  * render pass (e.g. generateMetadata + page component) share a single parse.
  */
@@ -148,6 +144,7 @@ async function getBlogPostByPath(filePath: string): Promise<BlogPost> {
     return {
         ...frontmatter,
         content,
+        readingTimeMinutes: getReadingTimeMinutes(content),
         filePath,
     };
 }

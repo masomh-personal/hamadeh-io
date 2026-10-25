@@ -1,7 +1,6 @@
 ---
 title: "Why Random IDs Break React Hydration (And How Deterministic Hashing Fixed It)"
 slug: "deterministic-hashing-react-keys"
-datePublished: "2026-02-22"
 excerpt: "A production SSR bug caused by random list keys in React, and how deterministic ID generation resolved hydration mismatches with predictable behavior."
 tags: ["engineering", "react", "dsa"]
 ---

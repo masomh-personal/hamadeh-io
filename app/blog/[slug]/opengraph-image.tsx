@@ -27,6 +27,6 @@ export default async function OpengraphImage({
     return renderOgImage({
         eyebrow: "Blog",
         title: post.title,
-        meta: post.tags ?? [],
+        meta: (post.tags ?? []).map((tag) => ({ id: tag, text: tag })),
     });
 }

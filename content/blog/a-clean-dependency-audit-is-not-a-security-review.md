@@ -1,7 +1,6 @@
 ---
 title: "A Clean Dependency Audit Is Not a Security Review"
 slug: "a-clean-dependency-audit-is-not-a-security-review"
-datePublished: "2026-08-22"
 excerpt: "An audit checks known advisories in your lockfile. A useful dependency review also checks release risk, install scripts, maintenance, and whether the fix actually works."
 tags: ["security", "dependencies", "bun"]
 ---

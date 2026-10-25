@@ -1,7 +1,6 @@
 ---
 title: "Big O Notation: What It Actually Measures (And What It Doesn't)"
 slug: "big-o-notation-fundamentals"
-datePublished: "2026-05-18"
 excerpt: "Big O describes how an algorithm's cost grows relative to input size. It says nothing about raw speed. Understanding that gap is what separates useful intuition from flawed optimization decisions."
 tags: ["dsa", "fundamentals", "engineering"]
 ---

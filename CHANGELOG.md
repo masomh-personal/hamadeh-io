@@ -2,6 +2,14 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.10.1 - 2026-11-13
+
+### Changed
+
+- Refreshed Next.js to 16.4.6, Oxlint to 1.93, Oxfmt to 0.78, Tailwind CSS and `@tailwindcss/postcss` to 4.3.5, PostCSS to 8.5.33, and `@types/node` to 26.6.6. Oxfmt reflowed one union type in `docs/architecture.md`.
+- Removed pinned library versions from the README so it no longer goes stale on every dependency update. Exact versions live in `package.json` and `bun.lock`.
+- Renamed the workspace in `bun.lock` from the old `thoughtfulcode-app` to `hamadeh-io` to match `package.json`.
+
 ## 3.10.0 - 2026-11-13
 
 ### Added

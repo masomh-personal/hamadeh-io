@@ -8,18 +8,21 @@ A modern, performance-focused portfolio website showcasing software engineering 
 
 ## Tech Stack
 
+Exact versions live in `package.json` and `bun.lock`; this table names the tools
+and why they were chosen, so it does not go stale on every dependency update.
+
 | Layer                       | Technology                                  | Rationale                                                                         |
 | --------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Framework**               | Next.js 16.3 (App Router)                   | Production-ready, excellent docs, perfect for SSG + SEO, React 19 support         |
-| **React**                   | React 19                                    | Server Components, enhanced performance, required for Next.js 16                  |
-| **Language**                | TypeScript 7 (native Go compiler)           | Native-speed type checking locally and during Next.js production builds           |
+| **Framework**               | Next.js (App Router)                        | Production-ready, excellent docs, perfect for SSG + SEO, React Server Components  |
+| **React**                   | React                                       | Server Components, enhanced performance, required by the Next.js App Router       |
+| **Language**                | TypeScript (native Go compiler)             | Native-speed type checking locally and during Next.js production builds           |
 | **Styling**                 | Tailwind CSS                                | Utility-first, fast development, great with Next.js                               |
 | **Content**                 | Markdown + react-markdown                   | Version-controlled content rendered as Server Components                          |
 | **Syntax Highlighting**     | rehype-highlight                            | Build-time highlighting without a client-side syntax highlighter                  |
 | **Frontmatter Parsing**     | @11ty/gray-matter                           | Extract metadata from Markdown files                                              |
 | **Frontmatter Validation**  | Valibot                                     | Lightweight schema validation (~1KB vs Zod's ~14KB), better performance           |
 | **Linting & Formatting**    | Oxfmt + Oxlint                              | Oxc-powered formatter and linter with fast JS/TS, React, a11y, and Next.js checks |
-| **Runtime**                 | Bun 1.4 (pinned in `package.json`)          | Fast installs, built-in test runner, instant TypeScript, production-ready         |
+| **Runtime**                 | Bun (range pinned in `package.json`)        | Fast installs, built-in test runner, instant TypeScript, production-ready         |
 | **BaaS (Future, optional)** | Supabase / Appwrite                         | Add only when write-path/auth requirements appear                                 |
 | **Deployment**              | Vercel                                      | Git-native deploys, previews for PRs, simple static-first workflow                |
 | **UI Approach**             | Custom wrapper components (`components/ui`) | Design-system control with lightweight dependencies                               |
@@ -86,7 +89,7 @@ bun start
 | `bun run check:toolchain`           | Verify Bun's shim cache is not corrupted              |
 | `bun run format`                    | Format code with Oxfmt                                |
 | `bun run format:check`              | Check formatting without writing changes              |
-| `bun run type-check`                | Run TypeScript 7 type checking with `tsc`             |
+| `bun run type-check`                | Run TypeScript type checking with `tsc`               |
 | `bun run type-check:tests`          | Type-check library and solution tests                 |
 | `bun run test`                      | Run tests with Bun test runner                        |
 | `bun run test:coverage`             | Run tests with coverage report                        |
@@ -160,8 +163,8 @@ describe("Feature Name", () => {
 
 - **Strict Mode:** Enabled
 - **Explicit Return Types:** Required for all exported functions
-- **Type Checking:** Run `bun run type-check` before committing. This uses the TypeScript 7 native compiler.
-- **Next.js builds:** Next.js 16.3 runs the project-local TypeScript 7 CLI, so local checks and production builds share one compiler.
+- **Type Checking:** Run `bun run type-check` before committing. This uses the TypeScript native compiler.
+- **Next.js builds:** Next.js runs the project-local TypeScript CLI, so local checks and production builds share one compiler.
 - **Typing Convention:** `interface` for object/props contracts, `type` for unions/aliases
 
 ### Git Hooks
@@ -193,7 +196,7 @@ hamadeh-io/
 ├── .oxfmtrc.json        # Oxfmt config
 ├── bunfig.toml          # Bun test config
 ├── next.config.mjs      # Next.js config
-├── postcss.config.mjs   # PostCSS + Tailwind v4 plugin wiring
+├── postcss.config.mjs   # PostCSS + Tailwind plugin wiring
 ├── tsconfig.json        # TypeScript config
 └── package.json         # Dependencies and scripts
 ```
@@ -207,7 +210,7 @@ For TypeScript style conventions and examples, see [`docs/typescript-conventions
 
 **Quick Summary:**
 
-- **Next.js 16:** Production-ready, SSG for fast loads, React 19 support
+- **Next.js:** Production-ready, SSG for fast loads, React Server Components
 - **Bun:** 25x faster installs, built-in tooling, production-ready
 - **Oxc tooling:** Oxfmt for formatting and Oxlint for JS/TS, React, a11y, and Next.js linting
 - **Valibot:** Lightweight validation (~1KB vs Zod's ~14KB)
@@ -222,7 +225,7 @@ For detailed styling conventions, Tailwind CSS patterns, and design guidelines, 
 - **Utility-First:** Use Tailwind utilities over custom CSS
 - **Semantic HTML:** Proper HTML elements before styling
 - **Accessibility:** WCAG 2.1 AA compliance, keyboard navigation, screen reader support
-- **Dark-Only Theme:** Implemented with CSS variables and Tailwind v4
+- **Dark-Only Theme:** Implemented with CSS variables and Tailwind
 - **Responsive:** Mobile-first approach with Tailwind breakpoints
 
 ---
@@ -571,7 +574,7 @@ bun update <package-name>     # Update specific package
 
 - [ ] Track Oxfmt Tailwind class sorting and CSS formatting behavior as the formatter matures
 - [ ] Consider an Oxlint config file if CLI flags stop being enough for project rules
-- **Current approach**: Keep Tailwind v4 config CSS-first in `app/globals.css`, with Oxfmt, Oxlint, type-checking, and tests as guardrails
+- **Current approach**: Keep Tailwind config CSS-first in `app/globals.css`, with Oxfmt, Oxlint, type-checking, and tests as guardrails
 
 ### Content QA
 

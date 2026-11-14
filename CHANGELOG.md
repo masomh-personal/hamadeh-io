@@ -2,6 +2,13 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.10.0 - 2026-11-13
+
+### Added
+
+- New blog post, "Why Math Makes Better Programmers", on how invariants, induction, boolean logic, and precise definitions carry over from math into everyday code.
+- New problem, Count Primes, solved with the Sieve of Eratosthenes in O(n log log n) time, with a tested solution and a write-up that contrasts it with trial division.
+
 ## 3.9.1 - 2026-10-25
 
 ### Changed

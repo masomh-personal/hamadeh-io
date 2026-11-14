@@ -1,0 +1,9 @@
+{
+    "title": "Count Primes",
+    "slug": "count-primes",
+    "source": "leetcode",
+    "difficulty": "medium",
+    "timeComplexity": "O(n log log n)",
+    "spaceComplexity": "O(n)",
+    "excerpt": "Count the primes below n with the Sieve of Eratosthenes: cross out multiples of each prime, starting at p squared, for O(n log log n) instead of testing every number."
+}

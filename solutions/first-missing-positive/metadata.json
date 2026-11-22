@@ -1,0 +1,9 @@
+{
+    "title": "First Missing Positive",
+    "slug": "first-missing-positive",
+    "source": "leetcode",
+    "difficulty": "hard",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "excerpt": "Given an unsorted integer array, find the smallest positive integer missing from it in O(n) time and O(1) auxiliary space."
+}

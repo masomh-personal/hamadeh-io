@@ -2,6 +2,14 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.11.0 - 2026-11-21
+
+### Added
+
+- New blog post, "Why System Architecture Matters More in the Age of AI", on why locally clean AI-generated code can still create globally broken systems and how the 10,000-foot view protects boundaries, failure domains, and business fit.
+- New problem, First Missing Positive, solved with in-place cyclic index swaps in O(n) time and O(1) auxiliary space, with a tested solution and write-up.
+- Added the `linkedin-post` Cursor skill for drafting standalone LinkedIn posts without site links or self-promotion.
+
 ## 3.10.1 - 2026-11-13
 
 ### Changed

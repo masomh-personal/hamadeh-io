@@ -18,7 +18,7 @@
 
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve, sep } from "node:path";
 import {
     generateProblemMarkdown,
     syncProblemMarkdown,
@@ -28,12 +28,37 @@ import {
     validateProblemFrontmatter,
 } from "@/lib/schemas";
 
+const SLUG_REGEX = /^[a-z0-9-]+$/;
+
+function assertValidSlug(slug: string): void {
+    if (!SLUG_REGEX.test(slug)) {
+        throw new Error(
+            `Invalid problem slug "${slug}". Expected lowercase alphanumeric characters and hyphens.`
+        );
+    }
+}
+
+function resolveContainedPath(baseDir: string, relativePath: string): string {
+    const resolvedBase = resolve(baseDir);
+    const targetPath = resolve(resolvedBase, relativePath);
+
+    if (!targetPath.startsWith(`${resolvedBase}${sep}`)) {
+        throw new Error(`Path escapes allowed directory: "${relativePath}"`);
+    }
+
+    return targetPath;
+}
+
 async function readSolutionFiles(slug: string): Promise<{
     metadata: ProblemFrontmatter;
     solution: string;
     draft: string | undefined;
 }> {
-    const solutionDir = join(process.cwd(), "solutions", slug);
+    assertValidSlug(slug);
+    const solutionDir = resolveContainedPath(
+        join(process.cwd(), "solutions"),
+        slug
+    );
 
     if (!existsSync(solutionDir)) {
         throw new Error(
@@ -99,7 +124,7 @@ async function publish(slug: string, force: boolean): Promise<void> {
         validateMetadata(metadata, slug);
 
         const contentDir = join(process.cwd(), "content", "problems");
-        const markdownPath = join(contentDir, `${slug}.md`);
+        const markdownPath = resolveContainedPath(contentDir, `${slug}.md`);
 
         if (existsSync(markdownPath) && !force) {
             const existing = await readFile(markdownPath, "utf-8");

@@ -298,66 +298,38 @@ export default async function ProblemPage({ params }: PageProps) {
 
 **Pattern:**
 
-1. Read Markdown files from `content/` directory
+1. Enumerate `.md` files in `content/{blog,problems}` and read them in parallel
 2. Parse frontmatter with `@11ty/gray-matter`
-3. Validate frontmatter with Valibot schemas
-4. Render Markdown with `react-markdown`
-5. Apply GFM and server-side syntax highlighting
-6. Generate static pages at build time
+3. Validate frontmatter with Valibot schemas (`lib/schemas.ts`)
+4. Memoize the parsed corpus in production and expose clean domain types through `lib/content/{blog,problems}.ts`
+5. Render Markdown on the server with `react-markdown`, `remark-gfm`, build-time heading anchors, and an explicit 5-language `rehype-highlight` allowlist
+6. Generate static pages at build time (`dynamicParams = false`)
 
 **Example:**
 
 ```typescript
-// lib/mdx.ts
-import matter from "@11ty/gray-matter";
-import { parse } from "valibot";
-import { problemFrontmatterSchema } from "./schemas";
-
-export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
-    const filePath = path.join(
-        process.cwd(),
-        "content",
-        "problems",
-        `${slug}.md`
-    );
-    const fileContents = await fs.readFile(filePath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    // Validate frontmatter
-    const frontmatter = parse(problemFrontmatterSchema, data);
-
-    return {
-        ...frontmatter,
-        content,
-    };
-}
+// lib/content/problems.ts (public boundary used by pages)
+const problems = await listPublishedProblems();
+const problem = await getPublishedProblemBySlug(slug);
 ```
 
 ---
 
 ## Error Handling
 
-### Type-Safe Errors
+### Typed Content Errors
 
-**Pattern:**
+- `lib/mdx.ts` throws `ContentNotFoundError` when a slug does not exist and lets Valibot validation errors throw directly so corrupt frontmatter fails builds loudly.
+- Dynamic routes check `isContentNotFoundError(error)` before calling Next.js `notFound()`, rethrowing unexpected errors instead of masking them as 404s.
 
 ```typescript
-type Result<T, E = Error> =
-    | { success: true; data: T }
-    | { success: false; error: E };
-
-export async function getProblemBySlug(
-    slug: string
-): Promise<Result<ProblemPost, "NOT_FOUND" | "INVALID_FORMAT">> {
-    try {
-        const solution = await readSolutionFile(slug);
-        return { success: true, data: solution };
-    } catch (error) {
-        if (error.code === "ENOENT") {
-            return { success: false, error: "NOT_FOUND" };
-        }
-        return { success: false, error: "INVALID_FORMAT" };
+try {
+    problem = await getPublishedProblemBySlug(slug);
+} catch (error) {
+    if (isContentNotFoundError(error)) {
+        notFound();
     }
+    throw error;
 }
 ```
 

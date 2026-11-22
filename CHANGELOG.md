@@ -2,6 +2,36 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.12.0 - 2026-11-22
+
+### Added
+
+- Homepage now surfaces curated Featured Writing and Featured Code Problems sections driven by optional `featured` frontmatter, alongside `WebSite` and `Person` JSON-LD metadata.
+- Blog posts in multi-part series now render Previous/Next series navigation (`series` and `seriesOrder` frontmatter), applied across the 5-part SOLID in the AI Era and 4-part Grokking the System Design Interview series.
+- Markdown headings now generate build-time `#` anchor links with collision-safe IDs and sticky-header scroll offset.
+- Blog posts now display up to three tag-matched Related Posts below the article.
+
+### Changed
+
+- Converted `Header` and `Button` to Server Components with focused `NavLink` and `MobileMenu` client islands, and updated `CopyCodeButton` to read code from the DOM on click instead of duplicating raw code in RSC payloads.
+- Switched Google Fonts to variable fonts with deferred preloading for `Baloo 2` and `Fira Code`, enabled AVIF/WebP image optimization, and added `preload` to the About page portrait.
+- Re-enabled static route prefetching on blog and problem cards (removing per-card `NavigationOverlay` mounts) and disabled redundant prefetches on client-filtered tag and pagination links.
+- Parallelized Markdown corpus reads in `lib/mdx.ts`, stripped `filePath` at the `lib/content/*` boundary, shared problem-section parsing in `lib/problem-markdown.ts`, validated blog tags against a single `BLOG_TAGS` registry, and synced `docs/architecture.md` and `docs/mdx-explanation.md`.
+
+### Fixed
+
+- Fixed homepage hero avatar layout shift by matching `avatar_prof.jpg`'s intrinsic portrait dimensions (`874x983`).
+- Narrowed dynamic route error handling to `ContentNotFoundError` so corrupt frontmatter fails builds loudly instead of rendering a 404, and cleared rejected promises in the production corpus cache.
+- Fixed active-route prefix matching, mobile menu dismissal on Back/Forward navigation and outside clicks, card heading hierarchy (`h3` under section `h2`s), `FilterList` `aria-current="page"`, disabled pagination links, `LoadingIndicator` live status role, and floating copy-button overlap on code blocks.
+- Awaited async rejection assertions in `lib/mdx.test.ts` and added unit tests for series navigation, related posts, heading ID allocation, problem section splitting, and active nav matching.
+
+### Security
+
+- Removed the unlinked `public/resume.pdf` asset from public serving.
+- Added `poweredByHeader: false`, production `Strict-Transport-Security`, dev-safe CSP (`upgrade-insecure-requests` in production only), `http:`/`https:` origin validation for `NEXT_PUBLIC_SITE_URL`, XML-escaped URLs and control-char stripping in `/blog/rss.xml`, and automatic `rel="noopener noreferrer"` on external `Button` links.
+- Hardened `scripts/new-problem.ts` and `scripts/publish-problem.ts` with strict slug validation, path-containment checks, Valibot validation and timeouts on LeetCode GraphQL responses, and safe comment/string escaping.
+- Pinned GitHub Actions in `.github/workflows/ci.yml` to commit SHAs with `persist-credentials: false` and job timeouts.
+
 ## 3.11.0 - 2026-11-21
 
 ### Added

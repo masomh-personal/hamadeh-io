@@ -80,8 +80,9 @@ export function FilterList({
                 <li className="contents">
                     <NextLink
                         href={getHref(null)}
+                        prefetch={false}
                         scroll={false}
-                        aria-current={isAllActive ? "true" : undefined}
+                        aria-current={isAllActive ? "page" : undefined}
                         className={cn(
                             itemBase,
                             itemLayout,
@@ -103,8 +104,9 @@ export function FilterList({
                         <li key={value} className="contents">
                             <NextLink
                                 href={getHref(value)}
+                                prefetch={false}
                                 scroll={false}
-                                aria-current={isActive ? "true" : undefined}
+                                aria-current={isActive ? "page" : undefined}
                                 className={cn(
                                     itemBase,
                                     itemLayout,

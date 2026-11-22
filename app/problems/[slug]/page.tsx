@@ -6,48 +6,15 @@ import { RichMarkdownContent } from "@/components/markdown/RichMarkdownContent";
 import { Badge, Button } from "@/components/ui";
 import {
     getPublishedProblemBySlug,
+    isContentNotFoundError,
     listPublishedProblems,
 } from "@/lib/content/problems";
+import { splitProblemSections } from "@/lib/problem-markdown";
 import { formatReadingTime } from "@/lib/reading-time";
 import { absoluteUrl, AUTHOR_NAME, SITE_NAME } from "@/lib/site";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
-}
-
-interface ProblemSectionContent {
-    problemContent: string;
-    remainingContent: string;
-}
-
-function getProblemSectionContent(content: string): ProblemSectionContent {
-    const problemHeaderRegex = /^# Problem\s*$/m;
-    const headerMatch = problemHeaderRegex.exec(content);
-
-    if (!headerMatch || headerMatch.index === undefined) {
-        return {
-            problemContent: "",
-            remainingContent: content,
-        };
-    }
-
-    const sectionStart = headerMatch.index + headerMatch[0].length;
-    const remainingSectionsRegex = /^##\s+/m;
-    const remainingMatch = remainingSectionsRegex.exec(
-        content.slice(sectionStart)
-    );
-    const sectionEnd =
-        remainingMatch && remainingMatch.index !== undefined
-            ? sectionStart + remainingMatch.index
-            : content.length;
-
-    const problemSectionRaw = content.slice(sectionStart, sectionEnd).trim();
-    const remainingContent = content.slice(sectionEnd).trim();
-
-    return {
-        problemContent: problemSectionRaw,
-        remainingContent,
-    };
 }
 
 export const dynamicParams = false;
@@ -86,7 +53,10 @@ export async function generateMetadata({
                 description: problem.excerpt,
             },
         };
-    } catch {
+    } catch (error) {
+        if (!isContentNotFoundError(error)) {
+            throw error;
+        }
         return {
             title: "Problem Not Found",
             robots: {
@@ -105,18 +75,28 @@ export default async function ProblemPostPage({
     let problem: Awaited<ReturnType<typeof getPublishedProblemBySlug>>;
     try {
         problem = await getPublishedProblemBySlug(slug);
-    } catch {
-        notFound();
+    } catch (error) {
+        if (isContentNotFoundError(error)) {
+            notFound();
+        }
+        throw error;
     }
     const difficultyVariant = `leetcode-${problem.difficulty}` as const;
-    const { problemContent, remainingContent } = getProblemSectionContent(
+    const { problemContent, remainingContent } = splitProblemSections(
         problem.content
     );
+    const wordCount = problem.content
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length;
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "TechArticle",
         headline: problem.title,
         description: problem.excerpt,
+        inLanguage: "en-US",
+        wordCount,
+        image: absoluteUrl(`/problems/${problem.slug}/opengraph-image`),
         proficiencyLevel: problem.difficulty,
         author: {
             "@type": "Person",
@@ -167,7 +147,7 @@ export default async function ProblemPostPage({
                         <div className="grid gap-6 md:grid-cols-[3fr_1fr]">
                             <div>
                                 <div className="inline-flex items-center gap-3">
-                                    <h1 className="font-heading inline-block text-xl font-extrabold tracking-tight text-white md:text-2xl">
+                                    <h1 className="font-heading inline-block text-xl font-bold tracking-tight text-white md:text-2xl">
                                         {problem.title}
                                     </h1>
                                     <Badge

@@ -44,8 +44,13 @@ mock.module("node:fs/promises", () => ({
     },
 }));
 
-const { getAllBlogPosts, getBlogPostBySlug, getAllProblems, getProblemBySlug } =
-    await import("./mdx");
+const {
+    getAllBlogPosts,
+    getBlogPostBySlug,
+    getAllProblems,
+    getProblemBySlug,
+    isContentNotFoundError,
+} = await import("./mdx");
 
 beforeEach(() => {
     mockDirents = [];
@@ -109,12 +114,12 @@ describe("getAllBlogPosts", () => {
             slug: "alpha-post",
             title: "Alpha Post",
             excerpt: "Alpha excerpt.",
-            tags: ["engineering"],
+            tags: ["engineering"] as const,
         };
         expect(first?.slug).toBe(expected.slug);
         expect(first?.title).toBe(expected.title);
         expect(first?.excerpt).toBe(expected.excerpt);
-        expect(first?.tags).toEqual(expected.tags);
+        expect(first?.tags).toEqual([...expected.tags]);
     });
 
     test("strips frontmatter and returns the markdown body in content", async () => {
@@ -145,7 +150,7 @@ describe("getAllBlogPosts", () => {
         const expected = "Title is required";
         const result = getAllBlogPosts();
 
-        expect(result).rejects.toThrow(expected);
+        await expect(result).rejects.toThrow(expected);
     });
 
     test("rejects duplicate slugs", async () => {
@@ -156,7 +161,7 @@ describe("getAllBlogPosts", () => {
         const expected = 'Duplicate blog slug "alpha-post"';
         const result = getAllBlogPosts();
 
-        expect(result).rejects.toThrow(expected);
+        await expect(result).rejects.toThrow(expected);
     });
 
     test("returns empty array when content directory does not exist", async () => {
@@ -190,13 +195,21 @@ describe("getBlogPostBySlug", () => {
         expect(result.content.trim()).toBe("Beta body.");
     });
 
-    test("throws a descriptive error for an unknown slug", async () => {
+    test("throws a ContentNotFoundError for an unknown slug", async () => {
         mockDirents = [file("alpha-post.md")];
         mockFileMap.set("alpha-post.md", BLOG_ALPHA);
 
         const expected = `Blog post with slug "not-here" not found`;
+        let caught: unknown;
+        try {
+            await getBlogPostBySlug("not-here");
+        } catch (error) {
+            caught = error;
+        }
 
-        expect(getBlogPostBySlug("not-here")).rejects.toThrow(expected);
+        expect(isContentNotFoundError(caught)).toBe(true);
+        expect(isContentNotFoundError(new Error("other"))).toBe(false);
+        expect((caught as Error).message).toBe(expected);
     });
 });
 
@@ -252,7 +265,7 @@ describe("getAllProblems", () => {
         const expected = 'Duplicate problem slug "two-sum"';
         const result = getAllProblems();
 
-        expect(result).rejects.toThrow(expected);
+        await expect(result).rejects.toThrow(expected);
     });
 });
 
@@ -272,6 +285,6 @@ describe("getProblemBySlug", () => {
 
         const expected = `Problem post with slug "no-such" not found`;
 
-        expect(getProblemBySlug("no-such")).rejects.toThrow(expected);
+        await expect(getProblemBySlug("no-such")).rejects.toThrow(expected);
     });
 });

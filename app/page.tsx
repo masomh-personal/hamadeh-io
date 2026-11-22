@@ -1,15 +1,65 @@
 import Image from "next/image";
 import { HiCode, HiCollection, HiDocumentText, HiUser } from "react-icons/hi";
+import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageSection } from "@/components/layout/PageSection";
+import { ProblemPostCard } from "@/components/problems/ProblemPostCard";
 import { Button, Card } from "@/components/ui";
+import { listPublishedBlogPosts } from "@/lib/content/blog";
+import { listPublishedProblems } from "@/lib/content/problems";
+import { absoluteUrl, AUTHOR_NAME, SITE_NAME } from "@/lib/site";
 
-export default function Home() {
+export default async function Home(): Promise<React.ReactElement> {
+    const [allPosts, allProblems] = await Promise.all([
+        listPublishedBlogPosts(),
+        listPublishedProblems(),
+    ]);
+
+    const featuredPosts = allPosts.filter((post) => post.featured).slice(0, 3);
+    const showcasePosts =
+        featuredPosts.length > 0 ? featuredPosts : allPosts.slice(0, 3);
+
+    const featuredProblems = allProblems
+        .filter((problem) => problem.featured)
+        .slice(0, 3);
+    const showcaseProblems =
+        featuredProblems.length > 0
+            ? featuredProblems
+            : allProblems.slice(0, 3);
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                name: SITE_NAME,
+                url: absoluteUrl("/"),
+            },
+            {
+                "@type": "Person",
+                name: AUTHOR_NAME,
+                url: absoluteUrl("/"),
+                jobTitle: "Senior Software Engineer",
+                sameAs: [
+                    "https://www.linkedin.com/in/masomh/",
+                    "https://github.com/masomh-personal",
+                ],
+            },
+        ],
+    };
+
     return (
         <PageContainer>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+                }}
+            />
+
             <PageSection className="grid gap-8 md:grid-cols-[1fr_260px] md:items-center">
                 <div>
-                    <h1 className="text-center font-extrabold leading-tight text-white md:text-left">
+                    <h1 className="text-center font-bold leading-tight text-white md:text-left">
                         Hi! I&apos;m Masom.
                         <br />I love building thoughtful software.
                     </h1>
@@ -39,15 +89,69 @@ export default function Home() {
                         <Image
                             src="/images/avatar_prof.jpg"
                             alt="Masom profile photo"
-                            width={480}
-                            height={480}
+                            width={874}
+                            height={983}
                             className="h-auto w-full rounded-xl object-cover"
-                            sizes="(max-width: 768px) 240px, 240px"
+                            sizes="224px"
                             preload
                         />
                     </div>
                 </div>
             </PageSection>
+
+            {showcasePosts.length > 0 ? (
+                <PageSection>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <h2 className="font-bold text-white">
+                            Featured Writing
+                        </h2>
+                        <Button
+                            href="/blog"
+                            variant="outline"
+                            size="xs"
+                            enforceMinWidth={false}
+                        >
+                            All {allPosts.length} posts
+                        </Button>
+                    </div>
+                    <div className="mt-4 grid gap-4 md:grid-cols-3">
+                        {showcasePosts.map((post) => (
+                            <BlogPostCard
+                                key={post.slug}
+                                post={post}
+                                headingAs="h3"
+                            />
+                        ))}
+                    </div>
+                </PageSection>
+            ) : null}
+
+            {showcaseProblems.length > 0 ? (
+                <PageSection>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <h2 className="font-bold text-white">
+                            Featured Code Problems
+                        </h2>
+                        <Button
+                            href="/problems"
+                            variant="outline"
+                            size="xs"
+                            enforceMinWidth={false}
+                        >
+                            All {allProblems.length} problems
+                        </Button>
+                    </div>
+                    <div className="mt-4 grid gap-4 md:grid-cols-3">
+                        {showcaseProblems.map((problem) => (
+                            <ProblemPostCard
+                                key={problem.slug}
+                                problem={problem}
+                                headingAs="h3"
+                            />
+                        ))}
+                    </div>
+                </PageSection>
+            ) : null}
 
             <PageSection>
                 <h2 className="font-bold text-white">About Me</h2>

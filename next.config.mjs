@@ -1,8 +1,8 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 
-function runGitCommand(command) {
+function runGitCommand(args) {
     try {
-        return execSync(command).toString().trim();
+        return execFileSync("git", args).toString().trim();
     } catch {
         return "";
     }
@@ -19,8 +19,8 @@ function getGitInfo() {
         process.env.GITHUB_SHA;
 
     const branch =
-        branchFromEnv || runGitCommand("git rev-parse --abbrev-ref HEAD");
-    const sha = shaFromEnv || runGitCommand("git rev-parse HEAD");
+        branchFromEnv || runGitCommand(["rev-parse", "--abbrev-ref", "HEAD"]);
+    const sha = shaFromEnv || runGitCommand(["rev-parse", "HEAD"]);
 
     return { branch: branch || "---", sha: sha || "" };
 }
@@ -43,44 +43,57 @@ const contentSecurityPolicy = [
     "base-uri 'self'",
     "form-action 'self'",
     "frame-ancestors 'none'",
-    "upgrade-insecure-requests",
+    ...(!isDev ? ["upgrade-insecure-requests"] : []),
 ].join("; ");
+
+const securityHeaders = [
+    {
+        key: "Content-Security-Policy",
+        value: contentSecurityPolicy,
+    },
+    {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+    },
+    {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+    },
+    {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=()",
+    },
+    {
+        key: "X-Frame-Options",
+        value: "DENY",
+    },
+    ...(!isDev
+        ? [
+              {
+                  key: "Strict-Transport-Security",
+                  value: "max-age=63072000; includeSubDomains; preload",
+              },
+          ]
+        : []),
+];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    poweredByHeader: false,
+    images: {
+        formats: ["image/avif", "image/webp"],
+    },
     async headers() {
         return [
             {
                 source: "/(.*)",
-                headers: [
-                    {
-                        key: "Content-Security-Policy",
-                        value: contentSecurityPolicy,
-                    },
-                    {
-                        key: "X-Content-Type-Options",
-                        value: "nosniff",
-                    },
-                    {
-                        key: "Referrer-Policy",
-                        value: "strict-origin-when-cross-origin",
-                    },
-                    {
-                        key: "Permissions-Policy",
-                        value: "camera=(), microphone=(), geolocation=()",
-                    },
-                    {
-                        key: "X-Frame-Options",
-                        value: "DENY",
-                    },
-                ],
+                headers: securityHeaders,
             },
         ];
     },
     env: {
         NEXT_PUBLIC_GIT_BRANCH: branch,
         NEXT_PUBLIC_GIT_SHA: sha,
-        NEXT_PUBLIC_GIT_FULL_SHA: sha,
     },
     // Agent guidance lives in .cursor/rules and docs/agent-setup.md, so keep
     // `next dev` from generating a second, overlapping AGENTS.md and CLAUDE.md.

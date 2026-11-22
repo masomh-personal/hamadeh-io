@@ -3,6 +3,8 @@ title: "Grokking System Design Part 4: Caching and Data Partitioning"
 slug: "grokking-system-design-interview-part-4-caching-data-partitioning"
 excerpt: "How caching improves resource utilization and how data partitioning enables horizontal scaling, plus the tradeoffs and constraints that come with each approach."
 tags: ["system-design", "career", "learning"]
+series: "Grokking the System Design Interview"
+seriesOrder: 4
 ---
 
 In [part three](/blog/grokking-system-design-interview-part-3-load-balancing), I covered load balancing and the nine algorithms that distribute traffic across servers.

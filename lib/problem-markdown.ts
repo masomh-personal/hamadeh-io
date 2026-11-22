@@ -10,12 +10,54 @@ import type { ProblemFrontmatter } from "./schemas";
 import { stripSolutionHeaderComment } from "./solution-code";
 
 const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/;
+const PROBLEM_HEADING = /^# Problem[ \t]*$/m;
 const IMPLEMENTATION_HEADING = /^## Implementation[ \t]*$/m;
 const COMPLEXITY_HEADING = /^## Complexity[ \t]*$/m;
 const NEXT_SECTION = /^## /m;
 const TYPESCRIPT_FENCE = /^```(?:typescript|ts)[ \t]*\r?\n[\s\S]*?^```[ \t]*$/m;
 
+export interface ProblemSectionContent {
+    problemContent: string;
+    remainingContent: string;
+}
+
+export function hasProblemHeading(content: string): boolean {
+    return PROBLEM_HEADING.test(content);
+}
+
+/**
+ * Splits a problem markdown body into the `# Problem` intro block and the
+ * remaining `## ...` sections so the page layout can render them in separate slots.
+ */
+export function splitProblemSections(content: string): ProblemSectionContent {
+    const headerMatch = PROBLEM_HEADING.exec(content);
+
+    if (!headerMatch || headerMatch.index === undefined) {
+        return {
+            problemContent: "",
+            remainingContent: content,
+        };
+    }
+
+    const sectionStart = headerMatch.index + headerMatch[0].length;
+    const remainingMatch = /^##\s+/m.exec(content.slice(sectionStart));
+    const sectionEnd =
+        remainingMatch && remainingMatch.index !== undefined
+            ? sectionStart + remainingMatch.index
+            : content.length;
+
+    return {
+        problemContent: content.slice(sectionStart, sectionEnd).trim(),
+        remainingContent: content.slice(sectionEnd).trim(),
+    };
+}
+
 export function renderProblemFrontmatter(metadata: ProblemFrontmatter): string {
+    const featuredLine =
+        metadata.featured !== undefined
+            ? `featured: ${JSON.stringify(metadata.featured)}\n`
+            : "";
+
     return `---
 title: ${JSON.stringify(metadata.title)}
 slug: ${JSON.stringify(metadata.slug)}
@@ -24,7 +66,7 @@ difficulty: ${JSON.stringify(metadata.difficulty)}
 timeComplexity: ${JSON.stringify(metadata.timeComplexity)}
 spaceComplexity: ${JSON.stringify(metadata.spaceComplexity)}
 excerpt: ${JSON.stringify(metadata.excerpt)}
----
+${featuredLine}---
 `;
 }
 

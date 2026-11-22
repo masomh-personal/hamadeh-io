@@ -3,6 +3,8 @@ title: "Grokking System Design Part 3: Load Balancing"
 slug: "grokking-system-design-interview-part-3-load-balancing"
 excerpt: "How load balancers work, where they sit in a distributed system, and the nine algorithms that determine how traffic gets distributed."
 tags: ["system-design", "career", "learning"]
+series: "Grokking the System Design Interview"
+seriesOrder: 3
 ---
 
 In [part two](/blog/grokking-system-design-interview-part-2-key-characteristics), I covered the five core properties that every distributed system is measured against: scalability, reliability, availability, efficiency, and manageability.

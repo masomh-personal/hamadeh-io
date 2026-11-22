@@ -1,3 +1,5 @@
+import type { BlogTag } from "@/lib/schemas";
+
 interface BlogTagPresentation {
     text: string;
     color: string;
@@ -16,9 +18,9 @@ const DEFAULT_TAG_COLOR: BlogTagColorDefinition = {
 
 /**
  * Central tag color map for blog UI.
- * Add new tags here as content grows.
+ * Exhaustively typed against `BLOG_TAGS` in `lib/schemas.ts`.
  */
-const BLOG_TAG_COLOR_MAP: Record<string, BlogTagColorDefinition> = {
+export const BLOG_TAG_COLOR_MAP: Record<BlogTag, BlogTagColorDefinition> = {
     engineering: { color: "#FACC15" },
     nextjs: { color: "#60A5FA" },
     markdown: { color: "#F472B6" },
@@ -44,7 +46,7 @@ const BLOG_TAG_COLOR_MAP: Record<string, BlogTagColorDefinition> = {
     leadership: { color: "#F97316" },
 };
 
-function assertUniqueBlogTagColors(
+export function assertUniqueBlogTagColors(
     tagColors: Record<string, BlogTagColorDefinition>
 ): void {
     const colorToTags = new Map<string, string[]>();
@@ -70,11 +72,11 @@ function assertUniqueBlogTagColors(
     }
 }
 
-assertUniqueBlogTagColors(BLOG_TAG_COLOR_MAP);
-
 export function getBlogTagPresentation(tag: string): BlogTagPresentation {
     const normalizedTag = tag.trim().toLowerCase();
-    const { color } = BLOG_TAG_COLOR_MAP[normalizedTag] ?? DEFAULT_TAG_COLOR;
+    const { color } = Object.hasOwn(BLOG_TAG_COLOR_MAP, normalizedTag)
+        ? BLOG_TAG_COLOR_MAP[normalizedTag as BlogTag]
+        : DEFAULT_TAG_COLOR;
 
     return {
         text: normalizedTag.toUpperCase(),

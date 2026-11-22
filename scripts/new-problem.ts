@@ -11,16 +11,31 @@
  */
 
 import { mkdir, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, resolve, sep } from "node:path";
+import * as v from "valibot";
 
-interface LeetCodeProblem {
-    title: string;
-    difficulty: string;
-    content: string;
-    topicTags: Array<{ name: string }>;
-    codeSnippets: Array<{ lang: string; code: string }>;
-    sampleTestCase: string;
-}
+const SLUG_REGEX = /^[a-z0-9-]+$/;
+const VALID_IDENTIFIER_REGEX = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
+const FETCH_TIMEOUT_MS = 10_000;
+
+const LeetCodeProblemSchema = v.object({
+    title: v.pipe(v.string(), v.minLength(1)),
+    difficulty: v.picklist(["Easy", "Medium", "Hard"]),
+    content: v.string(),
+    topicTags: v.array(v.object({ name: v.string() })),
+    codeSnippets: v.array(v.object({ lang: v.string(), code: v.string() })),
+    sampleTestCase: v.string(),
+});
+
+const LeetCodeGraphQLResponseSchema = v.object({
+    data: v.optional(
+        v.object({
+            question: v.nullable(LeetCodeProblemSchema),
+        })
+    ),
+});
+
+type LeetCodeProblem = v.InferOutput<typeof LeetCodeProblemSchema>;
 
 interface ProblemMetadata {
     title: string;
@@ -33,8 +48,53 @@ interface ProblemMetadata {
 }
 
 function extractSlug(input: string): string {
-    const urlMatch = input.match(/leetcode\.com\/problems\/([^/]+)/);
-    return urlMatch?.[1] ?? input;
+    const trimmed = input.trim();
+    let candidate = trimmed;
+
+    if (trimmed.includes("://")) {
+        let parsed: URL;
+        try {
+            parsed = new URL(trimmed);
+        } catch {
+            throw new Error(`Invalid URL: "${input}"`);
+        }
+
+        const isLeetCodeHost =
+            parsed.hostname === "leetcode.com" ||
+            parsed.hostname === "www.leetcode.com";
+        if (!isLeetCodeHost) {
+            throw new Error(
+                `Unsupported host "${parsed.hostname}". Expected leetcode.com.`
+            );
+        }
+
+        const match = /^\/problems\/([^/]+)/.exec(parsed.pathname);
+        if (!match?.[1]) {
+            throw new Error(
+                `Could not extract problem slug from URL: "${input}"`
+            );
+        }
+        candidate = match[1];
+    }
+
+    if (!SLUG_REGEX.test(candidate)) {
+        throw new Error(
+            `Invalid problem slug "${candidate}". Expected lowercase alphanumeric characters and hyphens.`
+        );
+    }
+
+    return candidate;
+}
+
+function resolveContainedDir(baseDir: string, slug: string): string {
+    const resolvedBase = resolve(baseDir);
+    const targetDir = resolve(resolvedBase, slug);
+
+    if (!targetDir.startsWith(`${resolvedBase}${sep}`)) {
+        throw new Error(`Invalid slug path: "${slug}"`);
+    }
+
+    return targetDir;
 }
 
 async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
@@ -66,6 +126,7 @@ async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
             query,
             variables: { titleSlug: slug },
         }),
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
 
     if (!response.ok) {
@@ -74,15 +135,16 @@ async function fetchProblemData(slug: string): Promise<LeetCodeProblem> {
         );
     }
 
-    const data = await response.json();
+    const rawData: unknown = await response.json();
+    const parsed = v.parse(LeetCodeGraphQLResponseSchema, rawData);
 
-    if (!data.data?.question) {
+    if (!parsed.data?.question) {
         throw new Error(
             `Problem not found: ${slug}. Check the slug or URL is correct.`
         );
     }
 
-    return data.data.question;
+    return parsed.data.question;
 }
 
 function htmlToText(html: string): string {
@@ -96,20 +158,37 @@ function htmlToText(html: string): string {
         .trim();
 }
 
+function escapeBlockComment(value: string): string {
+    return value.replaceAll("*/", "*\\/");
+}
+
+function formatLineComment(value: string, indent: string): string {
+    return value
+        .split(/\r?\n/)
+        .map((line) => `${indent}// ${line}`)
+        .join("\n");
+}
+
+function toSafeIdentifier(slug: string): string {
+    const candidate = slug.replaceAll("-", "_");
+    return VALID_IDENTIFIER_REGEX.test(candidate) ? candidate : "solve";
+}
+
 function createMetadata(
     problem: LeetCodeProblem,
     slug: string
 ): ProblemMetadata {
     const excerpt = htmlToText(problem.content).slice(0, 200);
+    const difficulty = problem.difficulty.toLowerCase() as
+        | "easy"
+        | "medium"
+        | "hard";
 
     return {
         title: problem.title,
         slug,
         source: "leetcode",
-        difficulty: problem.difficulty.toLowerCase() as
-            | "easy"
-            | "medium"
-            | "hard",
+        difficulty,
         timeComplexity: "O(?)",
         spaceComplexity: "O(?)",
         excerpt,
@@ -121,15 +200,19 @@ function createSolutionFile(problem: LeetCodeProblem): string {
     const jsSnippet = problem.codeSnippets.find((s) => s.lang === "JavaScript");
     const starterCode = tsSnippet?.code || jsSnippet?.code || "";
 
-    const description = htmlToText(problem.content)
+    const safeTitle = escapeBlockComment(problem.title);
+    const safeTopics = escapeBlockComment(
+        problem.topicTags.map((t) => t.name).join(", ")
+    );
+    const description = escapeBlockComment(htmlToText(problem.content))
         .split("\n")
         .slice(0, 10)
         .join("\n * ");
 
     return `/**
- * ${problem.title}
+ * ${safeTitle}
  * Difficulty: ${problem.difficulty}
- * Topics: ${problem.topicTags.map((t) => t.name).join(", ")}
+ * Topics: ${safeTopics}
  *
  * ${description}
  */
@@ -142,21 +225,26 @@ ${starterCode}
 }
 
 function createTestFile(problem: LeetCodeProblem, slug: string): string {
-    const functionName = slug.replace(/-/g, "_");
+    const functionName = toSafeIdentifier(slug);
+    const safeDocTitle = escapeBlockComment(problem.title);
+    const sampleComment = formatLineComment(
+        problem.sampleTestCase,
+        "            "
+    );
 
     return `/**
- * Tests for ${problem.title}
+ * Tests for ${safeDocTitle}
  */
 
 import { describe, expect, test } from "bun:test";
 import { ${functionName} } from "./solution";
 
-describe("${problem.title}", () => {
+describe(${JSON.stringify(problem.title)}, () => {
     describe("Basics", () => {
         test("example test case", () => {
             // TODO: Add test cases based on problem examples
             // Sample test case from LeetCode:
-            // ${problem.sampleTestCase}
+${sampleComment}
 
             expect(true).toBe(true); // Replace with actual test
         });
@@ -173,16 +261,19 @@ describe("${problem.title}", () => {
 }
 
 async function scaffold(input: string): Promise<void> {
-    const slug = extractSlug(input);
-
-    console.log(`Fetching problem data for: ${slug}...`);
-
     try {
+        const slug = extractSlug(input);
+        const solutionDir = resolveContainedDir(
+            join(process.cwd(), "solutions"),
+            slug
+        );
+
+        console.log(`Fetching problem data for: ${slug}...`);
+
         const problem = await fetchProblemData(slug);
 
         console.log(`Found: ${problem.title} (${problem.difficulty})`);
 
-        const solutionDir = join(process.cwd(), "solutions", slug);
         await mkdir(solutionDir, { recursive: true });
 
         const metadata = createMetadata(problem, slug);
@@ -198,6 +289,9 @@ async function scaffold(input: string): Promise<void> {
         await writeFile(join(solutionDir, "solution.test.ts"), testContent);
 
         console.log(`\nCreated: solutions/${slug}/`);
+        console.log(
+            "\nReview starter code in solution.ts before running tests."
+        );
         console.log("\nNext steps:");
         console.log(`  1. Implement solution in solutions/${slug}/solution.ts`);
         console.log(`  2. Write tests in solutions/${slug}/solution.test.ts`);

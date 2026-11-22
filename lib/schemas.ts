@@ -6,6 +6,38 @@
 import * as v from "valibot";
 
 /**
+ * Single source of truth for registered blog tags.
+ * UI tag colors in `components/blog/blog-tags.ts` must cover every entry here.
+ */
+export const BLOG_TAGS = [
+    "engineering",
+    "nextjs",
+    "markdown",
+    "tooling",
+    "collaboration",
+    "typescript",
+    "backend",
+    "async",
+    "ai",
+    "api",
+    "bun",
+    "cost",
+    "dependencies",
+    "react",
+    "security",
+    "dsa",
+    "methodology",
+    "fundamentals",
+    "solid",
+    "system-design",
+    "career",
+    "learning",
+    "leadership",
+] as const;
+
+export type BlogTag = (typeof BLOG_TAGS)[number];
+
+/**
  * Problem Frontmatter Schema
  * Validates required fields for code problem markdown files
  */
@@ -46,6 +78,7 @@ export const ProblemFrontmatterSchema = v.object({
         v.minLength(1, "Excerpt is required"),
         v.maxLength(200, "Excerpt must be 200 characters or less")
     ),
+    featured: v.optional(v.boolean()),
 });
 
 /**
@@ -70,11 +103,17 @@ export const BlogFrontmatterSchema = v.object({
     tags: v.optional(
         v.pipe(
             v.array(
-                v.pipe(v.string(), v.minLength(1, "Tags must be non-empty"))
+                v.picklist(
+                    BLOG_TAGS,
+                    "Tag must be registered in BLOG_TAGS (lib/schemas.ts)"
+                )
             ),
             v.maxLength(3, "At most 3 tags are allowed")
         )
     ),
+    featured: v.optional(v.boolean()),
+    series: v.optional(v.pipe(v.string(), v.minLength(1))),
+    seriesOrder: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1))),
 });
 
 /**

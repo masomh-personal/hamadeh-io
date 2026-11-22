@@ -1,26 +1,48 @@
-import type { BlogPost } from "@/lib/mdx";
-import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
+import {
+    type BlogPost,
+    getAllBlogPosts,
+    getBlogPostBySlug,
+    isContentNotFoundError,
+} from "@/lib/mdx";
 
-export type BlogPostSummary = Omit<BlogPost, "content" | "filePath">;
+export type PublishedBlogPost = Omit<BlogPost, "filePath">;
+export type BlogPostSummary = Omit<PublishedBlogPost, "content">;
+
+export { isContentNotFoundError };
 
 /**
  * Content-access boundary for blog data.
- * This keeps page components stable if we move from files to a database.
+ * Keeps page and UI components decoupled from filesystem details like filePath.
  */
 export async function listPublishedBlogPosts(): Promise<BlogPostSummary[]> {
     const posts = await getAllBlogPosts();
 
-    return posts.map(({ excerpt, readingTimeMinutes, slug, tags, title }) => ({
-        excerpt,
-        readingTimeMinutes,
-        slug,
-        tags,
-        title,
-    }));
+    return posts.map(
+        ({
+            excerpt,
+            featured,
+            readingTimeMinutes,
+            series,
+            seriesOrder,
+            slug,
+            tags,
+            title,
+        }) => ({
+            excerpt,
+            featured,
+            readingTimeMinutes,
+            series,
+            seriesOrder,
+            slug,
+            tags,
+            title,
+        })
+    );
 }
 
 export async function getPublishedBlogPostBySlug(
     slug: string
-): Promise<BlogPost> {
-    return getBlogPostBySlug(slug);
+): Promise<PublishedBlogPost> {
+    const { filePath: _filePath, ...post } = await getBlogPostBySlug(slug);
+    return post;
 }

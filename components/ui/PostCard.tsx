@@ -1,7 +1,6 @@
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { NavigationOverlay } from "@/components/layout/NavigationOverlay";
 import { formatReadingTime } from "@/lib/reading-time";
 import { cn } from "@/lib/utils";
 
@@ -12,8 +11,6 @@ interface PostCardProps {
     readingTimeMinutes: number;
     title: string;
     excerpt: string;
-    /** Shown when a click starts navigating, from inside the link. */
-    overlayMessage: string;
     /** Optional right-aligned slot in the meta row, such as a difficulty badge. */
     headerTrailing?: ReactNode;
     /** Optional block pinned to the bottom of the card, such as tag badges. */
@@ -23,6 +20,8 @@ interface PostCardProps {
      * titles do not, because their length varies far more.
      */
     titleClassName?: string;
+    /** Heading level for the card title. Defaults to `h2`. */
+    headingAs?: "h2" | "h3";
 }
 
 /**
@@ -35,16 +34,17 @@ export function PostCard({
     readingTimeMinutes,
     title,
     excerpt,
-    overlayMessage,
     headerTrailing,
     footer,
     titleClassName,
+    headingAs = "h2",
 }: PostCardProps): React.ReactElement {
+    const Heading = headingAs;
+
     return (
         <Link
             href={href}
-            prefetch={false}
-            className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content transition-all sm:p-5"
+            className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content sm:p-5"
         >
             <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-1.5">
@@ -56,21 +56,20 @@ export function PostCard({
                 {headerTrailing}
             </div>
 
-            <h2
+            <Heading
                 className={cn(
                     "font-heading mt-2 text-xl font-semibold text-white",
                     titleClassName
                 )}
             >
                 {title}
-            </h2>
+            </Heading>
 
             <p className="text-content-subtle mt-2 line-clamp-3 text-sm leading-relaxed">
                 {excerpt}
             </p>
 
             {footer ? <div className="mt-auto pt-4">{footer}</div> : null}
-            <NavigationOverlay message={overlayMessage} />
         </Link>
     );
 }

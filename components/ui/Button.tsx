@@ -1,12 +1,10 @@
-"use client";
-
 import { Slot } from "@radix-ui/react-slot";
 import type { Route } from "next";
 import NextLink from "next/link";
 import type { ComponentProps, MouseEvent } from "react";
 import { HiCode } from "react-icons/hi";
 import { cn } from "@/lib/utils";
-import { shouldUseNativeAnchor } from "./component-utils";
+import { mergeRel, shouldUseNativeAnchor } from "./component-utils";
 
 type ButtonVariant =
     | "primary"
@@ -175,37 +173,6 @@ function getButtonContent({
     );
 }
 
-function getLinkAccessibilityProps({
-    isDisabled,
-    isLoading,
-    onClick,
-}: {
-    isDisabled: boolean;
-    isLoading: boolean;
-    onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
-}): {
-    "aria-disabled"?: true;
-    "aria-busy"?: true;
-    "data-disabled"?: "";
-    tabIndex?: -1;
-    onClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-} {
-    return {
-        "aria-disabled": isDisabled || undefined,
-        "aria-busy": isLoading || undefined,
-        "data-disabled": isDisabled ? "" : undefined,
-        tabIndex: isDisabled ? -1 : undefined,
-        onClick: (event) => {
-            if (isDisabled) {
-                event.preventDefault();
-                return;
-            }
-
-            onClick?.(event);
-        },
-    };
-}
-
 /**
  * Button component with hamadeh.io design system.
  * Primary = Sky, Secondary = Emerald, Tertiary = Amber.
@@ -257,19 +224,7 @@ export function Button({
         iconOnly,
         children,
     });
-    const linkAccessibilityProps = getLinkAccessibilityProps({
-        isDisabled,
-        isLoading,
-        onClick: (event) =>
-            onClick?.(
-                event as MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-            ),
-    });
-    const linkProps = {
-        ...linkAccessibilityProps,
-        ...(target !== undefined && { target }),
-        ...(rel !== undefined && { rel }),
-    };
+    const resolvedRel = target === "_blank" ? mergeRel(rel) : rel;
 
     if (asChild) {
         return (
@@ -278,24 +233,40 @@ export function Button({
                 aria-disabled={isDisabled || undefined}
                 aria-busy={isLoading || undefined}
                 data-disabled={isDisabled ? "" : undefined}
-                onClick={(event: MouseEvent<HTMLElement>) => {
-                    if (isDisabled) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    onClick?.(
-                        event as MouseEvent<
-                            HTMLButtonElement | HTMLAnchorElement
-                        >
-                    );
-                }}
+                onClick={
+                    onClick as
+                        | ((event: MouseEvent<HTMLElement>) => void)
+                        | undefined
+                }
                 {...props}
             >
                 {children}
             </Slot>
         );
     }
+
+    if (href && isDisabled) {
+        return (
+            <span
+                role="link"
+                aria-disabled="true"
+                aria-busy={isLoading || undefined}
+                data-disabled=""
+                className={classes}
+            >
+                {content}
+            </span>
+        );
+    }
+
+    const linkProps = {
+        "aria-busy": isLoading || undefined,
+        ...(target !== undefined && { target }),
+        ...(resolvedRel !== undefined && { rel: resolvedRel }),
+        ...(onClick !== undefined && {
+            onClick: onClick as (event: MouseEvent<HTMLAnchorElement>) => void,
+        }),
+    };
 
     if (href && !shouldUseNativeAnchor(href)) {
         return (
@@ -320,7 +291,11 @@ export function Button({
             disabled={isDisabled}
             aria-busy={isLoading || undefined}
             data-disabled={isDisabled ? "" : undefined}
-            onClick={(event: MouseEvent<HTMLButtonElement>) => onClick?.(event)}
+            onClick={
+                onClick as
+                    | ((event: MouseEvent<HTMLButtonElement>) => void)
+                    | undefined
+            }
             {...props}
         >
             {content}

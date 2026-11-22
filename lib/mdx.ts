@@ -15,6 +15,19 @@ import {
     validateProblemFrontmatter,
 } from "./schemas";
 
+export class ContentNotFoundError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = "ContentNotFoundError";
+    }
+}
+
+export function isContentNotFoundError(
+    error: unknown
+): error is ContentNotFoundError {
+    return error instanceof ContentNotFoundError;
+}
+
 export interface ProblemPost extends ProblemFrontmatter {
     content: string;
     readingTimeMinutes: number;
@@ -40,20 +53,21 @@ function memoizeInProduction<T>(load: () => Promise<T>): () => Promise<T> {
 
     let pending: Promise<T> | undefined;
 
-    return () => (pending ??= load());
+    return () => {
+        pending ??= load().catch((error) => {
+            pending = undefined;
+            throw error;
+        });
+        return pending;
+    };
 }
 
 async function readAllProblems(): Promise<ProblemPost[]> {
     const contentDir = join(process.cwd(), "content", "problems");
-    const posts: ProblemPost[] = [];
 
     try {
         const files = await findContentFiles(contentDir, [".md"]);
-
-        for (const filePath of files) {
-            const post = await getProblemByPath(filePath);
-            posts.push(post);
-        }
+        const posts = await Promise.all(files.map(getProblemByPath));
 
         assertUniqueSlugs(posts, "problem");
         return posts.sort((a, b) => a.title.localeCompare(b.title));
@@ -77,7 +91,9 @@ export async function getProblemBySlug(slug: string): Promise<ProblemPost> {
     const post = posts.find((entry) => entry.slug === slug);
 
     if (!post) {
-        throw new Error(`Problem post with slug "${slug}" not found`);
+        throw new ContentNotFoundError(
+            `Problem post with slug "${slug}" not found`
+        );
     }
 
     return post;
@@ -98,15 +114,10 @@ async function getProblemByPath(filePath: string): Promise<ProblemPost> {
 
 async function readAllBlogPosts(): Promise<BlogPost[]> {
     const contentDir = join(process.cwd(), "content", "blog");
-    const posts: BlogPost[] = [];
 
     try {
         const files = await findContentFiles(contentDir, [".md"]);
-
-        for (const filePath of files) {
-            const post = await getBlogPostByPath(filePath);
-            posts.push(post);
-        }
+        const posts = await Promise.all(files.map(getBlogPostByPath));
 
         assertUniqueSlugs(posts, "blog");
         return posts.sort((a, b) => a.title.localeCompare(b.title));
@@ -130,7 +141,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
     const post = posts.find((entry) => entry.slug === slug);
 
     if (!post) {
-        throw new Error(`Blog post with slug "${slug}" not found`);
+        throw new ContentNotFoundError(
+            `Blog post with slug "${slug}" not found`
+        );
     }
 
     return post;

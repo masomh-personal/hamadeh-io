@@ -6,6 +6,7 @@ difficulty: "hard"
 timeComplexity: "O(1)"
 spaceComplexity: "O(n)"
 excerpt: "Design a frequency tracker with constant-time increments, decrements, and minimum or maximum key lookup."
+featured: true
 ---
 
 # Problem

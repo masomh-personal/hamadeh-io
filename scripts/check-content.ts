@@ -15,6 +15,7 @@ import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { getAllBlogPosts, getAllProblems } from "@/lib/mdx";
+import { hasProblemHeading } from "@/lib/problem-markdown";
 import {
     findTypeScriptFences,
     stripSolutionHeaderComment,
@@ -63,7 +64,7 @@ function checkFilenameMatchesSlug(entries: ContentEntry[]): string[] {
  */
 function checkProblemHasProblemHeading(problems: ContentEntry[]): string[] {
     return problems
-        .filter((problem) => !/^# Problem\s*$/m.test(problem.content))
+        .filter((problem) => !hasProblemHeading(problem.content))
         .map(
             (problem) =>
                 `${problem.filePath} is missing the "# Problem" heading the problem layout splits on`
@@ -108,6 +109,13 @@ async function checkSolutionParity(
         if (!solutionSlugs.includes(slug)) {
             errors.push(
                 `content/problems/${slug}.md has no solutions/${slug}/ workspace`
+            );
+            continue;
+        }
+
+        if (!existsSync(join(SOLUTIONS_DIR, slug, "solution.test.ts"))) {
+            errors.push(
+                `solutions/${slug}/ is missing solution.test.ts; published problems must have tests`
             );
         }
     }

@@ -3,6 +3,8 @@ title: "SOLID in the AI Era (Part 1): Single Responsibility Is a Force Multiplie
 slug: "solid-srp-ai-era-part-1"
 excerpt: "Part 1 of a SOLID series: why Single Responsibility Principle is still foundational for scalable, maintainable, reliable software, especially in AI-assisted development."
 tags: ["engineering", "ai", "solid"]
+series: "SOLID in the AI Era"
+seriesOrder: 1
 ---
 
 AI can generate code faster than ever.

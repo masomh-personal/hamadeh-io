@@ -45,15 +45,7 @@ const lintFiles = stagedFiles.filter((file) => LINT_EXTENSIONS.test(file));
 run(bun, ["run", "oxfmt", "--write", ...stagedFiles]);
 
 if (lintFiles.length > 0) {
-    run(bun, [
-        "run",
-        "oxlint",
-        "--fix",
-        "--react-plugin",
-        "--jsx-a11y-plugin",
-        "--nextjs-plugin",
-        ...lintFiles,
-    ]);
+    run(bun, ["run", "oxlint", "--fix", ...lintFiles]);
 }
 
 run("git", ["add", "--", ...stagedFiles]);

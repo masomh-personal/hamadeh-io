@@ -2,6 +2,12 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.12.1 - 2026-11-22
+
+### Changed
+
+- Moved Oxlint plugin configuration (`react`, `unicorn`, `typescript`, `oxc`, `jsx-a11y`, `nextjs`) into `.oxlintrc.json` and removed the duplicated CLI flags from `package.json` and `scripts/check-staged.ts`.
+
 ## 3.12.0 - 2026-11-22
 
 ### Added

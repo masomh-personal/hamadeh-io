@@ -1,6 +1,6 @@
 {
     "name": "hamadeh-io",
-    "version": "3.12.0",
+    "version": "3.12.1",
     "private": true,
     "scripts": {
         "preinstall": "bun scripts/ensure-bun.ts",
@@ -9,8 +9,8 @@
         "build": "sh scripts/check-toolchain.sh && bun --bun next build",
         "start": "bun --bun next start",
         "typegen": "bun --bun next typegen",
-        "check": "oxlint --react-plugin --jsx-a11y-plugin --nextjs-plugin .",
-        "check:fix": "oxlint --fix --react-plugin --jsx-a11y-plugin --nextjs-plugin . && oxfmt --write .",
+        "check": "oxlint .",
+        "check:fix": "oxlint --fix . && oxfmt --write .",
         "check:staged": "bun scripts/check-staged.ts",
         "check:toolchain": "sh scripts/check-toolchain.sh",
         "format": "oxfmt --write .",

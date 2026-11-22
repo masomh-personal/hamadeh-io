@@ -7,13 +7,22 @@ function resolveSiteUrl(value: string | undefined): URL {
         return new URL(DEFAULT_SITE_URL);
     }
 
+    let parsed: URL;
     try {
-        return new URL(value);
+        parsed = new URL(value);
     } catch {
         throw new Error(
             `NEXT_PUBLIC_SITE_URL must be an absolute URL, received "${value}"`
         );
     }
+
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+        throw new Error(
+            `NEXT_PUBLIC_SITE_URL must use http: or https:, received "${value}"`
+        );
+    }
+
+    return new URL(parsed.origin);
 }
 
 export const SITE_URL = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);

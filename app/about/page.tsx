@@ -33,6 +33,7 @@ export default function AboutPage() {
                         height={160}
                         className="size-32 rounded-full object-cover sm:size-40"
                         sizes="(max-width: 640px) 128px, 160px"
+                        preload
                     />
                 }
                 title="About Me"

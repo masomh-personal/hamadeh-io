@@ -6,6 +6,7 @@ difficulty: "medium"
 timeComplexity: "O(1)"
 spaceComplexity: "O(capacity)"
 excerpt: "Design a fixed-capacity cache with constant-time reads and writes that evicts the least recently used key once it runs out of room."
+featured: true
 ---
 
 # Problem

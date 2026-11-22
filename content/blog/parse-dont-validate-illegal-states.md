@@ -3,6 +3,7 @@ title: "Parse, Don't Validate: Making Illegal States Unrepresentable"
 slug: "parse-dont-validate-illegal-states"
 excerpt: "Validation checks a value and throws the knowledge away. Parsing turns unknown input into a type the rest of your code can trust."
 tags: ["typescript", "engineering", "ai"]
+featured: true
 ---
 
 You've seen this function. Maybe you wrote it.

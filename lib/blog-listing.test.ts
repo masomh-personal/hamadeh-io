@@ -1,7 +1,13 @@
 import { describe, expect, test } from "bun:test";
 import {
+    assertUniqueBlogTagColors,
+    BLOG_TAG_COLOR_MAP,
+} from "@/components/blog/blog-tags";
+import {
     getBlogListing,
     getBlogListingPath,
+    getRelatedPosts,
+    getSeriesNavigation,
     getTagCounts,
 } from "./blog-listing";
 
@@ -124,5 +130,147 @@ describe("getBlogListingPath", () => {
         expect(getBlogListingPath({ tag: "system-design", page: 3 })).toBe(
             "/blog?tag=system-design&page=3"
         );
+    });
+});
+
+describe("getSeriesNavigation", () => {
+    const seriesPosts = [
+        {
+            slug: "part-2",
+            title: "Part 2",
+            series: "SOLID",
+            seriesOrder: 2,
+        },
+        {
+            slug: "part-1",
+            title: "Part 1",
+            series: "SOLID",
+            seriesOrder: 1,
+        },
+        {
+            slug: "part-3",
+            title: "Part 3",
+            series: "SOLID",
+            seriesOrder: 3,
+        },
+        {
+            slug: "standalone",
+            title: "Standalone",
+        },
+    ];
+
+    test("returns ordered previous and next posts for a middle entry", () => {
+        const expected = {
+            series: "SOLID",
+            currentIndex: 1,
+            total: 3,
+            previousSlug: "part-1",
+            nextSlug: "part-3",
+        };
+        const result = getSeriesNavigation(seriesPosts, seriesPosts[0]!);
+
+        expect(result?.series).toBe(expected.series);
+        expect(result?.currentIndex).toBe(expected.currentIndex);
+        expect(result?.total).toBe(expected.total);
+        expect(result?.previous?.slug).toBe(expected.previousSlug);
+        expect(result?.next?.slug).toBe(expected.nextSlug);
+    });
+
+    test("returns null for standalone posts", () => {
+        const expected = null;
+        const result = getSeriesNavigation(seriesPosts, seriesPosts[3]!);
+
+        expect(result).toBe(expected);
+    });
+
+    test("returns null previous on the first part and null next on the last part", () => {
+        const first = getSeriesNavigation(seriesPosts, seriesPosts[1]!);
+        const last = getSeriesNavigation(seriesPosts, seriesPosts[2]!);
+
+        expect(first?.previous).toBeNull();
+        expect(first?.next?.slug).toBe("part-2");
+        expect(last?.previous?.slug).toBe("part-2");
+        expect(last?.next).toBeNull();
+    });
+
+    test("returns null when a series has only one post", () => {
+        const solo = [{ slug: "only", title: "Only", series: "Solo" }];
+        const expected = null;
+        const result = getSeriesNavigation(solo, solo[0]!);
+
+        expect(result).toBe(expected);
+    });
+
+    test("falls back to title order when seriesOrder is omitted", () => {
+        const unordered = [
+            { slug: "b", title: "B", series: "Notes" },
+            { slug: "a", title: "A", series: "Notes" },
+        ];
+        const expected = "b";
+        const result = getSeriesNavigation(unordered, unordered[1]!)?.next
+            ?.slug;
+
+        expect(result).toBe(expected);
+    });
+});
+
+describe("getRelatedPosts", () => {
+    const posts = [
+        {
+            slug: "current",
+            title: "Current",
+            tags: ["ai", "engineering", "solid"],
+            series: "SOLID",
+        },
+        {
+            slug: "same-series",
+            title: "Same Series",
+            tags: ["ai", "engineering", "solid"],
+            series: "SOLID",
+        },
+        {
+            slug: "high-overlap",
+            title: "High Overlap",
+            tags: ["ai", "engineering"],
+        },
+        {
+            slug: "low-overlap-b",
+            title: "Z Low Overlap",
+            tags: ["ai"],
+        },
+        {
+            slug: "low-overlap-a",
+            title: "A Low Overlap",
+            tags: ["ai"],
+        },
+        {
+            slug: "unrelated",
+            title: "Unrelated",
+            tags: ["bun"],
+        },
+    ];
+
+    test("ranks by shared tags, breaks ties alphabetically, and excludes current and same-series posts", () => {
+        const expected = ["high-overlap", "low-overlap-a", "low-overlap-b"];
+        const result = getRelatedPosts(posts, posts[0]!, 3).map(
+            (post) => post.slug
+        );
+
+        expect(result).toEqual(expected);
+    });
+
+    test("returns empty array when current has no tags or limit is non-positive", () => {
+        const untagged = { slug: "none", title: "None" };
+
+        expect(getRelatedPosts(posts, untagged, 3)).toEqual([]);
+        expect(getRelatedPosts(posts, posts[0]!, 0)).toEqual([]);
+    });
+});
+
+describe("BLOG_TAG_COLOR_MAP", () => {
+    test("assigns a unique color to every registered blog tag", () => {
+        const result = () => assertUniqueBlogTagColors(BLOG_TAG_COLOR_MAP);
+
+        expect(result).not.toThrow();
     });
 });

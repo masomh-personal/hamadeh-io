@@ -9,7 +9,12 @@ export function Footer() {
     const gitSha = process.env.NEXT_PUBLIC_GIT_SHA;
     const shaShort = gitSha ? gitSha.slice(0, 7) : null;
     const repoUrl = `https://github.com/${GITHUB_REPO}`;
-    const branchUrl = gitBranch ? `${repoUrl}/tree/${gitBranch}` : repoUrl;
+    const encodedBranch = gitBranch
+        ? gitBranch.split("/").map(encodeURIComponent).join("/")
+        : null;
+    const branchUrl = encodedBranch
+        ? `${repoUrl}/tree/${encodedBranch}`
+        : repoUrl;
     const title = [
         gitBranch && `Branch: ${gitBranch}`,
         gitSha && `SHA: ${gitSha}`,

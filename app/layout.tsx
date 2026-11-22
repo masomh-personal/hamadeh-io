@@ -9,29 +9,30 @@ const quicksand = Quicksand({
     subsets: ["latin"],
     variable: "--font-heading-gf",
     display: "swap",
-    weight: ["500", "600", "700"],
 });
 
 const lexend = Lexend({
     subsets: ["latin"],
     variable: "--font-body-gf",
     display: "swap",
-    weight: ["400", "500", "600"],
 });
 
 const baloo2 = Baloo_2({
     subsets: ["latin"],
     variable: "--font-accent-gf",
     display: "swap",
-    weight: ["400", "500", "600", "700", "800"],
+    preload: false,
 });
 
 const firaCode = Fira_Code({
     subsets: ["latin"],
     variable: "--font-mono-fira",
     display: "swap",
-    weight: ["400", "500", "600", "700"],
+    preload: false,
 });
+
+const SITE_DESCRIPTION =
+    "Personal portfolio and engineering notebook of Masom Hamadeh — software engineering notes, system design, and tested code problems.";
 
 export const metadata: Metadata = {
     metadataBase: SITE_URL,
@@ -39,8 +40,7 @@ export const metadata: Metadata = {
         default: `${SITE_NAME} | ${AUTHOR_NAME}`,
         template: `%s | ${SITE_NAME}`,
     },
-    description:
-        "Personal portfolio of Masom Hamadeh — software engineer, technical writer, and builder. System design, engineering craft, and code.",
+    description: SITE_DESCRIPTION,
     applicationName: SITE_NAME,
     authors: [{ name: AUTHOR_NAME, url: SITE_URL }],
     creator: AUTHOR_NAME,
@@ -55,14 +55,12 @@ export const metadata: Metadata = {
         url: "/",
         siteName: SITE_NAME,
         title: `${SITE_NAME} | ${AUTHOR_NAME}`,
-        description:
-            "Software engineering notes, system design, and tested code problems from Masom Hamadeh.",
+        description: SITE_DESCRIPTION,
     },
     twitter: {
         card: "summary_large_image",
         title: `${SITE_NAME} | ${AUTHOR_NAME}`,
-        description:
-            "Software engineering notes, system design, and tested code problems from Masom Hamadeh.",
+        description: SITE_DESCRIPTION,
     },
     other: {
         "contact:email": AUTHOR_EMAIL,
@@ -88,12 +86,8 @@ export default function RootLayout({
         <html
             lang="en"
             className={`${quicksand.variable} ${lexend.variable} ${baloo2.variable} ${firaCode.variable}`}
-            suppressHydrationWarning
         >
-            <body
-                className="min-h-screen antialiased dark"
-                suppressHydrationWarning
-            >
+            <body className="min-h-screen antialiased dark">
                 <div className="flex min-h-screen flex-col">
                     <a
                         href="#main-content"

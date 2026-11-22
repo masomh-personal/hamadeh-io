@@ -6,9 +6,10 @@ import type { ProblemSummary } from "@/lib/content/problems";
 
 interface ProblemPostCardProps {
     problem: ProblemSummary;
+    headingAs?: "h2" | "h3";
 }
 
-export function ProblemPostCard({ problem }: ProblemPostCardProps) {
+export function ProblemPostCard({ problem, headingAs }: ProblemPostCardProps) {
     const title =
         problem.source === "leetcode"
             ? `${problem.title} (LeetCode)`
@@ -28,7 +29,7 @@ export function ProblemPostCard({ problem }: ProblemPostCardProps) {
             title={title}
             titleClassName="md:min-h-[3.5rem]"
             excerpt={problem.excerpt}
-            overlayMessage="Loading solution..."
+            headingAs={headingAs}
             headerTrailing={
                 <Badge
                     text={problem.difficulty}

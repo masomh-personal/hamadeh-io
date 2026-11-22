@@ -3,6 +3,8 @@ title: "SOLID in the AI Era (Part 4): ISP and DIP for Cleaner Boundaries"
 slug: "solid-isp-dip-ai-era-part-4"
 excerpt: "Part 4 of a SOLID series: why Interface Segregation and Dependency Inversion work together to reduce coupling, improve testability, and keep systems easy to evolve."
 tags: ["engineering", "ai", "solid"]
+series: "SOLID in the AI Era"
+seriesOrder: 4
 ---
 
 In Part 1, I covered SRP. Part 2 covered OCP. Part 3 covered LSP.

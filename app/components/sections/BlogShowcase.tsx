@@ -2,9 +2,9 @@ import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogPostHeader } from "@/components/blog/BlogPostHeader";
 import { getBlogTagPresentation } from "@/components/blog/blog-tags";
 import { FilterList, type FilterOption } from "@/components/ui";
-import type { BlogPost } from "@/lib/mdx";
+import type { PublishedBlogPost } from "@/lib/content/blog";
 
-type ShowcaseBlogPost = BlogPost;
+type ShowcaseBlogPost = PublishedBlogPost;
 
 const publishedBlogPost: ShowcaseBlogPost = {
     title: "Building the Blog Foundation (Markdown + Syntax Highlighting)",
@@ -14,7 +14,6 @@ const publishedBlogPost: ShowcaseBlogPost = {
         "How I designed a clean blog architecture with Markdown-first content, server-side syntax highlighting, and room to scale.",
     tags: ["engineering", "nextjs", "markdown"],
     content: "Sample markdown content for component showcase.",
-    filePath: "content/blog/building-this-blog.md",
 };
 
 const secondaryBlogPost: ShowcaseBlogPost = {
@@ -25,7 +24,6 @@ const secondaryBlogPost: ShowcaseBlogPost = {
         "Article exploring cancellation, timeouts, and error boundaries in async workflows.",
     tags: ["typescript", "backend", "async"],
     content: "Secondary showcase content.",
-    filePath: "content/blog/async-patterns-modern-typescript-services.md",
 };
 
 const showcaseTagOptions: FilterOption[] = [

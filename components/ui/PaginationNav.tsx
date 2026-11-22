@@ -75,7 +75,11 @@ export function PaginationNav({
             <ul className="flex items-center gap-1">
                 <li className="mr-1.5">
                     <Button
-                        href={getPageHref(currentPage - 1)}
+                        href={
+                            hasPrevious
+                                ? getPageHref(currentPage - 1)
+                                : undefined
+                        }
                         variant={hasPrevious ? "secondary" : "outline"}
                         size="xs"
                         disabled={!hasPrevious}
@@ -114,6 +118,7 @@ export function PaginationNav({
                         <li key={slot.page}>
                             <NextLink
                                 href={getPageHref(slot.page)}
+                                prefetch={false}
                                 aria-current={isCurrent ? "page" : undefined}
                                 className={cn(
                                     itemBase,
@@ -131,7 +136,9 @@ export function PaginationNav({
 
                 <li className="ml-1.5">
                     <Button
-                        href={getPageHref(currentPage + 1)}
+                        href={
+                            hasNext ? getPageHref(currentPage + 1) : undefined
+                        }
                         variant={hasNext ? "tertiary" : "outline"}
                         size="xs"
                         disabled={!hasNext}

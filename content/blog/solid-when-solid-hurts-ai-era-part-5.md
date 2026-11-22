@@ -3,6 +3,8 @@ title: "SOLID in the AI Era (Part 5): When SOLID Makes Things Worse"
 slug: "solid-when-solid-hurts-ai-era-part-5"
 excerpt: "Four parts on applying SOLID, and now the other half: interfaces with one implementation, strategies for variation that never came, and how to tell earned abstraction from abstraction tax."
 tags: ["engineering", "ai", "solid"]
+series: "SOLID in the AI Era"
+seriesOrder: 5
 ---
 
 Parts 1 through 4 covered SRP, OCP, LSP, ISP, and DIP, and I stand by all of it.

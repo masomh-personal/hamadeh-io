@@ -3,6 +3,8 @@ title: "Grokking System Design Part 2: Key Characteristics of Distributed System
 slug: "grokking-system-design-interview-part-2-key-characteristics"
 excerpt: "Breaking down the five core properties every distributed system is measured against: scalability, reliability, availability, efficiency, and manageability."
 tags: ["system-design", "career", "learning"]
+series: "Grokking the System Design Interview"
+seriesOrder: 2
 ---
 
 In [part one](/blog/grokking-system-design-interview-part-1-what-it-tests), I covered what the system design interview is really testing: judgment, communication, and reasoning under ambiguity.

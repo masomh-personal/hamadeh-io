@@ -7,9 +7,10 @@ import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostCardProps {
     post: BlogPostSummary;
+    headingAs?: "h2" | "h3";
 }
 
-export function BlogPostCard({ post }: BlogPostCardProps) {
+export function BlogPostCard({ post, headingAs }: BlogPostCardProps) {
     const tags = post.tags ?? [];
 
     return (
@@ -24,7 +25,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             readingTimeMinutes={post.readingTimeMinutes}
             title={post.title}
             excerpt={post.excerpt}
-            overlayMessage="Loading post..."
+            headingAs={headingAs}
             footer={
                 tags.length > 0 ? (
                     <div className="flex flex-wrap gap-x-2 gap-y-2.5">

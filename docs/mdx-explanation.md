@@ -54,37 +54,47 @@ export const ProblemFrontmatterSchema = v.object({
 - **Type-safe:** Full TypeScript inference
 - **Tree-shakeable:** Only bundle what you use
 
-### 3. **Markdown Processing** (`lib/mdx.ts`)
+### 3. **Markdown Processing** (`lib/mdx.ts` & `lib/content/`)
 
-Our utilities read, parse, and validate Markdown files:
+`lib/mdx.ts` reads, parses, and validates the Markdown corpus in parallel with
+`@11ty/gray-matter` and Valibot, memoized in production builds. Pages and UI
+components consume the published content port in `lib/content/blog.ts` and
+`lib/content/problems.ts` (which strips filesystem `filePath` details):
 
 ```typescript
-// Get all problem posts
-const solutions = await getAllProblems();
+// List published problem summaries (content kept off the wire)
+const problems = await listPublishedProblems();
 
-// Get single problem by slug
-const solution = await getProblemBySlug("two-sum");
+// Get a single published problem by slug
+const problem = await getPublishedProblemBySlug("two-sum");
 ```
 
 **What happens:**
 
-1. Read a Markdown file from the filesystem
+1. Enumerate `.md` files in `content/{blog,problems}` and read them in parallel
 2. Parse frontmatter with `@11ty/gray-matter`
 3. Validate frontmatter with Valibot (throws if invalid)
-4. Return typed, validated data + content
+4. Return typed, validated data + content (throwing `ContentNotFoundError` if a slug is missing)
 
 ### 4. **Server Rendering** (`components/markdown/RichMarkdownContent.tsx`)
 
-The server component renders Markdown with GFM and syntax highlighting:
+The server component renders plain Markdown with GFM, build-time heading anchor
+links, and server-side syntax highlighting using an explicit 5-language
+`highlight.js` allowlist (`bash`, `http`, `javascript`, `json`, `typescript`):
 
 ```tsx
-<MarkdownAsync remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+<MarkdownAsync
+    components={markdownComponents}
+    remarkPlugins={REMARK_PLUGINS}
+    rehypePlugins={REHYPE_PLUGINS}
+>
     {content}
 </MarkdownAsync>
 ```
 
 **Result:** Code blocks are highlighted on the server without shipping a
-client-side syntax highlighter.
+client-side syntax highlighter, and `scripts/check-content.ts` fails fences
+outside the registered language set.
 
 ### 5. **Usage in Pages**
 
@@ -167,20 +177,12 @@ Static generation at build time:
 
 ### ✅ **Developer-Friendly**
 
-Write in Markdown (simple, familiar):
+Write in plain Markdown (simple, familiar):
 
-- No special syntax to learn
+- No special JSX syntax to learn
 - Works in any editor
-- Easy to read and write
-- Embed React components when needed
-
-**Example:** Need an interactive code editor? Just embed a React component:
-
-```mdx
-# Solution
-
-<CodeEditor language="typescript">{code}</CodeEditor>
-```
+- Easy to read, diff, and review
+- Interactive behaviors (like copy-code buttons and heading anchors) are attached in `RichMarkdownContent.tsx` without mixing React components into `.md` files
 
 ### ✅ **Portable**
 
@@ -241,11 +243,12 @@ Valibot is tiny (~1KB):
 Our setup handles errors gracefully:
 
 ```typescript
-// If file doesn't exist
-getProblemBySlug("non-existent"); // Throws: "Problem not found"
+// If slug does not exist
+getPublishedProblemBySlug("non-existent");
+// Throws ContentNotFoundError: `Problem post with slug "non-existent" not found`
 
 // If frontmatter is invalid
-// Build fails with Valibot error message:
+// Build fails loudly with a Valibot error message:
 // "Title is required" or "Difficulty must be easy, medium, or hard"
 ```
 

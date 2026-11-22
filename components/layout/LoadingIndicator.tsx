@@ -29,6 +29,8 @@ export function LoadingIndicator({
 }: LoadingIndicatorProps) {
     return (
         <div
+            role="status"
+            aria-live="polite"
             className={cn(
                 "surface-card radius-card relative mx-auto w-fit px-10 py-8 text-center",
                 showSkeletonBackground && "overflow-hidden",

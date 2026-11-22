@@ -1,7 +1,9 @@
 import { describe, expect, test } from "bun:test";
 import {
     generateProblemMarkdown,
+    hasProblemHeading,
     renderProblemFrontmatter,
+    splitProblemSections,
     syncProblemMarkdown,
 } from "./problem-markdown";
 import type { ProblemFrontmatter } from "./schemas";
@@ -235,5 +237,37 @@ Prose explaining the code.
 
             expect(result).toThrow(expected);
         });
+    });
+});
+
+describe("splitProblemSections", () => {
+    test("splits the # Problem intro from subsequent ## sections", () => {
+        const body = `# Problem
+
+Given an array of integers.
+
+## Approach
+
+Use a hash map.`;
+        const expected = {
+            problemContent: "Given an array of integers.",
+            remainingContent: "## Approach\n\nUse a hash map.",
+        };
+        const result = splitProblemSections(body);
+
+        expect(result).toEqual(expected);
+        expect(hasProblemHeading(body)).toBe(true);
+    });
+
+    test("returns empty problemContent when # Problem heading is missing", () => {
+        const body = "## Approach\n\nUse a hash map.";
+        const expected = {
+            problemContent: "",
+            remainingContent: body,
+        };
+        const result = splitProblemSections(body);
+
+        expect(result).toEqual(expected);
+        expect(hasProblemHeading(body)).toBe(false);
     });
 });

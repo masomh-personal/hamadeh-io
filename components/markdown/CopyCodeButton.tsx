@@ -1,19 +1,34 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HiCheck, HiClipboard } from "react-icons/hi";
 
 interface CopyCodeButtonProps {
-    code: string;
     language?: string;
 }
 
-export function CopyCodeButton({ code, language }: CopyCodeButtonProps) {
+export function CopyCodeButton({ language }: CopyCodeButtonProps) {
     const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
         "idle"
     );
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        return () => {
+            if (resetTimerRef.current !== null) {
+                clearTimeout(resetTimerRef.current);
+            }
+        };
+    }, []);
 
     const handleCopy = useCallback(async () => {
+        const code =
+            buttonRef.current
+                ?.closest("[data-code-block]")
+                ?.querySelector("pre code")
+                ?.textContent?.trimEnd() ?? "";
+
         try {
             await navigator.clipboard.writeText(code);
             setCopyStatus("copied");
@@ -21,8 +36,15 @@ export function CopyCodeButton({ code, language }: CopyCodeButtonProps) {
             setCopyStatus("failed");
         }
 
-        setTimeout(() => setCopyStatus("idle"), 2000);
-    }, [code]);
+        if (resetTimerRef.current !== null) {
+            clearTimeout(resetTimerRef.current);
+        }
+        resetTimerRef.current = setTimeout(() => {
+            setCopyStatus("idle");
+            resetTimerRef.current = null;
+        }, 2000);
+    }, []);
+
     const ariaLabel =
         copyStatus === "copied"
             ? "Copied"
@@ -41,10 +63,11 @@ export function CopyCodeButton({ code, language }: CopyCodeButtonProps) {
     return (
         <>
             <button
+                ref={buttonRef}
                 type="button"
                 onClick={handleCopy}
                 aria-label={ariaLabel}
-                className="flex min-h-9 cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1.5 text-slate-400 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform-gpu hover:scale-105 hover:border-primary/40 hover:bg-primary/10 hover:text-primary-hover active:scale-90 active:duration-150 motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                className="flex min-h-9 cursor-pointer items-center gap-1.5 rounded-md border border-transparent px-2 py-1.5 text-slate-400 transition-[transform,color,background-color,border-color] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-105 hover:border-primary/40 hover:bg-primary/10 hover:text-primary-hover active:scale-90 active:duration-150 motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
                 {language ? (
                     <span className="font-mono text-[0.7rem] tracking-wide select-none">

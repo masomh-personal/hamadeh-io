@@ -3,6 +3,7 @@ title: "Why System Architecture Matters More in the Age of AI"
 slug: "system-architecture-in-the-age-of-ai"
 excerpt: "AI writes locally clean code fast, which makes the 10,000-foot architectural view essential for boundaries, failure domains, and holistic planning."
 tags: ["system-design", "ai", "engineering"]
+featured: true
 ---
 
 If you've used a coding agent lately, you already know the punchline: generating working code inside a file is no longer the slow part.

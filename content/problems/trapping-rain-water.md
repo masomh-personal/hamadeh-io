@@ -6,6 +6,7 @@ difficulty: "hard"
 timeComplexity: "O(n)"
 spaceComplexity: "O(1)"
 excerpt: "Given an elevation map of unit-width bars, compute how much rain water is trapped between them."
+featured: true
 ---
 
 # Problem

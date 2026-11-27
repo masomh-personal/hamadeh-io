@@ -6,4 +6,7 @@ export { FilterList } from "./FilterList";
 export { Link } from "./Link";
 export { PaginationNav } from "./PaginationNav";
 export { PostCard } from "./PostCard";
+export type { SearchInputProps, SearchLoadingIndicator } from "./SearchInput";
+export { SearchInput } from "./SearchInput";
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
+export { useListingSearch } from "./use-listing-search";

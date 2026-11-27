@@ -4,6 +4,12 @@
  * the unfiltered first page instead of throwing.
  */
 
+import {
+    type BlogBodyIndex,
+    normalizeSearchQuery,
+    type SearchableBlogPost,
+    searchBlogPosts,
+} from "./blog-search";
 import { buildListingPath, paginate } from "./pagination";
 
 export const BLOG_PAGE_SIZE = 12;
@@ -19,11 +25,13 @@ export interface TagCount {
 
 export interface BlogListingQuery {
     tag?: string | null;
+    q?: string | null;
     page?: string | null;
 }
 
 export interface BlogListing<T> {
     activeTag: string | null;
+    searchQuery: string;
     page: number;
     totalPages: number;
     total: number;
@@ -45,11 +53,43 @@ export function getTagCounts(posts: readonly Tagged[]): TagCount[] {
         .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }
 
-export function getBlogListing<T extends Tagged>(
+export function getBlogListing<T extends Tagged & Partial<SearchableBlogPost>>(
     posts: readonly T[],
     query: BlogListingQuery,
-    pageSize: number = BLOG_PAGE_SIZE
+    pageSize: number = BLOG_PAGE_SIZE,
+    bodyIndex?: BlogBodyIndex
 ): BlogListing<T> {
+    const searchQuery = normalizeSearchQuery(query.q);
+
+    if (searchQuery) {
+        const searchable = posts.map((post) => ({
+            post,
+            slug: post.slug ?? "",
+            title: post.title ?? "",
+            excerpt: post.excerpt,
+            tags: post.tags,
+        }));
+        const matching = searchBlogPosts(
+            searchable,
+            searchQuery,
+            bodyIndex
+        ).map((entry) => entry.post);
+        const { page, totalPages, items } = paginate(
+            matching,
+            query.page,
+            pageSize
+        );
+
+        return {
+            activeTag: null,
+            searchQuery,
+            page,
+            totalPages,
+            total: matching.length,
+            items,
+        };
+    }
+
     const knownTags = new Set(posts.flatMap((post) => post.tags ?? []));
     const activeTag = query.tag && knownTags.has(query.tag) ? query.tag : null;
     const matching = activeTag
@@ -62,17 +102,31 @@ export function getBlogListing<T extends Tagged>(
         pageSize
     );
 
-    return { activeTag, page, totalPages, total: matching.length, items };
+    return {
+        activeTag,
+        searchQuery: "",
+        page,
+        totalPages,
+        total: matching.length,
+        items,
+    };
 }
 
-/** Builds the canonical blog URL; page 1 and no tag collapse to `/blog`. */
+/** Builds the canonical blog URL; page 1 and no filters collapse to `/blog`. */
 export function getBlogListingPath({
     tag,
+    q,
     page,
 }: {
     tag?: string | null;
+    q?: string | null;
     page?: number;
 }): string {
+    const normalizedQuery = normalizeSearchQuery(q);
+    if (normalizedQuery) {
+        return buildListingPath("/blog", { q: normalizedQuery }, page);
+    }
+
     return buildListingPath("/blog", { tag }, page);
 }
 

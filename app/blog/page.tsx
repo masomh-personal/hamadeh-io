@@ -4,7 +4,7 @@ import { BlogListing } from "@/components/blog/BlogListing";
 import { BlogListingView } from "@/components/blog/BlogListingView";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Link } from "@/components/ui";
+import { Link, SearchInput } from "@/components/ui";
 import { getTagCounts } from "@/lib/blog-listing";
 import { listPublishedBlogPosts } from "@/lib/content/blog";
 import { staticPageMetadata } from "@/lib/site";
@@ -49,6 +49,14 @@ export default async function BlogPage(): Promise<React.ReactElement> {
                             posts={posts}
                             tagCounts={tagCounts}
                             query={{}}
+                            searchSlot={
+                                <SearchInput
+                                    label="Search all blog posts"
+                                    placeholder="Search all posts..."
+                                    value=""
+                                    disabled
+                                />
+                            }
                         />
                     }
                 >

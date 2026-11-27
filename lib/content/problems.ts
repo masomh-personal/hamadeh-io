@@ -1,3 +1,4 @@
+import { stripMarkdownForSearch } from "@/lib/blog-search";
 import {
     getAllProblems,
     getProblemBySlug,
@@ -47,4 +48,20 @@ export async function getPublishedProblemBySlug(
 ): Promise<PublishedProblemPost> {
     const { filePath: _filePath, ...problem } = await getProblemBySlug(slug);
     return problem;
+}
+
+/**
+ * Builds a slug-to-plain-text map for static client-side problem body search.
+ */
+export async function listProblemSearchIndex(): Promise<
+    Record<string, string>
+> {
+    const problems = await getAllProblems();
+    const index: Record<string, string> = {};
+
+    for (const problem of problems) {
+        index[problem.slug] = stripMarkdownForSearch(problem.content);
+    }
+
+    return index;
 }

@@ -114,6 +114,36 @@ describe("getBlogListing", () => {
         expect(result.totalPages).toBe(1);
         expect(result.items).toEqual([]);
     });
+
+    test("searches across all posts by title and body copy and clears the active tag", () => {
+        const posts = [
+            {
+                slug: "timeouts",
+                title: "Timeouts and Circuit Breakers",
+                tags: ["system-design"],
+            },
+            {
+                slug: "users",
+                title: "Build for Users",
+                tags: ["engineering"],
+            },
+        ];
+        const bodyIndex = {
+            timeouts: "Use exponential backoff with jitter.",
+            users: "Focus on user trust and speed.",
+        };
+        const expectedSlugs = ["timeouts"];
+        const result = getBlogListing(
+            posts,
+            { tag: "engineering", q: "jitter" },
+            12,
+            bodyIndex
+        );
+
+        expect(result.activeTag).toBeNull();
+        expect(result.searchQuery).toBe("jitter");
+        expect(result.items.map((post) => post.slug)).toEqual(expectedSlugs);
+    });
 });
 
 describe("getBlogListingPath", () => {
@@ -130,6 +160,17 @@ describe("getBlogListingPath", () => {
         expect(getBlogListingPath({ tag: "system-design", page: 3 })).toBe(
             "/blog?tag=system-design&page=3"
         );
+    });
+
+    test("encodes search queries and omits tag when searching", () => {
+        const expected = "/blog?q=circuit+breaker&page=2";
+        const result = getBlogListingPath({
+            tag: "dsa",
+            q: "  circuit   breaker ",
+            page: 2,
+        });
+
+        expect(result).toBe(expected);
     });
 });
 

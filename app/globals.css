@@ -671,3 +671,31 @@ samp {
         background-position: 0 0;
     }
 }
+
+/* ============================================
+   Search Equalizer Indicator
+   ============================================ */
+@keyframes searchEqualizer {
+    0%,
+    100% {
+        transform: scaleY(0.35);
+        opacity: 0.55;
+    }
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+.search-equalizer-bar {
+    transform-origin: bottom;
+    animation: searchEqualizer 0.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .search-equalizer-bar {
+        animation: none;
+        transform: scaleY(0.75);
+        opacity: 0.85;
+    }
+}

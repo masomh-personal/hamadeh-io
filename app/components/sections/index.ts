@@ -6,3 +6,4 @@ export { CardShowcase } from "./CardShowcase";
 export { LinkShowcase } from "./LinkShowcase";
 export { LoadingShowcase } from "./LoadingShowcase";
 export { PaginationShowcase } from "./PaginationShowcase";
+export { SearchInputShowcase } from "./SearchInputShowcase";

@@ -55,6 +55,7 @@ export function BlogListing({
             onClearSearch={handleClearSearch}
             searchSlot={
                 <SearchInput
+                    id="blog-search-input"
                     label="Search all blog posts"
                     placeholder="Search all posts..."
                     value={inputValue}

@@ -55,6 +55,7 @@ export function ProblemListing({
             onClearSearch={handleClearSearch}
             searchSlot={
                 <SearchInput
+                    id="problem-search-input"
                     label="Search all code problems"
                     placeholder="Search all problems..."
                     value={inputValue}

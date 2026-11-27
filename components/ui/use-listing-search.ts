@@ -16,6 +16,25 @@ import {
 const cachedIndexes = new Map<string, BlogBodyIndex>();
 const inFlightRequests = new Map<string, Promise<BlogBodyIndex>>();
 
+async function fetchSearchIndex(indexUrl: string): Promise<BlogBodyIndex> {
+    try {
+        const response = await fetch(indexUrl);
+        if (!response.ok) {
+            throw new Error(
+                `Failed to fetch search index (${response.status})`
+            );
+        }
+
+        const payload: unknown = await response.json();
+        const parsed = parseBlogBodyIndex(payload);
+        cachedIndexes.set(indexUrl, parsed);
+        return parsed;
+    } catch {
+        inFlightRequests.delete(indexUrl);
+        return {};
+    }
+}
+
 function loadSearchIndex(indexUrl: string): Promise<BlogBodyIndex> {
     const cached = cachedIndexes.get(indexUrl);
     if (cached) {
@@ -27,18 +46,7 @@ function loadSearchIndex(indexUrl: string): Promise<BlogBodyIndex> {
         return existing;
     }
 
-    const request = fetch(indexUrl)
-        .then((response) => (response.ok ? response.json() : {}))
-        .then((payload: unknown) => {
-            const parsed = parseBlogBodyIndex(payload);
-            cachedIndexes.set(indexUrl, parsed);
-            return parsed;
-        })
-        .catch(() => {
-            inFlightRequests.delete(indexUrl);
-            return {};
-        });
-
+    const request = fetchSearchIndex(indexUrl);
     inFlightRequests.set(indexUrl, request);
     return request;
 }
@@ -106,9 +114,10 @@ export function useListingSearch({
             return;
         }
 
-        void loadSearchIndex(indexUrl).then((loaded) => {
+        void (async () => {
+            const loaded = await loadSearchIndex(indexUrl);
             setBodyIndex(loaded);
-        });
+        })();
     }, [indexUrl]);
 
     useEffect(() => {

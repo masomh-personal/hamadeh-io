@@ -43,6 +43,7 @@ export default async function ProblemsPage(): Promise<React.ReactElement> {
                             query={{}}
                             searchSlot={
                                 <SearchInput
+                                    id="problem-search-input"
                                     label="Search all code problems"
                                     placeholder="Search all problems..."
                                     value=""

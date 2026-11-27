@@ -2,6 +2,17 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.13.1 - 2026-11-27
+
+### Fixed
+
+- Passed deterministic input IDs (`blog-search-input` and `problem-search-input`) to `SearchInput` across `<Suspense>` fallbacks and client listings to prevent React `useId()` hydration mismatches.
+- Refactored remaining `.then()/.catch()` promise chains in `components/ui/use-listing-search.ts` and `lib/mdx.ts` to `async`/`await` with `try`/`catch`, ensuring non-OK search index responses are retried instead of cached as empty.
+
+### Changed
+
+- Updated `.cursor/rules/typescript-react-next.mdc` to codify preferring `async`/`await` with `try`/`catch` over `.then()/.catch()` chains.
+
 ## 3.13.0 - 2026-11-27
 
 ### Added

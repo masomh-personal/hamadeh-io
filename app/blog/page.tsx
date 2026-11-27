@@ -51,6 +51,7 @@ export default async function BlogPage(): Promise<React.ReactElement> {
                             query={{}}
                             searchSlot={
                                 <SearchInput
+                                    id="blog-search-input"
                                     label="Search all blog posts"
                                     placeholder="Search all posts..."
                                     value=""

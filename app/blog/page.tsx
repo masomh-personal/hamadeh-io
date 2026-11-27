@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { BlogListing } from "@/components/blog/BlogListing";
 import { BlogListingView } from "@/components/blog/BlogListingView";
+import { BlogSearchInput } from "@/components/blog/BlogSearchInput";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@/components/ui";
@@ -49,6 +50,7 @@ export default async function BlogPage(): Promise<React.ReactElement> {
                             posts={posts}
                             tagCounts={tagCounts}
                             query={{}}
+                            searchSlot={<BlogSearchInput value="" disabled />}
                         />
                     }
                 >

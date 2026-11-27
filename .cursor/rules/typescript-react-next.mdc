@@ -14,6 +14,7 @@ Detailed examples live in `docs/typescript-conventions.md`; component, data, and
 - Prefer `React.ComponentProps<"...">` for DOM wrapper props.
 - Avoid enums; prefer `as const` objects and maps.
 - Narrow types early and use exhaustive switches for unions.
+- Prefer `async`/`await` with `try`/`catch` over `.then()`/`.catch()` promise chains.
 - Default to React Server Components; keep client islands small.
 - Minimize `useEffect` and unnecessary client state.
 - Follow App Router patterns for routing, loading, and error states. Content pages are statically generated.

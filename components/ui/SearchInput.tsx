@@ -1,35 +1,92 @@
 "use client";
 
-import type { KeyboardEvent } from "react";
-import { FaCircleNotch, FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
+import type { ComponentProps, KeyboardEvent } from "react";
+import { useId } from "react";
+import { FaMagnifyingGlass, FaXmark } from "react-icons/fa6";
+import { HiTerminal } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 
-interface BlogSearchInputProps {
+export type SearchLoadingIndicator = "equalizer" | "terminal";
+
+export interface SearchInputProps extends Omit<
+    ComponentProps<"input">,
+    "type" | "value" | "onChange"
+> {
     value: string;
-    onChange?: (value: string) => void;
+    /** Screen-reader label for the input. */
+    label: string;
+    onValueChange?: (value: string) => void;
     onSubmitImmediate?: (value: string) => void;
     onClear?: () => void;
     onPrepareIndex?: () => void;
     isSearching?: boolean;
-    disabled?: boolean;
-    className?: string;
+    /** Visual style of the inline searching indicator. */
+    loadingIndicator?: SearchLoadingIndicator;
+}
+
+const EQUALIZER_DELAYS_MS = [0, 140, 280] as const;
+
+function SearchingIndicator({
+    variant,
+}: {
+    variant: SearchLoadingIndicator;
+}): React.ReactElement {
+    if (variant === "terminal") {
+        return (
+            <HiTerminal
+                aria-hidden="true"
+                className="h-3.5 w-3.5 animate-[spin_1.2s_linear_infinite] text-sky-300 motion-reduce:animate-none"
+            />
+        );
+    }
+
+    return (
+        <span
+            aria-hidden="true"
+            className="inline-flex h-3.5 items-end gap-[2px]"
+        >
+            {EQUALIZER_DELAYS_MS.map((delay) => (
+                <span
+                    key={delay}
+                    className="search-equalizer-bar h-full w-[2.5px] rounded-full bg-sky-300"
+                    style={{ animationDelay: `${delay}ms` }}
+                />
+            ))}
+        </span>
+    );
 }
 
 /**
- * Compact search input placed above the topic filters in the blog sidebar.
- * Shows an inline spinner in place of the clear button while searching.
+ * Compact search input with built-in keyboard shortcuts (Enter to submit
+ * immediately, Escape to clear) and an inline searching indicator that
+ * replaces the clear button while searching.
  */
-export function BlogSearchInput({
+export function SearchInput({
+    id,
     value,
-    onChange,
+    label,
+    placeholder = "Search...",
+    onValueChange,
     onSubmitImmediate,
     onClear,
     onPrepareIndex,
     isSearching = false,
+    loadingIndicator = "equalizer",
     disabled = false,
     className,
-}: BlogSearchInputProps): React.ReactElement {
+    onFocus,
+    onKeyDown,
+    ...props
+}: SearchInputProps): React.ReactElement {
+    const generatedId = useId();
+    const inputId = id ?? generatedId;
+
     function handleKeyDown(event: KeyboardEvent<HTMLInputElement>): void {
+        onKeyDown?.(event);
+        if (event.defaultPrevented) {
+            return;
+        }
+
         if (event.key === "Enter") {
             event.preventDefault();
             onSubmitImmediate?.(value);
@@ -41,26 +98,30 @@ export function BlogSearchInput({
 
     return (
         <div role="search" className={cn("relative", className)}>
-            <label htmlFor="blog-search-input" className="sr-only">
-                Search all blog posts
+            <label htmlFor={inputId} className="sr-only">
+                {label}
             </label>
             <FaMagnifyingGlass
                 aria-hidden="true"
                 className="text-content-subtle pointer-events-none absolute top-1/2 left-3 h-3 w-3 -translate-y-1/2"
             />
             <input
-                id="blog-search-input"
+                {...props}
+                id={inputId}
                 type="search"
                 value={value}
                 disabled={disabled}
-                placeholder="Search all posts..."
+                placeholder={placeholder}
                 autoComplete="off"
                 spellCheck={false}
                 aria-busy={isSearching || undefined}
-                onFocus={() => onPrepareIndex?.()}
+                onFocus={(event) => {
+                    onPrepareIndex?.();
+                    onFocus?.(event);
+                }}
                 onChange={(event) => {
                     onPrepareIndex?.();
-                    onChange?.(event.target.value);
+                    onValueChange?.(event.target.value);
                 }}
                 onKeyDown={handleKeyDown}
                 className={cn(
@@ -73,13 +134,10 @@ export function BlogSearchInput({
             {isSearching && !disabled ? (
                 <span
                     role="status"
-                    aria-label="Searching posts"
-                    className="text-primary pointer-events-none absolute top-1/2 right-1.5 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center"
+                    aria-label="Searching"
+                    className="pointer-events-none absolute top-1/2 right-1.5 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center"
                 >
-                    <FaCircleNotch
-                        aria-hidden="true"
-                        className="h-3.5 w-3.5 animate-spin motion-reduce:animate-none"
-                    />
+                    <SearchingIndicator variant={loadingIndicator} />
                 </span>
             ) : value && !disabled ? (
                 <button

@@ -4,6 +4,7 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ProblemListing } from "@/components/problems/ProblemListing";
 import { ProblemListingView } from "@/components/problems/ProblemListingView";
+import { SearchInput } from "@/components/ui";
 import { listPublishedProblems } from "@/lib/content/problems";
 import { getDifficultyCounts } from "@/lib/problem-listing";
 import { staticPageMetadata } from "@/lib/site";
@@ -40,6 +41,14 @@ export default async function ProblemsPage(): Promise<React.ReactElement> {
                             problems={problems}
                             difficultyCounts={difficultyCounts}
                             query={{}}
+                            searchSlot={
+                                <SearchInput
+                                    label="Search all code problems"
+                                    placeholder="Search all problems..."
+                                    value=""
+                                    disabled
+                                />
+                            }
                         />
                     }
                 >

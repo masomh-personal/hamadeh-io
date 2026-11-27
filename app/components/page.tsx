@@ -10,6 +10,7 @@ import {
     LinkShowcase,
     LoadingShowcase,
     PaginationShowcase,
+    SearchInputShowcase,
 } from "./sections";
 
 const triggerBaseClasses =
@@ -23,6 +24,7 @@ const showcaseSections = [
     { value: "blog", label: "Blog", subtitle: "Cards and post meta" },
     { value: "loading", label: "Loading", subtitle: "Overlays and shimmer" },
     { value: "pagination", label: "Pagination", subtitle: "Page navigation" },
+    { value: "search", label: "Search", subtitle: "Sidebar search input" },
     { value: "qa", label: "A11y QA", subtitle: "Keyboard and focus" },
 ] as const;
 
@@ -97,6 +99,10 @@ export default function ComponentsPage() {
                         className={tabContentClasses}
                     >
                         <PaginationShowcase />
+                    </TabsContent>
+
+                    <TabsContent value="search" className={tabContentClasses}>
+                        <SearchInputShowcase />
                     </TabsContent>
 
                     <TabsContent value="qa" className={tabContentClasses}>

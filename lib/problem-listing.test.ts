@@ -97,6 +97,41 @@ describe("getProblemListing", () => {
 
         expect(result.page).toBe(2);
     });
+
+    test("searches across all problems by title, metadata, and body copy and clears active difficulty", () => {
+        const searchableProblems = [
+            {
+                slug: "lru-cache",
+                title: "LRU Cache",
+                difficulty: "medium" as Difficulty,
+                timeComplexity: "O(1)",
+            },
+            {
+                slug: "two-sum",
+                title: "Two Sum",
+                difficulty: "easy" as Difficulty,
+                timeComplexity: "O(n)",
+            },
+        ];
+        const bodyIndex = {
+            "lru-cache":
+                "Combine a doubly linked list with a hash map for eviction.",
+            "two-sum": "Store complements in a map during a single pass.",
+        };
+        const expectedSlugs = ["lru-cache"];
+        const result = getProblemListing(
+            searchableProblems,
+            { difficulty: "easy", q: "doubly linked" },
+            12,
+            bodyIndex
+        );
+
+        expect(result.activeDifficulty).toBeNull();
+        expect(result.searchQuery).toBe("doubly linked");
+        expect(result.items.map((problem) => problem.slug)).toEqual(
+            expectedSlugs
+        );
+    });
 });
 
 describe("getProblemListingPath", () => {
@@ -115,5 +150,16 @@ describe("getProblemListingPath", () => {
         expect(getProblemListingPath({ difficulty: "easy", page: 2 })).toBe(
             "/problems?difficulty=easy&page=2"
         );
+    });
+
+    test("encodes search queries and omits difficulty when searching", () => {
+        const expected = "/problems?q=binary+tree&page=2";
+        const result = getProblemListingPath({
+            difficulty: "hard",
+            q: "  binary   tree ",
+            page: 2,
+        });
+
+        expect(result).toBe(expected);
     });
 });

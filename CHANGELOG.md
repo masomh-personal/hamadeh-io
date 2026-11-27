@@ -2,6 +2,19 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.13.0 - 2026-11-27
+
+### Added
+
+- New blog post, "Build for Users, Not for Your Diff", on deciding what to build and what to cut from the end user's seat rather than optimizing code in isolation.
+- New blog post, "Timeouts, Rate Limits, and Circuit Breakers: Designing for Slow Failures", on preventing cascading failures when downstream dependencies slow down.
+- Added static client-side search across titles, metadata, and body copy for both `/blog` (`/blog/search-index.json`) and `/problems` (`/problems/search-index.json`), with a 400ms typing debounce, 600ms searching state, URL `?q=` sync, and unit tests.
+- Added the reusable `SearchInput` UI component in `components/ui` with `equalizer` (default) and `terminal` inline searching indicators, keyboard shortcuts (`Enter` and `Escape`), and a new Search section in `/components`.
+
+### Changed
+
+- Updated `/problems` to match the `/blog` left-sidebar layout with `SearchInput` above the difficulty filter list and an empty-state reset action.
+
 ## 3.12.1 - 2026-11-22
 
 ### Changed

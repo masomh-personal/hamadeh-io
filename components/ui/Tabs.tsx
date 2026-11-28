@@ -46,7 +46,7 @@ export function TabsContent({ className, ...props }: TabsContentProps) {
     return (
         <TabsPrimitive.Content
             className={cn(
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
+                "animate-panel-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
                 className
             )}
             data-slot="tabs-content"

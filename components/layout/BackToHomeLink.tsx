@@ -11,10 +11,12 @@ export function BackToHomeLink({ className }: BackToHomeLinkProps) {
         <Link
             href="/"
             variant="muted"
-            icon={<HiArrowLeft className="h-3.5 w-3.5" />}
+            icon={
+                <HiArrowLeft className="h-3.5 w-3.5 transition-transform duration-150 group-hover:-translate-x-0.5 motion-reduce:transform-none" />
+            }
             iconPosition="left"
             className={cn(
-                "inline-flex items-center whitespace-nowrap",
+                "group inline-flex items-center whitespace-nowrap",
                 className
             )}
         >

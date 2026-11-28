@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import {
     Button,
     FilterList,
@@ -21,6 +22,7 @@ interface BlogListingViewProps {
     tagCounts: TagCount[];
     query: BlogListingQuery;
     bodyIndex?: BlogBodyIndex;
+    isSearching?: boolean;
     searchSlot?: React.ReactNode;
     onClearSearch?: () => void;
 }
@@ -35,6 +37,7 @@ export function BlogListingView({
     tagCounts,
     query,
     bodyIndex,
+    isSearching = false,
     searchSlot,
     onClearSearch,
 }: BlogListingViewProps): React.ReactElement {
@@ -51,7 +54,7 @@ export function BlogListingView({
 
     return (
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-8">
-            <aside className="-mx-6 min-w-0 px-6 lg:sticky lg:top-24 lg:mx-0 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:px-0">
+            <aside className="-mx-6 min-w-0 px-6 lg:sticky lg:top-24 lg:-mx-1.5 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:px-1.5 lg:py-1">
                 {searchSlot ? <div className="mb-3">{searchSlot}</div> : null}
                 <FilterList
                     ariaLabel="Filter by topic"
@@ -62,17 +65,28 @@ export function BlogListingView({
                 />
             </aside>
 
-            <section aria-label="Blog posts" className="min-w-0">
+            <section
+                aria-label="Blog posts"
+                aria-busy={isSearching || undefined}
+                className="min-w-0"
+            >
                 <p
                     aria-live="polite"
                     className="text-content-subtle mb-4 font-mono text-xs uppercase tracking-widest"
                 >
-                    {heading} · {listing.total}{" "}
-                    {listing.total === 1 ? "post" : "posts"}
+                    {isSearching
+                        ? "Searching posts..."
+                        : `${heading} · ${listing.total} ${listing.total === 1 ? "post" : "posts"}`}
                 </p>
 
-                {listing.items.length === 0 ? (
-                    <div className="surface-card radius-card p-8">
+                {isSearching ? (
+                    <LoadingIndicator
+                        message="Searching posts..."
+                        showSkeletonBackground
+                        className="animate-panel-in w-full py-14"
+                    />
+                ) : listing.items.length === 0 ? (
+                    <div className="surface-card radius-card animate-reveal p-8">
                         <p className="text-content">
                             No posts match{" "}
                             <span className="font-semibold text-white">
@@ -105,25 +119,38 @@ export function BlogListingView({
                         </div>
                     </div>
                 ) : (
-                    <div className="grid gap-4 md:grid-cols-2">
-                        {listing.items.map((post) => (
-                            <BlogPostCard key={post.slug} post={post} />
+                    <div
+                        key={`${listing.activeTag ?? "all"}-${listing.searchQuery}-${listing.page}`}
+                        className="grid gap-4 md:grid-cols-2"
+                    >
+                        {listing.items.map((post, index) => (
+                            <div
+                                key={post.slug}
+                                className="animate-reveal h-full"
+                                style={{
+                                    animationDelay: `${Math.min(index, 5) * 25}ms`,
+                                }}
+                            >
+                                <BlogPostCard post={post} />
+                            </div>
                         ))}
                     </div>
                 )}
 
-                <PaginationNav
-                    className="mt-8"
-                    currentPage={listing.page}
-                    totalPages={listing.totalPages}
-                    getPageHref={(page) =>
-                        getBlogListingPath({
-                            tag: listing.activeTag,
-                            q: listing.searchQuery || null,
-                            page,
-                        }) as Route
-                    }
-                />
+                {!isSearching ? (
+                    <PaginationNav
+                        className="mt-8"
+                        currentPage={listing.page}
+                        totalPages={listing.totalPages}
+                        getPageHref={(page) =>
+                            getBlogListingPath({
+                                tag: listing.activeTag,
+                                q: listing.searchQuery || null,
+                                page,
+                            }) as Route
+                        }
+                    />
+                ) : null}
             </section>
         </div>
     );

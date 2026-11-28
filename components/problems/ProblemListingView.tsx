@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import {
     Button,
     FilterList,
@@ -22,6 +23,7 @@ interface ProblemListingViewProps {
     difficultyCounts: DifficultyCount[];
     query: ProblemListingQuery;
     bodyIndex?: BlogBodyIndex;
+    isSearching?: boolean;
     searchSlot?: React.ReactNode;
     onClearSearch?: () => void;
 }
@@ -36,6 +38,7 @@ export function ProblemListingView({
     difficultyCounts,
     query,
     bodyIndex,
+    isSearching = false,
     searchSlot,
     onClearSearch,
 }: ProblemListingViewProps): React.ReactElement {
@@ -55,7 +58,7 @@ export function ProblemListingView({
 
     return (
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-8">
-            <aside className="-mx-6 min-w-0 px-6 lg:sticky lg:top-24 lg:mx-0 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:px-0">
+            <aside className="-mx-6 min-w-0 px-6 lg:sticky lg:top-24 lg:-mx-1.5 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:px-1.5 lg:py-1">
                 {searchSlot ? <div className="mb-3">{searchSlot}</div> : null}
                 <FilterList
                     ariaLabel="Filter by difficulty"
@@ -71,17 +74,28 @@ export function ProblemListingView({
                 />
             </aside>
 
-            <section aria-label="Code problems" className="min-w-0">
+            <section
+                aria-label="Code problems"
+                aria-busy={isSearching || undefined}
+                className="min-w-0"
+            >
                 <p
                     aria-live="polite"
                     className="text-content-subtle mb-4 font-mono text-xs uppercase tracking-widest"
                 >
-                    {heading} · {listing.total}{" "}
-                    {listing.total === 1 ? "problem" : "problems"}
+                    {isSearching
+                        ? "Searching problems..."
+                        : `${heading} · ${listing.total} ${listing.total === 1 ? "problem" : "problems"}`}
                 </p>
 
-                {listing.items.length === 0 ? (
-                    <div className="surface-card radius-card p-8">
+                {isSearching ? (
+                    <LoadingIndicator
+                        message="Searching problems..."
+                        showSkeletonBackground
+                        className="animate-panel-in w-full py-14"
+                    />
+                ) : listing.items.length === 0 ? (
+                    <div className="surface-card radius-card animate-reveal p-8">
                         <p className="text-content">
                             No problems match{" "}
                             <span className="font-semibold text-white">
@@ -114,28 +128,38 @@ export function ProblemListingView({
                         </div>
                     </div>
                 ) : (
-                    <div className="grid gap-4 md:grid-cols-2">
-                        {listing.items.map((problem) => (
-                            <ProblemPostCard
+                    <div
+                        key={`${listing.activeDifficulty ?? "all"}-${listing.searchQuery}-${listing.page}`}
+                        className="grid gap-4 md:grid-cols-2"
+                    >
+                        {listing.items.map((problem, index) => (
+                            <div
                                 key={problem.slug}
-                                problem={problem}
-                            />
+                                className="animate-reveal h-full"
+                                style={{
+                                    animationDelay: `${Math.min(index, 5) * 25}ms`,
+                                }}
+                            >
+                                <ProblemPostCard problem={problem} />
+                            </div>
                         ))}
                     </div>
                 )}
 
-                <PaginationNav
-                    className="mt-8"
-                    currentPage={listing.page}
-                    totalPages={listing.totalPages}
-                    getPageHref={(page) =>
-                        getProblemListingPath({
-                            difficulty: listing.activeDifficulty,
-                            q: listing.searchQuery || null,
-                            page,
-                        }) as Route
-                    }
-                />
+                {!isSearching ? (
+                    <PaginationNav
+                        className="mt-8"
+                        currentPage={listing.page}
+                        totalPages={listing.totalPages}
+                        getPageHref={(page) =>
+                            getProblemListingPath({
+                                difficulty: listing.activeDifficulty,
+                                q: listing.searchQuery || null,
+                                page,
+                            }) as Route
+                        }
+                    />
+                ) : null}
             </section>
         </div>
     );

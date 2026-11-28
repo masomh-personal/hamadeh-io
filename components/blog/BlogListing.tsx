@@ -52,6 +52,7 @@ export function BlogListing({
             tagCounts={tagCounts}
             query={query}
             bodyIndex={bodyIndex}
+            isSearching={isSearching}
             onClearSearch={handleClearSearch}
             searchSlot={
                 <SearchInput

@@ -52,6 +52,7 @@ export function ProblemListing({
             difficultyCounts={difficultyCounts}
             query={query}
             bodyIndex={bodyIndex}
+            isSearching={isSearching}
             onClearSearch={handleClearSearch}
             searchSlot={
                 <SearchInput

@@ -44,7 +44,7 @@ export function PostCard({
     return (
         <Link
             href={href}
-            className="surface-card radius-card card-chrome card-hover flex h-full flex-col p-4 text-content sm:p-5"
+            className="surface-card radius-card card-chrome card-hover group flex h-full flex-col p-4 text-content sm:p-5"
         >
             <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-1.5">
@@ -58,7 +58,7 @@ export function PostCard({
 
             <Heading
                 className={cn(
-                    "font-heading mt-2 text-xl font-semibold text-white",
+                    "font-heading mt-2 text-xl font-semibold text-white transition-colors duration-200 group-hover:text-sky-200",
                     titleClassName
                 )}
             >

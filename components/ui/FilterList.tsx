@@ -38,7 +38,7 @@ interface FilterListProps {
 }
 
 const itemBase =
-    "inline-flex shrink-0 snap-start items-center gap-2 rounded-full border px-3 py-2 font-baloo text-xs font-semibold uppercase leading-none tracking-[0.03em] whitespace-nowrap transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
+    "group inline-flex shrink-0 snap-start items-center gap-2 rounded-full border px-3 py-2 font-baloo text-xs font-semibold uppercase leading-none tracking-[0.03em] whitespace-nowrap transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 const itemIdle =
     "border-surface-outline/60 text-content-subtle hover:bg-white/5 hover:text-content";
 
@@ -91,7 +91,9 @@ export function FilterList({
                                 : cn(itemIdle, idleLayout)
                         )}
                     >
-                        All
+                        <span className="transition-transform duration-150 lg:group-hover:translate-x-0.5 motion-reduce:transform-none">
+                            All
+                        </span>
                         <span className="text-content-subtle font-mono text-[0.65rem]">
                             {totalCount}
                         </span>
@@ -122,7 +124,7 @@ export function FilterList({
                                         : undefined
                                 }
                             >
-                                <span className="inline-flex items-center gap-1.5">
+                                <span className="inline-flex items-center gap-1.5 transition-transform duration-150 lg:group-hover:translate-x-0.5 motion-reduce:transform-none">
                                     {marker === "tag" ? (
                                         <FaTag
                                             aria-hidden="true"

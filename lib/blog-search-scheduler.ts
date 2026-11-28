@@ -9,7 +9,7 @@
  */
 
 export const SEARCH_DEBOUNCE_MS = 400;
-export const SEARCH_DELAY_MS = 600;
+export const SEARCH_DELAY_MS = 1000;
 
 export interface SearchTimerAdapter {
     setTimeout: (

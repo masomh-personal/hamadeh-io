@@ -6,6 +6,8 @@
         "types": ["bun"]
     },
     "include": [
+        "playwright.config.ts",
+        "e2e/**/*.ts",
         "lib/**/*.test.ts",
         "lib/**/*.ts",
         "scripts/hooks/**/*.ts",

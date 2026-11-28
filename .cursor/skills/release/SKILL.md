@@ -20,10 +20,11 @@ The full checklist lives in `docs/release.md`. This skill is the agent workflow 
 3. **Update files.**
     - Set `version` in `package.json`.
     - Add a `CHANGELOG.md` entry at the top: `## x.y.z - YYYY-MM-DD`, with `### Added`, `### Changed`, `### Fixed`, or `### Security` subsections as needed. Match the tone of existing entries: one sentence per user-visible change, no commit hashes.
-4. **Verify.** Run all three and stop on any failure:
+4. **Verify.** Run all four and stop on any failure:
     - `env bun audit`
     - `env bun run healthcheck`
     - `env bun run build`
+    - `env bun run test:e2e`
 5. **Branch.** If on `main`, propose `git switch -c release/x.y.z`.
 6. **Hand off.** Use the `pr-description` skill for the PR title and body.
 7. **Stop for approval** before `git commit`, `git push`, or `gh pr create`. Commit messages follow `chore: release version x.y.z` and never include attribution trailers.

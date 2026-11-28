@@ -2,6 +2,21 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.14.1 - 2026-11-28
+
+### Added
+
+- Added a Playwright end-to-end test suite (`e2e/*.e2e.ts`) covering Desktop (`1280x800`) and Mobile (`390x844`) viewports against the production build, including runtime/hydration error guards, reduced-motion checks, 404/SEO/OpenGraph/security-header verification, and a GitHub Actions `e2e` job with Chromium caching and failure artifact uploads.
+
+### Fixed
+
+- Fixed 404 prefetch errors in `app/components/sections/BlogShowcase.tsx` by using real published blog post slugs in the showcase examples.
+- Fixed horizontal overflow on narrow mobile viewports in `components/ui/PaginationNav.tsx` by allowing large pagination ranges to wrap cleanly.
+
+### Changed
+
+- Updated testing rules, release workflow docs, and component skills to include Playwright E2E verification before pull requests to `main`.
+
 ## 3.14.0 - 2026-11-28
 
 ### Added

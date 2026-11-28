@@ -26,7 +26,7 @@ Personal site and engineering notebook: Next.js 16 App Router (static generation
 
 ## Repo Hygiene
 
-- Run `env bun run healthcheck` after meaningful edits. Before PRs to `main`, also run `env bun audit` and `env bun run build`.
+- Run `env bun run healthcheck` after meaningful edits. Before PRs to `main`, also run `env bun audit`, `env bun run build`, and `env bun run test:e2e`.
 - Never revert unrelated user changes. Avoid destructive git operations unless explicitly approved.
 - Do not commit, push, or open PRs without explicit approval.
 - Every change reaching `main` increases the SemVer version in `package.json` exactly once (patch for fixes, minor for features, major for breaking changes). The `release` skill covers the full flow.

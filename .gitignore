@@ -27,6 +27,8 @@ dist/
 coverage/
 *.lcov
 .nyc_output/
+playwright-report/
+test-results/
 
 # Environment variables
 .env

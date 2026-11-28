@@ -1,6 +1,6 @@
 ---
-description: Testing strategy and assertion conventions for bun:test suites
-globs: **/*.test.ts,**/*.test.tsx
+description: Testing strategy and assertion conventions for bun:test unit suites and Playwright E2E suites
+globs: **/*.test.ts,**/*.test.tsx,e2e/**/*.e2e.ts,e2e/**/*.ts,playwright.config.ts
 alwaysApply: false
 ---
 
@@ -25,3 +25,11 @@ alwaysApply: false
 - Prefer boundary-focused tests around small interfaces/ports instead of large integrated contracts (ISP + DIP).
 - When extension points exist, add tests for existing behavior plus the new extension path (OCP).
 - Keep tests aligned to single module responsibilities; avoid tests that require unrelated subsystem setup (SRP).
+
+# Playwright E2E Conventions
+
+- E2E specs live in `e2e/*.e2e.ts` (never `*.test.ts` or `*.spec.ts`, so `bun test` does not execute them) and run against the production build (`next start`) via `env bun run test:e2e`.
+- Always import `test`, `expect`, and `assertNoHorizontalOverflow` from `e2e/fixtures.ts` so every test automatically fails on uncaught `pageerror`, `console.error`, and React hydration mismatches.
+- Prefer accessible locators (`getByRole`, `getByLabel`, `getByText`) over brittle CSS or class selectors; rely on Playwright's auto-waiting assertions instead of fixed sleeps.
+- Verify both Desktop (`1280x800`) and Mobile (`390x844`) viewports, check `assertNoHorizontalOverflow(page)` on new or redesigned routes, and keep `e2e/reduced-motion.e2e.ts` green for `prefers-reduced-motion: reduce`.
+- When adding a route, interactive filter/search flow, or interactive UI component, extend the corresponding `e2e/*.e2e.ts` spec.

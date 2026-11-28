@@ -23,3 +23,4 @@ Follow `.cursor/rules/ui-library-policy.mdc` and `.cursor/rules/styling-tailwind
 5. **Verify.**
     - `env bun run type-check` and `env bun run check`.
     - Start `env bun run dev`, open `http://localhost:3000/components` with the browser tool, select the new tab, and confirm the component works with the keyboard (Tab, Enter or Space, Escape where relevant), shows a visible focus ring, and holds up on a narrow viewport.
+    - For interactive components, extend `e2e/components.e2e.ts` to cover the new showcase tab and keyboard/focus behavior, then run `env bun run build && env bun run test:e2e`.

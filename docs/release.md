@@ -21,6 +21,7 @@ Run these before opening or updating the PR:
 bun audit
 bun run healthcheck
 bun run build
+bun run test:e2e
 ```
 
 The checks cover:
@@ -28,6 +29,7 @@ The checks cover:
 - `bun audit`: verifies the lockfile has no known dependency advisories.
 - `bun run healthcheck`: runs Oxfmt, application and test type checks, Oxlint, content validation, and tests.
 - `bun run build`: verifies the production Next.js build and static generation.
+- `bun run test:e2e`: runs the Playwright E2E suite against the built app on Desktop and Mobile viewports.
 
 ## PR Checklist
 
@@ -38,6 +40,7 @@ Use this as the pull request checklist:
 - [ ] `bun audit` passes with no vulnerabilities.
 - [ ] `bun run healthcheck` passes locally.
 - [ ] `bun run build` passes locally.
+- [ ] `bun run test:e2e` passes locally.
 - [ ] GitHub Actions are green.
 - [ ] Content changes were previewed in the browser when they affect pages, blog posts, or problem posts.
 - [ ] Dependency overrides are explained and treated as temporary security pins.

@@ -72,7 +72,7 @@ export function PaginationNav({
             aria-label="Pagination"
             className={cn("flex justify-center", className)}
         >
-            <ul className="flex items-center gap-1">
+            <ul className="flex flex-wrap items-center justify-center gap-1">
                 <li className="mr-1.5">
                     <Button
                         href={

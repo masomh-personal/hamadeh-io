@@ -1,11 +1,11 @@
-import type { Route } from "next";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { formatReadingTime } from "@/lib/reading-time";
 import { cn } from "@/lib/utils";
+import { parseInternalHref } from "./component-utils";
 
 interface PostCardProps {
-    href: Route;
+    href: string;
     /** Small icon shown beside the reading time. */
     icon: ReactNode;
     readingTimeMinutes: number;
@@ -40,10 +40,13 @@ export function PostCard({
     headingAs = "h2",
 }: PostCardProps): React.ReactElement {
     const Heading = headingAs;
+    const { to, search, hash } = parseInternalHref(href);
 
     return (
         <Link
-            href={href}
+            to={to}
+            search={search}
+            hash={hash}
             className="surface-card radius-card card-chrome card-hover group flex h-full flex-col p-4 text-content sm:p-5"
         >
             <div className="flex items-center justify-between gap-3">

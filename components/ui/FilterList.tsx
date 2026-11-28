@@ -1,7 +1,7 @@
-import type { Route } from "next";
-import NextLink from "next/link";
+import { Link as RouterLink } from "@tanstack/react-router";
 import { FaTag } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
+import { parseInternalHref } from "./component-utils";
 
 export interface FilterOption {
     /** Raw value passed back to `getHref`. */
@@ -23,7 +23,7 @@ interface FilterListProps {
     /** Count shown beside the "All" entry. */
     totalCount: number;
     /** Resolves the destination for an option, or for "All" when given `null`. */
-    getHref: (value: string | null) => Route;
+    getHref: (value: string | null) => string;
     /** Accessible name for the navigation landmark. */
     ariaLabel: string;
     /**
@@ -67,6 +67,8 @@ export function FilterList({
         : undefined;
     const idleLayout = isStacked ? "lg:border-transparent" : undefined;
 
+    const allHref = parseInternalHref(getHref(null));
+
     return (
         <nav aria-label={ariaLabel} className={className}>
             <ul
@@ -78,10 +80,12 @@ export function FilterList({
                 )}
             >
                 <li className="contents">
-                    <NextLink
-                        href={getHref(null)}
-                        prefetch={false}
-                        scroll={false}
+                    <RouterLink
+                        to={allHref.to}
+                        search={allHref.search}
+                        hash={allHref.hash}
+                        preload={false}
+                        resetScroll={false}
                         aria-current={isAllActive ? "page" : undefined}
                         className={cn(
                             itemBase,
@@ -97,17 +101,20 @@ export function FilterList({
                         <span className="text-content-subtle font-mono text-[0.65rem]">
                             {totalCount}
                         </span>
-                    </NextLink>
+                    </RouterLink>
                 </li>
                 {options.map(({ value, label, color, bgColor, count }) => {
                     const isActive = value === activeValue;
+                    const optionHref = parseInternalHref(getHref(value));
 
                     return (
                         <li key={value} className="contents">
-                            <NextLink
-                                href={getHref(value)}
-                                prefetch={false}
-                                scroll={false}
+                            <RouterLink
+                                to={optionHref.to}
+                                search={optionHref.search}
+                                hash={optionHref.hash}
+                                preload={false}
+                                resetScroll={false}
                                 aria-current={isActive ? "page" : undefined}
                                 className={cn(
                                     itemBase,
@@ -143,7 +150,7 @@ export function FilterList({
                                 <span className="font-mono text-[0.65rem] opacity-70">
                                     {count}
                                 </span>
-                            </NextLink>
+                            </RouterLink>
                         </li>
                     );
                 })}

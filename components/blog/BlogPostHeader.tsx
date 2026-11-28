@@ -1,11 +1,11 @@
 import { HiArrowLeft, HiDocumentText } from "react-icons/hi";
 import { Badge, Button } from "@/components/ui";
-import type { PublishedBlogPost } from "@/lib/content/blog";
+import type { BlogPostSummary } from "@/lib/content/blog";
 import { formatReadingTime } from "@/lib/reading-time";
 import { getBlogTagPresentation } from "./blog-tags";
 
 interface BlogPostHeaderProps {
-    post: PublishedBlogPost;
+    post: BlogPostSummary;
 }
 
 export function BlogPostHeader({ post }: BlogPostHeaderProps) {

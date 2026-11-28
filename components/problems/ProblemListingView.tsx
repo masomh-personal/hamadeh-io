@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import {
     Button,
@@ -69,7 +68,7 @@ export function ProblemListingView({
                     getHref={(value) =>
                         getProblemListingPath({
                             difficulty: isDifficulty(value) ? value : null,
-                        }) as Route
+                        })
                     }
                 />
             </aside>
@@ -120,7 +119,7 @@ export function ProblemListingView({
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    href={"/problems" as Route}
+                                    href="/problems"
                                 >
                                     Clear search
                                 </Button>
@@ -156,7 +155,7 @@ export function ProblemListingView({
                                 difficulty: listing.activeDifficulty,
                                 q: listing.searchQuery || null,
                                 page,
-                            }) as Route
+                            })
                         }
                     />
                 ) : null}

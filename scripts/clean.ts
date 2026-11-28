@@ -6,7 +6,9 @@ import { rm } from "node:fs/promises";
 
 const filesToRemove = [
     "node_modules",
-    ".next",
+    "dist",
+    ".tanstack",
+    ".output",
     "package-lock.json",
     "yarn.lock",
     "pnpm-lock.yaml",

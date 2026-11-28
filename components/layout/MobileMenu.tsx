@@ -1,7 +1,4 @@
-"use client";
-
-import type { Route } from "next";
-import { usePathname } from "next/navigation";
+import { useRouterState } from "@tanstack/react-router";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link } from "@/components/ui/Link";
@@ -9,7 +6,7 @@ import { isNavRouteActive } from "./NavLink";
 
 export interface MobileNavItem {
     name: string;
-    href: Route;
+    href: string;
     icon: ReactNode;
     external?: boolean;
 }
@@ -19,7 +16,9 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ items }: MobileMenuProps) {
-    const pathname = usePathname();
+    const pathname = useRouterState({
+        select: (state) => state.location.pathname,
+    });
     const [openForPathname, setOpenForPathname] = useState<string | null>(null);
     const isOpen = openForPathname !== null && openForPathname === pathname;
     const menuButtonRef = useRef<HTMLButtonElement>(null);

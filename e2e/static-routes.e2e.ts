@@ -82,9 +82,9 @@ test.describe("Static pages and machine-readable routes", () => {
         expect(sitemapBody).toContain("/problems/");
 
         for (const ogPath of [
-            "/opengraph-image",
-            "/blog/solid-ocp-ai-era-part-2/opengraph-image",
-            "/problems/lru-cache/opengraph-image",
+            "/opengraph-image.png",
+            "/blog/solid-ocp-ai-era-part-2/opengraph-image.png",
+            "/problems/lru-cache/opengraph-image.png",
         ]) {
             const og = await request.get(ogPath);
             expect(og.status()).toBe(200);

@@ -15,6 +15,9 @@ node_modules/
 
 # Build output and caches
 .next/
+.tanstack/
+.nitro/
+.output/
 out/
 build/
 dist/
@@ -22,6 +25,16 @@ dist/
 .cache/
 .parcel-cache/
 .turbo/
+
+# Generated static assets and route tree
+src/routeTree.gen.ts
+src/generated/
+public/opengraph-image.png
+public/og/
+public/sitemap.xml
+public/robots.txt
+public/blog/
+public/problems/
 
 # Testing artifacts
 coverage/

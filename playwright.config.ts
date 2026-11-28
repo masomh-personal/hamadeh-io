@@ -39,7 +39,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: `bun --bun next start -H 127.0.0.1 -p ${PORT}`,
+        command: `PORT=${PORT} HOST=127.0.0.1 bun scripts/serve-static.ts`,
         url: BASE_URL,
         reuseExistingServer: !isCI,
         timeout: 60_000,

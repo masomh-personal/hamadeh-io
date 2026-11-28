@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { HiTerminal } from "react-icons/hi";
 
 /**
@@ -61,7 +61,7 @@ export function Logo({
 
     return (
         <Link
-            href="/"
+            to="/"
             className="inline-flex rounded-lg px-2 py-1 transition-[background-color,transform] duration-200 ease-out hover:bg-slate-700/50 active:scale-[0.98] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             aria-label="hamadeh.io Home"
         >

@@ -1,13 +1,13 @@
-import type { Route } from "next";
-import NextLink from "next/link";
+import { Link as RouterLink } from "@tanstack/react-router";
 import { HiArrowLeft, HiArrowRight, HiBan } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import { Button } from "./Button";
+import { parseInternalHref } from "./component-utils";
 
 interface PaginationNavProps {
     currentPage: number;
     totalPages: number;
-    getPageHref: (page: number) => Route;
+    getPageHref: (page: number) => string;
     className?: string;
 }
 
@@ -113,12 +113,17 @@ export function PaginationNav({
                     }
 
                     const isCurrent = slot.page === currentPage;
+                    const { to, search, hash } = parseInternalHref(
+                        getPageHref(slot.page)
+                    );
 
                     return (
                         <li key={slot.page}>
-                            <NextLink
-                                href={getPageHref(slot.page)}
-                                prefetch={false}
+                            <RouterLink
+                                to={to}
+                                search={search}
+                                hash={hash}
+                                preload={false}
                                 aria-current={isCurrent ? "page" : undefined}
                                 className={cn(
                                     itemBase,
@@ -129,7 +134,7 @@ export function PaginationNav({
                                 )}
                             >
                                 {slot.page}
-                            </NextLink>
+                            </RouterLink>
                         </li>
                     );
                 })}

@@ -1,10 +1,13 @@
 import { Slot } from "@radix-ui/react-slot";
-import type { Route } from "next";
-import NextLink from "next/link";
+import { Link as RouterLink } from "@tanstack/react-router";
 import type { ComponentProps, MouseEvent } from "react";
 import { HiCode } from "react-icons/hi";
 import { cn } from "@/lib/utils";
-import { mergeRel, shouldUseNativeAnchor } from "./component-utils";
+import {
+    mergeRel,
+    parseInternalHref,
+    shouldUseNativeAnchor,
+} from "./component-utils";
 
 type ButtonVariant =
     | "primary"
@@ -60,7 +63,7 @@ export interface ThoughtfulButtonProps extends Omit<
 > {
     variant?: ButtonVariant;
     size?: ButtonSize;
-    href?: Route;
+    href?: string;
     children?: React.ReactNode;
     icon?: React.ReactNode;
     iconOnly?: boolean;
@@ -269,10 +272,17 @@ export function Button({
     };
 
     if (href && !shouldUseNativeAnchor(href)) {
+        const { to, search, hash } = parseInternalHref(href);
         return (
-            <NextLink href={href} className={classes} {...linkProps}>
+            <RouterLink
+                to={to}
+                search={search}
+                hash={hash}
+                className={classes}
+                {...linkProps}
+            >
                 {content}
-            </NextLink>
+            </RouterLink>
         );
     }
 

@@ -30,9 +30,8 @@ interface ContentEntry {
 const SOLUTIONS_DIR = join(process.cwd(), "solutions");
 
 /**
- * Languages registered in components/markdown/RichMarkdownContent.tsx, plus
- * plain fences. A fence outside this set renders unhighlighted, which is easy
- * to miss in review.
+ * Languages registered in src/server/markdown.ts, plus plain fences. A fence
+ * outside this set renders unhighlighted, which is easy to miss in review.
  */
 const SUPPORTED_FENCE_LANGUAGES = new Set([
     "bash",

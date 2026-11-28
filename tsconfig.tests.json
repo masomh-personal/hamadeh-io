@@ -10,8 +10,9 @@
         "e2e/**/*.ts",
         "lib/**/*.test.ts",
         "lib/**/*.ts",
+        "src/**/*.test.ts",
         "scripts/hooks/**/*.ts",
         "solutions/**/*.ts"
     ],
-    "exclude": ["node_modules", ".next"]
+    "exclude": ["node_modules", "dist", ".tanstack"]
 }

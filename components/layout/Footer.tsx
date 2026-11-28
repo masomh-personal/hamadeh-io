@@ -5,8 +5,8 @@ const GITHUB_REPO = "masomh-personal/hamadeh-io";
 
 export function Footer() {
     const version = packageJson.version ?? "?.?.?";
-    const gitBranch = process.env.NEXT_PUBLIC_GIT_BRANCH;
-    const gitSha = process.env.NEXT_PUBLIC_GIT_SHA;
+    const gitBranch = import.meta.env.VITE_GIT_BRANCH;
+    const gitSha = import.meta.env.VITE_GIT_SHA;
     const shaShort = gitSha ? gitSha.slice(0, 7) : null;
     const repoUrl = `https://github.com/${GITHUB_REPO}`;
     const encodedBranch = gitBranch

@@ -1,6 +1,4 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
+import { useSyncExternalStore } from "react";
 import { SearchInput, useListingSearch } from "@/components/ui";
 import type { ProblemSummary } from "@/lib/content/problems";
 import {
@@ -10,24 +8,33 @@ import {
 } from "@/lib/problem-listing";
 import { ProblemListingView } from "./ProblemListingView";
 
+const emptySubscribe = (): (() => void) => () => {};
+
 interface ProblemListingProps {
     problems: ProblemSummary[];
     difficultyCounts: DifficultyCount[];
+    search: {
+        difficulty?: string;
+        q?: string;
+        page?: string;
+    };
 }
 
-/**
- * Reads the filter, search query, and page from the URL on the client so
- * `/problems` itself stays statically generated. Render it inside a Suspense
- * boundary.
- */
 export function ProblemListing({
     problems,
     difficultyCounts,
+    search,
 }: ProblemListingProps): React.ReactElement {
-    const searchParams = useSearchParams();
+    const isHydrated = useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    );
+    const activeSearch = isHydrated ? search : {};
+    const rawUrlQuery = activeSearch.q ?? null;
+    const rawUrlDifficulty = activeSearch.difficulty ?? null;
     const {
         inputValue,
-        rawUrlQuery,
         bodyIndex,
         isSearching,
         handleSearchChange,
@@ -36,14 +43,15 @@ export function ProblemListing({
         ensureBodyIndex,
     } = useListingSearch({
         indexUrl: "/problems/search-index.json",
-        filterParam: "difficulty",
+        rawUrlQuery,
+        rawUrlFilter: rawUrlDifficulty,
         buildSearchPath: (q) => getProblemListingPath({ q }),
     });
 
     const query: ProblemListingQuery = {
-        difficulty: searchParams.get("difficulty"),
+        difficulty: rawUrlDifficulty,
         q: rawUrlQuery,
-        page: searchParams.get("page"),
+        page: activeSearch.page ?? null,
     };
 
     return (

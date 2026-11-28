@@ -28,7 +28,7 @@ alwaysApply: false
 
 # Playwright E2E Conventions
 
-- E2E specs live in `e2e/*.e2e.ts` (never `*.test.ts` or `*.spec.ts`, so `bun test` does not execute them) and run against the production build (`next start`) via `env bun run test:e2e`.
+- E2E specs live in `e2e/*.e2e.ts` (never `*.test.ts` or `*.spec.ts`, so `bun test` does not execute them) and run against the static production build (`dist/client` via `scripts/serve-static.ts`) via `env bun run test:e2e`.
 - Always import `test`, `expect`, and `assertNoHorizontalOverflow` from `e2e/fixtures.ts` so every test automatically fails on uncaught `pageerror`, `console.error`, and React hydration mismatches.
 - Prefer accessible locators (`getByRole`, `getByLabel`, `getByText`) over brittle CSS or class selectors; rely on Playwright's auto-waiting assertions instead of fixed sleeps.
 - Verify both Desktop (`1280x800`) and Mobile (`390x844`) viewports, check `assertNoHorizontalOverflow(page)` on new or redesigned routes, and keep `e2e/reduced-motion.e2e.ts` green for `prefers-reduced-motion: reduce`.

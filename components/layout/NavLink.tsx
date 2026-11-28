@@ -1,7 +1,4 @@
-"use client";
-
-import type { Route } from "next";
-import { usePathname } from "next/navigation";
+import { useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Link } from "@/components/ui/Link";
 
@@ -19,13 +16,23 @@ export function isNavRouteActive(
 }
 
 interface NavLinkProps {
-    href: Route;
+    href: string;
     icon: ReactNode;
     children: ReactNode;
 }
 
 export function NavLink({ href, icon, children }: NavLinkProps) {
-    const pathname = usePathname();
+    const pathname = useRouterState({
+        select: (state) => {
+            const isNotFound = state.matches.some(
+                (match) =>
+                    match.status === "notFound" ||
+                    match.routeId === "/$" ||
+                    match.loaderData === null
+            );
+            return isNotFound ? null : state.location.pathname;
+        },
+    });
     const isActive = isNavRouteActive(pathname, href);
 
     return (

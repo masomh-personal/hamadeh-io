@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import { LoadingIndicator } from "@/components/layout/LoadingIndicator";
 import {
     Button,
@@ -61,7 +60,7 @@ export function BlogListingView({
                     options={tagOptions}
                     activeValue={listing.activeTag}
                     totalCount={posts.length}
-                    getHref={(tag) => getBlogListingPath({ tag }) as Route}
+                    getHref={(tag) => getBlogListingPath({ tag })}
                 />
             </aside>
 
@@ -111,7 +110,7 @@ export function BlogListingView({
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    href={"/blog" as Route}
+                                    href="/blog"
                                 >
                                     Clear search
                                 </Button>
@@ -147,7 +146,7 @@ export function BlogListingView({
                                 tag: listing.activeTag,
                                 q: listing.searchQuery || null,
                                 page,
-                            }) as Route
+                            })
                         }
                     />
                 ) : null}

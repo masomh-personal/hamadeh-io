@@ -76,46 +76,35 @@ const problem = await getPublishedProblemBySlug("two-sum");
 3. Validate frontmatter with Valibot (throws if invalid)
 4. Return typed, validated data + content (throwing `ContentNotFoundError` if a slug is missing)
 
-### 4. **Server Rendering** (`components/markdown/RichMarkdownContent.tsx`)
+### 4. **Build-Time Compilation** (`src/server/markdown.ts` & `scripts/generate-static-assets.ts`)
 
-The server component renders plain Markdown with GFM, build-time heading anchor
-links, and server-side syntax highlighting using an explicit 5-language
-`highlight.js` allowlist (`bash`, `http`, `javascript`, `json`, `typescript`):
+`scripts/generate-static-assets.ts` compiles every blog post and problem at build
+time with `unified`, `remark-gfm`, build-time heading anchor links, and
+`@shikijs/rehype` (`github-dark-default`, explicit 5-language allowlist: `bash`,
+`http`, `javascript`, `json`, `typescript`). The compiled HTML is written to
+`src/generated/{blog,problems}/<slug>.json`, and `components/markdown/RichMarkdownContent.tsx`
+renders the HTML string with a single delegated copy-code click listener.
 
-```tsx
-<MarkdownAsync
-    components={markdownComponents}
-    remarkPlugins={REMARK_PLUGINS}
-    rehypePlugins={REHYPE_PLUGINS}
->
-    {content}
-</MarkdownAsync>
-```
+**Result:** Zero Markdown parser or syntax highlighter JavaScript is shipped to
+the browser, and `scripts/check-content.ts` fails fences outside the registered
+language set.
 
-**Result:** Code blocks are highlighted on the server without shipping a
-client-side syntax highlighter, and `scripts/check-content.ts` fails fences
-outside the registered language set.
+### 5. **Usage in Routes**
 
-### 5. **Usage in Pages**
-
-In Next.js pages, we use the utilities:
+TanStack Start routes load the precompiled static JSON via `src/data/content.ts`
+(using Vite `import.meta.glob` for per-slug code splitting):
 
 ```typescript
-// app/problems/[slug]/page.tsx
-export async function generateStaticParams() {
-    const problems = await listPublishedProblems();
-    return problems.map((p) => ({ slug: p.slug }));
-}
-
-export default async function ProblemPage({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
-    const { slug } = await params;
-    const problem = await getPublishedProblemBySlug(slug);
-    return <RichMarkdownContent content={problem.content} />;
-}
+// src/routes/problems/$slug.tsx
+export const Route = createFileRoute("/problems/$slug")({
+    beforeLoad: ({ params }) => {
+        if (!hasProblemSlug(params.slug)) {
+            throw notFound();
+        }
+    },
+    loader: ({ params }) => loadProblemDetailData(params.slug),
+    component: ProblemPostPage,
+});
 ```
 
 ## Why This Is the Best Approach

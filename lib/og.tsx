@@ -1,12 +1,14 @@
 /**
- * Shared Open Graph image renderer.
+ * Shared Open Graph PNG image renderer powered by Satori and Resvg.
  *
- * Satori (the engine behind ImageResponse) supports a narrow CSS subset:
- * flexbox only, no grid, and every element with multiple children needs an
- * explicit display value. Keep the markup here boring on purpose.
+ * Satori supports a narrow CSS subset: flexbox only, no grid, and every element
+ * with multiple children needs an explicit display value. Keep the markup boring.
  */
 
-import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { Resvg } from "@resvg/resvg-js";
+import satori from "satori";
 import { SITE_NAME } from "./site";
 
 export const OG_SIZE = {
@@ -22,18 +24,66 @@ export interface OgMetaItem {
     text: string;
 }
 
-interface OgImageOptions {
+export interface OgImageOptions {
     title: string;
     eyebrow: string;
     meta?: OgMetaItem[];
 }
 
-export function renderOgImage({
+let fontsPromise:
+    | Promise<
+          Array<{
+              name: string;
+              data: ArrayBuffer;
+              weight: 400 | 700;
+              style: "normal";
+          }>
+      >
+    | undefined;
+
+function loadOgFonts() {
+    if (!fontsPromise) {
+        const fontDir = join(
+            process.cwd(),
+            "node_modules",
+            "@fontsource",
+            "baloo-2",
+            "files"
+        );
+        fontsPromise = Promise.all([
+            readFile(join(fontDir, "baloo-2-latin-400-normal.woff")),
+            readFile(join(fontDir, "baloo-2-latin-700-normal.woff")),
+        ]).then(([regular, bold]) => [
+            {
+                name: "Baloo 2",
+                data: regular.buffer.slice(
+                    regular.byteOffset,
+                    regular.byteOffset + regular.byteLength
+                ),
+                weight: 400 as const,
+                style: "normal" as const,
+            },
+            {
+                name: "Baloo 2",
+                data: bold.buffer.slice(
+                    bold.byteOffset,
+                    bold.byteOffset + bold.byteLength
+                ),
+                weight: 700 as const,
+                style: "normal" as const,
+            },
+        ]);
+    }
+    return fontsPromise;
+}
+
+export async function renderOgImagePng({
     title,
     eyebrow,
     meta = [],
-}: OgImageOptions): ImageResponse {
-    return new ImageResponse(
+}: OgImageOptions): Promise<Uint8Array> {
+    const fonts = await loadOgFonts();
+    const svg = await satori(
         <div
             style={{
                 width: "100%",
@@ -44,6 +94,7 @@ export function renderOgImage({
                 backgroundColor: "#0f172a",
                 padding: "72px",
                 borderTop: "16px solid #0ea5e9",
+                fontFamily: "Baloo 2",
             }}
         >
             <div style={{ display: "flex", flexDirection: "column" }}>
@@ -103,6 +154,19 @@ export function renderOgImage({
                 </div>
             </div>
         </div>,
-        OG_SIZE
+        {
+            width: OG_SIZE.width,
+            height: OG_SIZE.height,
+            fonts,
+        }
     );
+
+    const resvg = new Resvg(svg, {
+        fitTo: {
+            mode: "width",
+            value: OG_SIZE.width,
+        },
+    });
+
+    return resvg.render().asPng();
 }

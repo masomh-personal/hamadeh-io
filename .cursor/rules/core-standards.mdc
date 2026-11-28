@@ -5,7 +5,7 @@ alwaysApply: true
 
 # hamadeh.io Core Standards
 
-Personal site and engineering notebook: Next.js 16 App Router (static generation), React 19, TypeScript 7, Tailwind 4, Valibot, Markdown content in `content/`, algorithm solutions in `solutions/`, Bun for everything.
+Personal site and engineering notebook: TanStack Start 1.0 + Vite 8 (static prerendered SSG on Vercel), React 19, TypeScript 7, Tailwind 4 (`@tailwindcss/vite`), Valibot, build-time `unified` + Shiki Markdown in `content/`, algorithm solutions in `solutions/`, Bun for everything.
 
 ## Engineering
 

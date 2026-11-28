@@ -1,12 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
-import type { Route } from "next";
-import NextLink from "next/link";
+import { Link as RouterLink } from "@tanstack/react-router";
 import type { ComponentProps } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { HiExternalLink } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import {
     mergeRel,
+    parseInternalHref,
     shouldOpenInNewTab,
     shouldUseNativeAnchor,
 } from "./component-utils";
@@ -38,12 +38,12 @@ interface ThoughtfulLinkBaseProps extends Omit<ComponentProps<"a">, "href"> {
  */
 type ThoughtfulLinkAsChildProps = ThoughtfulLinkBaseProps & {
     asChild: true;
-    href?: Route;
+    href?: string;
 };
 
 type ThoughtfulLinkWithHrefProps = ThoughtfulLinkBaseProps & {
     asChild?: false;
-    href: Route;
+    href: string;
 };
 
 export type ThoughtfulLinkProps =
@@ -96,8 +96,8 @@ function getLinkContent({
 }
 
 /**
- * Link component for internal (Next.js) and external navigation.
- * Uses Next.js Link for internal routes and anchor tags for external links.
+ * Link component for internal (TanStack Router) and external navigation.
+ * Uses TanStack Router Link for internal routes and anchor tags for external links.
  */
 export function Link({
     href,
@@ -154,9 +154,17 @@ export function Link({
         );
     }
 
+    const { to, search, hash } = parseInternalHref(href);
+
     return (
-        <NextLink href={href} className={classes} {...props}>
+        <RouterLink
+            to={to}
+            search={search}
+            hash={hash}
+            className={classes}
+            {...props}
+        >
             {content}
-        </NextLink>
+        </RouterLink>
     );
 }

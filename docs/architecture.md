@@ -16,39 +16,33 @@ This document outlines the architectural decisions, patterns, and conventions us
 
 ## Technology Stack Rationale
 
-### Next.js 16 (App Router)
+### TanStack Start 1.0 + Vite 8 (Static Prerendering)
 
 **Why:**
 
-- Production-ready with 10+ years of battle-testing
-- Excellent documentation and community support
-- Perfect for SSG (Static Site Generation) - fast loads, excellent SEO
-- React 19 support with Server Components
-- Turbopack bundler for faster builds
-- Zero-config Vercel deployment
+- Transparent, lightweight Vite-based React framework without App Router / RSC runtime overhead
+- First-class type-safe file-based routing (`src/routes/`) and Valibot-validated search params (`validateSearch`)
+- Static prerendering (`prerender: { enabled: true }`) outputs plain HTML, CSS, and JS to `dist/client/`
+- Static hosting on Vercel via `vercel.json` (zero serverless runtime required)
 
 **Patterns:**
 
-- Use App Router for all routes (`app/` directory)
-- Leverage Server Components by default
-- Use Client Components (`'use client'`) only when needed (interactivity, hooks, browser APIs)
-- Static generation for all content pages (SSG)
-- `typedRoutes` is on, so `href` props are checked against real routes once `bun run typegen` has run (CI runs it before type-checking). Wrapper components type `href` as `Route` from `next`, and dynamic paths built from validated slugs use `` `/blog/${slug}` as Route ``.
+- File-based routes live in `src/routes/` (`__root.tsx`, `index.tsx`, `about.tsx`, `blog/`, `problems/`, `components.tsx`, `$.tsx`)
+- `scripts/generate-static-assets.ts` precompiles Markdown to Shiki-highlighted HTML into `src/generated/` and writes RSS, sitemap, robots, search indexes, and Satori/Resvg OG PNGs into `public/`
+- Route loaders in `src/data/content.ts` read static generated JSON (with Vite `import.meta.glob` per-slug code splitting), so client-side navigation requires zero runtime server RPC calls
+- Tailwind CSS v4 runs through `@tailwindcss/vite` (no PostCSS pipeline)
 
 ### React 19
 
 **Why:**
 
-- Required for Next.js 16
-- Server Components for better performance
-- Enhanced performance optimizations
-- Better developer experience
+- Modern React runtime paired with TanStack Start and Radix UI primitives
+- `useSyncExternalStore` keeps static HTML hydration clean on deep-linked query-string routes (`/blog?q=...`, `/problems?difficulty=...`)
 
 **Patterns:**
 
-- Prefer Server Components
-- Use Client Components sparingly
-- Leverage React 19 features (use hook, Server Actions)
+- Keep components thin and push domain/filtering logic to `lib/`
+- Keep Markdown parsing and syntax highlighting strictly build-time (`src/server/markdown.ts`) so zero parser or highlighter JS enters the client bundle
 
 ### TypeScript
 
@@ -122,7 +116,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 
 - Oxc-powered formatter and linter for fast local and CI feedback
 - Oxfmt keeps formatting deterministic across JS, TS, CSS, Markdown, and config files
-- Oxlint covers TypeScript, React, accessibility, and Next.js checks without the ESLint dependency tree
+- Oxlint covers TypeScript, React, and accessibility checks without the ESLint dependency tree
 - Smaller audit surface than the previous combined formatter, linter, and health-check setup
 
 **Patterns:**
@@ -164,7 +158,7 @@ For additional examples and a quick decision guide, see [`docs/typescript-conven
 - All content in `content/` directory
 - Frontmatter validated with Valibot schemas
 - Static generation for all content pages
-- Rendered with `react-markdown`, `remark-gfm`, and `rehype-highlight`
+- Compiled at build time with `unified`, `remark-gfm`, `@shikijs/rehype` (`github-dark-default`, explicit 5-language allowlist), and custom heading-anchor + copy-code rehype plugins (`src/server/markdown.ts`)
 
 ---
 
@@ -462,12 +456,11 @@ describe("Feature Name", () => {
 
 ### Response Headers
 
-`next.config.mjs` sends a Content Security Policy with every response, alongside `nosniff`, `Referrer-Policy`, `Permissions-Policy`, and `X-Frame-Options: DENY`.
+`vercel.json` sends a Content Security Policy with every response (mirrored locally by `scripts/serve-static.ts`), alongside `nosniff`, `Referrer-Policy`, `Permissions-Policy`, `Strict-Transport-Security`, and `X-Frame-Options: DENY`.
 
 - Everything loads from `'self'`. There are no third-party scripts, fonts, images, or embeds, so adding one means widening the policy on purpose.
-- `script-src` allows `'unsafe-inline'` because Next.js inlines the RSC payload into every static page. Nonces would force dynamic rendering, and hash-based CSP (`experimental.sri`) is webpack-only, while this site builds with Turbopack.
-- `'unsafe-eval'` is added in development only, for React's dev tooling.
-- The Vercel preview toolbar loads from `vercel.live`, which the policy blocks. Allow it for preview deployments only if the toolbar is needed.
+- `script-src` allows `'unsafe-inline'` for TanStack Start's scroll-restoration and dehydrated router bootstrap scripts.
+- Static assets under `/assets/*` are served with `Cache-Control: public, max-age=31536000, immutable`, and `/blog/rss.xml` explicitly sets `Content-Type: application/rss+xml; charset=utf-8`.
 
 ---
 

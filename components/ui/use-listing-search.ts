@@ -1,7 +1,4 @@
-"use client";
-
-import type { Route } from "next";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
     type BlogBodyIndex,
@@ -12,6 +9,7 @@ import {
     type BlogSearchScheduler,
     createBlogSearchScheduler,
 } from "@/lib/blog-search-scheduler";
+import { parseInternalHref } from "./component-utils";
 
 const cachedIndexes = new Map<string, BlogBodyIndex>();
 const inFlightRequests = new Map<string, Promise<BlogBodyIndex>>();
@@ -54,8 +52,10 @@ function loadSearchIndex(indexUrl: string): Promise<BlogBodyIndex> {
 interface UseListingSearchOptions {
     /** Static JSON index route, e.g. `/blog/search-index.json`. */
     indexUrl: string;
-    /** Query parameter name for the companion filter (e.g. `tag` or `difficulty`). */
-    filterParam: string;
+    /** Raw search query `q` from the validated route search params. */
+    rawUrlQuery: string | null;
+    /** Raw companion filter value (e.g. `tag` or `difficulty`) from the URL. */
+    rawUrlFilter: string | null;
     /** Builds the canonical listing URL for a committed search query (or cleared state). */
     buildSearchPath: (q: string | null) => string;
 }
@@ -78,13 +78,11 @@ export interface UseListingSearchResult {
  */
 export function useListingSearch({
     indexUrl,
-    filterParam,
+    rawUrlQuery,
+    rawUrlFilter,
     buildSearchPath,
 }: UseListingSearchOptions): UseListingSearchResult {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const rawUrlQuery = searchParams.get("q");
-    const rawUrlFilter = searchParams.get(filterParam);
+    const navigate = useNavigate();
     const urlQuery = normalizeSearchQuery(rawUrlQuery);
 
     const [inputValue, setInputValue] = useState(urlQuery);
@@ -128,10 +126,15 @@ export function useListingSearch({
                     return;
                 }
 
-                const nextPath = buildSearchPathRef.current(
-                    normalizedQuery || null
-                ) as Route;
-                router.replace(nextPath, { scroll: false });
+                const next = parseInternalHref(
+                    buildSearchPathRef.current(normalizedQuery || null)
+                );
+                void navigate({
+                    to: next.to,
+                    search: next.search ?? {},
+                    replace: true,
+                    resetScroll: false,
+                });
             },
         });
         schedulerRef.current = scheduler;
@@ -140,7 +143,7 @@ export function useListingSearch({
             scheduler.cancel();
             schedulerRef.current = null;
         };
-    }, [router]);
+    }, [navigate]);
 
     useEffect(() => {
         if (urlQuery) {
@@ -163,11 +166,15 @@ export function useListingSearch({
         schedulerRef.current?.cancel();
         setInputValue("");
         if (urlQueryRef.current) {
-            router.replace(buildSearchPathRef.current(null) as Route, {
-                scroll: false,
+            const next = parseInternalHref(buildSearchPathRef.current(null));
+            void navigate({
+                to: next.to,
+                search: next.search ?? {},
+                replace: true,
+                resetScroll: false,
             });
         }
-    }, [router]);
+    }, [navigate]);
 
     return {
         inputValue,

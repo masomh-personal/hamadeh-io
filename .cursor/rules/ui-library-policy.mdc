@@ -12,4 +12,4 @@ alwaysApply: false
 - Avoid generator or copied patterns (including the shadcn CLI) that reduce clarity or increase churn.
 - Prioritize accessibility defaults (focus, keyboard, semantic roles).
 - Use shared utilities (`cn`) and design tokens for styling consistency.
-- Validate new components with a section in the Components showcase (`app/components/sections`) before wider use. The `add-ui-component` skill covers the full flow.
+- Validate new components with a section in the Components showcase (`components/showcase/`) before wider use. The `add-ui-component` skill covers the full flow.

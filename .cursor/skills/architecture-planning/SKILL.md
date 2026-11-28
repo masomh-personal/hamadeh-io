@@ -18,10 +18,11 @@ Current decisions and their rationale live in `docs/architecture.md`. Read it be
 2. **Options.** Present 2 or 3 viable approaches, each with pros, cons, and risks. Include "do nothing" or "the simplest change" when it is credible.
 3. **Recommend one** incremental path. Prefer staged migrations over rewrites, and say how each stage can be verified and rolled back.
 4. **Boundaries.** Name which modules own which responsibility:
-    - `app/` for routing and rendering
+    - `src/routes/` for TanStack Router file-based routes and `head()` metadata
+    - `src/data/` for static content loaders and `src/server/` for build-time compilers
     - `components/` for UI
     - `lib/` for domain logic and parsing
-    - `scripts/` for tooling
+    - `scripts/` for tooling and static asset generation
 5. **Call out** compatibility, rollback, and observability concerns, plus any docs that must change (`docs/architecture.md`, `README.md`, `.cursor/rules`).
 
 ## Style

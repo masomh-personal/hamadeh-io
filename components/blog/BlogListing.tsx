@@ -1,6 +1,4 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
+import { useSyncExternalStore } from "react";
 import { SearchInput, useListingSearch } from "@/components/ui";
 import {
     type BlogListingQuery,
@@ -10,24 +8,36 @@ import {
 import type { BlogPostSummary } from "@/lib/content/blog";
 import { BlogListingView } from "./BlogListingView";
 
+const emptySubscribe = (): (() => void) => () => {};
+
 interface BlogListingProps {
     posts: BlogPostSummary[];
     tagCounts: TagCount[];
+    search: {
+        tag?: string;
+        q?: string;
+        page?: string;
+    };
 }
 
-/**
- * Reads the filter, search query, and page from the URL on the client so
- * `/blog` itself stays statically generated. Render it inside a Suspense
- * boundary.
- */
 export function BlogListing({
     posts,
     tagCounts,
+    search,
 }: BlogListingProps): React.ReactElement {
-    const searchParams = useSearchParams();
+    // Match the prerendered static HTML on the initial hydration pass so
+    // deep-linked query strings (?q=, ?tag=, ?page=) never cause a hydration
+    // mismatch, then immediately apply the URL search params on the client.
+    const isHydrated = useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    );
+    const activeSearch = isHydrated ? search : {};
+    const rawUrlQuery = activeSearch.q ?? null;
+    const rawUrlTag = activeSearch.tag ?? null;
     const {
         inputValue,
-        rawUrlQuery,
         bodyIndex,
         isSearching,
         handleSearchChange,
@@ -36,14 +46,15 @@ export function BlogListing({
         ensureBodyIndex,
     } = useListingSearch({
         indexUrl: "/blog/search-index.json",
-        filterParam: "tag",
+        rawUrlQuery,
+        rawUrlFilter: rawUrlTag,
         buildSearchPath: (q) => getBlogListingPath({ q }),
     });
 
     const query: BlogListingQuery = {
-        tag: searchParams.get("tag"),
+        tag: rawUrlTag,
         q: rawUrlQuery,
-        page: searchParams.get("page"),
+        page: activeSearch.page ?? null,
     };
 
     return (

@@ -1,153 +1,116 @@
-/**
- * Rich Markdown Content Renderer
- * Renders markdown content with syntax highlighting via highlight.js.
- * highlight.js has no dynamic imports or WASM, so it works cleanly with
- * Next.js Turbopack and Bun without module aliasing issues.
- */
+import { useEffect, useRef } from "react";
 
-import bash from "highlight.js/lib/languages/bash";
-import http from "highlight.js/lib/languages/http";
-import javascript from "highlight.js/lib/languages/javascript";
-import json from "highlight.js/lib/languages/json";
-import typescript from "highlight.js/lib/languages/typescript";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import { MarkdownAsync } from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
-import { CodeBlock } from "./CodeBlock";
+export { createHeadingIdAllocator, slugifyHeading } from "@/lib/heading-id";
 
 interface RichMarkdownContentProps {
-    content: string;
+    html: string;
 }
 
 /**
- * Registering languages explicitly keeps the default set of 37 out of the
- * bundle. Aliases such as `ts` come from the language definitions themselves.
- * `content:check` fails on fences using a language that is not listed here, so
- * adding one is a deliberate step rather than a silent loss of highlighting.
+ * Renders precompiled, Shiki-highlighted Markdown HTML and wires copy-code
+ * buttons through a single delegated click listener.
  */
-const highlightLanguages = {
-    bash,
-    http,
-    javascript,
-    json,
-    typescript,
-} as const;
+export function RichMarkdownContent({
+    html,
+}: RichMarkdownContentProps): React.ReactElement {
+    const containerRef = useRef<HTMLDivElement>(null);
 
-const REMARK_PLUGINS = [remarkGfm];
-const REHYPE_PLUGINS = [[rehypeHighlight, { languages: highlightLanguages }]];
-
-function extractHeadingText(node: ReactNode): string {
-    if (typeof node === "string" || typeof node === "number") {
-        return String(node);
-    }
-    if (Array.isArray(node)) {
-        return node.map(extractHeadingText).join("");
-    }
-    if (node && typeof node === "object" && "props" in node) {
-        const element = node as React.ReactElement<{ children?: ReactNode }>;
-        return extractHeadingText(element.props.children);
-    }
-    return "";
-}
-
-export function slugifyHeading(text: string): string {
-    return text
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-")
-        .replace(/^-+|-+$/g, "");
-}
-
-/**
- * Allocates unique heading IDs within a single document render, avoiding
- * collisions even when explicit numbered headings (e.g. "Foo 1") appear.
- */
-export function createHeadingIdAllocator(): (text: string) => string | null {
-    const usedIds = new Set<string>();
-
-    return (text: string): string | null => {
-        const baseSlug = slugifyHeading(text);
-        if (!baseSlug) {
-            return null;
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) {
+            return;
         }
 
-        let candidate = baseSlug;
-        let suffix = 1;
-        while (usedIds.has(candidate)) {
-            candidate = `${baseSlug}-${suffix}`;
-            suffix += 1;
-        }
+        const timers = new Map<
+            HTMLButtonElement,
+            ReturnType<typeof setTimeout>
+        >();
 
-        usedIds.add(candidate);
-        return candidate;
-    };
-}
-
-function createAnchorHeading(
-    TagName: "h2" | "h3" | "h4",
-    allocateId: (text: string) => string | null
-) {
-    return function AnchorHeading({
-        children,
-        className,
-        ...props
-    }: ComponentPropsWithoutRef<"h2">) {
-        const headingText = extractHeadingText(children).trim();
-        const id = allocateId(headingText);
-        if (!id) {
-            return (
-                <TagName className={className} {...props}>
-                    {children}
-                </TagName>
+        const handleClick = (event: MouseEvent): void => {
+            const target = event.target as HTMLElement | null;
+            const button = target?.closest<HTMLButtonElement>(
+                "button[data-copy-code]"
             );
-        }
+            if (!button) {
+                return;
+            }
 
-        return (
-            <TagName
-                id={id}
-                className={`group scroll-mt-24 ${className ?? ""}`.trim()}
-                {...props}
-            >
-                {children}
-                <a
-                    href={`#${id}`}
-                    aria-label={`Link to section ${headingText}`}
-                    className="ml-2 rounded-sm text-primary/0 no-underline transition-colors group-hover:text-primary/80 hover:text-primary focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-                >
-                    #
-                </a>
-            </TagName>
-        );
-    };
-}
+            const block = button.closest("[data-code-block]");
+            const code =
+                block?.querySelector("pre code")?.textContent?.trimEnd() ?? "";
+            const copyIcon =
+                button.querySelector<SVGElement>("[data-copy-icon]");
+            const copiedIcon =
+                button.querySelector<SVGElement>("[data-copied-icon]");
+            const statusOutput =
+                block?.querySelector<HTMLOutputElement>("[data-copy-status]");
 
-export async function RichMarkdownContent({
-    content,
-}: RichMarkdownContentProps): Promise<React.ReactElement> {
-    const allocateId = createHeadingIdAllocator();
-    const markdownComponents = {
-        pre: CodeBlock,
-        h2: createAnchorHeading("h2", allocateId),
-        h3: createAnchorHeading("h3", allocateId),
-        h4: createAnchorHeading("h4", allocateId),
-    };
+            const setStatus = (status: "idle" | "copied" | "failed"): void => {
+                if (status === "copied") {
+                    button.setAttribute("aria-label", "Copied");
+                    copyIcon?.classList.add("hidden");
+                    copiedIcon?.classList.remove("hidden");
+                    if (statusOutput) {
+                        statusOutput.textContent = "Code copied to clipboard";
+                    }
+                    return;
+                }
+
+                if (status === "failed") {
+                    button.setAttribute("aria-label", "Copy failed, try again");
+                    copyIcon?.classList.remove("hidden");
+                    copyIcon?.classList.add("text-red-300");
+                    copiedIcon?.classList.add("hidden");
+                    if (statusOutput) {
+                        statusOutput.textContent = "Copy failed, try again";
+                    }
+                    return;
+                }
+
+                button.setAttribute("aria-label", "Copy code");
+                copyIcon?.classList.remove("hidden", "text-red-300");
+                copiedIcon?.classList.add("hidden");
+                if (statusOutput) {
+                    statusOutput.textContent = "";
+                }
+            };
+
+            void (async () => {
+                try {
+                    await navigator.clipboard.writeText(code);
+                    setStatus("copied");
+                } catch {
+                    setStatus("failed");
+                }
+
+                const existingTimer = timers.get(button);
+                if (existingTimer !== undefined) {
+                    clearTimeout(existingTimer);
+                }
+                const nextTimer = setTimeout(() => {
+                    setStatus("idle");
+                    timers.delete(button);
+                }, 2000);
+                timers.set(button, nextTimer);
+            })();
+        };
+
+        container.addEventListener("click", handleClick);
+
+        return () => {
+            container.removeEventListener("click", handleClick);
+            for (const timer of timers.values()) {
+                clearTimeout(timer);
+            }
+            timers.clear();
+        };
+    }, []);
 
     return (
-        <div className="prose prose-invert prose-content max-w-none">
-            <MarkdownAsync
-                components={markdownComponents}
-                remarkPlugins={REMARK_PLUGINS}
-                rehypePlugins={
-                    REHYPE_PLUGINS as React.ComponentProps<
-                        typeof MarkdownAsync
-                    >["rehypePlugins"]
-                }
-            >
-                {content}
-            </MarkdownAsync>
-        </div>
+        <div
+            ref={containerRef}
+            className="prose prose-invert prose-content max-w-none"
+            dangerouslySetInnerHTML={{ __html: html }}
+        />
     );
 }

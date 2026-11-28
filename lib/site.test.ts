@@ -1,7 +1,13 @@
 import { describe, expect, test } from "bun:test";
-import { DEFAULT_OG_IMAGE_ALT, SITE_NAME, staticPageMetadata } from "./site";
+import {
+    absoluteUrl,
+    buildPageHead,
+    DEFAULT_OG_IMAGE_ALT,
+    DEFAULT_OG_IMAGE_PATH,
+    SITE_NAME,
+} from "./site";
 
-describe("staticPageMetadata", () => {
+describe("buildPageHead", () => {
     const input = {
         title: "Blog",
         description: "Engineering notes.",
@@ -9,11 +15,16 @@ describe("staticPageMetadata", () => {
     };
 
     test("points canonical and Open Graph URLs at the page, not the homepage", () => {
-        const expected = { canonical: "/blog", openGraphUrl: "/blog" };
-        const metadata = staticPageMetadata(input);
+        const expected = {
+            canonical: absoluteUrl("/blog"),
+            openGraphUrl: absoluteUrl("/blog"),
+        };
+        const head = buildPageHead(input);
         const result = {
-            canonical: metadata.alternates?.canonical,
-            openGraphUrl: metadata.openGraph?.url,
+            canonical: head.links.find((link) => link.rel === "canonical")
+                ?.href,
+            openGraphUrl: head.meta.find((tag) => tag.property === "og:url")
+                ?.content,
         };
 
         expect(result).toEqual(expected);
@@ -30,31 +41,43 @@ describe("staticPageMetadata", () => {
                 description: "Engineering notes.",
             },
         };
-        const metadata = staticPageMetadata(input);
+        const head = buildPageHead(input);
         const result = {
             openGraph: {
-                title: metadata.openGraph?.title,
-                description: metadata.openGraph?.description,
+                title: head.meta.find((tag) => tag.property === "og:title")
+                    ?.content,
+                description: head.meta.find(
+                    (tag) => tag.property === "og:description"
+                )?.content,
             },
             twitter: {
-                title: metadata.twitter?.title,
-                description: metadata.twitter?.description,
+                title: head.meta.find((tag) => tag.name === "twitter:title")
+                    ?.content,
+                description: head.meta.find(
+                    (tag) => tag.name === "twitter:description"
+                )?.content,
             },
         };
 
         expect(result).toEqual(expected);
     });
 
-    test("keeps the default share image that overriding openGraph would drop", () => {
-        const expected = [
-            { url: "/opengraph-image", alt: DEFAULT_OG_IMAGE_ALT },
-        ];
-        const metadata = staticPageMetadata(input);
+    test("includes the default share image and alt text", () => {
+        const expected = {
+            ogImage: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
+            ogAlt: DEFAULT_OG_IMAGE_ALT,
+            twitterImage: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
+        };
+        const head = buildPageHead(input);
         const result = {
-            openGraph: metadata.openGraph?.images,
-            twitter: metadata.twitter?.images,
+            ogImage: head.meta.find((tag) => tag.property === "og:image")
+                ?.content,
+            ogAlt: head.meta.find((tag) => tag.property === "og:image:alt")
+                ?.content,
+            twitterImage: head.meta.find((tag) => tag.name === "twitter:image")
+                ?.content,
         };
 
-        expect(result).toEqual({ openGraph: expected, twitter: expected });
+        expect(result).toEqual(expected);
     });
 });

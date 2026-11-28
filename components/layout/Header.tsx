@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import type { IconType } from "react-icons";
 import { FaLinkedin } from "react-icons/fa";
 import {
@@ -15,7 +14,7 @@ import { NavLink } from "./NavLink";
 
 interface NavItem {
     name: string;
-    href: Route;
+    href: string;
     icon: IconType;
     external?: boolean;
     iconOnlyOnDesktop?: boolean;

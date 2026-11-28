@@ -2,6 +2,17 @@
 
 Notable changes to hamadeh.io are documented here by release.
 
+## 3.14.0 - 2026-11-28
+
+### Added
+
+- Added a branded searching state (`LoadingIndicator` with skeleton shimmer) in the main results area of `/blog` and `/problems` while searches are in flight, paired with a 1000ms search beat after the 400ms typing debounce.
+- Added a pure-CSS, `prefers-reduced-motion`-safe motion system (`app/globals.css`) covering progressive cross-page View Transitions, staggered card reveals on search/filter/page changes, tab panel fades, card hover lift, and subtle icon/label micro-interactions.
+
+### Fixed
+
+- Fixed a horizontal scrollbar in the sticky desktop filter sidebar on `/blog` and `/problems` by moving the hover nudge onto the inner label and adding focus-ring breathing room inside `<aside>`.
+
 ## 3.13.1 - 2026-11-27
 
 ### Fixed
